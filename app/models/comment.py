@@ -7,5 +7,5 @@ class Comment(db.Model):
    song_id = db.Column(db.INTEGER, db.ForeignKey("songs.id"))
    comment = db.Column(db.TEXT, nullable=False)
 
-   user = db.relationship("User", back_populates="comments")
-   song = db.relationship("Song", back_populates="comments")
+   user = db.relationship("User")
+   song = db.relationship("Song")

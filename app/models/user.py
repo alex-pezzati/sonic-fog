@@ -30,10 +30,10 @@ class User(db.Model, UserMixin):
   profile_url = db.Column(db.String(255), nullable = False, unique = True)
   banner_url = db.Column(db.String(255), nullable = False, unique = True)
 
+
   playlist = db.relationship(
       "Playlist",
-      secondary=join_playlist,
-      back_populates="playlists"
+      secondary=join_playlist
   )
 
   @property
@@ -53,6 +53,7 @@ class User(db.Model, UserMixin):
   def to_dict(self):
     return {
       "id": self.id,
-      "username": self.username,
+      "first_name": self.first_name,
+      "last_name": self.last_name,
       "email": self.email
     }

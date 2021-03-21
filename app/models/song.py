@@ -14,4 +14,4 @@ class Song(db.Model):
    description = db.Column(db.TEXT)
    release_date = db.Column(db.DateTime())
 
-   user = db.relationship("User", back_populates="songs")
+   user = db.relationship("User")

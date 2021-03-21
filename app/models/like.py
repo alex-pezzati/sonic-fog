@@ -7,5 +7,5 @@ class Like(db.Model):
    user_id = db.Column(db.INTEGER, db.ForeignKey("users.id"))
    song_id = db.Column(db.INTEGER, db.ForeignKey("songs.id"))
 
-   user = db.relationship("User", back_populates="likes")
-   song = db.relationship("Song", back_populates="likes")
+   user = db.relationship("User")
+   song = db.relationship("Song")
