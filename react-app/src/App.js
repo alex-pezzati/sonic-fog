@@ -8,6 +8,10 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
 
+
+import AWS from './components/AWS'
+
+
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -47,6 +51,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
+        </ProtectedRoute>
+        <ProtectedRoute path="/images" exact={true} authenticated={authenticated}>
+          <AWS />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

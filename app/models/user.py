@@ -23,12 +23,13 @@ class User(db.Model, UserMixin):
   __tablename__ = 'users'
 
   id = db.Column(db.Integer, primary_key = True)
-  first_name = db.Column(db.String(40), nullable = False)
-  last_name = db.Column(db.String(40), nullable = False)
+  display_name = db.Column(db.String(40), nullable = False, unique = True)
+  first_name = db.Column(db.String(40), nullable = True)
+  last_name = db.Column(db.String(40), nullable = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
-  profile_url = db.Column(db.String(255), nullable = False, unique = True)
-  banner_url = db.Column(db.String(255), nullable = False, unique = True)
+  profile_url = db.Column(db.String(255), nullable = True)
+  banner_url = db.Column(db.String(255), nullable = True)
 
   song = db.relationship("Song", back_populates="user")
   comments = db.relationship("Comment", back_populates="user")
