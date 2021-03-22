@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import LogoutButton from "./auth/LogoutButton";
 
 const NavBar = ({ setAuthenticated }) => {
   return (
@@ -32,6 +32,6 @@ const NavBar = ({ setAuthenticated }) => {
       </ul>
     </nav>
   );
-}
+};
 
 export default NavBar;
