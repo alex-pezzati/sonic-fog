@@ -3,21 +3,21 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 
-join_playlist = db.Table(
-  "join_playlist",
-  db.Column(
-      "user_id",
-      db.INTEGER,
-      db.ForeignKey("users.id"),
-      primary_key=True
-  ),
-  db.Column(
-      "playlist_id",
-      db.INTEGER,
-      db.ForeignKey("playlists.id"),
-      primary_key=True
-  )
-)
+# join_playlist = db.Table(
+#   "join_playlist",
+#   db.Column(
+#       "user_id",
+#       db.INTEGER,
+#       db.ForeignKey("users.id"),
+#       primary_key=True
+#   ),
+#   db.Column(
+#       "playlist_id",
+#       db.INTEGER,
+#       db.ForeignKey("playlists.id"),
+#       primary_key=True
+#   )
+# )
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -30,11 +30,13 @@ class User(db.Model, UserMixin):
   profile_url = db.Column(db.String(255), nullable = False, unique = True)
   banner_url = db.Column(db.String(255), nullable = False, unique = True)
 
-  playlist = db.relationship(
-      "Playlist",
-      secondary=join_playlist,
-      back_populates="playlists"
-  )
+  song = db.relationship("Song", back_populates="user")
+  comments = db.relationship("Comment", back_populates="user")
+  # playlist = db.relationship(
+  #     "Playlist",
+  #     secondary=join_playlist,
+  #     back_populates="users"
+  # )
 
   @property
   def password(self):
@@ -53,6 +55,7 @@ class User(db.Model, UserMixin):
   def to_dict(self):
     return {
       "id": self.id,
-      "username": self.username,
-      "email": self.email
+      "first_name": self.first_name,
+      "last_name": self.last_name,
+      "email": self.email,
     }
