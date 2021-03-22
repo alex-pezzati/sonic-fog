@@ -24,7 +24,7 @@ const UploadPicture = () => {
         if (res.ok) {
             await res.json();
             setImageLoading(false);
-            history.push("/");
+            history.push("/images");
         }
         else {
             setImageLoading(false);
@@ -33,6 +33,7 @@ const UploadPicture = () => {
             console.log("error");
         }
     }
+
 
     const updateImage = (e) => {
         const file = e.target.files[0];

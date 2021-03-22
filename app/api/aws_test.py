@@ -7,7 +7,7 @@ from app.s3_helpers import (
 image_routes = Blueprint("images", __name__)
 
 
-@image_routes.route("/images", methods=["POST"])
+@image_routes.route("", methods=["POST"])  #technically also updates
 @login_required
 def upload_image():
     if "image" not in request.files:
@@ -29,8 +29,6 @@ def upload_image():
         return upload, 400
 
     banner_url = upload["url"]
-    # flask_login allows us to get the current user from the request
-    new_image = User(id=current_user, banner_url=banner_url)
-    db.session.add(new_image)
+    rows_changed = User.query.filter_by(id=current_user.id).update(dict(banner_url=banner_url))
     db.session.commit()
     return {"url": banner_url}

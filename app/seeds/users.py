@@ -4,7 +4,7 @@ from app.models import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
 
-    demo = User(first_name='Demo_first', last_name='Demo_last', email='demo@aa.io', profile_url='test.com', hashed_password=generate_password_hash('password'), banner_url='test.com')
+    demo = User(display_name='demo', email='demo@aa.io', hashed_password=generate_password_hash('password'))
 
     db.session.add(demo)
     db.session.commit()
