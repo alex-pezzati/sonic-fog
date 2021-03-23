@@ -74,22 +74,35 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
         if (i < numWaveformBars) {
           // dark
           ctx.fillStyle = '#fd5d00'
+
+          let grd = ctx.createLinearGradient(
+            i * (rectWidth + rectSpacing),
+            canvasHeight - amplitude - canvasBreakPoint,
+            i * (rectWidth + rectSpacing),
+            canvasHeight - canvasBreakPoint)
+          grd.addColorStop(1, "#fd1100");
+          grd.addColorStop(.5, "#fd5d00");
+          ctx.fillStyle = grd
         }
         // Highlighted, not yet played
         else {
-          // light
-          ctx.fillStyle = '#ffa467'
-          ctx.fillStyle = '#ca5815'
+          ctx.fillStyle = '#aa3e00'
         }
       } else {
         // Played, not highlighted when there are existing highlights
         if (numHighlightedBars > 0 && i < numWaveformBars) {
-
-          ctx.fillStyle = '#ca5815'
+          ctx.fillStyle = '#aa3e00'
         }
-        // Player, and no existing highlights
+        // Played, and no existing highlights
         else if (i < numWaveformBars) {
-          ctx.fillStyle = '#fd5d00'
+          let grd = ctx.createLinearGradient(
+            i * (rectWidth + rectSpacing),
+            canvasHeight - amplitude - canvasBreakPoint,
+            i * (rectWidth + rectSpacing),
+            canvasHeight - canvasBreakPoint)
+          grd.addColorStop(1, "#fd1100");
+          grd.addColorStop(0, "#fd5d00");
+          ctx.fillStyle = grd
         }
         // Neither played nor highlighted
         else {
@@ -109,13 +122,12 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
       // Bottom
       if (i < numWaveformBars) {
         // dark
-        ctx.fillStyle = '#fdd2b9'
+        ctx.fillStyle = '#ffc5b5'
       }
       // Neither played nor highlighted
       else {
         ctx.fillStyle = 'lightgrey'
       }
-
 
       // Bottom bars
       ctx.fillRect(
@@ -124,8 +136,6 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
         rectWidth,
         adjustedValue * breakPointRatio
       )
-
-
     })
 
 

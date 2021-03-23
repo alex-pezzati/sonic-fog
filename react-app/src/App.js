@@ -42,7 +42,7 @@ function App() {
     })()
   }, [])
 
-  let audio_src = '/static/Buttercup.wav'
+  let audio_src = '/static/Lana.wav'
   let audioRef = useRef()
 
   useEffect(() => {

@@ -8,8 +8,16 @@
 .wavePoint {
 	display: flex;
 	flex: 1;
+  background-color: #fd1100;
 	background-color: #fd5d00;
-   background-color: #ff9d64;
+  background-color: #fdd2b9;
 
-  background-color: #ff833b;
+
+  /* blend of gradient */
+  background-color: #FD3700;
+  /* use for the filled in bottom */
+  background-color: #ffc5b5;
+
+  /* Highlighted */
+	background-color: #aa3e00;
 }
