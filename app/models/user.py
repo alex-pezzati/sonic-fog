@@ -3,21 +3,21 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 
-# join_playlist = db.Table(
-#   "join_playlist",
-#   db.Column(
-#       "user_id",
-#       db.INTEGER,
-#       db.ForeignKey("users.id"),
-#       primary_key=True
-#   ),
-#   db.Column(
-#       "playlist_id",
-#       db.INTEGER,
-#       db.ForeignKey("playlists.id"),
-#       primary_key=True
-#   )
-# )
+join_playlist = db.Table(
+  "join_playlist",
+  db.Column(
+      "user_id",
+      db.INTEGER,
+      db.ForeignKey("users.id"),
+      primary_key=True
+  ),
+  db.Column(
+      "playlist_id",
+      db.INTEGER,
+      db.ForeignKey("playlists.id"),
+      primary_key=True
+  )
+)
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -33,11 +33,12 @@ class User(db.Model, UserMixin):
 
   song = db.relationship("Song", back_populates="user")
   comments = db.relationship("Comment", back_populates="user")
-  # playlist = db.relationship(
-  #     "Playlist",
-  #     secondary=join_playlist,
-  #     back_populates="users"
-  # )
+  likes = db.relationship("Like", back_populates="user")
+  playlist = db.relationship(
+      "Playlist",
+      secondary=join_playlist,
+      back_populates="user"
+  )
 
   @property
   def password(self):

@@ -8,16 +8,15 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
 
-
-import AWS from './components/AWS'
-
+import UploadPicture from "./components/AWS";
+import UploadSong from "./components/AWS_Song";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       const user = await authenticate();
       if (!user.errors) {
         setAuthenticated(true);
@@ -41,19 +40,37 @@ function App() {
           />
         </Route>
         <Route path="/sign-up" exact={true}>
-          <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
+          <SignUpForm
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
         </Route>
-        <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
-          <UsersList/>
+        <ProtectedRoute
+          path="/users"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
+        <ProtectedRoute
+          path="/users/:userId"
+          exact={true}
+          authenticated={authenticated}
+        >
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
         </ProtectedRoute>
-        <ProtectedRoute path="/images" exact={true} authenticated={authenticated}>
-          <AWS />
+        <ProtectedRoute
+          path="/images"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <UploadPicture />
+        </ProtectedRoute>
+        <ProtectedRoute path="/song" exact={true} authenticated={authenticated}>
+          <UploadSong />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
