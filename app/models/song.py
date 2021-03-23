@@ -16,3 +16,4 @@ class Song(db.Model):
 
    user = db.relationship("User", back_populates="song")
    comments = db.relationship("Comment", back_populates="song")
+   likes = db.relationship("Like", back_populates="song")
