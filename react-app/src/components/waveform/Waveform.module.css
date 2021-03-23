@@ -8,5 +8,8 @@
 .wavePoint {
 	display: flex;
 	flex: 1;
-	background-color: blue;
+	background-color: #fd5d00;
+   background-color: #ff9d64;
+
+  background-color: #ff833b;
 }

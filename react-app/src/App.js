@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { useSelector } from 'react-redux'
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
@@ -30,6 +31,8 @@ function App() {
   const [waveformData, setWaveFormData] = useState([])
   const [trackDuration, setTrackDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
+  const trackData = useSelector(state => state.track)
+
   useEffect(() => {
     (async () => {
       let answer = await fetch('/api/waveform')
@@ -38,8 +41,15 @@ function App() {
       setTrackDuration(json.duration)
     })()
   }, [])
+
   let audio_src = '/static/Buttercup.wav'
   let audioRef = useRef()
+
+  useEffect(() => {
+    if (trackData?.startTime)
+      audioRef.current.currentTime = trackData.startTime
+  }, [trackData])
+
   const togglePlaying = (e) => {
     const player = audioRef.current
 
@@ -53,6 +63,11 @@ function App() {
 
     setCurrentTime(player.currentTime)
   }
+
+
+
+
+
 
   if (!loaded) {
     return null;
@@ -79,7 +94,7 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute exact path='/waveform' authenticated={authenticated}>
           <audio src={audio_src} ref={audioRef} onTimeUpdate={() => setCurrentTime(audioRef.current.currentTime)}></audio>
-          <Waveform waveformData={waveformData} trackDuration={trackDuration} currentTime={currentTime} />
+          <Waveform waveformData={waveformData} trackDuration={trackDuration} currentTime={currentTime} canvasWidth={1000} canvasHeight={200} />
           <button onClick={togglePlaying}>Play</button>
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>

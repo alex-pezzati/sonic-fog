@@ -1,13 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react'
+import { useDispatch } from 'react-redux'
+import { setStartTime } from '../../store/track'
 // import classes from './Waveform.module.css'
 
 
-const Waveform = ({ trackDuration, waveformData, currentTime }) => {
+const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canvasHeight }) => {
 
   // These should probably be passed in as props tbh
-  const [trackPercentage, setTrackPercentage] = useState(0)
   const [numWaveformBars, setNumWaveformBars] = useState(0)
-  const [numHighlightedBars, setNumHighlightedBars] = useState(0)
+  const [numHighlightedBars, setNumHighlightedBars] = useState(-1)
+  const [targetTime, setTargetTime] = useState(0)
+
+  const dispatch = useDispatch()
 
 
   useEffect(() => {
@@ -15,27 +19,27 @@ const Waveform = ({ trackDuration, waveformData, currentTime }) => {
       return
 
     requestAnimationFrame(() => {
-      // const secondsElapsed = ((Date.now() - startTime) / 1000)
-      const secondsElapsed = currentTime
-      const songPercentage = secondsElapsed / trackDuration
+      const trackPercentage = currentTime / trackDuration
       const numChunks = waveformData.length
-      const numBars = Math.floor(songPercentage * numChunks)
+      const numBars = Math.floor(trackPercentage * numChunks)
 
-      if (songPercentage < 1) {
-        setTrackPercentage(songPercentage)
+      // If the song is over, don't update the number of bars
+      if (trackPercentage >= 100) {
+        return
       }
-      if (numBars > numWaveformBars) {
+
+      // If there is discrepency between the number of bars calculated in this function, and the number stored it the state, update the state
+      // This acts as a throttle. The canvas is repainted in a useEffect that has numWaveBars as a dependency
+      if (numBars && numBars !== numWaveformBars) {
         setNumWaveformBars(numBars)
       }
 
     })
-  }, [trackPercentage, currentTime])
+  }, [currentTime])
 
 
 
   let canvasRef = useRef()
-  const canvasHeight = 200
-  const canvasWidth = 1000
   useEffect(() => {
     if (!waveformData || !waveformData.length)
       return
@@ -60,19 +64,37 @@ const Waveform = ({ trackDuration, waveformData, currentTime }) => {
     const canvasBreakPoint = breakPointRatio * canvasHeight
 
     waveformData.forEach((value, i) => {
-
       const adjustedValue = (value / 100) * canvasHeight
-      const amplitude = Math.round((1 - breakPointRatio) * adjustedValue) - 2
+      const amplitude = Math.round((1 - breakPointRatio) * adjustedValue) // - 2
 
-      if (i <= numHighlightedBars) {
-        console.log(numHighlightedBars)
-        ctx.fillStyle = 'hotpink'
-      }
-      else if (i < numWaveformBars) {
-        ctx.fillStyle = 'black'
-      }
-      else {
-        ctx.fillStyle = 'grey'
+      ctx.fillStyle = 'darkgrey'
+
+      if (numHighlightedBars > 0 && i <= numHighlightedBars) {
+        // Both played and highlighted
+        if (i < numWaveformBars) {
+          // dark
+          ctx.fillStyle = '#fd5d00'
+        }
+        // Highlighted, not yet played
+        else {
+          // light
+          ctx.fillStyle = '#ffa467'
+          ctx.fillStyle = '#ca5815'
+        }
+      } else {
+        // Played, not highlighted when there are existing highlights
+        if (numHighlightedBars > 0 && i < numWaveformBars) {
+
+          ctx.fillStyle = '#ca5815'
+        }
+        // Player, and no existing highlights
+        else if (i < numWaveformBars) {
+          ctx.fillStyle = '#fd5d00'
+        }
+        // Neither played nor highlighted
+        else {
+          ctx.fillStyle = 'darkgrey'
+        }
       }
 
       // Top bars
@@ -83,21 +105,30 @@ const Waveform = ({ trackDuration, waveformData, currentTime }) => {
         amplitude)
 
 
-      if (i <= numHighlightedBars) {
-        ctx.fillStyle = 'lightpink'
+
+      // Bottom
+      if (i < numWaveformBars) {
+        // dark
+        ctx.fillStyle = '#fdd2b9'
       }
-      else if (i < numWaveformBars) {
-        ctx.fillStyle = 'darkgrey'
-      } else {
-        ctx.fillStyle = 'lightgray'
+      // Neither played nor highlighted
+      else {
+        ctx.fillStyle = 'lightgrey'
       }
+
+
       // Bottom bars
       ctx.fillRect(
         i * (rectWidth + rectSpacing),
         canvasHeight - canvasBreakPoint + 2,
         rectWidth,
-        adjustedValue * breakPointRatio - 3)
+        adjustedValue * breakPointRatio
+      )
+
+
     })
+
+
   }, [waveformData, numWaveformBars, numHighlightedBars])
 
 
@@ -105,18 +136,16 @@ const Waveform = ({ trackDuration, waveformData, currentTime }) => {
     const distanceFromLeft = canvasRef.current.getBoundingClientRect().left
     const relativePosition = e.clientX - distanceFromLeft
     const trackPercentage = relativePosition / canvasWidth
+
     const numChunks = waveformData.length
     const numBars = Math.floor(trackPercentage * numChunks)
-
     setNumHighlightedBars(numBars)
+
+    setTargetTime((trackPercentage + .005) * trackDuration)
   }
 
   const seekTrack = (e) => {
-    const distanceFromLeft = canvasRef.current.getBoundingClientRect().left
-    const relativePosition = e.clientX - distanceFromLeft
-    const trackPercentage = relativePosition / canvasWidth
-
-
+    dispatch(setStartTime(targetTime))
   }
 
   return (
