@@ -8,7 +8,8 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./services/auth";
 
-import { UploadPicture, UploadSong } from "./components/AWS";
+import UploadPicture from "./components/AWS";
+import UploadSong from "./components/AWS_Song";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
