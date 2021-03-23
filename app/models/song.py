@@ -8,9 +8,9 @@ class Song(db.Model):
    artist = db.Column(db.String(50))
    name = db.Column(db.String(50), nullable=False)
    url = db.Column(db.String(255), nullable=False)
-   duration = db.Column(db.String(255), nullable=False)
-   cover_image = db.Column(db.String(255), nullable=False)
-   genre = db.Column(db.String(255), nullable=False)
+   duration = db.Column(db.String(255))
+   cover_image = db.Column(db.String(255))
+   genre = db.Column(db.String(255))
    description = db.Column(db.TEXT)
    release_date = db.Column(db.DateTime())
 

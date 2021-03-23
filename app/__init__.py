@@ -10,7 +10,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 
 # testing aws
-from .api.aws_test import image_routes
+from .api.aws_user_images import image_routes
 
 from .seeds import seed_commands
 
