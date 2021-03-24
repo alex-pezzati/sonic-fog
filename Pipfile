@@ -29,8 +29,8 @@ Mako = "==1.1.3"
 PyJWT = "==1.7.1"
 scipy = "*"
 numpy = "*"
-urllib3 = "*"
 pydub = "*"
+boto3 = "*"
 
 [dev-packages]
 psycopg2-binary = "==2.8.6"

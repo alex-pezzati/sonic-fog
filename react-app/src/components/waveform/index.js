@@ -13,7 +13,6 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
 
   const dispatch = useDispatch()
 
-
   useEffect(() => {
     if ((!waveformData || !waveformData.length) && trackDuration !== 0)
       return
@@ -35,7 +34,7 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
       }
 
     })
-  }, [currentTime])
+  }, [currentTime, numWaveformBars, trackDuration, waveformData])
 
 
 
@@ -139,7 +138,7 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
     })
 
 
-  }, [waveformData, numWaveformBars, numHighlightedBars])
+  }, [waveformData, numWaveformBars, numHighlightedBars, canvasHeight, canvasWidth])
 
 
   const getXPosition = (e) => {
