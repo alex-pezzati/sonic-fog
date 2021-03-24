@@ -1,13 +1,13 @@
 from flask import Blueprint, request
 from app.models import db, User
 from flask_login import current_user, login_required
-from app.s3_helpers import (
+from app.utils.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 
 image_routes = Blueprint("images", __name__)
 
 
-@image_routes.route("", methods=["POST"])  #technically also updates
+@image_routes.route("", methods=["POST"])  # technically also updates
 @login_required
 def upload_image():
     if "image" not in request.files:
@@ -29,6 +29,7 @@ def upload_image():
         return upload, 400
 
     banner_url = upload["url"]
-    rows_changed = User.query.filter_by(id=current_user.id).update(dict(banner_url=banner_url))
+    rows_changed = User.query.filter_by(
+        id=current_user.id).update(dict(banner_url=banner_url))
     db.session.commit()
     return {"url": banner_url}

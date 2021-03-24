@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { setStartTime } from '../../store/track'
+import { setCurrentTime } from '../../store/song'
 // import classes from './Waveform.module.css'
 
 
@@ -70,7 +70,7 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
 
       if (numHighlightedBars > 0 && i <= numHighlightedBars) {
         // Both played and highlighted
-        if (i < numWaveformBars) {
+        if (i <= numWaveformBars) {
           // dark
           ctx.fillStyle = '#fd5d00'
 
@@ -89,11 +89,11 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
         }
       } else {
         // Played, not highlighted when there are existing highlights
-        if (numHighlightedBars > 0 && i < numWaveformBars) {
+        if (numHighlightedBars > 0 && i <= numWaveformBars) {
           ctx.fillStyle = '#aa3e00'
         }
         // Played, and no existing highlights
-        else if (i < numWaveformBars) {
+        else if (i <= numWaveformBars) {
           let grd = ctx.createLinearGradient(
             i * (rectWidth + rectSpacing),
             canvasHeight - amplitude - canvasBreakPoint,
@@ -119,7 +119,7 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
 
 
       // Bottom
-      if (i < numWaveformBars) {
+      if (i <= numWaveformBars) {
         // dark
         ctx.fillStyle = '#ffc5b5'
       }
@@ -154,7 +154,7 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
   }
 
   const seekTrack = (e) => {
-    dispatch(setStartTime(targetTime))
+    dispatch(setCurrentTime(targetTime))
   }
 
   return (
