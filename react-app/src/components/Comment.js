@@ -36,12 +36,23 @@ const Comment = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label for="comment">Post a comment here</label>
-      <input type="text" accept="text/*" onChange={updatePost} name="comment" />
-      <button type="submit">post comment</button>
-      {postLoading && <p>Loading...</p>}
-    </form>
+    <ul>
+      <form onSubmit={handleSubmit}>
+        <li>
+          <div>
+            <label for="comment">Post a comment here</label>
+          </div>
+          <input
+            type="text"
+            accept="text/*"
+            onChange={updatePost}
+            name="comment"
+          />
+        </li>
+        <button type="submit">post comment</button>
+        {postLoading && <p>Posting...</p>}
+      </form>
+    </ul>
   );
 };
 
