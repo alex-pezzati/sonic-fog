@@ -6,12 +6,12 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
-import AudioPlayer from './components/audioPlayer'
+import AudioPlayer from "./components/audioPlayer";
 import { authenticate } from "./services/auth";
-
 
 import UploadPicture from "./components/AWS";
 import UploadSong from "./components/AWS_Song";
+import Comment from "./components/Comment";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -47,13 +47,25 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route>
-        <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
+        <ProtectedRoute
+          path="/users"
+          exact={true}
+          authenticated={authenticated}
+        >
           <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
+        <ProtectedRoute
+          path="/users/:userId"
+          exact={true}
+          authenticated={authenticated}
+        >
           <User />
         </ProtectedRoute>
-        <ProtectedRoute exact path='/audioPlayerTest' authenticated={authenticated}>
+        <ProtectedRoute
+          exact
+          path="/audioPlayerTest"
+          authenticated={authenticated}
+        >
           <AudioPlayer songId={9} canvasWidth={1000} canvasHeight={200} />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
@@ -69,8 +81,15 @@ function App() {
         <ProtectedRoute path="/song" exact={true} authenticated={authenticated}>
           <UploadSong />
         </ProtectedRoute>
+        <ProtectedRoute
+          path="/comment"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <Comment />
+        </ProtectedRoute>
       </Switch>
-    </BrowserRouter >
+    </BrowserRouter>
   );
 }
 

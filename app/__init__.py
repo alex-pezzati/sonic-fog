@@ -13,6 +13,7 @@ from .api.waveform_routes import waveform_routes
 # testing aws
 from .api.aws_user_images import image_routes
 from .api.aws_songs import song_routes
+from .api.comment_routes import comment_routes
 
 from .seeds import seed_commands
 
@@ -42,6 +43,7 @@ app.register_blueprint(waveform_routes, url_prefix='/api/waveform')
 
 app.register_blueprint(image_routes, url_prefix='/api/images')
 app.register_blueprint(song_routes, url_prefix='/api/song')
+app.register_blueprint(comment_routes, url_prefix='/api/comment')
 db.init_app(app)
 Migrate(app, db)
 
