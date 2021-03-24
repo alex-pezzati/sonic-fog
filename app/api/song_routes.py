@@ -78,15 +78,6 @@ def get_song_data(song_id):
     })
 
 
-@song_routes.route('/setActiveSong', methods=['POST'])
-def set_active_song():
-    song_id = request.json['id']
-    song = Song.query.filter(Song.id == song_id).first()
-    aws_unique_name = song.aws_unique_name
-    # output_path = download_song_from_s3(aws_unique_name)
-    return jsonify(song.url)
-
-
 # Need to add: Validations and parsing/storing of other form fields (artist, album, etc)
 @song_routes.route("", methods=["POST"])  # technically also updates
 @login_required
