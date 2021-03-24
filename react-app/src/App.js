@@ -4,18 +4,19 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import AudioPlayer from './components/audioPlayer'
 import { authenticate } from "./services/auth";
 
 
-import AWS from './components/AWS'
-
+import UploadPicture from "./components/AWS";
+import UploadSong from "./components/AWS_Song";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       const user = await authenticate();
       console.log('USER', user)
       if (!user.errors) {
@@ -49,16 +50,26 @@ function App() {
           <h1>Hello Users</h1>
         </Route>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/images" exact={true} authenticated={authenticated}>
-          <AWS />
+        <ProtectedRoute exact path='/audioPlayerTest' authenticated={authenticated}>
+          <AudioPlayer songId={9} canvasWidth={1000} canvasHeight={200} />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/images"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <UploadPicture />
+        </ProtectedRoute>
+        <ProtectedRoute path="/song" exact={true} authenticated={authenticated}>
+          <UploadSong />
         </ProtectedRoute>
       </Switch>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 
