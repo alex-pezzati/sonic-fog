@@ -81,12 +81,8 @@ function App() {
         <ProtectedRoute path="/song" exact={true} authenticated={authenticated}>
           <UploadSong />
         </ProtectedRoute>
-        <ProtectedRoute
-          path="/comment"
-          exact={true}
-          authenticated={authenticated}
-        >
-          <Comment />
+        <ProtectedRoute path="/comment" authenticated={authenticated}>
+          <Comment song_id={3} />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

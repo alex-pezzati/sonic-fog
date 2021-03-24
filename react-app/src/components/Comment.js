@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-const Comment = () => {
+const Comment = ({ song_id }) => {
   const history = useHistory(); // so that we can redirect after the image upload is successful
   const [comment, setComment] = useState(null);
   const [postLoading, setPostLoading] = useState(false);
@@ -14,14 +14,14 @@ const Comment = () => {
     // some sort of loading message is a good idea
     setPostLoading(true);
 
-    const res = await fetch("/api/comment", {
+    const res = await fetch(`/api/comment/${song_id}`, {
       method: "POST",
       body: formData,
     });
     if (res.ok) {
       await res.json();
       setPostLoading(false);
-      history.push("/comment");
+      history.push("/");
     } else {
       setPostLoading(false);
       // a real app would probably use more advanced
@@ -31,7 +31,7 @@ const Comment = () => {
   };
 
   const updatePost = (e) => {
-    const form_comment = e.target.files[0];
+    const form_comment = e.target.value;
     setComment(form_comment);
   };
 
@@ -44,7 +44,7 @@ const Comment = () => {
           </div>
           <input
             type="text"
-            accept="text/*"
+            value={comment}
             onChange={updatePost}
             name="comment"
           />

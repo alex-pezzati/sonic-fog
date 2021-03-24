@@ -24,7 +24,7 @@ const UploadSong = () => {
     if (res.ok) {
       await res.json();
       setSongLoading(false);
-      history.push("/song");
+      history.push(`/song/${name}`);
     } else {
       setSongLoading(false);
       // a real app would probably use more advanced
