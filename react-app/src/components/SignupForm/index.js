@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import Modal from 'react-modal';
 import { signup } from '../../store/session';
 import { modalSignUpClose, modalLogInOpen } from '../../store/modal';
@@ -11,6 +12,7 @@ Modal.setAppElement('#root');
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const modalSignUpState = useSelector((state) => state.modal.signup);
 
 	//TODO: Add inputs for firstname, lastname
@@ -29,13 +31,16 @@ function SignupFormModal() {
 		dispatch(modalLogInOpen());
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		// if (password === confirmPassword) {
 		setErrors([]);
-		const data = dispatch(signup({ displayName, email, password }));
+		const data = await dispatch(signup({ displayName, email, password })).then(data => data);
 		if (data && data.errors) {
 			setErrors(data.errors);
+		}
+		if (data && data.email) {
+			history.push(`/users/${data.display_name}`)
 		}
 		// }
 		// return setErrors(['Confirm Password field must be the same as the Password field']);
