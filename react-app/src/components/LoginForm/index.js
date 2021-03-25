@@ -34,9 +34,8 @@ function LoginFormModal() {
 		if (data && data.errors) {
 			setErrors(data.errors);
 		} else {
-
+			// redirect to users/user
 		}
-
 	};
 
 	// TODO: for security, change to only display 'Invalid credentials'
@@ -44,12 +43,17 @@ function LoginFormModal() {
 	if (errors.length > 0) {
 		errorRender = (
 			<div className={c.div}>
-				<ul style={{'color': 'red'}}>
+				<ul style={{ color: 'red' }}>
 					{errors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
 				</ul>
 			</div>
 		);
 	}
+
+	const demoLogin = () => {
+		setEmail('demo@aa.io');
+		setPassword('password');
+	};
 
 	return (
 		<Modal
@@ -102,11 +106,18 @@ function LoginFormModal() {
 								Log In
 							</button>
 						</div>
+						<p className={c.or}>OR</p>
+						<div className={c.div}>
+							<button
+								id='demo-login'
+								type='submit'
+								onClick={demoLogin}
+								className={c.demo}
+							>
+								Continue as Demo
+							</button>
+						</div>
 					</form>
-					<p className={c.or}>OR</p>
-				</div>
-				<div className={c.div}>
-					<button className={c.demo}>Continue as Demo</button>
 				</div>
 				<div className={c.div__line}></div>
 				<div className={c.div}>
