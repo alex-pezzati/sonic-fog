@@ -4,6 +4,7 @@ import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
 import SongPageRoute from "./components/songPage";
+import HomePageRoute from "./components/homePage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
@@ -75,7 +76,7 @@ function App() {
           <AudioPlayer songId={3} canvasWidth={1000} canvasHeight={200} />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-          <h1>Welcome</h1>
+          <HomePageRoute />
         </ProtectedRoute>
         <ProtectedRoute
           path="/images"
