@@ -6,7 +6,8 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
-import AudioPlayer from './components/audioPlayer'
+import WaveFormControls from './components/waveformControls'
+import Waveform from './components/waveform'
 import SongNavBar from './components/song_navbar'
 import { authenticate } from "./services/auth";
 
@@ -54,10 +55,17 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
           <User />
         </ProtectedRoute>
+        {/* Feel free to delete this route if it doesn't work with you database. It was just for testing the waveform player */}
         <ProtectedRoute exact path='/audioPlayerTest' authenticated={authenticated}>
-          <AudioPlayer songId={12} canvasWidth={1000} canvasHeight={200} />
-          <AudioPlayer songId={11} canvasWidth={1000} canvasHeight={200} />
-          <AudioPlayer songId={10} canvasWidth={1000} canvasHeight={200} />
+          <Waveform songId={12} canvasHeight={200} canvasWidth={1000} />
+          <WaveFormControls songId={12} />
+
+          <Waveform songId={11} canvasHeight={200} canvasWidth={1000} />
+          <WaveFormControls songId={11} />
+
+          <Waveform songId={8} canvasHeight={200} canvasWidth={1000} />
+          <WaveFormControls songId={8} />
+
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>

@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import Waveform from "../waveform"
 import { setActiveSongData, pauseSong, playSong } from '../../store/song'
-// import classes from './Waveform.module.css'
 
 
-const AudioPlayer = ({ songId, canvasWidth, canvasHeight }) => {
+const WaveFormControls = ({ songId }) => {
   const [songUrl, setSongUrl] = useState()
 
   const storeSongData = useSelector(state => state.song)
@@ -53,11 +51,10 @@ const AudioPlayer = ({ songId, canvasWidth, canvasHeight }) => {
 
   return (
     <div>
-      <Waveform songId={songId} canvasWidth={canvasWidth} canvasHeight={canvasHeight} />
       <button ref={buttonRef} onClick={togglePlaying}>Play</button>
     </div>
   )
 }
 
 
-export default AudioPlayer
+export default WaveFormControls
