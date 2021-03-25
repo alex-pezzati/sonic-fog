@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import AudioPlayer from './components/audioPlayer'
+import SongNavBar from './components/song_navbar'
 import { authenticate } from "./services/auth";
 
 
@@ -56,7 +57,7 @@ function App() {
         <ProtectedRoute exact path='/audioPlayerTest' authenticated={authenticated}>
           <AudioPlayer songId={12} canvasWidth={1000} canvasHeight={200} />
           <AudioPlayer songId={11} canvasWidth={1000} canvasHeight={200} />
-          <AudioPlayer songId={7} canvasWidth={1000} canvasHeight={200} />
+          <AudioPlayer songId={10} canvasWidth={1000} canvasHeight={200} />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
@@ -72,6 +73,7 @@ function App() {
           <UploadSong />
         </ProtectedRoute>
       </Switch>
+      <SongNavBar />
     </BrowserRouter >
   );
 }
