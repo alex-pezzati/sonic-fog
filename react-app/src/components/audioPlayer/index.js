@@ -1,59 +1,72 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import Waveform from "../waveform"
+import { setActiveSong, setCurrentTime, setCheckpoint } from '../../store/song'
 // import classes from './Waveform.module.css'
 
 
 const AudioPlayer = ({ songId, canvasWidth, canvasHeight }) => {
 
-  // Not fully sure where to put this
   const [waveformData, setWaveFormData] = useState([])
   const [trackDuration, setTrackDuration] = useState(0)
-  const [currentTime, setCurrentTime] = useState(0)
-  const trackData = useSelector(state => state.track)
+  const [songUrl, setSongUrl] = useState()
+
+  const [localCurrentTime, setLocalCurrentTime] = useState(0)
+
+  const storeSongData = useSelector(state => state.song)
+  const dispatch = useDispatch()
   let audioRef = useRef()
+  let buttonRef = useRef()
 
-  // useEffect(() => {
-  //   (async () => {
-  //     let answer = await fetch(`/api/waveform/${songId}`)
-  //     let json = await answer.json()
-  //     setWaveFormData(json.data)
-  //     setTrackDuration(json.duration)
-  //   })()
-  // }, [songId])
+  console.log(localCurrentTime, 'index')
 
-  // Set the waveform data
+  // Get the song data
   useEffect(() => {
     (async () => {
-      let response = await fetch(`/api/waveform/waveform/${songId}`)
+      let response = await fetch(`/api/song/${songId}`)
       let data = await response.json()
 
-      let string = data.waveform_data
-      string = string.slice(1, -1)
-
-      let arr = string.split(',')
+      let waveform_data = data.waveform_data
+      waveform_data = waveform_data.slice(1, -1)
+      let arr = waveform_data.split(',')
       setWaveFormData(arr)
+
+      let duration = data.duration
+      setTrackDuration(parseFloat(duration))
+
+      let url = data.songURL
+      setSongUrl(url)
     })()
   }, [songId])
 
-  // Set the track duration
+  // If this song is not the active song, make sure it is paused and the button says play
   useEffect(() => {
-    (async () => {
-      let response = await fetch(`/api/waveform/duration/${songId}`)
-      let data = await response.json()
-      setTrackDuration(parseFloat(data))
-    })()
-  }, [songId])
+    if (storeSongData?.activeSongId !== songId) {
+      buttonRef.current.innerText = 'Play'
+      audioRef.current['pause']()
+    }
+  }, [storeSongData])
 
-  let audio_src = 'static/target.wav'
-
+  // If the store data changes, and this is the active song, set the audio to the store checkpoint value
   useEffect(() => {
-    if (trackData?.startTime)
-      audioRef.current.currentTime = trackData.startTime
-  }, [trackData])
+    if (storeSongData?.activeSongId && storeSongData?.activeSongId === songId) {
+      audioRef.current.currentTime = storeSongData.checkpoint
+      setLocalCurrentTime(audioRef.current.currentTime)
+    }
+  }, [storeSongData])
 
-  const togglePlaying = (e) => {
+  // When the user clicks the play/pause button...
+  const togglePlaying = async (e) => {
     const player = audioRef.current
+
+    // ...Make this song the active song if it isn't already
+    // ... set the checkpoin to 0 (the start of the song)
+    /// ... set the local time to 0 as well (this keeps the waveform graphs in sync)
+    if (storeSongData?.activeSongId != songId) {
+      dispatch(setActiveSong(songId))
+      dispatch(setCheckpoint(0))
+      setLocalCurrentTime(0)
+    }
 
     if (e.target.innerText === 'Play') {
       e.target.innerText = 'Pause'
@@ -62,15 +75,23 @@ const AudioPlayer = ({ songId, canvasWidth, canvasHeight }) => {
       e.target.innerText = 'Play'
       player['pause']()
     }
+  }
 
-    setCurrentTime(player.currentTime)
+  const changeStoreTime = () => {
+    // dispatch(setCurrentTime(audioRef.current.currentTime))
+    setLocalCurrentTime(audioRef.current.currentTime)
+
+    if (audioRef.current.ended) {
+      buttonRef.current.innerText = 'Play'
+      dispatch(setCheckpoint(0))
+    }
   }
 
   return (
     <div>
-      <audio src={audio_src} ref={audioRef} onTimeUpdate={() => setCurrentTime(audioRef.current.currentTime)}></audio>
-      <Waveform waveformData={waveformData} trackDuration={trackDuration} currentTime={currentTime} canvasWidth={canvasWidth} canvasHeight={canvasHeight} />
-      <button onClick={togglePlaying}>Play</button>
+      <audio src={songUrl} ref={audioRef} onTimeUpdate={changeStoreTime}></audio>
+      <Waveform songId={songId} localCurrentTime={localCurrentTime} waveformData={waveformData} trackDuration={trackDuration} canvasWidth={canvasWidth} canvasHeight={canvasHeight} />
+      <button ref={buttonRef} onClick={togglePlaying}>Play</button>
     </div>
   )
 }

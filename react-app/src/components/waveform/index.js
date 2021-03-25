@@ -1,24 +1,36 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { useDispatch } from 'react-redux'
-import { setStartTime } from '../../store/track'
+import { useDispatch, useSelector } from 'react-redux'
+import { setCheckpoint, setActiveSong } from '../../store/song'
 // import classes from './Waveform.module.css'
 
 
-const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canvasHeight }) => {
+const Waveform = ({ songId, localCurrentTime, trackDuration, waveformData, canvasWidth, canvasHeight }) => {
 
   // These should probably be passed in as props tbh
-  const [numWaveformBars, setNumWaveformBars] = useState(0)
+  const [numWaveformBars, setNumWaveformBars] = useState(-1)
   const [numHighlightedBars, setNumHighlightedBars] = useState(-1)
   const [targetTime, setTargetTime] = useState(0)
 
+  const storeSongData = useSelector(store => store.song)
   const dispatch = useDispatch()
 
+
+  const currentTime = localCurrentTime
+  let canvasRef = useRef()
+
+  // Set the number of waveform bars
   useEffect(() => {
+    if (storeSongData.activeSongId && storeSongData.activeSongId !== songId) {
+      setNumWaveformBars(-1)
+      return
+    }
+
     if ((!waveformData || !waveformData.length) && trackDuration !== 0)
       return
 
     requestAnimationFrame(() => {
       const trackPercentage = currentTime / trackDuration
+
       const numChunks = waveformData.length
       const numBars = Math.floor(trackPercentage * numChunks)
 
@@ -34,11 +46,10 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
       }
 
     })
-  }, [currentTime, numWaveformBars, trackDuration, waveformData])
+  }, [currentTime, numWaveformBars, trackDuration, waveformData, storeSongData])
 
 
-
-  let canvasRef = useRef()
+  // Paint the canvas with the waveformbars and the highlighted bars
   useEffect(() => {
     if (!waveformData || !waveformData.length)
       return
@@ -70,7 +81,7 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
 
       if (numHighlightedBars > 0 && i <= numHighlightedBars) {
         // Both played and highlighted
-        if (i < numWaveformBars) {
+        if (i <= numWaveformBars) {
           // dark
           ctx.fillStyle = '#fd5d00'
 
@@ -89,11 +100,11 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
         }
       } else {
         // Played, not highlighted when there are existing highlights
-        if (numHighlightedBars > 0 && i < numWaveformBars) {
+        if (numHighlightedBars > 0 && i <= numWaveformBars) {
           ctx.fillStyle = '#aa3e00'
         }
         // Played, and no existing highlights
-        else if (i < numWaveformBars) {
+        else if (i <= numWaveformBars) {
           let grd = ctx.createLinearGradient(
             i * (rectWidth + rectSpacing),
             canvasHeight - amplitude - canvasBreakPoint,
@@ -108,7 +119,6 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
           ctx.fillStyle = 'darkgrey'
         }
       }
-
       // Top bars
       ctx.fillRect(
         i * (rectWidth + rectSpacing),
@@ -116,10 +126,8 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
         rectWidth,
         amplitude)
 
-
-
-      // Bottom
-      if (i < numWaveformBars) {
+      // Bottom Colorings
+      if (i <= numWaveformBars) {
         // dark
         ctx.fillStyle = '#ffc5b5'
       }
@@ -140,7 +148,7 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
 
   }, [waveformData, numWaveformBars, numHighlightedBars, canvasHeight, canvasWidth])
 
-
+  // Sets the target time
   const getXPosition = (e) => {
     const distanceFromLeft = canvasRef.current.getBoundingClientRect().left
     const relativePosition = e.clientX - distanceFromLeft
@@ -150,11 +158,15 @@ const Waveform = ({ trackDuration, waveformData, currentTime, canvasWidth, canva
     const numBars = Math.floor(trackPercentage * numChunks)
     setNumHighlightedBars(numBars)
 
-    setTargetTime((trackPercentage + .005) * trackDuration)
+    // setTargetTime((trackPercentage + .005) * trackDuration)
+    setTargetTime((trackPercentage) * trackDuration)
   }
 
   const seekTrack = (e) => {
-    dispatch(setStartTime(targetTime))
+    if (storeSongData.activeSongId !== songId) {
+      dispatch(setActiveSong(songId))
+    }
+    dispatch(setCheckpoint(targetTime))
   }
 
   return (

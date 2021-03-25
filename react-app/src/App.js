@@ -46,7 +46,9 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute exact path='/audioPlayerTest' authenticated={authenticated}>
-          <AudioPlayer songId={9} canvasWidth={1000} canvasHeight={200} />
+          <AudioPlayer songId={12} canvasWidth={1000} canvasHeight={200} />
+          <AudioPlayer songId={11} canvasWidth={1000} canvasHeight={200} />
+          <AudioPlayer songId={7} canvasWidth={1000} canvasHeight={200} />
         </ProtectedRoute>
         <ProtectedRoute
           path="/images"
