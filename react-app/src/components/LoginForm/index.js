@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import Modal from 'react-modal';
-import { login } from '../../services/auth';
+import { login } from '../../store/session';
 import { modalLogInClose, modalSignUpOpen } from '../../store/modal';
 
 // styling
@@ -12,8 +13,8 @@ Modal.setAppElement('#root');
 
 function LoginFormModal() {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const modalLogInState = useSelector((state) => state.modal.login);
-
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [errors, setErrors] = useState([]);
@@ -30,11 +31,12 @@ function LoginFormModal() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setErrors([]);
-		const data = await login(email, password);
+		const data = await dispatch(login({ email, password })).then(data => data);
 		if (data && data.errors) {
 			setErrors(data.errors);
-		} else {
-			// redirect to users/user
+		}
+		if (data && data.email) {
+			history.push(`/users/${data.display_name}`)
 		}
 	};
 

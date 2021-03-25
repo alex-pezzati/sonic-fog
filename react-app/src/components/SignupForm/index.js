@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-modal';
-import { signup } from '../../services/auth';
+import { signup } from '../../store/session';
 import { modalSignUpClose, modalLogInOpen } from '../../store/modal';
 
 import c from './SignupForm.module.css';
@@ -13,10 +13,11 @@ function SignupFormModal() {
 	const dispatch = useDispatch();
 	const modalSignUpState = useSelector((state) => state.modal.signup);
 
+	//TODO: Add inputs for firstname, lastname
 	const [email, setEmail] = useState('');
 	const [displayName, setDisplayName] = useState('');
 	const [password, setPassword] = useState('');
-	const [confirmPassword, setConfirmPassword] = useState('');
+	// const [confirmPassword, setConfirmPassword] = useState('');
 	const [errors, setErrors] = useState([]);
 
 	const closeSignUp = () => {
@@ -32,7 +33,7 @@ function SignupFormModal() {
 		e.preventDefault();
 		// if (password === confirmPassword) {
 		setErrors([]);
-		const data = signup(displayName, email, password);
+		const data = dispatch(signup({ displayName, email, password }));
 		if (data && data.errors) {
 			setErrors(data.errors);
 		}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
@@ -6,9 +6,10 @@ import SignupFormModal from './SignupForm';
 import LoginFormModal from './LoginForm';
 import { modalLogInOpen, modalSignUpOpen } from '../store/modal';
 
-const NavBar = ({ isLoaded, authenticated, setAuthenticated }) => {
+const NavBar = ({ isLoaded }) => {
 	const dispatch = useDispatch();
-	let authLinks;
+	const sessionUser = useSelector(state => state.session.user);
+	let sessionLinks;
 
   function openLogin() {
     dispatch(modalLogInOpen())
@@ -18,10 +19,10 @@ const NavBar = ({ isLoaded, authenticated, setAuthenticated }) => {
     dispatch(modalSignUpOpen())
   }
 
-	if (authenticated) {
-		authLinks = <LogoutButton setAuthenticated={setAuthenticated} />;
+	if (sessionUser && !sessionUser.errors) {
+		sessionLinks = <LogoutButton />;
 	} else {
-		authLinks = (
+		sessionLinks = (
 			<>
 				<div>
 					<button onClick={openLogin}>Log in</button>
@@ -44,7 +45,7 @@ const NavBar = ({ isLoaded, authenticated, setAuthenticated }) => {
 					</NavLink>
 				</li>
 				<li>
-					<div>{isLoaded && authLinks}</div>
+					<div>{isLoaded && sessionLinks}</div>
 				</li>
 			</ul>
 		</nav>
