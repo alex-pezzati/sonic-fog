@@ -6,7 +6,6 @@ from sqlalchemy import engine_from_config
 
 import logging
 from logging.config import fileConfig
-logger.disabled = True
 
 
 # this is the Alembic Config object, which provides
@@ -17,6 +16,7 @@ config = context.config
 # This line sets up loggers basically.
 fileConfig(config.config_file_name)
 logger = logging.getLogger('alembic.env')
+logger.disabled = True
 
 # add your model's MetaData object here
 # for 'autogenerate' support
