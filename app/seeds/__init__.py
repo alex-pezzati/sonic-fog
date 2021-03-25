@@ -1,6 +1,6 @@
 from flask.cli import AppGroup
 
-from .artists_default import seed_artists, undo_artists
+from .artists_default import seed_artists
 # from .songs_default import seed_songs, undo_songs
 from .users import seed_users, undo_users
 
@@ -20,6 +20,6 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     # undo_songs()
-    undo_artists()
+    # undo_artists()
     undo_users()
     # Add other undo functions here
