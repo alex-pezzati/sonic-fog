@@ -4,7 +4,9 @@ export const authenticate = async() => {
       'Content-Type': 'application/json'
     }
   });
-  return await response.json();
+  const data = await response.json();
+  console.log('\n\n_*_*_*GET DATA', data, '\n\n');
+  return data;
 }
 
 export const login = async (email, password) => {
@@ -18,7 +20,9 @@ export const login = async (email, password) => {
       password
     })
   });
-  return await response.json();
+  const data = await response.json();
+  console.log('\n\n_*_*_*POST DATA', data, '\n\n');
+  return data;
 }
 
 export const logout = async () => {
@@ -31,14 +35,14 @@ export const logout = async () => {
 };
 
 
-export const signup = async (username, email, password) => {
+export const signup = async (displayName, email, password) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      username,
+      display_name: displayName,
       email,
       password,
     }),

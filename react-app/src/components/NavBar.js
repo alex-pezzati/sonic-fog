@@ -23,14 +23,14 @@ const NavBar = ({ isLoaded, authenticated, setAuthenticated }) => {
 	} else {
 		authLinks = (
 			<>
-				<li>
+				<div>
 					<button onClick={openLogin}>Log in</button>
 					<LoginFormModal />
-				</li>
-				<li>
+				</div>
+				<div>
 					<button onClick={openSignup}>Sign up</button>
 					<SignupFormModal />
-				</li>
+				</div>
 			</>
 		);
 	}

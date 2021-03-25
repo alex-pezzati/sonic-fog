@@ -30,17 +30,21 @@ function LoginFormModal() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setErrors([]);
-		const res = dispatch(login({ email, password }));
-    const data = await res.json();
-    if (data && data.errors) setErrors(data.errors);
-    return data;
+		const data = await login(email, password);
+		if (data && data.errors) {
+			setErrors(data.errors);
+		} else {
+
+		}
+
 	};
 
+	// TODO: for security, change to only display 'Invalid credentials'
 	let errorRender;
 	if (errors.length > 0) {
 		errorRender = (
 			<div className={c.div}>
-				<ul>
+				<ul style={{'color': 'red'}}>
 					{errors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
 				</ul>
 			</div>
@@ -67,6 +71,7 @@ function LoginFormModal() {
 				<h3 className={c.title}>Welcome to Sonic Fog</h3>
 				<div className={c.form__container}>
 					<form onSubmit={handleSubmit} className={c.form}>
+						{errorRender}
 						<div className={c.div}>
 							<input
 								className={c.input}
@@ -77,7 +82,6 @@ function LoginFormModal() {
 								required
 							/>
 						</div>
-						{errorRender}
 						<div className={c.div}>
 							<input
 								className={c.input}
@@ -107,7 +111,7 @@ function LoginFormModal() {
 				<div className={c.div__line}></div>
 				<div className={c.div}>
 					<a onClick={(e) => closeLogInOpenSignUp()} className={c.signup}>
-						Not on Pinterest yet? Sign up
+						Not on Sonic Fog yet? Sign up
 					</a>
 				</div>
 			</div>

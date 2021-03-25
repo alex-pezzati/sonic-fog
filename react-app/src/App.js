@@ -18,7 +18,6 @@ function App() {
   useEffect(() => {
     (async () => {
       const user = await authenticate();
-      console.log('USER', user)
       if (!user.errors) {
         setAuthenticated(true);
       }
@@ -47,7 +46,7 @@ function App() {
         <h1>My Home Page</h1>
       </ProtectedRoute> */}
         <Route path="/" exact={true}>
-          <h1>Hello Users</h1>
+          <h1>Hello Sonic Fog</h1>
         </Route>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <UsersList />

@@ -14,7 +14,7 @@ function SignupFormModal() {
 	const modalSignUpState = useSelector((state) => state.modal.signup);
 
 	const [email, setEmail] = useState('');
-	const [username, setUsername] = useState('');
+	const [displayName, setDisplayName] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 	const [errors, setErrors] = useState([]);
@@ -32,12 +32,10 @@ function SignupFormModal() {
 		e.preventDefault();
 		// if (password === confirmPassword) {
 		setErrors([]);
-		return dispatch(signup({ username, email, password })).catch(
-			async (res) => {
-				const data = await res.json();
-				if (data && data.errors) setErrors(data.errors);
-			}
-		);
+		const data = signup(displayName, email, password);
+		if (data && data.errors) {
+			setErrors(data.errors);
+		}
 		// }
 		// return setErrors(['Confirm Password field must be the same as the Password field']);
 	};
@@ -77,9 +75,9 @@ function SignupFormModal() {
 						<input
 							type='text'
 							className={c.input}
-							onChange={(e) => setUsername(e.target.value)}
-							value={username}
-							placeholder='Username'
+							onChange={(e) => setDisplayName(e.target.value)}
+							value={displayName}
+							placeholder='Display Name'
 							required
 						/>
 						<input
