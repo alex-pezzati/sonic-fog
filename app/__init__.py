@@ -12,7 +12,6 @@ from .api.song_routes import song_routes
 
 # testing aws
 from .api.aws_user_images import image_routes
-from .api.aws_songs import song_routes
 from .api.comment_routes import comment_routes
 
 from .seeds import seed_commands

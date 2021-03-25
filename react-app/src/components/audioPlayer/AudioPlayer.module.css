@@ -1,0 +1,21 @@
+.play_btn__container {
+   position: absolute;
+   width: 95vw;
+   height: 57vh;
+   display: flex;
+}
+
+
+.play_btn__style {
+   align-self: flex-start;
+   z-index: 1;
+   background-color: rgb(255, 85, 0);
+   border-bottom-color: rgb(255, 85, 0);
+   border-radius: 50%;
+   border-color: rgb(255, 85, 0);
+   color: rgb(51, 51, 51);
+   height: 59.9935px;
+   overflow-wrap: break-word;
+   text-align: center;
+   width: 59.9935px;
+};

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
+import SongPageRoute from "./components/songPage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
@@ -33,8 +34,11 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
+      {/* <NavBar setAuthenticated={setAuthenticated} /> */}
       <Switch>
+        <Route path="/song/:songId">
+          <SongPageRoute setAuthenticated={setAuthenticated} />
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm
             authenticated={authenticated}
@@ -66,12 +70,12 @@ function App() {
           path="/audioPlayerTest"
           authenticated={authenticated}
         >
-          <AudioPlayer songId={12} canvasWidth={1000} canvasHeight={200} />
-          <AudioPlayer songId={11} canvasWidth={1000} canvasHeight={200} />
-          <AudioPlayer songId={7} canvasWidth={1000} canvasHeight={200} />
+          <AudioPlayer songId={1} canvasWidth={1000} canvasHeight={200} />
+          <AudioPlayer songId={2} canvasWidth={1000} canvasHeight={200} />
+          <AudioPlayer songId={3} canvasWidth={1000} canvasHeight={200} />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-          <h1>My Home Page</h1>
+          <h1>Welcome</h1>
         </ProtectedRoute>
         <ProtectedRoute
           path="/images"
