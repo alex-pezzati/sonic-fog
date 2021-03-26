@@ -13,6 +13,7 @@ from .api.auth_routes import auth_routes
 from .api.aws_user_images import image_routes
 from .api.song_routes import song_routes
 from .api.comment_routes import comment_routes
+from .api.commentsList_routes import commentsList_routes
 
 from .seeds import seed_commands
 
@@ -39,6 +40,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(song_routes, url_prefix='/api/songs')
 app.register_blueprint(image_routes, url_prefix='/api/images')
 app.register_blueprint(comment_routes, url_prefix='/api/comment')
+app.register_blueprint(commentsList_routes, url_prefix='/api/comments')
 db.init_app(app)
 Migrate(app, db)
 

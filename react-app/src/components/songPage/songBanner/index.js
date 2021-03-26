@@ -19,7 +19,6 @@ function Index() {
       return fetched_song;
     })();
   }, [songId]);
-  console.dir(song);
   if (!song) {
     return null;
   }
@@ -55,7 +54,11 @@ function Index() {
           <Waveformbtn songId={song.id} />
         </div>
         <div className={classes.Song_player__container}>
-          <Waveform songId={song.id} canvasWidth={880} canvasHeight={150} />
+          <Waveform
+            songId={Number(song.id)}
+            canvasWidth={880}
+            canvasHeight={150}
+          />
         </div>
       </div>
     </span>

@@ -2,8 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import User, Comment, Song, db
 
-comment_routes = Blueprint('comments', __name__)
-
+comment_routes = Blueprint('comment', __name__)
 
 @comment_routes.route('/<int:songId>', methods=["POST"])
 @login_required
@@ -16,9 +15,3 @@ def comment(songId):
     db.session.add(new_comment)
     db.session.commit()
     return {"comment":comment}
-
-
-@comment_routes.route('/<int:songId>')
-def comments(songId):
-    comments = comment.query.filter(Comment.song_id == songId)
-    return {"comments": comments}

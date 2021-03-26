@@ -8,9 +8,9 @@ import User from "./components/User";
 
 import WaveFormControls from "./components/waveformControls";
 import Waveform from "./components/waveform";
-import SongNavBar from "./components/song_navbar";
+// import SongNavBar from "./components/song_navbar";
 import SongPageRoute from "./components/songPage";
-import { authenticate } from "./services/auth";
+// import { authenticate } from "./services/auth";
 
 import UploadPicture from "./components/AWS";
 import UploadSong from "./components/AWS_Song";
@@ -92,7 +92,7 @@ function App() {
             <UploadSong />
           </ProtectedRoute>
         </Switch>
-        <SongNavBar />
+        {/* <SongNavBar /> */}
       </BrowserRouter>
     )
   );

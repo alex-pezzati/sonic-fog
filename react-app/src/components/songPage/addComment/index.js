@@ -1,19 +1,15 @@
 import React, { useState } from "react";
 import { Redirect, useParams, useHistory } from "react-router-dom";
 import classes from "./addComment.module.css";
-
+import { useSelector } from "react-redux";
 function PostCommentRoute() {
-  const history = useHistory();
+  const sessionUser = useSelector((state) => state.session.user);
   const [comment, setComment] = useState(null);
-  const [posting, setPosting] = useState(false);
   const { songId } = useParams();
-  console.log(songId);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("comment", comment);
-
-    setPosting(true);
 
     const res = await fetch(`/api/comment/${songId}`, {
       method: "POST",
@@ -21,16 +17,17 @@ function PostCommentRoute() {
     });
     if (res.ok) {
       await res.json();
-      setPosting(false);
-      history.push("/");
+      Redirect(`/songs/${songId}`);
     } else {
-      setPosting(false);
       console.log("error");
     }
   };
+  const userPhoto = {
+    background: `url(${sessionUser.profile_url}) center no-repeat`,
+  };
   return (
     <div>
-      <div className={classes.profileImage__container}></div>
+      <div className={classes.profileImage__container} style={userPhoto}></div>
       <form className={classes.formField} onSubmit={handleSubmit}>
         <div className={classes.inputField__container}>
           <input

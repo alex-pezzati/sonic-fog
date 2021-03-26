@@ -9,3 +9,11 @@ class Comment(db.Model):
     comment = db.Column(db.TEXT, nullable=False)
     user = db.relationship("User", back_populates="comments")
     song = db.relationship("Song", back_populates="comments")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "userId": self.user_id,
+            "songId": self.song_id,
+            "comment": self.comment,
+        }

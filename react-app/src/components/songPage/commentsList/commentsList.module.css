@@ -1,0 +1,32 @@
+.Comments {
+   list-style-type: none;
+   border: 1px solid #e2e0e0;
+   box-sizing: border-box;
+   width:60vw;
+   margin-left: 10vw;
+   padding: 10px;
+   display: flex;
+   flex-direction: column;
+}
+
+.Comments__container {
+   display: flex;
+   flex-direction: column;
+   padding: 4px;
+}
+
+.Owner {
+   color: #999999;
+}
+.Comment {
+   color: #000000;
+   line-height: 26px;
+   font-size: 24px;
+   text-overflow: clip;
+}
+
+.Photo {
+   height: 40px;
+   width: 40px;
+   border-radius: 50%;
+}
