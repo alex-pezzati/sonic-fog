@@ -27,7 +27,10 @@ export const login = (user) => async (dispatch) => {
 
   const data = await response.json();
   dispatch(setUser(data));
+<<<<<<< HEAD
   // console.log('\n\n_*_*_*POST DATA', data, '\n\n');
+=======
+>>>>>>> origin/song_navbar
   return data;
 };
 
@@ -69,7 +72,10 @@ export const restoreSession = () => async (dispatch) => {
     },
   });
   const data = await response.json();
+<<<<<<< HEAD
   // console.log('\n\n_*_*_*GET DATA', data, '\n\n');
+=======
+>>>>>>> origin/song_navbar
   dispatch(setUser(data));
   return data;
 };

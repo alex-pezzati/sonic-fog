@@ -1,4 +1,5 @@
 import React from 'react';
+// import { logout } from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalSignUpClose, modalLogInClose } from '../../store/modal';
 

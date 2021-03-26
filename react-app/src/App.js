@@ -66,8 +66,8 @@ function App() {
           <Waveform songId={11} canvasHeight={200} canvasWidth={1000} />
           <WaveFormControls songId={11} />
 
-          <Waveform songId={8} canvasHeight={200} canvasWidth={1000} />
-          <WaveFormControls songId={8} />
+          <Waveform songId={15} canvasHeight={200} canvasWidth={1000} />
+          <WaveFormControls songId={15} />
 
         </ProtectedRoute>
         <ProtectedRoute

@@ -6,6 +6,7 @@ from sqlalchemy import engine_from_config
 
 import logging
 from logging.config import fileConfig
+# logger.disabled = True  # this never works for me so im commenting it out -alex
 
 
 # this is the Alembic Config object, which provides
