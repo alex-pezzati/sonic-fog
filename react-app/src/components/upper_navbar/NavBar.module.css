@@ -22,29 +22,102 @@
 }
 
 .nav_content{
-  width: 60%;
+  box-sizing: border-box;
+
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
 }
 
-nav ul {
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
+nav li {
+  list-style-type: none;
+  height: 100%;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-nav li {
-  list-style-type: none;
+
+.nav_li_logo{
+  padding: 0px 0px;
+}
+.nav_link_home{
+  padding: 7vw;
+  font-size: 1.5em;
+  border-left: 1px solid #111111;
+  cursor: pointer;
 }
 
-nav a {
+.nav_link_upload{
+  border-left: 1px solid #111111;
+  cursor: pointer;
+
+  padding: 1.5vw;
+  font-size: .8em;
+}
+.nav_li_logout{
+  border-left: 1px solid #111111;
+  cursor: pointer;
+
+  padding: 1.5vw;
+  font-size: .8em;
+}
+.nav_li_logout:hover {
+    background-color: #111111;
+}
+.nav_link_display_name{
+  border-left: 1px solid #111111;
+  cursor: pointer;
+
+  padding: 1.5vw;
+  font-size: .8em;
+}
+.nav_li_login{
+  border-left: 1px solid #111111;
+  font-size: .8em;
+}
+.nav_li_signup{
+  border-left: 1px solid #111111;
+  border-right: 1px solid #111111;
+  font-size: .8em;
+}
+.nav_li_credits {
+  border-left: 1px solid #111111;
+  border-right: 1px solid #111111;
+
+  padding: 1vw;
+}
+/* .nav_display_name {
+  padding: 0px 5px;
+} */
+
+
+.nav a {
   color: white;
   text-decoration: none;
-  font-size: 1.5em;
+
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-nav input {
+.nav a:hover {
+  background-color: #111111;
+}
+
+
+.nav_li_search {
+  border-left: 1px solid #111111;
+  padding: 2vw;
+}
+.nav input {
   color: #666;
   outline: 0;
   border: 0;
@@ -52,13 +125,24 @@ nav input {
   background: #e5e5e5;
 
   height: 28px;
-  width: 385px;
+  width: 20vw;
 
   transition: all .3s ease-in-out;
 }
+.nav input:focus {
+  background-color: white;
+}
 
-/* .form_bottom {
-  border-bottom: 41px solid black
+.nav_logo{
+  position: relative;
+  top: 10;
+
+  width: 90px;
+  height: 100%
+}
+
+.active {
+  background-color: #111111;
 }
 
 
@@ -66,7 +150,8 @@ nav input {
 
 
 
-#nav_logo{
+
+/* #nav_logo{
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -82,4 +167,4 @@ nav input {
 #nav_signup{
   font-size: 1em;
   padding: 5px;
-} */
+}  */

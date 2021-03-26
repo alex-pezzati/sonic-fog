@@ -28,16 +28,23 @@ const NavBar = ({ isLoaded }) => {
   if (sessionUser && !sessionUser.errors) {
     sessionLinks = (
       <>
-        <li>
-          <LogoutButton />
-        </li>
-        <li>
-          <NavLink exact to='/upload'>
+        <li className={c.nav_li_upload}>
+          <NavLink exact to='/upload' activeClassName={c.active} className={c.nav_link_upload}>
             Upload
           </NavLink>
         </li>
-        <li>
-          <ProfileButton />
+        <li className={c.nav_li_display_name}>
+          <NavLink exact to={`/users/${sessionUser.display_name}`} activeClassName={c.active} className={c.nav_link_display_name}>
+            <span className={c.nav_display_name}>
+              {sessionUser.display_name}
+            </span>
+          </NavLink>
+        </li>
+        <li className={c.nav_li_logout}>
+          <LogoutButton />
+        </li>
+        <li className={c.nav_li_credits}>
+            <ProfileButton user={sessionUser} />
         </li>
       </>
     );
@@ -45,11 +52,11 @@ const NavBar = ({ isLoaded }) => {
   } else {
     sessionLinks = (
       <>
-        <li>
+        <li className={c.nav_li_login}>
           <button onClick={openLogin}>Log in</button>
           <LoginFormModal />
         </li>
-        <li>
+        <li className={c.nav_li_signup}>
           <button onClick={openSignup}>Sign up</button>
           <SignupFormModal />
         </li>
@@ -61,13 +68,16 @@ const NavBar = ({ isLoaded }) => {
   return (
     <nav className={c.nav}>
       <ul className={c.nav_content}>
-        <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
+        <li className={c.nav_li_logo}>
+          <img src='/static/logo.jpg' alt='logo' className={c.nav_logo}></img>
+        </li>
+        <li className={c.nav_li_home}>
+          <NavLink to='/' exact={true} activeClassName={c.active} className={c.nav_link_home}>
             Home
 					</NavLink>
         </li>
-        <li>
-          <input type='search' placeholder='Find artists, songs, and more...' />
+        <li className={c.nav_li_search}>
+          <input type='search' placeholder='Noisy and Moist' />
         </li>
         {isLoaded && sessionLinks}
       </ul>

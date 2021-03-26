@@ -1,10 +1,11 @@
 // frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
-import * as sessionActions from '../../store/session';
+// import * as sessionActions from '../../store/session';
 import './ProfileButton.css'
 
 function ProfileButton({ user }) {
+
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
 
@@ -25,23 +26,23 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(sessionActions.logout());
-  };
+  // const logout = (e) => {
+  //   e.preventDefault();
+  //   dispatch(sessionActions.logout());
+  // };
 
   return (
     <div className='profileButton_wrapper'>
       <button onClick={openMenu} className='userButton'>
-        <i className="fas fa-user-circle" />
+        <i className={"fas fa-ellipsis-v"}></i>
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
+          <b>Made By:</b>
+          <li>Jamie Kichuk</li>
+          <li>Alex Pezzati</li>
+          <li>Raymond-Arthur May</li>
+          <li>Chou Fomenky</li>
         </ul>
       )}
     </div>

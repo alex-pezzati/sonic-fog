@@ -16,7 +16,8 @@ const LogoutButton = () => {
     if (modalSignUpState) dispatch(modalSignUpClose());
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  // return <button onClick={onLogout}>Logout</button>;
+  return <div onClick={onLogout}>Logout</div>
 };
 
 export default LogoutButton;
