@@ -3,13 +3,13 @@
    background-color: rgba(51, 51, 51, 0.678);
    box-sizing: border-box;
    position: absolute;
-   z-index: 10;
+   z-index: 1;
    display: block;
    font-size: 12px;
    font-stretch: 100%;
    font-weight: 400;
    height: 62vh;
-   width: 95vw;
+   width: 98vw;
    font-family: "Lucida Grande", "Lucida Sans Unitcode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
 }
 .Song_banner__container {
@@ -104,6 +104,7 @@
    height: 80px;
    width: 80px;
    border-radius: 50%;
+   border: none;
    background-size: 120%;
    background-repeat: no-repeat;
    background-position: center;
@@ -113,10 +114,12 @@
 }
 .play_btn__container button:hover {
    background-color: #f50;
+   border: 1px solid black;
 }
 
 
 .Song_player__container canvas {
+   padding-left: 40px;
    align-self: flex-end;
    height: auto;
    width: auto;
@@ -129,7 +132,7 @@
    font-weight: 400;
    position:absolute;
    height: 57vh;
-   width: 92vw;
+   width: 96vw;
 }
 
 .Album_Cover_image {
