@@ -1,59 +1,34 @@
-from werkzeug.security import generate_password_hash
-from app.models import db, User
+import json
 import os
+from werkzeug.security import generate_password_hash
 
-s3_banner_path='s3://sonicfog/banner-images/'
-s3_profile_path='s3://sonicfog/profile-images/'
-# directory = r'C:/home/kumo/appaca/Sound_Cloud/app/static/seed_data'
-
-"""
-goal: populate users table with "artists"
-    display_name = artist name
-    email = random stuff
-    password = random stuff
-    profile_url = image url from aws
-    banner_url = image url from aws
+from app.models import db, User
 
 
-goal: populate songs table with "songs"
-    user_id = linked to artist of song
-    name = song name
-    duration = ??? ask jamie
-    cover_image = image url from aws?? or from metadata??
-    genre = ??? stretch
+S3_BUCKET = os.environ.get('S3_BUCKET') # get env secret info
+s3_banner = f's3://{S3_BUCKET}/banner-images/' # default aws url for banner images
+s3_profile = f's3://{S3_BUCKET}/profile-images/' # default aws url for profile images
+artist_data = 'app/seeds/data/artists_data.json' # seed data file location
 
-    ***need to make sure songs table is nullable***
-
-
-
-    should i just make a list of artists with names properly formatted?
-
-"""
-
-
-# def search_artists():
-#     artist_list = []
-#     for entry in os.scandir(directory):
-#         if (entry.path.endswith(".mp3")) and entry.is_file():
-#             artist_list.append(entry.path)
-#     return artist_list
+# converting hyphens and spaces to underscores
+def convert(x):
+    return x.replace(' - ', '_').replace(' ', '_')
 
 
 def seed_artists():
-    # artists = search_artists()
+    with open(f'{artist_data}', 'r') as f:
+        artists_list = json.loads(f.read())
 
-    artist = User(
-        display_name='ODESZA',
-        email='ODESZA@sonicfog.com',
-        hashed_password=generate_password_hash('ODESZA'),
-        profile_url=f'{s3_profile_path}ODESZA_profile_500x500.jpg',
-        banner_url=f'{s3_banner_path}ODESZA_banner_1240x260.jpg'
-    )
+        for artist in artists_list:
+            user = convert(artist)
 
-    db.session.add(artist)
-    db.session.commit()
+            seed = User(
+                display_name=f'{artist}',
+                email=f'{user}@sonicfog.com',
+                hashed_password=generate_password_hash(f'{user}'),
+                profile_url=f'{s3_profile}{user}_profile_500x500.jpg',
+                banner_url=f'{s3_banner}{user}_banner_1240x260.jpg'
+            )
+            db.session.add(seed)
 
-
-def undo_artists():
-    db.session.execute('TRUNCATE users;')
     db.session.commit()
