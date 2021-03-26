@@ -15,6 +15,7 @@ const SongNavBar = () => {
   const navButtonRef = useRef()
   const startTimeRef = useRef()
   const endTimeRef = useRef()
+  const sliderRef = useRef()
 
   // Pause and play the song
   useEffect(() => {
@@ -62,15 +63,30 @@ const SongNavBar = () => {
     }
     const target = (parseFloat(e.target.value) / 100) * navAudioRef.current.duration
     dispatch(setCheckpoint(target))
+
+    const slider = e.target
+    const value = (slider.value - slider.min) / (slider.max - slider.min) * 100
+    // slider.style.background = 'linear-gradient(to right, #82CFD0 0%, #82CFD0 ' + value + '%, #fff ' + value + '%, white 100%)'
+    slider.style.background = `linear-gradient(to right, #FD3700 0%, #FD3700 ${value}%, grey ${value}%, grey 100%)`
+
   }
 
   const updateSliderValue = () => {
+    if (!sliderRef.current) return
+
+    const slider = sliderRef.current
+    const value = (slider.value - slider.min) / (slider.max - slider.min) * 100
+    // slider.style.background = 'linear-gradient(to right, #82CFD0 0%, #82CFD0 ' + value + '%, #fff ' + value + '%, white 100%)'
+    slider.style.background = `linear-gradient(to right, #FD3700 0%, #FD3700 ${value}%, grey ${value}%, grey 100%)`
+
     if (navAudioRef?.current?.duration) {
       const totalSecs = navAudioRef.current.duration
       const newVal = (navAudioRef.current.currentTime / totalSecs) * 100
       return newVal
     }
     return 0
+
+
   }
 
 
@@ -110,13 +126,14 @@ const SongNavBar = () => {
       <button ref={navButtonRef} onClick={togglePlaying}>Play</button>
       <span ref={startTimeRef} className={c.currentTime}>0:00</span>
       <input
+        ref={sliderRef}
         type='range'
         max={100}
         min={0}
         step={.01}
         value={updateSliderValue()}
         onChange={seekTrack}
-        className={c.slider}
+        id={c.slider}
       />
       <span ref={endTimeRef}>0:00</span>
 
