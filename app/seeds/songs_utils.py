@@ -87,7 +87,7 @@ def generate_data():
         )
 
     # writes data to external file
-    with open('temp.json', 'w') as temp:
+    with open('data/songs_data.json', 'w') as temp:
         json.dump(songs_data, temp)
 
 
