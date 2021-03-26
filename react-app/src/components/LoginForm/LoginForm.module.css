@@ -1,0 +1,197 @@
+/* MODAL CONTENT and OVERLAY STYLING */
+.content {
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  top: 50%;
+  left: 50%;
+  height: 447px;
+  width: 464px;
+  transform: translate(-50%, -50%);
+  padding: 20px 10px 24px;
+  border-radius: 8px;
+  outline: none;
+}
+
+.overlay {
+  background-color: rgba(51, 51, 51, 0.8);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 5;
+}
+
+/* OTHER STYLING BELOW */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.x__button{
+  border: 0px;
+  background: transparent;
+  height: 40px;
+  width: 40px;
+  outline: none;
+  padding: 0;
+  transition: transform 85ms ease-out;
+}
+
+.x__container {
+  position: absolute;
+  box-sizing: border-box;
+  margin: 16px;
+  height: 40px;
+  width: 40px;
+  right: 0;
+  top: 0;
+}
+
+.x__div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.x__div:hover,
+.x__div:active {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+.x__graphic {
+  height: 18px;
+  width: 18px;
+}
+
+.div {
+  display: flex;
+  justify-content: center;
+}
+
+.div__line {
+  border-bottom-color: rgb(222,222,222);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  margin: 10px 177px;
+  width: 110px;
+}
+
+.header {
+  /* height: 45px; */
+  margin: 5px auto;
+  width: 45px;
+}
+
+.logo {
+  height: 40px;
+  width: 40px;
+}
+
+.title {
+  color: rgb(51, 51, 51);
+  display: block;
+  margin: 10px;
+  font-size: 36px;
+  font-weight: 600;
+  text-align: center;
+  width: 400px;
+}
+
+.form__container {
+  margin: 0 auto;
+  width: 268px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  border-color: rgb(221, 221, 221);
+  border-radius: 16px;
+  border-style: solid;
+  border-width: 2px;
+  box-sizing: border-box;
+  color: rgb(17, 17, 17);
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 7px;
+  min-height: 48px;
+  padding: 8px 16px;
+  width: 268px;
+}
+
+/* todo need to add a red border on login errors */
+.input:focus {
+  box-shadow: 0 0 0 4px rgba(0, 132, 255);
+  outline: 0;
+}
+
+.forgot {
+  color: rgb(51, 51, 51);
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.or {
+  color: rgb(51, 51, 51);
+  font-size: 14px;
+  font-weight: bold;
+  margin: 16px 0;
+  text-align: center;
+}
+
+.login__button {
+  border: 0px;
+  border-radius: 20px;
+  height: 40px;
+  padding: 0 18px;
+  font-size: 15px;
+  font-weight: bold;
+  outline: none;
+  box-shadow: none;
+  margin-top: 10px;
+  vertical-align: middle;
+  text-align: center;
+  background-color: rgb(230, 0, 35);
+  color: rgb(255, 255, 255);
+  width: 268px;
+  cursor: pointer;
+}
+
+.demo {
+  border: 0px;
+  border-radius: 20px;
+  height: 40px;
+  padding: 0 18px;
+  font-size: 15px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  outline: none;
+  box-shadow: none;
+  margin-top: 10px;
+  vertical-align: middle;
+  text-align: center;
+  background-color: #1877f2;
+  color: rgb(255, 255, 255);
+  width: 268px;
+  cursor: pointer;
+}
+
+.signup {
+  color: rgb(51, 51, 51);
+  font-weight: bold;
+  cursor: pointer;
+}

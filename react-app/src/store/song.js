@@ -1,43 +1,38 @@
 
-
-// export const asyncFetchTrack = (trackId) => async (dispatch) => {
-//   let found = true
-//   const res = await csrfFetch(`/api/tracks/${trackId}`)
-//     .catch(err => {
-//       found = false
-//     })
-
-//   let data
-//   if (found) {
-//     data = await res.json()
-//   } else {
-//     data = { track: null }
-//   }
-//   dispatch(getTrack(data))
-//   return data
-// }
-
-
-// export const asyncSetActiveSong = (songId) => async (dispatch) => {
-//   const res = await fetch('/api/song/setActiveSong', {
-//     method: "POST",
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify({ id: songId }),
-//   });
-//   const songUrl = await res.json()
-//   dispatch(setActiveSong(songId, songUrl))
-//   return songUrl
-// }
+let counter = 0
 
 
 const SET_CURRENT_TIME = 'song/SET_CURRENT_TIME'
-const SET_ACTIVE_SONG = 'song/SET_ACTIVE_SONG'
+const SET_ACTIVE_SONG_DATA = 'song/SET_ACTIVE_SONG'
 const SET_CHECKPOINT = 'song/SET_CHECKPOINT'
+const PAUSE_SONG = 'song/PAUSE_SONG'
+const PLAY_SONG = 'song/PLAY_SONG'
 
-export const setActiveSong = (songId) => {
+// export const asyncSetActiveSong = (songId) => async (dispatch) => {
+//   const res = await fetch(`/api/song/${songId}`)
+//   let data = await response.json()
+//   let songUrl = data.songURL
+
+//   dispatch(setActiveSong(songId, songUrl))
+// }
+
+export const pauseSong = () => {
   return {
-    type: SET_ACTIVE_SONG,
-    songId
+    type: PAUSE_SONG,
+  }
+}
+
+export const playSong = () => {
+  return {
+    type: PLAY_SONG,
+  }
+}
+
+
+export const setActiveSongData = (songId, songURL) => {
+  return {
+    type: SET_ACTIVE_SONG_DATA,
+    data: { songId, songURL }
   }
 }
 
@@ -49,16 +44,24 @@ export const setCurrentTime = (seconds) => {
 }
 
 export const setCheckpoint = (seconds) => {
+  if (counter % 2) counter++
+  else counter--
+
   return {
     type: SET_CHECKPOINT,
-    seconds
+    seconds: seconds + (counter * .01)
   }
 }
 
 
 const initialStore = {
-  'currentTime': 0.1
+  'currentTime': 0,
+  'checkpoint': 0,
+  'activeSongId': null,
+  'activeSongURL': null,
+  'isCurrentlyPlaying': false
 }
+
 const songReducer = (songData = initialStore, action) => {
   let newData
   switch (action.type) {
@@ -70,11 +73,20 @@ const songReducer = (songData = initialStore, action) => {
       newData = { ...songData }
       newData['checkpoint'] = action.seconds
       return newData
-    case SET_ACTIVE_SONG:
+    case SET_ACTIVE_SONG_DATA:
       newData = { ...songData }
-      newData['activeSongId'] = action.songId
+      newData['activeSongId'] = action.data.songId
+      newData['activeSongURL'] = action.data.songURL
       newData['currentTime'] = 0.0
-      newData['checkpoint'] = 0.1
+      newData['checkpoint'] = 0.0
+      return newData
+    case PAUSE_SONG:
+      newData = { ...songData }
+      newData['isCurrentlyPlaying'] = false
+      return newData
+    case PLAY_SONG:
+      newData = { ...songData }
+      newData['isCurrentlyPlaying'] = true
       return newData
     default:
       return songData
