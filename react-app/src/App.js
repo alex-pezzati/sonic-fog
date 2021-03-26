@@ -9,7 +9,6 @@ import User from "./components/User";
 import WaveFormControls from './components/waveformControls'
 import Waveform from './components/waveform'
 import SongNavBar from './components/song_navbar'
-import { authenticate } from "./services/auth";
 
 import UploadPicture from "./components/AWS";
 import UploadSong from "./components/AWS_Song";
@@ -17,7 +16,7 @@ import { restoreSession } from "./store/session";
 
 function App() {
   const dispatch = useDispatch();
-  const [authenticated, setAuthenticated] = useState(false); //TODO: remove eventually and use sessionUser instead
+  const [authenticated] = useState(false); //TODO: remove eventually and use sessionUser instead
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -28,18 +27,6 @@ function App() {
     <BrowserRouter>
       <NavBar isLoaded={isLoaded} />
       <Switch>
-        {/* <Route path="/login" exact={true}>
-          <LoginForm
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
-        </Route> */}
-      {/* <Route path="/sign-up" exact={true}>
-        <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
-      </Route> */}
-      {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-        <h1>My Home Page</h1>
-      </ProtectedRoute> */}
         <Route path="/" exact={true}>
           <h1>Hello Sonic Fog</h1>
         </Route>
@@ -57,8 +44,8 @@ function App() {
           <Waveform songId={11} canvasHeight={200} canvasWidth={1000} />
           <WaveFormControls songId={11} />
 
-          <Waveform songId={8} canvasHeight={200} canvasWidth={1000} />
-          <WaveFormControls songId={8} />
+          <Waveform songId={13} canvasHeight={200} canvasWidth={1000} />
+          <WaveFormControls songId={13} />
 
         </ProtectedRoute>
         <ProtectedRoute

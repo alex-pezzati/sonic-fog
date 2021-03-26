@@ -1,3 +1,7 @@
+
+
+
+
 import React, { useEffect, useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCheckpoint, setActiveSongData } from '../../store/song'
@@ -17,9 +21,6 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
   const storeSongData = useSelector(store => store.song)
 
   const dispatch = useDispatch()
-
-  // const { songId, localCurrentTime, waveformData, trackDuration, songUrl } = propSongData
-  // console.log(songUrl, propSongData)
 
   let canvasRef = useRef()
 
@@ -105,6 +106,7 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
 
       ctx.fillStyle = 'darkgrey'
 
+      // Top bar colorings
       if (numHighlightedBars > 0 && i <= numHighlightedBars) {
         // Both played and highlighted
         if (i <= numWaveformBars) {
@@ -176,6 +178,9 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
 
   // Sets the target time
   const getXPosition = (e) => {
+    if (!waveformData || !waveformData.length) {
+      return
+    }
     const distanceFromLeft = canvasRef.current.getBoundingClientRect().left
     const relativePosition = e.clientX - distanceFromLeft
     const trackPercentage = relativePosition / canvasWidth

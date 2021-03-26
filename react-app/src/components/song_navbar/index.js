@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { setCheckpoint, setCurrentTime, playSong, pauseSong } from '../../store/song'
-import './SongNavBar.css'
+import c from './SongNavBar.module.css';
 
 
 const SongNavBar = () => {
@@ -57,9 +57,13 @@ const SongNavBar = () => {
   }
 
   const seekTrack = (e) => {
+    if (!storeSongData.activeSongId) {
+      return
+    }
     const target = (parseFloat(e.target.value) / 100) * navAudioRef.current.duration
     dispatch(setCheckpoint(target))
   }
+
   const updateSliderValue = () => {
     if (navAudioRef?.current?.duration) {
       const totalSecs = navAudioRef.current.duration
@@ -68,6 +72,8 @@ const SongNavBar = () => {
     }
     return 0
   }
+
+
   const updateCurrentTimeDisplay = () => {
     let currentNumSecs = navAudioRef.current.currentTime
     startTimeRef.current.innerText = calculateMinsAndSecs(currentNumSecs)
@@ -77,6 +83,10 @@ const SongNavBar = () => {
     endTimeRef.current.innerText = calculateMinsAndSecs(totalSecs)
   }
   const togglePlaying = async (e) => {
+    if (!storeSongData.activeSongId) {
+      return
+    }
+
     if (e.target.innerText === 'Play') {
       e.target.innerText = 'Pause'
       dispatch(playSong())
@@ -87,7 +97,7 @@ const SongNavBar = () => {
   }
 
   return (
-    <nav className='song_navbar'>
+    <footer className={c.navbar_total}>
       <audio
         src={storeSongData.activeSongURL}
         ref={navAudioRef}
@@ -98,17 +108,19 @@ const SongNavBar = () => {
       >
       </audio>
       <button ref={navButtonRef} onClick={togglePlaying}>Play</button>
-      <span ref={startTimeRef}>0:00</span>
+      <span ref={startTimeRef} className={c.currentTime}>0:00</span>
       <input
         type='range'
         max={100}
         min={0}
+        step={.01}
         value={updateSliderValue()}
         onChange={seekTrack}
+        className={c.slider}
       />
       <span ref={endTimeRef}>0:00</span>
 
-    </nav>
+    </footer>
   );
 };
 
