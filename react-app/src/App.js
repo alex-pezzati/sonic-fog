@@ -1,65 +1,65 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import LoginForm from "./components/auth/LoginForm";
-import SignUpForm from "./components/auth/SignUpForm";
+import { useDispatch } from 'react-redux';
 import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
-import AudioPlayer from './components/audioPlayer'
-import { authenticate } from "./services/auth";
 
+import WaveFormControls from './components/waveformControls'
+import Waveform from './components/waveform'
+import SongNavBar from './components/song_navbar'
+import { authenticate } from "./services/auth";
 
 import UploadPicture from "./components/AWS";
 import UploadSong from "./components/AWS_Song";
+import { restoreSession } from "./store/session";
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
-  const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
+  const [authenticated, setAuthenticated] = useState(false); //TODO: remove eventually and use sessionUser instead
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    (async () => {
-      const user = await authenticate();
-      if (!user.errors) {
-        setAuthenticated(true);
-      }
-      setLoaded(true);
-    })();
-  }, []);
+    dispatch(restoreSession()).then(() => setIsLoaded(true))
+  }, [dispatch]);
 
-  if (!loaded) {
-    return null;
-  }
-
-  return (
+  return isLoaded && (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
+      <NavBar isLoaded={isLoaded} />
       <Switch>
-        <Route path="/login" exact={true}>
+        {/* <Route path="/login" exact={true}>
           <LoginForm
             authenticated={authenticated}
             setAuthenticated={setAuthenticated}
           />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
+        </Route> */}
+      {/* <Route path="/sign-up" exact={true}>
+        <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
+      </Route> */}
+      {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+        <h1>My Home Page</h1>
+      </ProtectedRoute> */}
+        <Route path="/" exact={true}>
+          <h1>Hello Sonic Fog</h1>
         </Route>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
+        <ProtectedRoute path="/users/:displayName" exact={true} authenticated={authenticated}>
           <User />
         </ProtectedRoute>
+        {/* Feel free to delete this route if it doesn't work with you database. It was just for testing the waveform player */}
         <ProtectedRoute exact path='/audioPlayerTest' authenticated={authenticated}>
-          <AudioPlayer songId={12} canvasWidth={1000} canvasHeight={200} />
-          <AudioPlayer songId={11} canvasWidth={1000} canvasHeight={200} />
-          <AudioPlayer songId={7} canvasWidth={1000} canvasHeight={200} />
-        </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-          <h1>My Home Page</h1>
+          <Waveform songId={12} canvasHeight={200} canvasWidth={1000} />
+          <WaveFormControls songId={12} />
+
+          <Waveform songId={11} canvasHeight={200} canvasWidth={1000} />
+          <WaveFormControls songId={11} />
+
+          <Waveform songId={8} canvasHeight={200} canvasWidth={1000} />
+          <WaveFormControls songId={8} />
+
         </ProtectedRoute>
         <ProtectedRoute
           path="/images"
@@ -72,6 +72,7 @@ function App() {
           <UploadSong />
         </ProtectedRoute>
       </Switch>
+      <SongNavBar />
     </BrowserRouter >
   );
 }

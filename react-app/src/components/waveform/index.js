@@ -1,22 +1,48 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setCheckpoint, setActiveSong } from '../../store/song'
+import { setCheckpoint, setActiveSongData } from '../../store/song'
 // import classes from './Waveform.module.css'
 
 
-const Waveform = ({ songId, localCurrentTime, trackDuration, waveformData, canvasWidth, canvasHeight }) => {
+const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
 
-  // These should probably be passed in as props tbh
+  const [waveformData, setWaveFormData] = useState()
+  const [trackDuration, setTrackDuration] = useState()
+  const [songUrl, setSongUrl] = useState()
+
   const [numWaveformBars, setNumWaveformBars] = useState(-1)
   const [numHighlightedBars, setNumHighlightedBars] = useState(-1)
   const [targetTime, setTargetTime] = useState(0)
 
   const storeSongData = useSelector(store => store.song)
+
   const dispatch = useDispatch()
 
+  // const { songId, localCurrentTime, waveformData, trackDuration, songUrl } = propSongData
+  // console.log(songUrl, propSongData)
 
-  const currentTime = localCurrentTime
   let canvasRef = useRef()
+
+
+  // Setting the initial data
+  useEffect(() => {
+    (async () => {
+      let response = await fetch(`/api/song/${songId}`)
+      let data = await response.json()
+
+      let waveform_data = data.waveform_data
+      waveform_data = waveform_data.slice(1, -1)
+      let arr = waveform_data.split(',')
+      setWaveFormData(arr)
+
+      let duration = data.duration
+      setTrackDuration(parseFloat(duration))
+
+      let url = data.songURL
+      setSongUrl(url)
+    })()
+  }, [songId])
+
 
   // Set the number of waveform bars
   useEffect(() => {
@@ -29,7 +55,7 @@ const Waveform = ({ songId, localCurrentTime, trackDuration, waveformData, canva
       return
 
     requestAnimationFrame(() => {
-      const trackPercentage = currentTime / trackDuration
+      const trackPercentage = storeSongData.currentTime / trackDuration
 
       const numChunks = waveformData.length
       const numBars = Math.floor(trackPercentage * numChunks)
@@ -46,7 +72,7 @@ const Waveform = ({ songId, localCurrentTime, trackDuration, waveformData, canva
       }
 
     })
-  }, [currentTime, numWaveformBars, trackDuration, waveformData, storeSongData])
+  }, [storeSongData, numWaveformBars, songId, trackDuration, waveformData])
 
 
   // Paint the canvas with the waveformbars and the highlighted bars
@@ -164,7 +190,7 @@ const Waveform = ({ songId, localCurrentTime, trackDuration, waveformData, canva
 
   const seekTrack = (e) => {
     if (storeSongData.activeSongId !== songId) {
-      dispatch(setActiveSong(songId))
+      dispatch(setActiveSongData(songId, songUrl))
     }
     dispatch(setCheckpoint(targetTime))
   }

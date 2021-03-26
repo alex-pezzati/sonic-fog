@@ -17,6 +17,7 @@ config = context.config
 # This line sets up loggers basically.
 fileConfig(config.config_file_name)
 logger = logging.getLogger('alembic.env')
+logger.disabled = True
 
 # add your model's MetaData object here
 # for 'autogenerate' support
