@@ -1,6 +1,7 @@
 .song_navbar {
-  position: sticky;
-  bottom: 0px;
+  position: fixed;
+  bottom: 0;
 
-  background-color: aliceblue;
+  width: 100%;
+  background-color: grey;
 }
