@@ -5,3 +5,4 @@ __pycache__/
 .DS_Store
 .vscode
 *.csv
+/app/static/seed_data/songs
