@@ -3,9 +3,10 @@ import os
 
 from app.models import db, Song, User
 
-S3_BUCKET = os.environ.get('S3_BUCKET')
-s3_songs = f's3://{S3_BUCKET}/songs/'
-songs_data = 'app/seeds/data/songs_data.json'
+
+S3_BUCKET = os.environ.get('S3_BUCKET') # get env secret info
+s3_songs = f's3://{S3_BUCKET}/songs/' # default aws url for songs
+songs_data = 'app/seeds/data/songs_data.json' # seed data file location
 
 # trimming song name from file to get artist name
 def artist(x):
@@ -13,17 +14,17 @@ def artist(x):
     return artist
 
 # converting hyphens and spaces to underscores
-def cover(x):
+def convert(x):
     return x.replace(' - ', '_').replace(' ', '_')
 
 
 def seed_songs():
-    with open(f'{songs_data}', 'r') as f: #
+    with open(f'{songs_data}', 'r') as f:
         song_list = json.loads(f.read())
 
         for song in song_list:
             user = artist(song['title'])
-            art = cover(song['title'])
+            art = convert(song['title'])
             title = song['title']
 
             seed = Song(
