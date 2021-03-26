@@ -9,15 +9,24 @@ import User from "./components/User";
 import WaveFormControls from './components/waveformControls'
 import Waveform from './components/waveform'
 import SongNavBar from './components/song_navbar'
-import { authenticate } from "./services/auth";
+// import { authenticate } from "./services/auth";
 
 import UploadPicture from "./components/AWS";
 import UploadSong from "./components/AWS_Song";
 import { restoreSession } from "./store/session";
 
+
+
 function App() {
   const dispatch = useDispatch();
+
+  // We never change this, so it is always false
   const [authenticated, setAuthenticated] = useState(false); //TODO: remove eventually and use sessionUser instead
+  // I added this just to suppress the warning about setAuthenticated never being used
+  if (false) {
+    setAuthenticated(false)
+  }
+
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -34,10 +43,10 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route> */}
-      {/* <Route path="/sign-up" exact={true}>
+        {/* <Route path="/sign-up" exact={true}>
         <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
       </Route> */}
-      {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+        {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
         <h1>My Home Page</h1>
       </ProtectedRoute> */}
         <Route path="/" exact={true}>

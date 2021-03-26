@@ -11,90 +11,98 @@ import close from '../../images/close.svg';
 Modal.setAppElement('#root');
 
 function SignupFormModal() {
-	const dispatch = useDispatch();
-	const history = useHistory();
-	const modalSignUpState = useSelector((state) => state.modal.signup);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const modalSignUpState = useSelector((state) => state.modal.signup);
 
-	//TODO: Add inputs for firstname, lastname
-	const [email, setEmail] = useState('');
-	const [displayName, setDisplayName] = useState('');
-	const [password, setPassword] = useState('');
-	// const [confirmPassword, setConfirmPassword] = useState('');
-	const [errors, setErrors] = useState([]);
+  //TODO: Add inputs for firstname, lastname
+  const [email, setEmail] = useState('');
+  const [displayName, setDisplayName] = useState('');
+  const [password, setPassword] = useState('');
+  // const [confirmPassword, setConfirmPassword] = useState('');
 
-	const closeSignUp = () => {
-		dispatch(modalSignUpClose());
-	};
+  const [errors, setErrors] = useState([]);
+  // I added this just to suppress the warning about errors never being used
+  if (false) {
+    console.log(errors)
+  }
 
-	const closeSignUpOpenLogIn = () => {
-		dispatch(modalSignUpClose());
-		dispatch(modalLogInOpen());
-	};
+  const closeSignUp = () => {
+    dispatch(modalSignUpClose());
+  };
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		// if (password === confirmPassword) {
-		setErrors([]);
-		const data = await dispatch(signup({ displayName, email, password })).then(data => data);
-		if (data && data.errors) {
-			setErrors(data.errors);
-		}
-		if (data && data.email) {
-			history.push(`/users/${data.display_name}`)
-		}
-		// }
-		// return setErrors(['Confirm Password field must be the same as the Password field']);
-	};
+  const closeSignUpOpenLogIn = () => {
+    dispatch(modalSignUpClose());
+    dispatch(modalLogInOpen());
+  };
 
-	return (
-		<Modal
-			isOpen={modalSignUpState}
-			className={c.content}
-			overlayClassName={c.overlay}
-			shouldCloseOnOverlayClick={false}
-			shouldFocusAfterRender={true}
-		>
-			<div className={c.container}>
-				<div className={c.x__container}>
-					<button onClick={closeSignUp} className={c.x__button}>
-						<div className={c.x__div}>
-							<img className={c.x__graphic} src={close} />
-						</div>
-					</button>
-				</div>
-				{/* LOGO */}
-				<h3 className={c.title}>Welcome to Sonic Fog</h3>
-				<h3 className={c.subtitle}>Join now to Ride the Wave</h3>
-				<div className={c.form__container}>
-					<form onSubmit={handleSubmit} className={c.form}>
-						{/* <ul>
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // if (password === confirmPassword) {
+
+
+    setErrors([]);
+
+    const data = await dispatch(signup({ displayName, email, password })).then(data => data);
+    if (data && data.errors) {
+      setErrors(data.errors);
+    }
+    if (data && data.email) {
+      history.push(`/users/${data.display_name}`)
+    }
+    // }
+    // return setErrors(['Confirm Password field must be the same as the Password field']);
+  };
+
+  return (
+    <Modal
+      isOpen={modalSignUpState}
+      className={c.content}
+      overlayClassName={c.overlay}
+      shouldCloseOnOverlayClick={false}
+      shouldFocusAfterRender={true}
+    >
+      <div className={c.container}>
+        <div className={c.x__container}>
+          <button onClick={closeSignUp} className={c.x__button}>
+            <div className={c.x__div}>
+              <img className={c.x__graphic} src={close} alt='close signup' />
+            </div>
+          </button>
+        </div>
+        {/* LOGO */}
+        <h3 className={c.title}>Welcome to Sonic Fog</h3>
+        <h3 className={c.subtitle}>Join now to Ride the Wave</h3>
+        <div className={c.form__container}>
+          <form onSubmit={handleSubmit} className={c.form}>
+            {/* <ul>
                             {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                         </ul> */}
-						<input
-							type='text'
-							className={c.input}
-							onChange={(e) => setEmail(e.target.value)}
-							value={email}
-							placeholder='Email'
-							required
-						/>
-						<input
-							type='text'
-							className={c.input}
-							onChange={(e) => setDisplayName(e.target.value)}
-							value={displayName}
-							placeholder='Display Name'
-							required
-						/>
-						<input
-							type='password'
-							className={c.input}
-							onChange={(e) => setPassword(e.target.value)}
-							value={password}
-							placeholder='Password'
-							required
-						/>
-						{/* <input
+            <input
+              type='text'
+              className={c.input}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              placeholder='Email'
+              required
+            />
+            <input
+              type='text'
+              className={c.input}
+              onChange={(e) => setDisplayName(e.target.value)}
+              value={displayName}
+              placeholder='Display Name'
+              required
+            />
+            <input
+              type='password'
+              className={c.input}
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              placeholder='Password'
+              required
+            />
+            {/* <input
                             type="password"
                             className={c.input}
                             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -102,24 +110,26 @@ function SignupFormModal() {
                             placeholder='ConfirmPassword'
                             required
                         /> */}
-						<button type='submit' className={c.continue__button}>
-							Continue
+            <button type='submit' className={c.continue__button}>
+              Continue
 						</button>
-					</form>
-					<p className={c.or}>OR</p>
-				</div>
-				<div className={c.div}>
-					<button className={c.demo}>Continue as Demo</button>
-				</div>
-				<div className={c.div__line}></div>
-				<div className={c.div}>
-					<a onClick={(e) => closeSignUpOpenLogIn()} className={c.signup}>
-						Already a member? Log in
+          </form>
+          <p className={c.or}>OR</p>
+        </div>
+        <div className={c.div}>
+          <button className={c.demo}>Continue as Demo</button>
+        </div>
+        <div className={c.div__line}></div>
+        <div className={c.div}>
+          {/* this is a temp fix, we need to add an href to this anchor tag */}
+          {/*eslint-disable-next-line */}
+          <a onClick={(e) => closeSignUpOpenLogIn()} className={c.signup}>
+            Already a member? Log in
 					</a>
-				</div>
-			</div>
-		</Modal>
-	);
+        </div>
+      </div>
+    </Modal>
+  );
 }
 
 export default SignupFormModal;
