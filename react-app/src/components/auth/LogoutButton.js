@@ -1,5 +1,5 @@
 import React from 'react';
-// import { logout } from '../../store/session';
+import { logout } from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalSignUpClose, modalLogInClose } from '../../store/modal';
 
@@ -10,14 +10,14 @@ const LogoutButton = () => {
 
   const onLogout = async (e) => {
 
-    // I commented this out to suppress the warning about it never being used it
-    // const logoutMsg = dispatch(logout());
+    dispatch(logout());
 
     if (modalLogInState) dispatch(modalLogInClose());
     if (modalSignUpState) dispatch(modalSignUpClose());
   };
 
-  return <button onClick={onLogout}>Logout</button>;
+  // return <button onClick={onLogout}>Logout</button>;
+  return <div onClick={onLogout}>Logout</div>
 };
 
 export default LogoutButton;
