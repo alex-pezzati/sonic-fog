@@ -1,0 +1,140 @@
+.Song_body {
+   margin: 0;
+   background-color: rgba(51, 51, 51, 0.678);
+   box-sizing: border-box;
+   position: absolute;
+   z-index: 10;
+   display: block;
+   font-size: 12px;
+   font-stretch: 100%;
+   font-weight: 400;
+   height: 62vh;
+   width: 95vw;
+   font-family: "Lucida Grande", "Lucida Sans Unitcode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
+}
+.Song_banner__container {
+   width: 100%;
+   height: 100%;
+   display: flex;
+}
+
+.Song_headers {
+   position: absolute;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   padding-left: 10vw;
+   width: 66vw;
+   height: 27vh;
+}
+
+.Song_uploader_name__container {
+   background-color: rgba(0, 0, 0, 0);
+   color: rgb(204, 204, 204);
+   cursor: pointer;
+   font-size: 16px;
+   font-weight: 100;
+   padding-left: 50px;
+   word-break: break-word;
+}
+
+.Song_uploader__span {
+   background-color: rgba(51, 51, 51, 0.678);
+   border: 1px solid black;
+   padding: 5px;
+}
+
+.Song_name__conatainer {
+   padding-left: 50px;
+   color: rgb(255, 255, 255);
+   font-size: 24px;
+   font-stretch: 100%;
+   font-weight: 100;
+   line-height: 37px;
+   overflow-wrap: break-word;
+   word-break: break-word;
+   height: auto;
+   width: auto;
+}
+
+.Song_name__span {
+   background-color: rgba(51, 51, 51, 0.678);
+   border: 1px solid black;
+   padding: 5px;
+}
+
+.Song_upload_date__container {
+   position: absolute;
+   display: flex;
+   justify-content: flex-end;
+   align-items: center;
+   height: 20vh;
+   width: 65vw;
+}
+
+.Song_upload_date {
+   line-height: 22.4px;
+   color: rgb(255, 255, 255);
+   font-stretch: 100%;
+   font-size: 16px;
+   font-weight:100;
+   text-align: right;
+}
+
+.Song_player__container {
+   position: absolute;
+   color: rgb(51,51,51);
+   font-weight: 400;
+   height: 50vh;
+   width: 66vw;
+   display: flex;
+   align-items: flex-end;
+}
+.play_btn__container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: absolute;
+   height: 25vh;
+   width: 14vw;
+   z-index: 9
+}
+.play_btn__container button {
+   color: transparent;
+   height: 80px;
+   width: 80px;
+   border-radius: 50%;
+   background-size: 120%;
+   background-repeat: no-repeat;
+   background-position: center;
+   background-color: rgba(255, 85, 0, 0.787);
+   background-image: url(https://cdn4.iconfinder.com/data/icons/audio-video-game-solid-style/91/Audio-Video-Game_Solid_Style_36-512.png?raw=true);
+   z-index: 10;
+}
+.play_btn__container button:hover {
+   background-color: #f50;
+}
+
+
+.Song_player__container canvas {
+   align-self: flex-end;
+   height: auto;
+   width: auto;
+}
+.Song_album_cover_photo__container {
+   display: flex;
+   align-self: flex-end;
+   justify-content: flex-end;
+   color: rgb(51,51,51);
+   font-weight: 400;
+   position:absolute;
+   height: 57vh;
+   width: 92vw;
+}
+
+.Album_Cover_image {
+   display: block;
+   cursor: pointer;
+   height: 340px;
+   width: 340px;
+}

@@ -8,7 +8,6 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
-from .api.song_routes import song_routes
 
 # testing aws
 from .api.aws_user_images import image_routes
@@ -36,7 +35,7 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
-app.register_blueprint(song_routes, url_prefix='/api/song')
+app.register_blueprint(song_routes, url_prefix='/api/songs')
 app.register_blueprint(image_routes, url_prefix='/api/images')
 # app.register_blueprint(song_routes, url_prefix='/api/song')
 db.init_app(app)
