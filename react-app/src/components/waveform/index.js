@@ -24,7 +24,6 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
 
   let canvasRef = useRef()
 
-
   // Setting the initial data
   useEffect(() => {
     (async () => {
@@ -73,6 +72,7 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
       }
 
     })
+
   }, [storeSongData, numWaveformBars, songId, trackDuration, waveformData])
 
 

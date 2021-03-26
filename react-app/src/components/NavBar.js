@@ -7,9 +7,9 @@ import LoginFormModal from './LoginForm';
 import { modalLogInOpen, modalSignUpOpen } from '../store/modal';
 
 const NavBar = ({ isLoaded }) => {
-	const dispatch = useDispatch();
-	const sessionUser = useSelector(state => state.session.user);
-	let sessionLinks;
+  const dispatch = useDispatch();
+  const sessionUser = useSelector(state => state.session.user);
+  let sessionLinks;
 
   function openLogin() {
     dispatch(modalLogInOpen())
@@ -19,37 +19,43 @@ const NavBar = ({ isLoaded }) => {
     dispatch(modalSignUpOpen())
   }
 
-	if (sessionUser && !sessionUser.errors) {
-		sessionLinks = <LogoutButton />;
-	} else {
-		sessionLinks = (
-			<>
-				<div>
-					<button onClick={openLogin}>Log in</button>
-					<LoginFormModal />
-				</div>
-				<div>
-					<button onClick={openSignup}>Sign up</button>
-					<SignupFormModal />
-				</div>
-			</>
-		);
-	}
+  if (sessionUser && !sessionUser.errors) {
+    sessionLinks = <LogoutButton />;
+  } else {
+    sessionLinks = (
+      <>
+        <div>
+          <button onClick={openLogin}>Log in</button>
+          <LoginFormModal />
+        </div>
+        <div>
+          <button onClick={openSignup}>Sign up</button>
+          <SignupFormModal />
+        </div>
+      </>
+    );
+  }
 
-	return (
-		<nav>
-			<ul>
-				<li>
-					<NavLink to='/' exact={true} activeClassName='active'>
-						Home
+  return (
+    <nav>
+      <ul>
+        <li>
+          <NavLink to='/' exact={true} activeClassName='active'>
+            Home
 					</NavLink>
-				</li>
-				<li>
-					<div>{isLoaded && sessionLinks}</div>
-				</li>
-			</ul>
-		</nav>
-	);
+        </li>
+        <li>
+          <div>{isLoaded && sessionLinks}</div>
+        </li>
+        {/* Strictly for testing, feel free to delete */}
+        <li>
+          <NavLink to='/audioPlayerTest'>
+            Audio Player Test
+          </NavLink>
+        </li>
+      </ul>
+    </nav>
+  );
 };
 
 export default NavBar;

@@ -72,11 +72,10 @@ const SongNavBar = () => {
   }
 
   const updateSliderValue = () => {
-    if (!sliderRef.current) return
+    if (!sliderRef.current) return 0
 
     const slider = sliderRef.current
     const value = (slider.value - slider.min) / (slider.max - slider.min) * 100
-    // slider.style.background = 'linear-gradient(to right, #82CFD0 0%, #82CFD0 ' + value + '%, #fff ' + value + '%, white 100%)'
     slider.style.background = `linear-gradient(to right, #FD3700 0%, #FD3700 ${value}%, grey ${value}%, grey 100%)`
 
     if (navAudioRef?.current?.duration) {
@@ -88,7 +87,6 @@ const SongNavBar = () => {
 
 
   }
-
 
   const updateCurrentTimeDisplay = () => {
     let currentNumSecs = navAudioRef.current.currentTime
@@ -106,6 +104,7 @@ const SongNavBar = () => {
     if (e.target.innerText === 'Play') {
       e.target.innerText = 'Pause'
       dispatch(playSong())
+
     } else {
       e.target.innerText = 'Play'
       dispatch(pauseSong())
@@ -123,19 +122,21 @@ const SongNavBar = () => {
         onLoadedMetadata={updateDurationDisplay}
       >
       </audio>
-      <button ref={navButtonRef} onClick={togglePlaying}>Play</button>
-      <span ref={startTimeRef} className={c.currentTime}>0:00</span>
-      <input
-        ref={sliderRef}
-        type='range'
-        max={100}
-        min={0}
-        step={.01}
-        value={updateSliderValue()}
-        onChange={seekTrack}
-        id={c.slider}
-      />
-      <span ref={endTimeRef}>0:00</span>
+      <button ref={navButtonRef} onClick={togglePlaying} className={c.play_pause_button}>Play</button>
+      <div className={c.progressbar}>
+        <span ref={startTimeRef} className={c.currentTime}>0:00</span>
+        <input
+          ref={sliderRef}
+          type='range'
+          max={100}
+          min={0}
+          step={.01}
+          value={updateSliderValue()}
+          onChange={seekTrack}
+          id={c.slider}
+        />
+        <span ref={endTimeRef}>0:00</span>
+      </div>
 
     </footer>
   );
