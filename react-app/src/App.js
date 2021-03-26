@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import NavBar from "./components/NavBar";
+import NavBar from "./components/upper_navbar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
+// import UsersList from "./components/UsersList";
 import User from "./components/User";
 
 import WaveFormControls from './components/waveformControls'
@@ -12,7 +12,7 @@ import SongNavBar from './components/song_navbar'
 // import { authenticate } from "./services/auth";
 
 import UploadPicture from "./components/AWS";
-import UploadSong from "./components/AWS_Song";
+import UploadSong from "./components/song_upload_form/AWS_Song";
 import { restoreSession } from "./store/session";
 
 
@@ -51,10 +51,19 @@ function App() {
       </ProtectedRoute> */}
         <Route path="/" exact={true}>
           <h1>Hello Sonic Fog</h1>
+
+          <Waveform songId={9} canvasHeight={200} canvasWidth={1000} />
+          <WaveFormControls songId={9} />
+
+          <Waveform songId={7} canvasHeight={200} canvasWidth={1000} />
+          <WaveFormControls songId={7} />
+
+          <Waveform songId={15} canvasHeight={200} canvasWidth={1000} />
+          <WaveFormControls songId={15} />
         </Route>
-        <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
+        {/* <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
           <UsersList />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <ProtectedRoute path="/users/:displayName" exact={true} authenticated={authenticated}>
           <User />
         </ProtectedRoute>
@@ -70,14 +79,10 @@ function App() {
           <WaveFormControls songId={15} />
 
         </ProtectedRoute>
-        <ProtectedRoute
-          path="/images"
-          exact={true}
-          authenticated={authenticated}
-        >
+        <ProtectedRoute path="/images" exact={true} authenticated={authenticated} >
           <UploadPicture />
         </ProtectedRoute>
-        <ProtectedRoute path="/song" exact={true} authenticated={authenticated}>
+        <ProtectedRoute path="/upload" exact={true} authenticated={authenticated}>
           <UploadSong />
         </ProtectedRoute>
       </Switch>

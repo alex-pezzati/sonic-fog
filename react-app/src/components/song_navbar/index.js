@@ -63,24 +63,19 @@ const SongNavBar = () => {
     }
     const target = (parseFloat(e.target.value) / 100) * navAudioRef.current.duration
     dispatch(setCheckpoint(target))
-
-    const slider = e.target
-    const value = (slider.value - slider.min) / (slider.max - slider.min) * 100
-    // slider.style.background = 'linear-gradient(to right, #82CFD0 0%, #82CFD0 ' + value + '%, #fff ' + value + '%, white 100%)'
-    slider.style.background = `linear-gradient(to right, #FD3700 0%, #FD3700 ${value}%, grey ${value}%, grey 100%)`
-
   }
 
   const updateSliderValue = () => {
-    if (!sliderRef.current) return 0
 
-    const slider = sliderRef.current
-    const value = (slider.value - slider.min) / (slider.max - slider.min) * 100
-    slider.style.background = `linear-gradient(to right, #FD3700 0%, #FD3700 ${value}%, grey ${value}%, grey 100%)`
-
-    if (navAudioRef?.current?.duration) {
+    if (navAudioRef?.current?.duration && sliderRef.current) {
       const totalSecs = navAudioRef.current.duration
       const newVal = (navAudioRef.current.currentTime / totalSecs) * 100
+
+      // This updates the 'filled in color' of the progress bar in the bottom nav
+      const slider = sliderRef.current
+      const value = (newVal - slider.min) / (slider.max - slider.min) * 100
+      slider.style.background = `linear-gradient(to right, #FD3700 0%, #FD3700 ${value}%, grey ${value}%, grey 100%)`
+
       return newVal
     }
     return 0
@@ -96,6 +91,7 @@ const SongNavBar = () => {
     let totalSecs = navAudioRef.current.duration
     endTimeRef.current.innerText = calculateMinsAndSecs(totalSecs)
   }
+  // Controls the play/pause in the bottom nav
   const togglePlaying = async (e) => {
     if (!storeSongData.activeSongId) {
       return

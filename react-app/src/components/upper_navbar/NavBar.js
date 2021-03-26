@@ -1,10 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
-import SignupFormModal from './SignupForm';
-import LoginFormModal from './LoginForm';
-import { modalLogInOpen, modalSignUpOpen } from '../store/modal';
+
+import ProfileButton from './ProfileButton';
+
+import LogoutButton from '../auth/LogoutButton';
+import SignupFormModal from '../SignupForm';
+import LoginFormModal from '../LoginForm';
+import { modalLogInOpen, modalSignUpOpen } from '../../store/modal';
+
+import c from './NavBar.module.css'
 
 const NavBar = ({ isLoaded }) => {
   const dispatch = useDispatch();
@@ -19,40 +24,52 @@ const NavBar = ({ isLoaded }) => {
     dispatch(modalSignUpOpen())
   }
 
+  // ONLY for logged in users
   if (sessionUser && !sessionUser.errors) {
-    sessionLinks = <LogoutButton />;
+    sessionLinks = (
+      <>
+        <li>
+          <LogoutButton />
+        </li>
+        <li>
+          <NavLink exact to='/upload'>
+            Upload
+          </NavLink>
+        </li>
+        <li>
+          <ProfileButton />
+        </li>
+      </>
+    );
+    // ONLY for logged out users
   } else {
     sessionLinks = (
       <>
-        <div>
+        <li>
           <button onClick={openLogin}>Log in</button>
           <LoginFormModal />
-        </div>
-        <div>
+        </li>
+        <li>
           <button onClick={openSignup}>Sign up</button>
           <SignupFormModal />
-        </div>
+        </li>
       </>
     );
   }
 
+  // Regardless of logged in status...
   return (
-    <nav>
-      <ul>
+    <nav className={c.nav}>
+      <ul className={c.nav_content}>
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>
             Home
 					</NavLink>
         </li>
         <li>
-          <div>{isLoaded && sessionLinks}</div>
+          <input type='search' placeholder='Find artists, songs, and more...' />
         </li>
-        {/* Strictly for testing, feel free to delete */}
-        <li>
-          <NavLink to='/audioPlayerTest'>
-            Audio Player Test
-          </NavLink>
-        </li>
+        {isLoaded && sessionLinks}
       </ul>
     </nav>
   );
