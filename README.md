@@ -76,21 +76,24 @@ This is the backend for the Flask React project.
 7. Push your docker container to heroku from the root directory of your project.
    This will build the dockerfile and push the image to your heroku container registry
 
+   <!-- {NAME_OF_HEROKU_APP} = sonic-fog -->
    ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
+   heroku container:push web -a sonic-fog
    ```
 
 8. Release your docker container to heroku
 
+   <!-- {NAME_OF_HEROKU_APP} = sonic-fog -->
    ```bash
-   heroku container:release web -a {NAME_OF_HEROKU_APP}
+   heroku container:release web -a sonic-fog
    ```
 
 9. set up your database:
 
+   <!-- {NAME_OF_HEROKU_APP} = sonic-fog -->
    ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
+   heroku run -a sonic-fog flask db upgrade
+   heroku run -a sonic-fog flask seed all
    ```
 
 10. Under Settings find "Config Vars" and add any additional/secret .env variables.
