@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCheckpoint, setActiveSongData } from "../../store/song";
+
 // import classes from './Waveform.module.css'
 
 const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
@@ -20,6 +21,7 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
   // console.log(songUrl, propSongData)
 
   let canvasRef = useRef();
+
 
   // Setting the initial data
   useEffect(() => {
@@ -96,6 +98,7 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
 
       ctx.fillStyle = "darkgrey";
 
+      // Top bar colorings
       if (numHighlightedBars > 0 && i <= numHighlightedBars) {
         // Both played and highlighted
         if (i <= numWaveformBars) {
@@ -174,9 +177,12 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
 
   // Sets the target time
   const getXPosition = (e) => {
-    const distanceFromLeft = canvasRef.current.getBoundingClientRect().left;
-    const relativePosition = e.clientX - distanceFromLeft;
-    const trackPercentage = relativePosition / canvasWidth;
+    if (!waveformData || !waveformData.length) {
+      return
+    }
+    const distanceFromLeft = canvasRef.current.getBoundingClientRect().left
+    const relativePosition = e.clientX - distanceFromLeft
+    const trackPercentage = relativePosition / canvasWidth
 
     const numChunks = waveformData.length;
     const numBars = Math.floor(trackPercentage * numChunks);

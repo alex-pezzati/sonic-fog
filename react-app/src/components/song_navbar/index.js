@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { setCheckpoint, setCurrentTime, playSong, pauseSong } from '../../store/song'
-import './SongNavBar.css'
+import c from './SongNavBar.module.css';
 
 
 const SongNavBar = () => {
@@ -15,6 +15,7 @@ const SongNavBar = () => {
   const navButtonRef = useRef()
   const startTimeRef = useRef()
   const endTimeRef = useRef()
+  const sliderRef = useRef()
 
   // Pause and play the song
   useEffect(() => {
@@ -57,17 +58,31 @@ const SongNavBar = () => {
   }
 
   const seekTrack = (e) => {
+    if (!storeSongData.activeSongId) {
+      return
+    }
     const target = (parseFloat(e.target.value) / 100) * navAudioRef.current.duration
     dispatch(setCheckpoint(target))
   }
+
   const updateSliderValue = () => {
-    if (navAudioRef?.current?.duration) {
+
+    if (navAudioRef?.current?.duration && sliderRef.current) {
       const totalSecs = navAudioRef.current.duration
       const newVal = (navAudioRef.current.currentTime / totalSecs) * 100
+
+      // This updates the 'filled in color' of the progress bar in the bottom nav
+      const slider = sliderRef.current
+      const value = (newVal - slider.min) / (slider.max - slider.min) * 100
+      slider.style.background = `linear-gradient(to right, #FD3700 0%, #FD3700 ${value}%, grey ${value}%, grey 100%)`
+
       return newVal
     }
     return 0
+
+
   }
+
   const updateCurrentTimeDisplay = () => {
     let currentNumSecs = navAudioRef.current.currentTime
     startTimeRef.current.innerText = calculateMinsAndSecs(currentNumSecs)
@@ -76,10 +91,16 @@ const SongNavBar = () => {
     let totalSecs = navAudioRef.current.duration
     endTimeRef.current.innerText = calculateMinsAndSecs(totalSecs)
   }
+  // Controls the play/pause in the bottom nav
   const togglePlaying = async (e) => {
+    if (!storeSongData.activeSongId) {
+      return
+    }
+
     if (e.target.innerText === 'Play') {
       e.target.innerText = 'Pause'
       dispatch(playSong())
+
     } else {
       e.target.innerText = 'Play'
       dispatch(pauseSong())
@@ -87,7 +108,7 @@ const SongNavBar = () => {
   }
 
   return (
-    <nav className='song_navbar'>
+    <footer className={c.navbar_total}>
       <audio
         src={storeSongData.activeSongURL}
         ref={navAudioRef}
@@ -97,18 +118,23 @@ const SongNavBar = () => {
         onLoadedMetadata={updateDurationDisplay}
       >
       </audio>
-      <button ref={navButtonRef} onClick={togglePlaying}>Play</button>
-      <span ref={startTimeRef}>0:00</span>
-      <input
-        type='range'
-        max={100}
-        min={0}
-        value={updateSliderValue()}
-        onChange={seekTrack}
-      />
-      <span ref={endTimeRef}>0:00</span>
+      <button ref={navButtonRef} onClick={togglePlaying} className={c.play_pause_button}>Play</button>
+      <div className={c.progressbar}>
+        <span ref={startTimeRef} className={c.currentTime}>0:00</span>
+        <input
+          ref={sliderRef}
+          type='range'
+          max={100}
+          min={0}
+          step={.01}
+          value={updateSliderValue()}
+          onChange={seekTrack}
+          id={c.slider}
+        />
+        <span ref={endTimeRef}>0:00</span>
+      </div>
 
-    </nav>
+    </footer>
   );
 };
 

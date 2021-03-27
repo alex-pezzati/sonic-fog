@@ -4,7 +4,7 @@ import { setActiveSongData, pauseSong, playSong } from "../../store/song";
 
 const WaveFormControls = ({ songId }) => {
   const [songUrl, setSongUrl] = useState();
-
+  
   const storeSongData = useSelector((state) => state.song);
   const dispatch = useDispatch();
 

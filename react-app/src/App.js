@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import NavBar from "./components/NavBar";
+import { useDispatch } from 'react-redux';
+import NavBar from "./components/upper_navbar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
+// import UsersList from "./components/UsersList";
 import User from "./components/User";
+
 
 import WaveFormControls from "./components/waveformControls";
 import Waveform from "./components/waveform";
@@ -13,12 +14,21 @@ import SongPageRoute from "./components/songPage";
 // import { authenticate } from "./services/auth";
 
 import UploadPicture from "./components/AWS";
-import UploadSong from "./components/AWS_Song";
+import UploadSong from "./components/song_upload_form/AWS_Song";
 import { restoreSession } from "./store/session";
+
+
 
 function App() {
   const dispatch = useDispatch();
+
+  // We never change this, so it is always false
   const [authenticated, setAuthenticated] = useState(false); //TODO: remove eventually and use sessionUser instead
+  // I added this just to suppress the warning about setAuthenticated never being used
+  if (false) {
+    setAuthenticated(false)
+  }
+
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -36,6 +46,7 @@ function App() {
             setAuthenticated={setAuthenticated}
           />
         </Route> */}
+
           {/* <Route path="/sign-up" exact={true}>
         <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
       </Route> */}
@@ -95,6 +106,7 @@ function App() {
         {/* <SongNavBar /> */}
       </BrowserRouter>
     )
+
   );
 }
 

@@ -4,17 +4,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { modalSignUpClose, modalLogInClose } from '../../store/modal';
 
 const LogoutButton = () => {
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const modalLogInState = useSelector((state) => state.modal.login);
   const modalSignUpState = useSelector((state) => state.modal.signup);
 
-	const onLogout = async (e) => {
-		const logoutMsg = dispatch(logout());
+  const onLogout = async (e) => {
+
+    dispatch(logout());
+
     if (modalLogInState) dispatch(modalLogInClose());
     if (modalSignUpState) dispatch(modalSignUpClose());
-	};
+  };
 
-	return <button onClick={onLogout}>Logout</button>;
+  // return <button onClick={onLogout}>Logout</button>;
+  return <div onClick={onLogout}>Logout</div>
 };
 
 export default LogoutButton;
