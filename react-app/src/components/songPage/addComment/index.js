@@ -3,6 +3,7 @@ import { Redirect, useParams, useHistory } from "react-router-dom";
 import classes from "./addComment.module.css";
 import { useSelector } from "react-redux";
 function PostCommentRoute() {
+  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [comment, setComment] = useState(null);
   const { songId } = useParams();
@@ -17,7 +18,7 @@ function PostCommentRoute() {
     });
     if (res.ok) {
       await res.json();
-      Redirect(`/songs/${songId}`);
+      history.push(`/songs/${songId}`);
     } else {
       console.log("error");
     }

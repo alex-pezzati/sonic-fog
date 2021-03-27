@@ -43,7 +43,7 @@ function Index() {
     setOwner(userHolder);
   }, [ownerId]);
 
-  console.log(owner);
+  // console.log(owner);
   // if (!list) return null;
   return (
     <ul className={classes.Comments__container}>
