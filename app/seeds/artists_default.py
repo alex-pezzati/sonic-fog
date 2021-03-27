@@ -9,7 +9,7 @@ from app.models import db, User
 
 S3_BUCKET = os.environ.get('S3_BUCKET') # get env secret info
 s3_banner = f'https://{S3_BUCKET}.s3.amazonaws.com/seed/banner-images/' # default aws url for banner images
-s3_profile = f'https://{S3_BUCKET}s3.amazonaws.com/seed/profile-images/' # default aws url for profile images
+s3_profile = f'https://{S3_BUCKET}.s3.amazonaws.com/seed/profile-images/' # default aws url for profile images
 artist_data = 'app/seeds/data/artists_data.json' # seed data file location
 
 
