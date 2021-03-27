@@ -1,0 +1,26 @@
+
+.profileImage__container {
+   position: absolute;
+   margin-top: 10px;
+   margin-left: 25px;
+   background-color: blue;
+   height: 75px;
+   width: 75px;
+}
+.formField {
+   display: flex;
+   justify-content: flex-end;
+   width: 96vw;
+   height: 95px;
+}
+.inputField {
+   font-size: 24px;
+   margin-top: 10px;
+   margin-right: 40px;
+   height: 50px;
+   width: 80vw;
+   background-color: #f2f2f2be;
+}
+.inputField:focus {
+   background-color: #f2f2f2;
+}

@@ -8,11 +8,11 @@ from pydub import AudioSegment
 import sys
 from os.path import dirname, join as pjoin
 
-from app.models import Song, db
+from app.models import Song, db, User
 from app.utils.s3_songs import (
     upload_file_to_s3, allowed_file, get_unique_filename, download_song_from_s3)
 
-song_routes = Blueprint('song', __name__)
+song_routes = Blueprint('songs', __name__)
 
 
 def generate_waveform_and_duration(aws_unique_name):
@@ -72,11 +72,18 @@ def generate_waveform_and_duration(aws_unique_name):
 @song_routes.route('/<int:song_id>')
 def get_song_data(song_id):
     song = Song.query.filter(Song.id == song_id).first()
-
+    uploader = User.query.get(song.user_id)
+    if not song:
+        return
     return jsonify({
         'waveform_data': song.normalized_data,
         'duration': str(song.duration),
-        'songURL': song.url
+        'songURL': song.url,
+        'songName': str(song.name),
+        'uploaderName': str(uploader.display_name),
+        'releaseDate': str(song.release_date),
+        'id': song.id,
+        'albumPhoto': str(song.cover_image),
     })
 
 
