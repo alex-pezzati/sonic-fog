@@ -64,7 +64,7 @@ function App() {
             exact={true}
             authenticated={authenticated}
           >
-            <UsersList />
+            {/* <UsersList /> */}
           </ProtectedRoute>
           <ProtectedRoute
             path="/users/:displayName"
