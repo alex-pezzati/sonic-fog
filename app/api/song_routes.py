@@ -88,6 +88,16 @@ def get_song_data(song_id):
         'albumPhoto': str(song.cover_image),
     })
 
+# get list of songs
+@song_routes.route('/get')
+def get_songs():
+    songs = Song.query.limit(12).all()
+    if not songs:
+        return
+    print('THIS IS A LIST OF SONGS???????????????')
+    print(songs)
+    return dict(songs)
+
 
 # Need to add: Validations and parsing/storing of other form fields (artist, album, etc)
 @song_routes.route("", methods=["POST"])  # technically also updates
