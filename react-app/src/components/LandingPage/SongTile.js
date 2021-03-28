@@ -5,6 +5,8 @@ function SongTile({ song }) {
         <div>
             <div>
                 songs here
+                {song.artist}
+                {song.name}
             </div>
         </div>
     )

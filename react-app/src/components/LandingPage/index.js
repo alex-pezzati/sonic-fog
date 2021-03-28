@@ -3,18 +3,18 @@ import React, { useEffect, useState } from 'react';
 import SongTile from './SongTile';
 
 function LandingPage() {
-    const [songs, setSongs] = useState(null);
+    const [songs, setSongs] = useState([]);
 
     const getSongs = async () => {
         const res = await fetch(`/api/songs/get`);
-        // const data = await res.json();
-        setSongs(res);
-        console.log(res);
+        const data = await res.json();
+        await setSongs(data.songs);
     }
 
 
     useEffect(() => {
         getSongs();
+        // not sure i need a cleanup; will revisit
         // return () => {
         //     cleanup
         // }
@@ -40,8 +40,8 @@ function LandingPage() {
                     <div>
                         <ul>
                             <li>
-                                {songs && songs.map(song => (
-                                    <SongTile song={song} key={song}/>
+                                {songs.map(song => (
+                                    <SongTile song={song} key={song.id}/>
                                 ))}
                             </li>
                         </ul>
