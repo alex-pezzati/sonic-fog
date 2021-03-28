@@ -71,10 +71,12 @@ def generate_waveform_and_duration(aws_unique_name):
 
 @song_routes.route('/<int:song_id>')
 def get_song_data(song_id):
+    if not song_id:
+        return
     song = Song.query.filter(Song.id == song_id).first()
-    uploader = User.query.get(song.user_id)
     if not song:
         return
+    uploader = User.query.get(song.user_id)
     return jsonify({
         'waveform_data': song.normalized_data,
         'duration': str(song.duration),

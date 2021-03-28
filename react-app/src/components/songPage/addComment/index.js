@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Redirect, useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import classes from "./addComment.module.css";
 import { useSelector } from "react-redux";
 function PostCommentRoute() {
-  const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
   const [comment, setComment] = useState(null);
   const { songId } = useParams();
@@ -18,22 +17,26 @@ function PostCommentRoute() {
     });
     if (res.ok) {
       await res.json();
-      history.push(`/songs/${songId}`);
+      window.location.reload();
     } else {
       console.log("error");
     }
   };
   const userPhoto = {
-    background: `url(${sessionUser.profile_url}) center no-repeat`,
+    background: `url(${sessionUser.profile_url}) no-repeat`,
+    backgroundSize: "contain",
   };
   return (
-    <div>
-      <div className={classes.profileImage__container} style={userPhoto}></div>
+    <div className={classes.addComment_container}>
       <form className={classes.formField} onSubmit={handleSubmit}>
+        <div
+          className={classes.profileImage__container}
+          style={userPhoto}
+        ></div>
         <div className={classes.inputField__container}>
           <input
             type="text"
-            value={comment}
+            value={comment ? comment : ""}
             placeholder="Write a comment"
             className={classes.inputField}
             onChange={(e) => setComment(e.target.value)}

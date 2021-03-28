@@ -14,13 +14,15 @@ function Index() {
     }
     (async () => {
       const response = await fetch(`/api/songs/${songId}`);
+      if (!response.ok) return console.log("error fetching song");
       const fetched_song = await response.json();
       await setSong(fetched_song);
       return fetched_song;
     })();
   }, [songId]);
+
   if (!song) {
-    return null;
+    return <h1>song not found</h1>;
   }
 
   const albumCoverStyle = {
@@ -56,8 +58,8 @@ function Index() {
         <div className={classes.Song_player__container}>
           <Waveform
             songId={Number(song.id)}
-            canvasWidth={880}
-            canvasHeight={150}
+            canvasWidth={800}
+            canvasHeight={90}
           />
         </div>
       </div>

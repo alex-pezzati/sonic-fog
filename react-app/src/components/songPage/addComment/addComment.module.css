@@ -1,25 +1,32 @@
-
+.addComment_container {
+   display: flex;
+   justify-content: flex-start;
+   height: 2.67vh; /*smaller to make banner smaller larger to make banner bigger*/
+   width: 20vw;
+   margin-left: 20vw;
+}
 .profileImage__container {
+   box-sizing: border-box;
+   align-self: flex-start;
    position: absolute;
-   margin-top: 10px;
-   margin-left: 25px;
    background-color: blue;
-   height: 75px;
-   width: 75px;
+   margin-left: 3vw;
+   height: 4vh;
+   width: 4vw;
 }
 .formField {
    display: flex;
-   justify-content: flex-end;
-   width: 96vw;
-   height: 95px;
+   width: 10vw;
+   height: 5vh;
 }
 .inputField {
-   font-size: 24px;
-   margin-top: 10px;
-   margin-right: 40px;
-   height: 50px;
-   width: 80vw;
+   margin-left: 5vw;
+   padding-right: 10vw;
+   font-size: 16px;
+   height: 11px;
+   width: 30vw;
    background-color: #f2f2f2be;
+   border-color: gray;
 }
 .inputField:focus {
    background-color: #f2f2f2;
