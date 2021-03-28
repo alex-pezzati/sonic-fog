@@ -1,32 +1,31 @@
-.Comments {
-   list-style-type: none;
-   border: 1px solid #e2e0e0;
-   box-sizing: border-box;
-   width:60vw;
-   margin-left: 10vw;
-   padding: 10px;
-   display: flex;
-   flex-direction: column;
-}
-
 .Comments__container {
-   display: flex;
-   flex-direction: column;
-   padding: 4px;
+ color: blue;
 }
 
-.Owner {
-   color: #999999;
+.Inner_Comments__container {
+   list-style-type: none;
 }
-.Comment {
-   color: #000000;
-   line-height: 26px;
+
+.Image__container {
+   background-color: black;
+}
+.Image__container img {
+   height: 45px;
+   width: 45px;
+}
+
+.User_Tag__container {
+   background-color: pink;
+}
+
+.User_Tag {
+   color: purple;
+}
+
+.Single_Comment__container {
+   border: 2px solid black;
+}
+
+.Single_Comment {
    font-size: 24px;
-   text-overflow: clip;
-}
-
-.Photo {
-   height: 40px;
-   width: 40px;
-   border-radius: 50%;
 }

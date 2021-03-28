@@ -46,11 +46,18 @@ function Index() {
     return (
       <ul className={classes.Comments__container}>
         {commenters.map((user, i) => (
-          <li key={user.display_name + i}>
-            <img src={user.photo_url} alt="users profile"></img>
-            <h3>@{user.display_name}</h3>
-            <div>
-              <span>{list[i]}</span>
+          <li
+            key={user.display_name + i}
+            className={classes.Inner_Comments__container}
+          >
+            <div className={classes.Image__container}>
+              <img src={user.photo_url} alt="users profile"></img>
+            </div>
+            <div className={classes.User_Tag__container}>
+              <h3 className={classes.User_Tag}>@{user.display_name}</h3>
+            </div>
+            <div className={classes.Single_Comment__container}>
+              <span className={classes.Single_Comment}>{list[i]}</span>
             </div>
           </li>
         ))}
