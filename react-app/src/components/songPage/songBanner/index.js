@@ -19,15 +19,15 @@ function Index() {
       return fetched_song;
     })();
   }, [songId]);
+
   if (!song) {
     return null;
   }
 
-  const albumCoverStyle = {
-    background: `url(${song.albumPhoto}) center no-repeat`,
-  };
+  const albumCoverStyle = { background: `url(${song.albumPhoto}) center no-repeat`};
+
   return (
-    <span className={classes.Song_body}>
+    <div className={classes.Song_body}>
       <div className={classes.Song_banner__container}>
         <div className={classes.Song_headers}>
           <div className={classes.Song_uploader_name__container}>
@@ -61,7 +61,7 @@ function Index() {
           />
         </div>
       </div>
-    </span>
+    </div>
   );
 }
 

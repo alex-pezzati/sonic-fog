@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 import NavBar from "./components/upper_navbar/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 // import UsersList from "./components/UsersList";
+
+import LandingPage from "./components/LandingPage";
 import User from "./components/User";
-
-
 import WaveFormControls from "./components/waveformControls";
 import Waveform from "./components/waveform";
 // import SongNavBar from "./components/song_navbar";
@@ -40,6 +40,9 @@ function App() {
       <BrowserRouter>
         <NavBar isLoaded={isLoaded} />
         <Switch>
+          <Route path="/" exact={true}>
+            <LandingPage />
+          </Route>
           {/* <Route path="/login" exact={true}>
           <LoginForm
             authenticated={authenticated}
@@ -56,9 +59,7 @@ function App() {
           <Route path="/songs/:songId">
             <SongPageRoute setAuthenticated={setAuthenticated} />
           </Route>
-          <Route path="/" exact={true}>
-            <h1>Hello Sonic Fog</h1>
-          </Route>
+
           <ProtectedRoute
             path="/users"
             exact={true}
