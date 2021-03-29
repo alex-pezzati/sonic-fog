@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
 
+import WaveFormControls from '../waveformControls';
+
 import c from './SongTile.module.css'
 
 function SongTile({ song }) {
@@ -30,12 +32,13 @@ function SongTile({ song }) {
             </div>
             <div className={c.description}>
                 <div>
-                    <NavLink to='/songs/songId'>
+                    <NavLink to={`/songs/${song.id}`}>
                         {song.name}
                     </ NavLink>
                 </div>
                 <div>
-                    <NavLink to='/users/artist'>
+                    {/* <NavLink to={`/users/${song.user_id}`}> */}
+                    <NavLink to={`/songs/${song.id}`}>
                         {song.artist}
                     </ NavLink>
                 </div>

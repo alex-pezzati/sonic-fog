@@ -35,6 +35,7 @@ def seed_songs():
                 cover_image = f'{s3_art}{url}+album500x500.jpg',
                 duration = song['duration'],
                 normalized_data = song['waveform_data'],
+                aws_unique_name = f'{url}.mp3'
             )
             db.session.add(seed)
 
