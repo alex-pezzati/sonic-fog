@@ -25,9 +25,9 @@ function Index() {
     }
     fetchData();
   }, [songId]);
-  console.log(list);
-  console.log(userIds);
-  console.log(commenters);
+  // console.log(list);
+  // console.log(userIds);
+  // console.log(commenters);
   useEffect(() => {
     if (!userIds) return;
     async function fetchData(id) {
@@ -42,25 +42,39 @@ function Index() {
     userIds.forEach((id) => fetchData(id));
   }, [userIds]);
   if (commenters.length === list.length) {
-    console.log("yes");
+    // console.log("yes");
     return (
-      <ul className={classes.Comments__container}>
-        {commenters.map((user, i) => (
-          <li
-            key={user.display_name + i}
-            className={classes.Inner_Comments__container}
-          >
-            <div className={classes.Image__container}>
-              <img src={user.photo_url} alt="users profile"></img>
-            </div>
-            <div className={classes.User_Tag__container}>
-              <h3 className={classes.User_Tag}>@{user.display_name}</h3>
-            </div>
-            <div className={classes.Single_Comment__container}>
-              <span className={classes.Single_Comment}>{list[i]}</span>
-            </div>
-          </li>
-        ))}
+      <ul>
+        {commenters.map((user, i) => {
+          const userPhoto = {
+            backgroundImage: `url(${user.profile_url})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+          };
+          return (
+            <li key={user.display_name + i} className={classes.Comment_Box__li}>
+              <div className={classes.Comment_Box}>
+                <a href={`/users/${user.id}`}>
+                  <div
+                    className={classes.Image__container}
+                    style={userPhoto}
+                  ></div>
+                </a>
+                <div className={classes.Inside_Comment}>
+                  <div className={classes.Comment_Data}>
+                    <div className={classes.User_Name}>
+                      @{user.display_name}
+                    </div>
+                  </div>
+                </div>
+                <div className={classes.Single_Comment}>
+                  <p>{list[i]}</p>
+                </div>
+              </div>
+            </li>
+          );
+        })}
       </ul>
     );
   } else {

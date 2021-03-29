@@ -1,31 +1,50 @@
-.Comments__container {
- color: blue;
+.Comment_Box {
+   background-color: transparent;
+   float: left;
+   margin-bottom: 20px;
+   padding: 5px;
+   box-sizing: content-box;
+   border: 1px solid #CCCCCC;
+   width: 80vw;
 }
-
-.Inner_Comments__container {
+.Comment_Box__li {
    list-style-type: none;
+}
+.Comment_Box a {
+   text-decoration: none;
+   outline: none;
+   cursor: pointer;
 }
 
 .Image__container {
-   background-color: black;
-}
-.Image__container img {
-   height: 45px;
-   width: 45px;
-}
-
-.User_Tag__container {
-   background-color: pink;
-}
-
-.User_Tag {
-   color: purple;
+   border: 1px solid #C9C9C9;
+   box-shadow: - 2px 7px #dfdfdf;
+   margin-right: 10px;
+   padding: 3px;
+   float: left;
+   width: 48px;
+   height: 48px;
+   border-radius: 50%;
 }
 
-.Single_Comment__container {
-   border: 2px solid black;
+.Inside_Comment {
+   font-size: 100%;
+   line-height: 24px;
+}
+
+.Comment_Data {
+   display: block;
+}
+
+.User_Name {
+   display: block;
+   float: left;
+   font-size: 12px;
+   color: #000000;
+   font-weight: bold;
 }
 
 .Single_Comment {
-   font-size: 24px;
+   color: #848484;
+   font-size: 12px;
 }
