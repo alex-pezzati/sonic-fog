@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import NavBar from "./components/upper_navbar/NavBar";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
-// import UsersList from "./components/UsersList";
 
 import LandingPage from "./components/LandingPage";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import NavBar from "./components/upper_navbar/NavBar";
+import SongPageRoute from "./components/songPage";
+import SongNavBar from "./components/song_navbar";
+import UploadPicture from "./components/AWS";
+import UploadSong from "./components/song_upload_form/AWS_Song";
 import User from "./components/User";
 import WaveFormControls from "./components/waveformControls";
 import Waveform from "./components/waveform";
-// import SongNavBar from "./components/song_navbar";
-import SongPageRoute from "./components/songPage";
-// import { authenticate } from "./services/auth";
 
-import UploadPicture from "./components/AWS";
-import UploadSong from "./components/song_upload_form/AWS_Song";
 import { restoreSession } from "./store/session";
+// import { authenticate } from "./services/auth";
 
 
 
@@ -39,6 +38,7 @@ function App() {
     isLoaded && (
       <BrowserRouter>
         <NavBar isLoaded={isLoaded} />
+        <SongNavBar isLoaded={isLoaded} />
         <Switch>
           <Route path="/" exact={true}>
             <LandingPage />

@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
 
+import WaveFormControls from '../waveformControls';
+
 import c from './SongTile.module.css'
 
 function SongTile({ song }) {
