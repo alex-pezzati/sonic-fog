@@ -131,7 +131,7 @@ def upload_song():
 # get list of songs; built for landing page
 @song_routes.route('/get')
 def get_songs():
-    songs = { "songs": [song.to_dict() for song in Song.query.limit(12).all()] }
+    songs = { "songs": [song.to_dict() for song in Song.query.limit(1).all()] }
     if not songs:
         return
 

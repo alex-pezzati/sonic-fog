@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import SongTile from './SongTile';
+import c from './LandingPage.module.css';
 
 function LandingPage() {
     const [songs, setSongs] = useState([]);
@@ -22,7 +23,7 @@ function LandingPage() {
 
 
     return (
-        <div>
+        <div className={c.content}>
             <h1>Test Sonic Fog</h1>
             <div>
                 <h1>
@@ -31,15 +32,17 @@ function LandingPage() {
                 carousel in here
             </div>
             <div>
-                songs container
                 <div>
+                    songs container
+                </div>
+                <div className={c.tracks}>
                     songs trunk
                     <div>
                         Here's what's trending for free in the SonicFog community
                     </div>
-                    <div>
-                        <ul>
-                            <li>
+                    <div className={c.container}>
+                        <ul className={c.ulist}>
+                            <li className={c.list}>
                                 {songs.map(song => (
                                     <SongTile song={song} key={song.id}/>
                                 ))}

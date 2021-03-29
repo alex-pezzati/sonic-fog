@@ -1,0 +1,54 @@
+.container {
+    width: 100%;
+    padding-bottom: 78px;
+    position: relative;
+}
+
+.artwork {
+    padding-top: 100%;
+    height: 0;
+    position: relative;
+    z-index: 2;
+}
+
+a, a:visited {
+    color: rgb(83, 147, 200);
+    text-decoration-color: initial;
+    text-decoration: none;
+    /* cursor: pointer; */
+}
+
+.artwork__image {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* cursor: pointer; */
+}
+
+.artwork__placeholder {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(
+        135deg,
+        rgb(111, 90, 99),
+        rgb(130, 63, 48)
+    );
+    text-align: center;
+    position: relative;
+    background-position-x: 50%;
+    background-position-y: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: rgb(32 32 32 / 10%) 0px 0px 0px 1px inset;
+    transition: opacity .2s linear;
+}
+
+.image {
+    display: inline-block;
+}
+
+.description {
+
+}
