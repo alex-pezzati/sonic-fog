@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
 
-import WaveFormControls from '../waveformControls';
+// import WaveFormControls from '../waveformControls';
 
 import c from './SongTile.module.css'
 
@@ -22,13 +22,13 @@ function SongTile({ song }) {
     return (
         <div className={c.container}>
             <div className={c.artwork}>
-                <a>
+                <div>
                     <div className={c.artwork__image}>
                         <div className={c.artwork__placeholder}>
                             <span  className={c.image} style={art}/>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
             <div className={c.description}>
                 <div>
