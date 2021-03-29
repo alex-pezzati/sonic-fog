@@ -24,21 +24,23 @@ function LandingPage() {
 
     return (
         <div className={c.content}>
-            <h1>Test Sonic Fog</h1>
+            <h1>
+                {/* Test Sonic Fog */}
+            </h1>
             <div>
                 <h1>
-                    logo here
+                    {/* logo here */}
                 </h1>
-                carousel in here
+                {/* carousel in here */}
             </div>
             <div>
                 <div>
-                    songs container
+                    {/* songs container */}
                 </div>
                 <div className={c.tracks}>
-                    songs trunk
+                    {/* songs trunk */}
                     <div>
-                        Here's what's trending for free in the SonicFog community
+                        {/* Here's what's trending for free in the SonicFog community */}
                     </div>
                     <div className={c.container}>
                         <ul className={c.ulist}>
