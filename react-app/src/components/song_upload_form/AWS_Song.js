@@ -17,7 +17,7 @@ const UploadSong = () => {
     // some sort of loading message is a good idea
     setSongLoading(true);
 
-    const res = await fetch("/api/song", {
+    const res = await fetch("/api/songs", {
       method: "POST",
       body: formData,
     });
@@ -43,8 +43,18 @@ const UploadSong = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="file" accept="audio/*" onChange={updateSong} />
-      <input type="text" onChange={updateName} placeholder="Song title" />
+      <input
+        type="file"
+        value={song ? song : ""}
+        accept="audio/*"
+        onChange={updateSong}
+      />
+      <input
+        type="text"
+        value={name ? name : ""}
+        onChange={updateName}
+        placeholder="Song title"
+      />
       <button type="submit">Upload</button>
       {songLoading && <p>Loading...</p>}
     </form>

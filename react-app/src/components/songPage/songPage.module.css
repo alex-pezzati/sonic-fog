@@ -1,28 +1,27 @@
 .SongPage_body {
    display: flex;
-   height: 83vh;
+   height: 77vh;
    width: 98vw;
 }
 
 .BannerComponent {
-   color: red;
-   position: absolute
+   display: flex;
+   position: absolute;
 }
 .CommentComponent {
    box-sizing: border-box;
    position: absolute;
    display: flex;
    align-self: center;
-   margin-top: 54vh;
+   margin-top: 12vh;
    width: 98vw;
-   border: 2px solid black;
-   padding: 10px;
+   height: 6vh;
 }
 
 
 .inner_container{
    position: absolute;
-   margin-top: 78vh;
+   margin-top: 50vh;
    min-height: 78vh;
    display: flex;
    align-items: center;

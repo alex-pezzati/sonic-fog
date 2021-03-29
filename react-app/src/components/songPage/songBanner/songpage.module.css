@@ -1,20 +1,20 @@
 .Song_body {
    margin: 0;
-   background-color: rgba(51, 51, 51, 0.678);
+   background-color: transparent;
    box-sizing: border-box;
    position: absolute;
-   z-index: 1;
-   display: block;
+   display: flex;
+   justify-content: center;
    font-size: 12px;
    font-stretch: 100%;
    font-weight: 400;
-   height: 62vh;
+   height: 40.67vh; /*smaller to make banner smaller larger to make banner bigger*/
    width: 98vw;
    font-family: "Lucida Grande", "Lucida Sans Unitcode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
 }
 .Song_banner__container {
-   width: 100%;
-   height: 100%;
+   width: 80.67vw; /*smaller to make banner smaller larger to make banner larger*/
+   background-image: linear-gradient(to right, rgb(26, 25, 25) , rgb(73, 73, 75));
    display: flex;
 }
 
@@ -68,8 +68,8 @@
    display: flex;
    justify-content: flex-end;
    align-items: center;
-   height: 20vh;
-   width: 65vw;
+   height: 15vh;
+   width: 57vw;
 }
 
 .Song_upload_date {
@@ -85,10 +85,11 @@
    position: absolute;
    color: rgb(51,51,51);
    font-weight: 400;
-   height: 50vh;
-   width: 66vw;
+   height: 37vh; /*smaller to shift up larger to shift down*/
+   width: 55vw; /*smaller to shift left larger to shift right*/
    display: flex;
    align-items: flex-end;
+   justify-content: flex-end;
 }
 .play_btn__container {
    display: flex;
@@ -126,18 +127,18 @@
 }
 .Song_album_cover_photo__container {
    display: flex;
-   align-self: flex-end;
+   align-self: center;
    justify-content: flex-end;
    color: rgb(51,51,51);
    font-weight: 400;
    position:absolute;
-   height: 57vh;
-   width: 96vw;
+   height: fit-content;
+   width: 77vw; /*smaller to move album cover left bigger to move right*/
 }
 
 .Album_Cover_image {
    display: block;
    cursor: pointer;
-   height: 340px;
-   width: 340px;
+   height: 250px;
+   width: 250px;
 }

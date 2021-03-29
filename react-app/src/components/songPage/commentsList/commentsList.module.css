@@ -1,32 +1,50 @@
-.Comments {
+.Comment_Box {
+   background-color: transparent;
+   float: left;
+   margin-bottom: 20px;
+   padding: 5px;
+   box-sizing: content-box;
+   border: 1px solid #CCCCCC;
+   width: 80vw;
+}
+.Comment_Box__li {
    list-style-type: none;
-   border: 1px solid #e2e0e0;
-   box-sizing: border-box;
-   width:60vw;
-   margin-left: 10vw;
-   padding: 10px;
-   display: flex;
-   flex-direction: column;
+}
+.Comment_Box a {
+   text-decoration: none;
+   outline: none;
+   cursor: pointer;
 }
 
-.Comments__container {
-   display: flex;
-   flex-direction: column;
-   padding: 4px;
-}
-
-.Owner {
-   color: #999999;
-}
-.Comment {
-   color: #000000;
-   line-height: 26px;
-   font-size: 24px;
-   text-overflow: clip;
-}
-
-.Photo {
-   height: 40px;
-   width: 40px;
+.Image__container {
+   border: 1px solid #C9C9C9;
+   box-shadow: - 2px 7px #dfdfdf;
+   margin-right: 10px;
+   padding: 3px;
+   float: left;
+   width: 48px;
+   height: 48px;
    border-radius: 50%;
+}
+
+.Inside_Comment {
+   font-size: 100%;
+   line-height: 24px;
+}
+
+.Comment_Data {
+   display: block;
+}
+
+.User_Name {
+   display: block;
+   float: left;
+   font-size: 12px;
+   color: #000000;
+   font-weight: bold;
+}
+
+.Single_Comment {
+   color: #848484;
+   font-size: 12px;
 }
