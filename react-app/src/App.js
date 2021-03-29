@@ -43,30 +43,9 @@ function App() {
           <Route path="/" exact={true}>
             <LandingPage />
           </Route>
-          {/* <Route path="/login" exact={true}>
-          <LoginForm
-            authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
-        </Route> */}
-
-          {/* <Route path="/sign-up" exact={true}>
-        <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
-      </Route> */}
-          {/* <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-        <h1>My Home Page</h1>
-      </ProtectedRoute> */}
           <Route path="/songs/:songId">
             <SongPageRoute setAuthenticated={setAuthenticated} />
           </Route>
-
-          <ProtectedRoute
-            path="/users"
-            exact={true}
-            authenticated={authenticated}
-          >
-            {/* <UsersList /> */}
-          </ProtectedRoute>
           <ProtectedRoute
             path="/users/:displayName"
             exact={true}
@@ -74,34 +53,12 @@ function App() {
           >
             <User />
           </ProtectedRoute>
-          {/* Feel free to delete this route if it doesn't work with you database. It was just for testing the waveform player */}
           <ProtectedRoute
-            exact
-            path="/audioPlayerTest"
-            authenticated={authenticated}
-          >
-            <Waveform songId={12} canvasHeight={200} canvasWidth={1000} />
-            <WaveFormControls songId={12} />
-
-            <Waveform songId={11} canvasHeight={200} canvasWidth={1000} />
-            <WaveFormControls songId={11} />
-
-            <Waveform songId={8} canvasHeight={200} canvasWidth={1000} />
-            <WaveFormControls songId={8} />
-          </ProtectedRoute>
-          <ProtectedRoute
-            path="/images"
-            exact={true}
-            authenticated={authenticated}
-          >
-            <UploadPicture />
-          </ProtectedRoute>
-          <ProtectedRoute
-            path="/song"
-            exact={true}
+            path="/upload"
             authenticated={authenticated}
           >
             <UploadSong />
+            <UploadPicture />
           </ProtectedRoute>
         </Switch>
         {/* <SongNavBar /> */}
