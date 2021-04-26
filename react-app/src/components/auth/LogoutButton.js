@@ -1,7 +1,7 @@
 import React from 'react';
 import { logout } from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { modalSignUpClose, modalLogInClose } from '../../store/modal';
+import {modalSignUpClose, modalLogInClose} from '../../store/modal';
 
 const LogoutButton = () => {
   const dispatch = useDispatch();
@@ -16,7 +16,6 @@ const LogoutButton = () => {
     if (modalSignUpState) dispatch(modalSignUpClose());
   };
 
-  // return <button onClick={onLogout}>Logout</button>;
   return <div onClick={onLogout}>Logout</div>
 };
 

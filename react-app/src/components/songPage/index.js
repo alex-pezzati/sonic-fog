@@ -1,6 +1,6 @@
 import React from "react";
 import BannerComponent from "./songBanner/index";
-import PostCommentRoute from "./addComment/index";
+// import PostCommentRoute from "./addComment/index";
 import CommentListRoute from "./commentsList/index";
 import classes from "./songPage.module.css";
 
@@ -10,9 +10,10 @@ function SongPageRoute() {
       <div className={classes.BannerComponent}>
         <BannerComponent />
       </div>
-      <div className={classes.CommentComponent}>
+      {/* This will break for unauthorized users */}
+      {/* <div className={classes.CommentComponent}>
         <PostCommentRoute />
-      </div>
+      </div> */}
       <div className={classes.inner_container}>
         <div className={classes.CommentsList}>
           <CommentListRoute />

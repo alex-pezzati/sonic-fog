@@ -3,45 +3,30 @@ const LOGIN_CLOSE = 'modal/LogInClose';
 const SIGNUP_OPEN = 'modal/SignUpOpen';
 const SIGNUP_CLOSE = 'modal/SignUpClose';
 
-const openLogin = () => {
+export const modalLogInOpen = () => {
 	return {
 		type: LOGIN_OPEN,
 	};
 };
 
-const closeLogin = () => {
+export const modalLogInClose = () => {
 	return {
 		type: LOGIN_CLOSE,
 	};
 };
 
-const openSignUp = () => {
+export const modalSignUpOpen = () => {
 	return {
 		type: SIGNUP_OPEN,
 	};
 };
 
-const closeSignUp = () => {
+export const modalSignUpClose = () => {
 	return {
 		type: SIGNUP_CLOSE,
 	};
 };
 
-export const modalLogInOpen = () => (dispatch) => {
-	dispatch(openLogin());
-};
-
-export const modalLogInClose = () => (dispatch) => {
-	dispatch(closeLogin());
-};
-
-export const modalSignUpOpen = () => (dispatch) => {
-	dispatch(openSignUp());
-};
-
-export const modalSignUpClose = () => (dispatch) => {
-	dispatch(closeSignUp());
-};
 
 const initialState = { login: false, signup: false };
 

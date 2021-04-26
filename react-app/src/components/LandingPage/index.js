@@ -9,7 +9,7 @@ function LandingPage() {
     const getSongs = async () => {
         const res = await fetch(`/api/songs/get`);
         const data = await res.json();
-        await setSongs(data.songs);
+        setSongs(data.songs);
     }
 
 

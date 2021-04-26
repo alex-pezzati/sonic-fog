@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import Modal from 'react-modal';
-import { signup } from '../../store/session';
-import { modalSignUpClose, modalLogInOpen } from '../../store/modal';
+import { signup, login } from '../../../store/session';
+import { modalSignUpClose, modalLogInOpen } from '../../../store/modal';
 
-import c from './SignupForm.module.css';
-import close from '../../images/close.svg';
+import c from './SignupModal.module.css';
+import close from '../../../images/close.svg';
 
 Modal.setAppElement('#root');
 
@@ -17,15 +17,11 @@ function SignupFormModal() {
 
   //TODO: Add inputs for firstname, lastname
   const [email, setEmail] = useState('');
-  const [displayName, setDisplayName] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  // const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const [errors, setErrors] = useState([]);
-  // I added this just to suppress the warning about errors never being used
-  if (false) {
-    console.log(errors)
-  }
 
   const closeSignUp = () => {
     dispatch(modalSignUpClose());
@@ -37,21 +33,42 @@ function SignupFormModal() {
   };
 
   const handleSubmit = async (e) => {
+    console.log('hi')
     e.preventDefault();
-    // if (password === confirmPassword) {
-
-
     setErrors([]);
+    if (password === confirmPassword) {
+      const user = await dispatch(signup({ username, email, password }));
+      if (!user.errors) {
+        history.push(`/`)
+      } else {
+        setErrors(user.errors);
+      }
+    } else {
+      setErrors(['Passwords must match'])
+    }
+  };
 
-    const data = await dispatch(signup({ displayName, email, password })).then(data => data);
-    if (data && data.errors) {
-      setErrors(data.errors);
-    }
-    if (data && data.email) {
-      history.push(`/users/${data.display_name}`)
-    }
-    // }
-    // return setErrors(['Confirm Password field must be the same as the Password field']);
+  let errorRender;
+  if (errors.length > 0) {
+    errorRender = (
+      <div className={c.div}>
+        <ul style={{ color: 'red' }}>
+          {errors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+      </div>
+    );
+  }
+
+  const demoLogin = () => {
+    setEmail('demo@aa.io');
+    setPassword('password');
+  };
+  const handleSubmitDemoLogin = async (e) => {
+    e.preventDefault();
+    let res = await dispatch(login({ email, password }))
+    console.log('submit', res)
+    dispatch(modalSignUpClose())
+    history.push(`/`)
   };
 
   return (
@@ -72,12 +89,10 @@ function SignupFormModal() {
         </div>
         {/* LOGO */}
         <h3 className={c.title}>Welcome to Sonic Fog</h3>
-        <h3 className={c.subtitle}>Join now to Ride the Wave</h3>
+        <h3 className={c.subtitle}>Noisy and Moist</h3>
         <div className={c.form__container}>
           <form onSubmit={handleSubmit} className={c.form}>
-            {/* <ul>
-                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                        </ul> */}
+            {errorRender}
             <input
               type='text'
               className={c.input}
@@ -89,9 +104,10 @@ function SignupFormModal() {
             <input
               type='text'
               className={c.input}
-              onChange={(e) => setDisplayName(e.target.value)}
-              value={displayName}
-              placeholder='Display Name'
+              onChange={(e) => setUsername(e.target.value)}
+              value={username}
+              placeholder='Username'
+              name='username'
               required
             />
             <input
@@ -100,32 +116,40 @@ function SignupFormModal() {
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               placeholder='Password'
+              name='password'
               required
             />
-            {/* <input
-                            type="password"
-                            className={c.input}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            value={confirmPassword}
-                            placeholder='ConfirmPassword'
-                            required
-                        /> */}
+            <input
+              type='password'
+              className={c.input}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={confirmPassword}
+              placeholder='Confirm Password'
+              name='confirm password'
+              required
+            />
             <button type='submit' className={c.continue__button}>
               Continue
 						</button>
           </form>
           <p className={c.or}>OR</p>
         </div>
-        <div className={c.div}>
-          <button className={c.demo}>Continue as Demo</button>
-        </div>
+        <form onSubmit={handleSubmitDemoLogin} className={c.form}>
+          <div className={c.div}>
+            <button
+              type='submit'
+              onClick={demoLogin}
+              className={c.demo}
+            >
+              Continue as Demo
+            </button>
+          </div>
+        </form>
         <div className={c.div__line}></div>
         <div className={c.div}>
-          {/* this is a temp fix, we need to add an href to this anchor tag */}
-          {/*eslint-disable-next-line */}
-          <a onClick={(e) => closeSignUpOpenLogIn()} className={c.signup}>
+          <div onClick={(e) => closeSignUpOpenLogIn()} className={c.signup}>
             Already a member? Log in
-					</a>
+					</div>
         </div>
       </div>
     </Modal>
