@@ -43,7 +43,7 @@ function App() {
             <SongPageRoute/>
           </Route>
           <ProtectedRoute
-            path="/users/:displayName"
+            path="/users/:username"
             exact={true}
           >
             <User />

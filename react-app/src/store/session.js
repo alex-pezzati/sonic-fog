@@ -31,14 +31,14 @@ export const login = (user) => async (dispatch) => {
 };
 
 export const signup = (user) => async (dispatch) => {
-  const { displayName, email, password } = user;
+  const { username, email, password } = user;
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      display_name: displayName,
+      display_name: username,
       email,
       password,
     }),
