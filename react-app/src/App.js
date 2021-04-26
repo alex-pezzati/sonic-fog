@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 
 import LandingPage from "./components/LandingPage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
@@ -10,13 +10,11 @@ import SongNavBar from "./components/song_navbar";
 import UploadPicture from "./components/AWS";
 import UploadSong from "./components/song_upload_form/AWS_Song";
 import User from "./components/User";
-import WaveFormControls from "./components/waveformControls";
-import Waveform from "./components/waveform";
+// import WaveFormControls from "./components/waveformControls";
+// import Waveform from "./components/waveform";
 
 import { restoreSession } from "./store/session";
 // import { authenticate } from "./services/auth";
-
-
 
 function App() {
   const dispatch = useDispatch();
@@ -24,8 +22,9 @@ function App() {
   // We never change this, so it is always false
   const [authenticated, setAuthenticated] = useState(false); //TODO: remove eventually and use sessionUser instead
   // I added this just to suppress the warning about setAuthenticated never being used
+  // ???
   if (false) {
-    setAuthenticated(false)
+    setAuthenticated(false);
   }
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -53,10 +52,7 @@ function App() {
           >
             <User />
           </ProtectedRoute>
-          <ProtectedRoute
-            path="/upload"
-            authenticated={authenticated}
-          >
+          <ProtectedRoute path="/upload" authenticated={authenticated}>
             <UploadSong />
             <UploadPicture />
           </ProtectedRoute>
@@ -64,7 +60,6 @@ function App() {
         {/* <SongNavBar /> */}
       </BrowserRouter>
     )
-
   );
 }
 
