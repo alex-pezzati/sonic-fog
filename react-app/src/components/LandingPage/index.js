@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import SongTile from './SongTile';
-import c from './LandingPage.module.css';
+import SongTile from "./SongTile";
+import c from "./LandingPage.module.css";
 
 function LandingPage() {
     const [songs, setSongs] = useState([]);
@@ -42,20 +42,19 @@ function LandingPage() {
                     {/* <div>
                         Here's what's trending for free in the SonicFog community
                     </div> */}
-                    <div className={c.container}>
-                        <ul className={c.ulist}>
-                            <li className={c.list}>
-                                {songs.map(song => (
-                                    <SongTile song={song} key={song.id}/>
-                                ))}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+          <div className={c.container}>
+            <ul className={c.ulist}>
+              <li className={c.list}>
+                {songs.map((song) => (
+                  <SongTile song={song} key={song.id} />
+                ))}
+              </li>
+            </ul>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
-
 
 export default LandingPage;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 
 import LandingPage from "./components/LandingPage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
@@ -10,7 +10,6 @@ import SongNavBar from "./components/song_navbar";
 import UploadPicture from "./services/AWS";
 import UploadSong from "./components/song_upload_form/AWS_Song";
 import User from "./components/user_profile/User";
-
 
 import { restoreSession } from "./store/session";
 
@@ -48,9 +47,11 @@ function App() {
           >
             <User />
           </ProtectedRoute>
+
           <ProtectedRoute
             path="/upload"
           >
+
             <UploadSong />
             <UploadPicture />
           </ProtectedRoute>
@@ -58,7 +59,6 @@ function App() {
         <SongNavBar />
       </BrowserRouter>
     )
-
   );
 }
 
