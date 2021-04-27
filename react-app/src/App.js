@@ -13,21 +13,24 @@ import User from "./components/user_profile/User";
 
 import { restoreSession } from "./store/session";
 
-
 function App() {
   const dispatch = useDispatch();
 
   const [isLoaded, setIsLoaded] = useState(false);
+  // const [authorized, setAuthorized] = useState(false);
 
-
-  // Try to restore the user
+  // used the response from this dispatch someone set up to check for errors logging in from session.
+  // if no errors then set authorized.
+  // planning on passing setAuthorized and authorized as a prop
   useEffect(() => {
-    (async() => {
-      dispatch(restoreSession())
-      setIsLoaded(true)
-    })()
-  }, [dispatch])
-
+    (async () => {
+      await dispatch(restoreSession()).then((data) => {
+        // let errors = data?.errors;
+        // if (errors && errors[0] !== "Unauthorized") setAuthorized(true);
+      });
+      setIsLoaded(true);
+    })();
+  }, [dispatch]);
 
   return (
     isLoaded && (
@@ -39,19 +42,12 @@ function App() {
             <LandingPage />
           </Route>
           <Route path="/songs/:songId">
-            <SongPageRoute/>
+            <SongPageRoute />
           </Route>
-          <ProtectedRoute
-            path="/users/:username"
-            exact={true}
-          >
+          <ProtectedRoute path="/users/:username" exact={true}>
             <User />
           </ProtectedRoute>
-
-          <ProtectedRoute
-            path="/upload"
-          >
-
+          <ProtectedRoute path="/upload">
             <UploadSong />
             <UploadPicture />
           </ProtectedRoute>

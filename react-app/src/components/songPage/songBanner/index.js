@@ -47,7 +47,7 @@ function Index() {
             <div onClick={Waveform.togglePlaying}>
               <Waveform
                 songId={Number(song.id)}
-                canvasWidth={642}
+                canvasWidth={680}
                 canvasHeight={60}
               />
             </div>

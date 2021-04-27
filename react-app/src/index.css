@@ -1,6 +1,13 @@
 /* TODO Add site wide styles */
+:root {
+  --body-width: 100vmax;
+  --body-height: 100vmax;
+}
+
 body {
-  font-family: Interstate,Lucida Grande,Arial,sans-serif;
+  font-family: Interstate, Lucida Grande, Arial, sans-serif;
   position: relative;
   top: 50px;
+  width: var(--body-width);
+  height: var(--body-height);
 }

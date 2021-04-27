@@ -7,9 +7,11 @@
    border: 1px solid #CCCCCC;
    width: 80vw;
 }
+
 .Comment_Box__li {
    list-style-type: none;
 }
+
 .Comment_Box a {
    text-decoration: none;
    outline: none;

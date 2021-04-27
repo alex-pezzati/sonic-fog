@@ -1,33 +1,16 @@
 .SongPage_body {
    display: flex;
-   height: 77vh;
-   width: 98vw;
+   flex-direction: column;
+}
+
+.SongPage_body fieldset {
+   width: 70vmax;
+   height: fit-content;
+   border: none;
+   justify-self: center;
 }
 
 .BannerComponent {
-   display: flex;
-   position: absolute;
-}
-.CommentComponent {
-   box-sizing: border-box;
-   position: absolute;
-   display: flex;
-   align-self: center;
-   margin-top: 12vh;
-   width: 98vw;
-   height: 6vh;
-}
-
-
-.inner_container{
-   position: absolute;
-   margin-top: 50vh;
-   min-height: 78vh;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   width: 96vw;
-   line-height: 26px;
-   font-size: 24px;
-   text-overflow: clip;
+   width: 100%;
+   height: 100%;
 }
