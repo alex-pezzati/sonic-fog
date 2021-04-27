@@ -10,5 +10,4 @@ commentsList_routes = Blueprint('commentsList', __name__)
 def commentsList(songId):
     comments = Comment.query.filter(Comment.song_id == songId).all()
     commentsList = [comment.to_dict() for comment in comments]
-    if len(commentsList)==0: return
     return {'listOfComments':commentsList}

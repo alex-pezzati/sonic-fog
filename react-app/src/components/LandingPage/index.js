@@ -4,34 +4,42 @@ import SongTile from "./SongTile";
 import c from "./LandingPage.module.css";
 
 function LandingPage() {
-  const [songs, setSongs] = useState([]);
+    const [songs, setSongs] = useState([]);
 
-  const getSongs = async () => {
-    const res = await fetch(`/api/songs/get`);
-    const data = await res.json();
-    setSongs(data.songs);
-  };
+    const getSongs = async () => {
+        const res = await fetch(`/api/songs/get`);
+        const data = await res.json();
+        setSongs(data.songs);
+    }
 
-  useEffect(() => {
-    getSongs();
-    // not sure i need a cleanup; will revisit
-    // return () => {
-    //     cleanup
-    // }
-  }, []);
 
-  return (
-    <div className={c.content}>
-      <h1>{/* Test Sonic Fog */}</h1>
-      <div>
-        <h1>{/* logo here */}</h1>
-        {/* carousel in here */}
-      </div>
-      <div>
-        <div>{/* songs container */}</div>
-        <div className={c.tracks}>
-          {/* songs trunk */}
-          {/* <div>
+    useEffect(() => {
+        getSongs();
+        // not sure i need a cleanup; will revisit
+        // return () => {
+        //     cleanup
+        // }
+    }, [])
+
+
+    return (
+        <div className={c.content}>
+            <h1>
+                {/* Test Sonic Fog */}
+            </h1>
+            <div>
+                <h1>
+                    {/* logo here */}
+                </h1>
+                {/* carousel in here */}
+            </div>
+            <div>
+                <div>
+                    {/* songs container */}
+                </div>
+                <div className={c.tracks}>
+                    {/* songs trunk */}
+                    {/* <div>
                         Here's what's trending for free in the SonicFog community
                     </div> */}
           <div className={c.container}>

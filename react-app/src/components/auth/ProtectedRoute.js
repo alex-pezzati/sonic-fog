@@ -7,7 +7,7 @@ const ProtectedRoute = props => {
 
   return (
     <Route {...props}>
-      {sessionUser && sessionUser.email ? props.children  : <Redirect to="/" />}
+      {sessionUser ? props.children  : <Redirect to="/" />}
     </Route>
   )
 };

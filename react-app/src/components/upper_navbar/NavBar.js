@@ -5,8 +5,8 @@ import { NavLink } from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 
 import LogoutButton from '../auth/LogoutButton';
-import SignupFormModal from '../SignupForm';
-import LoginFormModal from '../LoginForm';
+import SignupFormModal from '../auth/SignupModal';
+import LoginFormModal from '../auth/LoginModal';
 import { modalLogInOpen, modalSignUpOpen } from '../../store/modal';
 
 import c from './NavBar.module.css'

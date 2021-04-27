@@ -7,31 +7,27 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import NavBar from "./components/upper_navbar/NavBar";
 import SongPageRoute from "./components/songPage";
 import SongNavBar from "./components/song_navbar";
-import UploadPicture from "./components/AWS";
+import UploadPicture from "./services/AWS";
 import UploadSong from "./components/song_upload_form/AWS_Song";
-import User from "./components/User";
-// import WaveFormControls from "./components/waveformControls";
-// import Waveform from "./components/waveform";
+import User from "./components/user_profile/User";
 
 import { restoreSession } from "./store/session";
-// import { authenticate } from "./services/auth";
+
 
 function App() {
   const dispatch = useDispatch();
 
-  // We never change this, so it is always false
-  const [authenticated, setAuthenticated] = useState(false); //TODO: remove eventually and use sessionUser instead
-  // I added this just to suppress the warning about setAuthenticated never being used
-  // ???
-  if (false) {
-    setAuthenticated(false);
-  }
-
   const [isLoaded, setIsLoaded] = useState(false);
 
+
+  // Try to restore the user
   useEffect(() => {
-    dispatch(restoreSession()).then(() => setIsLoaded(true));
-  }, [dispatch]);
+    (async() => {
+      dispatch(restoreSession())
+      setIsLoaded(true)
+    })()
+  }, [dispatch])
+
 
   return (
     isLoaded && (
@@ -43,21 +39,24 @@ function App() {
             <LandingPage />
           </Route>
           <Route path="/songs/:songId">
-            <SongPageRoute setAuthenticated={setAuthenticated} />
+            <SongPageRoute/>
           </Route>
           <ProtectedRoute
-            path="/users/:displayName"
+            path="/users/:username"
             exact={true}
-            authenticated={authenticated}
           >
             <User />
           </ProtectedRoute>
-          <ProtectedRoute path="/upload" authenticated={authenticated}>
+
+          <ProtectedRoute
+            path="/upload"
+          >
+
             <UploadSong />
             <UploadPicture />
           </ProtectedRoute>
         </Switch>
-        {/* <SongNavBar /> */}
+        <SongNavBar />
       </BrowserRouter>
     )
   );
