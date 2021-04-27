@@ -1,52 +1,29 @@
-.Comment_Box {
-   background-color: transparent;
-   float: left;
-   margin-bottom: 20px;
-   padding: 5px;
-   box-sizing: content-box;
-   border: 1px solid #CCCCCC;
-   width: 80vw;
+.Comment_Outer_Container {
+   display: flex;
+   justify-content: flex-end;
+   width: 92vw;
+   margin: 0;
 }
 
-.Comment_Box__li {
+.Outter_box {
    list-style-type: none;
+   text-align: right;
 }
 
-.Comment_Box a {
-   text-decoration: none;
-   outline: none;
-   cursor: pointer;
+
+.Comment_Box legend {
+   font-size: .7rem;
+   color: var(--secondary-text-color);
 }
+
 
 .Image__container {
-   border: 1px solid #C9C9C9;
-   box-shadow: - 2px 7px #dfdfdf;
-   margin-right: 10px;
-   padding: 3px;
-   float: left;
-   width: 48px;
-   height: 48px;
-   border-radius: 50%;
+   width: 20px;
+   height: 20px;
 }
 
-.Inside_Comment {
-   font-size: 100%;
-   line-height: 24px;
-}
 
-.Comment_Data {
-   display: block;
-}
-
-.User_Name {
-   display: block;
-   float: left;
-   font-size: 12px;
-   color: #000000;
-   font-weight: bold;
-}
-
-.Single_Comment {
-   color: #848484;
-   font-size: 12px;
+.block {
+   width: 100%;
+   height: 20%;
 }
