@@ -18,6 +18,7 @@ function SongTile({ song }) {
 
 
     return (
+      <div>
         <div className={c.container}>
             <div className={c.artwork}>
                 <div>
@@ -41,9 +42,7 @@ function SongTile({ song }) {
                     </ NavLink>
                 </div>
             </div>
-          </div>
-        </a>
-      </div>
+        </div>
       <div className={c.description}>
         <div>
           <NavLink to={`/songs/${song.id}`}>{song.name}</NavLink>

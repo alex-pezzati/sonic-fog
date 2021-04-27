@@ -24,10 +24,7 @@ const WaveFormControls = ({ songId }) => {
   // If this song is the active song, set the button to pause
   // If it is not, set the button to play
   useEffect(() => {
-    if (
-      storeSongData?.activeSongId === songId &&
-      storeSongData.isCurrentlyPlaying
-    ) {
+    if (storeSongData?.activeSongId === songId && storeSongData.isPlaying) {
       buttonRef.current.innerText = "||";
     } else {
       buttonRef.current.innerText = "▶";

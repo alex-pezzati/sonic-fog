@@ -16,11 +16,17 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
   const [songUrl, setSongUrl] = useState();
   const [trackDuration, setTrackDuration] = useState();
 
+  const [isPlayingLocally, setIsPlayingLocally] = useState(false)
+
+  const [lastCheckpoint, setLastCheckpoint] = useState(0)
+  const [timeLastSaved, setTimeLastSaved] = useState(Date.now())
+
   const storeSongData = useSelector((store) => store.song);
 
   const dispatch = useDispatch();
 
   let canvasRef = useRef();
+  let animationFrameRef = useRef()
 
 
   // Grab the initial data from the backend
@@ -48,16 +54,50 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
   }, [songId]);
 
 
+  // If the song is paused in the store, make sure it is also paused locally
+  useEffect(() => {
+    if (!storeSongData?.isPlaying){
+      setIsPlayingLocally(false)
+    }
+  },[storeSongData])
 
+  const updateNumWaveformBars = () => {
+      // How many seconds have elapsed since the song started playing
+      const checkpointPercentage = lastCheckpoint / trackDuration
+
+      let time = (Date.now() / 1000) - timeLastSaved
+      let trackPercentage = time /trackDuration
+      trackPercentage += checkpointPercentage
+
+      const numChunks = waveformData.length;
+      const numBars = Math.floor(trackPercentage * numChunks);
+
+
+      // If the song is over, don't update the number of bars
+      if (trackPercentage >= 1) {
+        return;
+      }
+
+      // If there is discrepency between the number of bars calculated in this function, and the number stored it the state, update the state
+      // This acts as a throttle. The canvas is repainted in a useEffect that has numWaveBars as a dependency
+      // if (numBars && numBars !== numWaveformBars) {
+      //   setNumWaveformBars(numBars);
+      // }
+
+      if (numBars && numBars !== numWaveformBars) {
+        setNumWaveformBars(numBars);
+      }
+      animationFrameRef.current = requestAnimationFrame(updateNumWaveformBars)
+  }
   // Set the number of waveform bars
   useEffect(() => {
-    // If the active song is NOT this song, then reset the number of waveformbars
+     // If the active song is NOT this song, then reset the number of waveformbars
     if (storeSongData.activeSongId && storeSongData.activeSongId !== songId) {
       setNumWaveformBars(-1);
       return;
     }
 
-    // If there is no waveform data, stop right here
+    // If there is no waveform data, don't bother with any calculations
     if ((!waveformData || !waveformData.length) && trackDuration !== 0) return;
 
 
@@ -83,28 +123,26 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
     // Resuming/Playing: get the checkpoint from the store, convert it to track percentage, save it. Also save the time you got it
     //    then calculate the diffs, convert to percents and add to the saved
     // Seeking: same as resume/playing (maybe check if the song is already playing or not tho)
-    const current_time = Date.now()
-    console.log(current_time)
 
-    requestAnimationFrame(() => {
-      const trackPercentage = storeSongData.currentTime / trackDuration;
 
-      const numChunks = waveformData.length;
-      const numBars = Math.floor(trackPercentage * numChunks);
+    //       If a song has resumed playing             OR     the user scrubbed/searched through the track...
+    if ((storeSongData.isPlaying && !isPlayingLocally) || (storeSongData.checkpoint !== lastCheckpoint)){
+      // ... then update all the local data
 
-      // If the song is over, don't update the number of bars
-      if (trackPercentage >= 100) {
-        return;
-      }
+      // local value of the last checkpoint (compare this to the store to see if a user has scrubbed)
+      setLastCheckpoint(storeSongData.checkpoint)
+      // Compare this to the store to see if a song has resumed playing (or begun for the first time)
+      setIsPlayingLocally(true)
 
-      // If there is discrepency between the number of bars calculated in this function, and the number stored it the state, update the state
-      // This acts as a throttle. The canvas is repainted in a useEffect that has numWaveBars as a dependency
-      if (numBars && numBars !== numWaveformBars) {
-        setNumWaveformBars(numBars);
-      }
-    });
-  }, [storeSongData, numWaveformBars, songId, trackDuration, waveformData]);
+      setTimeLastSaved(Date.now() / 1000)
 
+    // If we're playing both locally and globally, then it's business as usual and we begin our recusive loop of updating the waveform
+    } else if (storeSongData.isPlaying && isPlayingLocally){
+      requestAnimationFrame(updateNumWaveformBars)
+    }
+
+    return () => window.cancelAnimationFrame(animationFrameRef.current)
+  }, [storeSongData, isPlayingLocally, lastCheckpoint]);
 
 
   // Paint the canvas with the waveformbars and the highlighted bars

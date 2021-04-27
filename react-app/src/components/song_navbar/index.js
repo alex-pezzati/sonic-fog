@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { setCheckpoint, setCurrentTime, playSong, pauseSong } from '../../store/song'
+import { setCheckpoint,  playSong, pauseSong} from '../../store/song'
 import c from './SongNavBar.module.css';
 
 
@@ -17,12 +17,28 @@ const SongNavBar = () => {
   const endTimeRef = useRef()
   const sliderRef = useRef()
 
+
   // Pause and play the song
+  // (async()=>{})()
+
+
+
   useEffect(() => {
-    if (storeSongData?.isCurrentlyPlaying) {
-      navAudioRef.current['play']()
-      navButtonRef.current.innerText = 'Pause'
-    } else {
+    if (storeSongData?.isPlaying) {
+      // Oh my fucking god this was the hardest bug to fix. I still have no idea why it was happening or why this worked.
+      (async()=>{
+          navButtonRef.current.innerText = 'Pause'
+
+          let audio = navAudioRef.current
+          await audio['play']()
+
+          setTimeout(() => {
+            let audios = document.getElementsByTagName('audio');
+              audios[0]['pause']()
+          }, 100);
+      })()
+    }
+    else {
       navAudioRef.current['pause']()
       navButtonRef.current.innerText = 'Play'
     }
@@ -38,16 +54,16 @@ const SongNavBar = () => {
 
 
   const timeChangeHandler = () => {
-    updateStoreTime()
+    // updateStoreTime()
     updateCurrentTimeDisplay()
     // updateSliderValue()
   }
 
   // Update the current time in the store
-  const updateStoreTime = () => {
-    let currentNumSecs = navAudioRef.current.currentTime
-    dispatch(setCurrentTime(currentNumSecs))
-  }
+  // const updateStoreTime = () => {
+  //   let currentNumSecs = navAudioRef.current.currentTime
+  //   dispatch(setCurrentTime(currentNumSecs))
+  // }
 
   const calculateMinsAndSecs = (totalSecs) => {
     const mins = Math.floor(totalSecs / 60)
