@@ -1,5 +1,5 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom'
+import React from "react";
+import { NavLink } from "react-router-dom";
 
 import c from './SongTile.module.css'
 
@@ -41,8 +41,20 @@ function SongTile({ song }) {
                     </ NavLink>
                 </div>
             </div>
+          </div>
+        </a>
+      </div>
+      <div className={c.description}>
+        <div>
+          <NavLink to={`/songs/${song.id}`}>{song.name}</NavLink>
         </div>
-    )
+        <div>
+          {/* <NavLink to={`/users/${song.user_id}`}> */}
+          <NavLink to={`/songs/${song.id}`}>{song.artist}</NavLink>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default SongTile;
