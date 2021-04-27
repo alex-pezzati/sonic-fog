@@ -12,6 +12,7 @@ function LandingPage() {
         await setSongs(data.songs);
     };
 
+    // this is a test
     useEffect(() => {
         getSongs();
     }, []);
