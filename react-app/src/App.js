@@ -19,7 +19,6 @@ function App() {
 
   const [isLoaded, setIsLoaded] = useState(false);
 
-
   // Try to restore the user
   useEffect(() => {
     (async() => {
@@ -28,12 +27,12 @@ function App() {
     })()
   }, [dispatch])
 
-
   return (
     isLoaded && (
       <BrowserRouter>
         <NavBar isLoaded={isLoaded} />
-        <SongNavBar isLoaded={isLoaded} />
+        <SongNavBar/>
+        {/* <MemoizedSongNavBar/> */}
         <Switch>
           <Route path="/" exact={true}>
             <LandingPage />
@@ -56,7 +55,6 @@ function App() {
             <UploadPicture />
           </ProtectedRoute>
         </Switch>
-        <SongNavBar />
       </BrowserRouter>
     )
   );

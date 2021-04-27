@@ -23,6 +23,7 @@ const WaveFormControls = ({ songId }) => {
 
   // If this song is the active song, set the button to pause
   // If it is not, set the button to play
+  //  - This is here to ensure that if a user switches to another song, then the previous song's waveform updates it's play button.
   useEffect(() => {
     if (storeSongData?.activeSongId === songId && storeSongData.isPlaying) {
       buttonRef.current.innerText = "||";

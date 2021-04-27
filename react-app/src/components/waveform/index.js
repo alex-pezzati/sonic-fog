@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCheckpoint, setActiveSongData } from "../../store/song";
 
@@ -61,92 +61,94 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
     }
   },[storeSongData])
 
+
+  // Reset the number of waveform bars if this song is no longer the active song
+  useEffect(() => {
+    if (storeSongData.activeSongId && storeSongData.activeSongId !== songId) {
+      setNumWaveformBars(-1);
+    }
+  }, [storeSongData, songId])
+
+
+  // This is the meat of the waveform calculations.
+  // It recursively calls itself while a song is playing and calculates the time difference between timeLastSaved and the current moment
+  //    -note that timeLastSaved is initially equal to the moment the song starts, but is updated if the song pauses or is searched
+  //    -- so it's not the amount of time since the song first began playing, it's the amount of time since the song has resumed playing
+  //  it uses this time difference to calculate what percentage of the track is complete
+  //    - note if a song is playing uninterupted, this percentage = the percentage of the song played
+  //    - BUT if the song has been paused, then this percentage must be added to the percentage of LastCheckpoint
+  //  it muliplies that (total) percentage by the total number of waveform bars
+  //  the result is how many bars should be filled in
   const updateNumWaveformBars = () => {
-      // How many seconds have elapsed since the song started playing
+      // What percentage of the song has already played? We find this by converting the lastCheckpoint into a percent
       const checkpointPercentage = lastCheckpoint / trackDuration
 
+      // How many seconds have passed since we resumed/started playing?
       let time = (Date.now() / 1000) - timeLastSaved
+      // What is that in 'track percentage points'
       let trackPercentage = time /trackDuration
+      // Add that to the percentage points from our checkpoint and we end up with the total amount of completed track percentage points
       trackPercentage += checkpointPercentage
 
+      // Multiply the percentage points times the number of waveform bars to get how many bars should be filled in
       const numChunks = waveformData.length;
       const numBars = Math.floor(trackPercentage * numChunks);
 
-
-      // If the song is over, don't update the number of bars
-      if (trackPercentage >= 1) {
-        return;
-      }
-
-      // If there is discrepency between the number of bars calculated in this function, and the number stored it the state, update the state
-      // This acts as a throttle. The canvas is repainted in a useEffect that has numWaveBars as a dependency
-      // if (numBars && numBars !== numWaveformBars) {
-      //   setNumWaveformBars(numBars);
+      // // If the song is over, don't update the number of bars
+      // if (trackPercentage >= 1) {
+      //   return;
       // }
 
+      // If there is discrepency between the number of bars calculated in this function, and the number stored it the state, update the state
+      // This check acts as a throttle. The canvas is repainted in a useEffect that has numWaveBars as a dependency
       if (numBars && numBars !== numWaveformBars) {
         setNumWaveformBars(numBars);
       }
       animationFrameRef.current = requestAnimationFrame(updateNumWaveformBars)
   }
-  // Set the number of waveform bars
-  useEffect(() => {
-     // If the active song is NOT this song, then reset the number of waveformbars
-    if (storeSongData.activeSongId && storeSongData.activeSongId !== songId) {
-      setNumWaveformBars(-1);
-      return;
-    }
+  const memoizedCallback = useCallback(updateNumWaveformBars, [lastCheckpoint, trackDuration, timeLastSaved, waveformData])
 
+  // This function handles all the requisite setup for when a song
+  //    -starts playing for the first time
+  //    -resumes playing after being paused
+  //    -has been scrubbed or searched by a user
+  useEffect(() => {
     // If there is no waveform data, don't bother with any calculations
     if ((!waveformData || !waveformData.length) && trackDuration !== 0) return;
 
 
-    // Case1: Start playing, don't stop
-    //  get the message to start from the store
-    //  save the time you got the message
-    //  calculate difference between NOW and the start time
-    //  convert that to seconds, calculate the trackpercentage and proceed as normal
-    // Case2: Start playing, pause, then start
-    //  same as above, but when you get the message to stop you save the current percentage
-    //  when you get the message to resume, you set that as the new start time
-    //  then when you calculate the percentage, you add that to the saved percentage
-    // Case3: Seek the track
-    //  update the track to the checkpoint time. calculate the current percentage. Save that
-    //  get the current time as the start time.
-    //  calculate the percentage as normal, add it to the saved percentage
-
-    // In all cases, if you are starting, resuming or seeking, get the checkpoint/track time, convert it to track percentage and save it
-    // also save the TIME when you saved that percentage and use it to calulcate the difference between right now and then
-    // convert that diff to a percentage, then add that percentage to the saved percentage
-
-    // Pausing: just stop.
-    // Resuming/Playing: get the checkpoint from the store, convert it to track percentage, save it. Also save the time you got it
-    //    then calculate the diffs, convert to percents and add to the saved
-    // Seeking: same as resume/playing (maybe check if the song is already playing or not tho)
-
+  //    - if a song has started playing, or resumes playing, then...
+  //      -- grab the last checkpoint from the store, and store it locally
+  //      -- record the time it grabbed the checkpoint, and store that locally
+  //      -- update the local 'isPlaying' state
 
     //       If a song has resumed playing             OR     the user scrubbed/searched through the track...
     if ((storeSongData.isPlaying && !isPlayingLocally) || (storeSongData.checkpoint !== lastCheckpoint)){
-      // ... then update all the local data
 
-      // local value of the last checkpoint (compare this to the store to see if a user has scrubbed)
+      // compare this to the store to see if a user has scrubbed)
       setLastCheckpoint(storeSongData.checkpoint)
       // Compare this to the store to see if a song has resumed playing (or begun for the first time)
       setIsPlayingLocally(true)
 
+      // Used for calculating how much time has passed between when we started playing and any given moment.
       setTimeLastSaved(Date.now() / 1000)
 
-    // If we're playing both locally and globally, then it's business as usual and we begin our recusive loop of updating the waveform
+    // If we've already been playing and there are no updates, then request an animation frame which will actually calculate and update the number of waveform bars
     } else if (storeSongData.isPlaying && isPlayingLocally){
-      requestAnimationFrame(updateNumWaveformBars)
+      requestAnimationFrame(memoizedCallback)
     }
 
+    // Clean up. Notice the use of a useRef to store the ever-changing animation frame id
     return () => window.cancelAnimationFrame(animationFrameRef.current)
-  }, [storeSongData, isPlayingLocally, lastCheckpoint]);
+  }, [storeSongData, isPlayingLocally, lastCheckpoint, trackDuration, memoizedCallback, waveformData]);
 
 
-  // Paint the canvas with the waveformbars and the highlighted bars
-  useEffect(() => {
+
+
+
+  // This paints the canvas. This function fills in the bar colorings, including the user highlights.
+  useMemo(() => {
+    // If there is no waveform data, then stop
     if (!waveformData || !waveformData.length) return;
 
     let canvas = canvasRef.current;
@@ -155,9 +157,9 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // In order for the waveform to perfectly fit the inside the canvas,
-    // num_chums *( rectWidth + rectSpacing) MUST EQUAL canvasWidth
-    // so (x1 / y1 ) + (x2/y2) must equal 1
-    // (eg. numChunks / 3   +   2*numchunks/ 3)
+    //    num_chums *( rectWidth + rectSpacing) MUST EQUAL canvasWidth
+    //    so (x1 / y1 ) + (x2/y2) must equal 1
+    //    (eg. numChunks / 3   +   2*numchunks/ 3)
     let num_chunks = waveformData.length;
     let rectWidth = (2 * canvasWidth) / (3 * num_chunks);
     let rectSpacing = canvasWidth / (3 * num_chunks);
@@ -169,15 +171,17 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
 
     waveformData.forEach((value, i) => {
       const adjustedValue = (value / 100) * canvasHeight;
-      const amplitude = Math.round((1 - breakPointRatio) * adjustedValue); // - 2
+      const amplitude = Math.round((1 - breakPointRatio) * adjustedValue);
 
       ctx.fillStyle = "darkgrey";
 
-      // Top bar colorings
+
+      // TOP BAR COLORINGS
+      //   bars that are highlighed...
       if (numHighlightedBars > 0 && i <= numHighlightedBars) {
-        // Both played and highlighted
-        if (i <= numWaveformBars) {
-          // dark
+
+        // ... and played
+        if (i < numWaveformBars) {
           ctx.fillStyle = "#fd5d00";
 
           let grd = ctx.createLinearGradient(
@@ -190,17 +194,19 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
           grd.addColorStop(0.5, "#fd5d00");
           ctx.fillStyle = grd;
         }
-        // Highlighted, not yet played
+        // ... and NOT played
         else {
           ctx.fillStyle = "#aa3e00";
         }
+
+        // bars that are not highlighted...
       } else {
-        // Played, not highlighted when there are existing highlights
-        if (numHighlightedBars > 0 && i <= numWaveformBars) {
+        // ... and played, and highlights exist
+        if (numHighlightedBars > 0 && i < numWaveformBars) {
           ctx.fillStyle = "#aa3e00";
         }
-        // Played, and no existing highlights
-        else if (i <= numWaveformBars) {
+        // ... and played, and highlights do not exist
+        else if (i < numWaveformBars) {
           let grd = ctx.createLinearGradient(
             i * (rectWidth + rectSpacing),
             canvasHeight - amplitude - canvasBreakPoint,
@@ -211,12 +217,12 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
           grd.addColorStop(0, "#fd5d00");
           ctx.fillStyle = grd;
         }
-        // Neither played nor highlighted
+        // ... and not played
         else {
           ctx.fillStyle = "darkgrey";
         }
       }
-      // Top bars
+      // Actually fill the top bars
       ctx.fillRect(
         i * (rectWidth + rectSpacing),
         canvasHeight - amplitude - canvasBreakPoint,
@@ -224,31 +230,30 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
         amplitude
       );
 
-      // Bottom Colorings
-      if (i <= numWaveformBars) {
-        // dark
+      // BOTTOM BAR COLORINGS
+
+      // bars that have been played
+      if (i < numWaveformBars) {
         ctx.fillStyle = "#ffc5b5";
       }
-      // Neither played nor highlighted
+      // bars that have not been played
       else {
         ctx.fillStyle = "lightgrey";
       }
-
-      // Bottom bars
+      // Actually fill the bars
       ctx.fillRect(
         i * (rectWidth + rectSpacing),
         canvasHeight - canvasBreakPoint + 2,
         rectWidth,
         adjustedValue * breakPointRatio
       );
+
     });
-  }, [
-    waveformData,
-    numWaveformBars,
-    numHighlightedBars,
-    canvasHeight,
-    canvasWidth,
-  ]);
+  }, [waveformData, numWaveformBars, numHighlightedBars, canvasHeight, canvasWidth]);
+
+
+
+
 
   // Sets the target time
   const getXPosition = (e) => {
@@ -284,7 +289,6 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
         onMouseLeave={() => setNumHighlightedBars(-1)}
         onClick={seekTrack}
       >
-        Hi
       </canvas>
     </div>
   );
