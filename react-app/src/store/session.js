@@ -27,19 +27,18 @@ export const login = (user) => async (dispatch) => {
 
   const data = await response.json();
   dispatch(setUser(data));
-  // console.log('\n\n_*_*_*POST DATA', data, '\n\n');
   return data;
 };
 
 export const signup = (user) => async (dispatch) => {
-  const { displayName, email, password } = user;
+  const { username, email, password } = user;
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      display_name: displayName,
+      display_name: username,
       email,
       password,
     }),
@@ -69,8 +68,8 @@ export const restoreSession = () => async (dispatch) => {
     },
   });
   const data = await response.json();
-  // console.log('\n\n_*_*_*GET DATA', data, '\n\n');
-  dispatch(setUser(data));
+  if (!data.errors)
+    dispatch(setUser(data));
   return data;
 };
 

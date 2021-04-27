@@ -7,11 +7,9 @@ from app.models import User
 def user_exists(form, field):
     print("Checking if user exists", field.data)
     email = field.data
-    print(f'\n\n-*-*-EMAIL: {email}\n\n')
     user = User.query.filter(User.email == email).first()
     if not user:
         raise ValidationError("Email provided not found.")
-    print(f'\n\n-*-*-FETCHED USER: {user.email}, {user.display_name}, {user.password} \n\n')
 
 
 def password_matches(form, field):

@@ -2,19 +2,21 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import Modal from 'react-modal';
-import { login } from '../../store/session';
-import { modalLogInClose, modalSignUpOpen } from '../../store/modal';
+import { login } from '../../../store/session';
+import { modalLogInClose, modalSignUpOpen } from '../../../store/modal';
 
 // styling
-import c from './LoginForm.module.css';
-import close from '../../images/close.svg';
+import c from './LoginModal.module.css';
+import close from '../../../images/close.svg';
 
 Modal.setAppElement('#root');
 
 function LoginFormModal() {
   const dispatch = useDispatch();
   const history = useHistory();
+
   const modalLogInState = useSelector((state) => state.modal.login);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
@@ -31,12 +33,13 @@ function LoginFormModal() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    const data = await dispatch(login({ email, password })).then(data => data);
-    if (data && data.errors) {
-      setErrors(data.errors);
+    const user = await dispatch(login({ email, password }))
+    if (user?.errors) {
+      setErrors(user.errors);
     }
-    if (data && data.email) {
-      history.push(`/users/${data.display_name}`)
+    if (user?.email) {
+      dispatch(modalLogInClose())
+      history.push(`/`)
     }
   };
 
@@ -98,13 +101,9 @@ function LoginFormModal() {
                 required
               />
             </div>
-            <div>
-              {/* this is a temp fix, we need to add an href to this anchor tag */}
-              {/*eslint-disable-next-line */}
-              <a onClick={(e) => closeLogInOpenSignUp()} className={c.forgot}>
+            {/* <div onClick={(e) => closeLogInOpenSignUp()} className={c.forgot}>
                 Forgot your password?
-							</a>
-            </div>
+            </div> */}
             <div className={c.div}>
               <button type='submit' className={c.login__button}>
                 Log In
@@ -113,7 +112,7 @@ function LoginFormModal() {
             <p className={c.or}>OR</p>
             <div className={c.div}>
               <button
-                id='demo-login'
+                // id='demo-login'
                 type='submit'
                 onClick={demoLogin}
                 className={c.demo}
@@ -125,11 +124,9 @@ function LoginFormModal() {
         </div>
         <div className={c.div__line}></div>
         <div className={c.div}>
-          {/* this is a temp fix, we need to add an href to this anchor tag */}
-          {/*eslint-disable-next-line */}
-          <a onClick={(e) => closeLogInOpenSignUp()} className={c.signup}>
+          <div onClick={(e) => closeLogInOpenSignUp()} className={c.signup}>
             Not on Sonic Fog yet? Sign up
-					</a>
+					</div>
         </div>
       </div>
     </Modal>

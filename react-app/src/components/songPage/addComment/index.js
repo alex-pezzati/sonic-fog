@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import classes from "./addComment.module.css";
 import { useSelector } from "react-redux";
+
+// Styling
+import classes from "./addComment.module.css";
+
 function PostCommentRoute() {
   const sessionUser = useSelector((state) => state.session.user);
   const [comment, setComment] = useState(null);
