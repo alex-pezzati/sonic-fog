@@ -9,9 +9,10 @@
    box-sizing: border-box;
    top: 1rem;
    text-align: right;
-   width: 92vmax;
+   width: 86vmax;
    display: flex;
-   justify-content: flex-end;
+   justify-content: center;
+   margin-left: 2rem;
 }
 
 .addComment_innercontainer {

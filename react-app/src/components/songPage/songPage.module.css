@@ -1,13 +1,18 @@
 .SongPage_body {
    display: flex;
    flex-direction: column;
+   align-items: center;
+}
+
+.Song_banner_outercontainer {
+   width: 100%;
 }
 
 .SongPage_body fieldset {
    width: 70vmax;
    height: fit-content;
    border: none;
-   justify-self: center;
+   align-self: center;
 }
 
 .BannerComponent {

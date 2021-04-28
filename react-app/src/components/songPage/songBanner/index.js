@@ -1,28 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
 import Waveform from "../../waveform/index";
 import Waveformbtn from "../../waveformControls/index";
 import classes from "./songpage.module.css";
 
-function Index() {
-  const { songId } = useParams();
-  const [song, setSong] = useState(null);
-
-  useEffect(() => {
-    if (!songId) {
-      return;
-    }
-    (async () => {
-      const response = await fetch(`/api/songs/${songId}`);
-      if (!response.ok) return console.log("error fetching song");
-      const fetched_song = await response.json();
-      await setSong(fetched_song);
-      return fetched_song;
-    })();
-  }, [songId]);
+function Index({ song }) {
+  const totalWidth = window.document.defaultView.innerWidth;
+  let waveFormWidth = totalWidth * 0.7;
 
   if (!song) {
-    return <h1>song not found</h1>;
+    return null;
   }
 
   const albumCoverStyle = {
@@ -35,7 +21,9 @@ function Index() {
         <fieldset className={classes.Song_banner__container}>
           <legend className={classes.Song_upload_date__container}>
             <h5>
-              {song.releaseDate !== "None" ? song.releaseDate : "time holder"}
+              {song.releaseDate !== "None"
+                ? song.releaseDate
+                : new Date().toString()}
             </h5>
           </legend>
           <fieldset className={classes.Song_banner__innercontainer}>
@@ -47,7 +35,7 @@ function Index() {
             <div onClick={Waveform.togglePlaying}>
               <Waveform
                 songId={Number(song.id)}
-                canvasWidth={680}
+                canvasWidth={waveFormWidth}
                 canvasHeight={60}
               />
             </div>

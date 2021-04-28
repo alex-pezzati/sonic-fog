@@ -1,8 +1,8 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import modalReducer from './modal';
-import sessionReducer from './session';
-import songReducer from './song';
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import modalReducer from "./modal";
+import sessionReducer from "./session";
+import songReducer from "./song";
 
 const rootReducer = combineReducers({
   modal: modalReducer,
@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
 });
 
 let enhancer;
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   enhancer = applyMiddleware(thunk);
 } else {
   const logger = require("redux-logger").default;
