@@ -14,7 +14,6 @@ function SongTile({ song }) {
     // float: 'left',
   };
 
-
     const art = {
         background: `url(${song.cover_image})`,
         backgroundSize: 'contain',
@@ -23,8 +22,7 @@ function SongTile({ song }) {
         // objectFit: 'contain',
         opacity: 1,
         // float: 'left',
-    }
-
+    };
 
     return (
       <div>
@@ -33,37 +31,22 @@ function SongTile({ song }) {
                 <div>
                     <div className={c.artwork__image}>
                         <div className={c.artwork__placeholder}>
-                            <span  className={c.image} style={art}/>
+                            <span className={c.image} style={art} />
                         </div>
                     </div>
                 </div>
             </div>
             <div className={c.description}>
                 <div>
-                    <NavLink to={`/songs/${song.id}`}>
-                        {song.name}
-                    </ NavLink>
+                    <NavLink to={`/songs/${song.id}`}>{song.name}</NavLink>
                 </div>
                 <div>
                     {/* <NavLink to={`/users/${song.user_id}`}> */}
-                    <NavLink to={`/songs/${song.id}`}>
-                        {song.artist}
-                    </ NavLink>
+                    <NavLink to={`/songs/${song.id}`}>{song.artist}</NavLink>
                 </div>
             </div>
         </div>
-
-      <div className={c.description}>
-        <div>
-          <NavLink to={`/songs/${song.id}`}>{song.name}</NavLink>
-        </div>
-        <div>
-          {/* <NavLink to={`/users/${song.user_id}`}> */}
-          <NavLink to={`/songs/${song.id}`}>{song.artist}</NavLink>
-        </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default SongTile;
