@@ -10,53 +10,47 @@ import SongNavBar from "./components/song_navbar";
 import UploadPicture from "./services/AWS";
 import UploadSong from "./components/song_upload_form/AWS_Song";
 import User from "./components/user_profile/User";
+// import WaveFormControls from "./components/waveformControls";
+// import Waveform from "./components/waveform";
 
 import { restoreSession } from "./store/session";
-
+// import { authenticate } from "./services/auth";
 
 function App() {
   const dispatch = useDispatch();
 
   const [isLoaded, setIsLoaded] = useState(false);
-
+  // const [authorized, setAuthorized] = useState(false);
 
   // Try to restore the user
   useEffect(() => {
-    (async() => {
-      dispatch(restoreSession())
-      setIsLoaded(true)
-    })()
-  }, [dispatch])
-
+    (async () => {
+      dispatch(restoreSession());
+      setIsLoaded(true);
+    })();
+  }, [dispatch]);
 
   return (
     isLoaded && (
       <BrowserRouter>
         <NavBar isLoaded={isLoaded} />
-        <SongNavBar isLoaded={isLoaded} />
+        <SongNavBar />
+        {/* <MemoizedSongNavBar/> */}
         <Switch>
           <Route path="/" exact={true}>
             <LandingPage />
           </Route>
           <Route path="/songs/:songId">
-            <SongPageRoute/>
+            <SongPageRoute />
           </Route>
-          <ProtectedRoute
-            path="/users/:username"
-            exact={true}
-          >
+          <ProtectedRoute path="/users/:username" exact={true}>
             <User />
           </ProtectedRoute>
-
-          <ProtectedRoute
-            path="/upload"
-          >
-
+          <ProtectedRoute path="/upload">
             <UploadSong />
             <UploadPicture />
           </ProtectedRoute>
         </Switch>
-        <SongNavBar />
       </BrowserRouter>
     )
   );

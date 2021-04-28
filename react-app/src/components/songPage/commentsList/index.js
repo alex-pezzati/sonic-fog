@@ -44,41 +44,37 @@ function Index() {
   if (commenters.length === list.length) {
     // console.log("yes");
     return (
-      <ul>
-        {commenters.map((user, i) => {
-          const userPhoto = {
-            backgroundImage: `url(${user.profile_url})`,
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-          };
-          return (
-            <li key={user.display_name + i} className={classes.Comment_Box__li}>
-              <div className={classes.Comment_Box}>
-                <a href={`/users/${user.id}`}>
-                  <div
-                    className={classes.Image__container}
-                    style={userPhoto}
-                  ></div>
-                </a>
-                <div className={classes.Inside_Comment}>
-                  <div className={classes.Comment_Data}>
-                    <div className={classes.User_Name}>
-                      @{user.display_name}
-                    </div>
+      <div className={classes.Comment_Outer_Container}>
+        <ul className={classes.Outter_box}>
+          {commenters.map((user, i) => {
+            const userPhoto = {
+              backgroundImage: `url(${user.profile_url})`,
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "center",
+            };
+            return (
+              <li key={user.display_name + i} className={classes.Comment_Box}>
+                <fieldset>
+                  <legend>@{user.display_name}</legend>
+                  <a href={`/users/${user.id}`}>
+                    <div
+                      className={classes.Image__container}
+                      style={userPhoto}
+                    ></div>
+                  </a>
+                  <div className={classes.Single_Comment}>
+                    <p>{list[i]}</p>
                   </div>
-                </div>
-                <div className={classes.Single_Comment}>
-                  <p>{list[i]}</p>
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+                </fieldset>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     );
   } else {
-    return <h1>loading...</h1>;
+    return <div className={classes.block}></div>;
   }
 }
 

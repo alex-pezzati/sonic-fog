@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -8,6 +8,7 @@ import classes from "./addComment.module.css";
 function PostCommentRoute() {
   const sessionUser = useSelector((state) => state.session.user);
   const [comment, setComment] = useState(null);
+  const [showLegend, setShowLegend] = useState(false);
   const { songId } = useParams();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,27 +26,49 @@ function PostCommentRoute() {
       console.log("error");
     }
   };
-  const userPhoto = {
-    background: `url(${sessionUser.profile_url}) no-repeat`,
-    backgroundSize: "contain",
-  };
+
+  //quick fix and let it return null.
+  const [userPhoto, setUserPhoto] = useState(null);
+  useEffect(() => {
+    if (sessionUser && sessionUser.profile_url) {
+      setUserPhoto({
+        background: `url(${sessionUser.profile_url}) no-repeat`,
+        backgroundSize: "contain",
+      });
+    }
+  }, [sessionUser]);
   return (
     <div className={classes.addComment_container}>
-      <form className={classes.formField} onSubmit={handleSubmit}>
-        <div
-          className={classes.profileImage__container}
-          style={userPhoto}
-        ></div>
-        <div className={classes.inputField__container}>
-          <input
-            type="text"
-            value={comment ? comment : ""}
-            placeholder="Write a comment"
-            className={classes.inputField}
-            onChange={(e) => setComment(e.target.value)}
-          ></input>
-        </div>
-      </form>
+      <div className={classes.addComment_innercontainer}>
+        <form onSubmit={handleSubmit}>
+          <fieldset>
+            {showLegend ? (
+              <legend>Writting comment...</legend>
+            ) : (
+              <legend>{sessionUser.display_name}</legend>
+            )}
+            <div
+              className={classes.profileImage__container}
+              style={userPhoto}
+            ></div>
+            <div className={classes.inputField__container}>
+              <input
+                type="text"
+                value={comment ? comment : ""}
+                placeholder="Write a comment"
+                onChange={(e) => {
+                  if (e.target.value === "") {
+                    setShowLegend(false);
+                  } else {
+                    setShowLegend(true);
+                  }
+                  return setComment(e.target.value);
+                }}
+              ></input>
+            </div>
+          </fieldset>
+        </form>
+      </div>
     </div>
   );
 }

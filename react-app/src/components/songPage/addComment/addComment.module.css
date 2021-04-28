@@ -1,33 +1,58 @@
+:root {
+   --comments-bg-color: hsla(0, 0%, 95%, 0.745);
+   --input-bg-color: #f2f2f2;
+}
+
+
 .addComment_container {
-   display: flex;
-   justify-content: flex-start;
-   height: 2.67vh; /*smaller to make banner smaller larger to make banner bigger*/
-   width: 20vw;
-   margin-left: 20vw;
-}
-.profileImage__container {
+   font-family: Arial, Helvetica, sans-serif;
    box-sizing: border-box;
-   align-self: flex-start;
-   position: absolute;
-   background-color: blue;
-   margin-left: 2vw;
-   height: 4vh;
-   width: 4vw;
-}
-.formField {
+   top: 1rem;
+   text-align: right;
+   width: 92vmax;
    display: flex;
-   width: 10vw;
-   height: 5vh;
+   justify-content: flex-end;
 }
-.inputField {
-   margin-left: 5vw;
-   padding-right: 10vw;
-   font-size: 16px;
-   height: 11px;
-   width: 30vw;
-   background-color: #f2f2f2be;
-   border-color: gray;
+
+.addComment_innercontainer {
+   width: fit-content;
 }
-.inputField:focus {
-   background-color: #f2f2f2;
+
+.addComment_innercontainer form {
+   background-color: var(--comments-bg-color);
 }
+
+.addComment_innercontainer fieldset {
+   width: 90%;
+   height: 100%;
+   display: flex;
+}
+
+.addComment_innercontainer fieldset>legend {
+   position: relative;
+   top: 1rem
+}
+
+
+.profileImage__container {
+   width: 55px;
+   height: 55px;
+   background-image: linear-gradient(to right, hsl(29, 100%, 51%), hsl(0, 10%, 10%));
+   position: relative;
+   /* top: 0; */
+}
+
+
+.inputField__container {
+   width: 90%;
+   display: flex;
+   align-items: flex-end;
+   justify-content: flex-end;
+}
+
+.inputField__container input {
+   width: 95%;
+   text-align: left;
+}
+
+.inputField:focus {}
