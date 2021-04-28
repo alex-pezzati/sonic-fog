@@ -4,7 +4,7 @@ import { setActiveSongData, pauseSong, playSong } from "../../store/song";
 
 const WaveFormControls = ({ songId }) => {
   const [songUrl, setSongUrl] = useState();
-  
+
   const storeSongData = useSelector((state) => state.song);
   const dispatch = useDispatch();
 
@@ -23,14 +23,12 @@ const WaveFormControls = ({ songId }) => {
 
   // If this song is the active song, set the button to pause
   // If it is not, set the button to play
+  //  - This is here to ensure that if a user switches to another song, then the previous song's waveform updates it's play button.
   useEffect(() => {
-    if (
-      storeSongData?.activeSongId === songId &&
-      storeSongData.isCurrentlyPlaying
-    ) {
-      buttonRef.current.innerText = "Pause";
+    if (storeSongData?.activeSongId === songId && storeSongData.isPlaying) {
+      buttonRef.current.innerText = "||";
     } else {
-      buttonRef.current.innerText = "Play";
+      buttonRef.current.innerText = "▶";
     }
   }, [storeSongData, songId]);
 
@@ -42,19 +40,31 @@ const WaveFormControls = ({ songId }) => {
     }
 
     // Pause or play the song as needed
-    if (e.target.innerText === "Play") {
+    if (e.target.innerText === "▶") {
       dispatch(playSong());
     } else {
       dispatch(pauseSong());
     }
   };
-
+  // button style
+  const buttonStyle = {
+    borderRadius: "50%",
+    width: "35px",
+    height: "35px",
+    backgroundColor: "hsl(20, 100%, 50%)",
+    border: "none",
+    top: 0,
+    fontSize: "20px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  };
   return (
-    <div>
-      <button ref={buttonRef} onClick={togglePlaying}>
-        Play
+    <>
+      <button ref={buttonRef} onClick={togglePlaying} style={buttonStyle}>
+        hello
       </button>
-    </div>
+    </>
   );
 };
 

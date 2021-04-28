@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import SongTile from './SongTile';
-import c from './LandingPage.module.css';
+import SongTile from "./SongTile";
+import c from "./LandingPage.module.css";
 
 function LandingPage() {
     const [songs, setSongs] = useState([]);
@@ -11,6 +11,7 @@ function LandingPage() {
         const data = await res.json();
         await setSongs(data.songs);
     };
+
 
     useEffect(() => {
         getSongs();

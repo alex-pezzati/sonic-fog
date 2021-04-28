@@ -1,144 +1,70 @@
+:root {
+   --main-bg-color: linear-gradient(to right, hsl(0, 0%, 0%), hsl(0, 10%, 10%));
+   --main-text-color: hsl(0, 0%, 100%);
+   --secondary-text-color: hsl(0, 0%, 60%);
+   --text-bg-color: hsla(0, 0%, 20%, 0.678);
+   --secondary-bg-color: hsl(20, 100%, 50%);
+
+   --date-top-margin: 0;
+   --date-right-margin: 30%;
+
+   --banner-height: 12.68rem;
+   --album-cover-image-width: 10.81rem;
+   --album-cover-image-height: 10.81rem;
+}
+
 .Song_body {
-   margin: 0;
-   background-color: transparent;
-   box-sizing: border-box;
-   position: absolute;
-   display: flex;
-   justify-content: center;
-   font-size: 12px;
-   font-stretch: 100%;
-   font-weight: 400;
-   height: 40.67vh; /*smaller to make banner smaller larger to make banner bigger*/
-   width: 98vw;
-   font-family: "Lucida Grande", "Lucida Sans Unitcode", "Lucida Sans", Garuda, Verdana, Tahoma, sans-serif;
-}
-.Song_banner__container {
-   width: 80.67vw; /*smaller to make banner smaller larger to make banner larger*/
-   background-image: linear-gradient(to right, rgb(26, 25, 25) , rgb(73, 73, 75));
-   display: flex;
-}
-
-.Song_headers {
-   position: absolute;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-evenly;
-   padding-left: 10vw;
-   width: 66vw;
-   height: 27vh;
-}
-
-.Song_uploader_name__container {
-   background-color: rgba(0, 0, 0, 0);
-   color: rgb(204, 204, 204);
-   cursor: pointer;
-   font-size: 16px;
-   font-weight: 100;
-   padding-left: 50px;
-   word-break: break-word;
-}
-
-.Song_uploader__span {
-   background-color: rgba(51, 51, 51, 0.678);
-   border: 1px solid black;
-   padding: 5px;
-}
-
-.Song_name__conatainer {
-   padding-left: 50px;
-   color: rgb(255, 255, 255);
-   font-size: 24px;
-   font-stretch: 100%;
-   font-weight: 100;
-   line-height: 37px;
-   overflow-wrap: break-word;
-   word-break: break-word;
-   height: auto;
-   width: auto;
-}
-
-.Song_name__span {
-   background-color: rgba(51, 51, 51, 0.678);
-   border: 1px solid black;
-   padding: 5px;
-}
-
-.Song_upload_date__container {
-   position: absolute;
-   display: flex;
-   justify-content: flex-end;
-   align-items: center;
-   height: 15vh;
-   width: 57vw;
-}
-
-.Song_upload_date {
-   line-height: 22.4px;
-   color: rgb(255, 255, 255);
-   font-stretch: 100%;
-   font-size: 16px;
-   font-weight:100;
-   text-align: right;
-}
-
-.Song_player__container {
-   position: absolute;
-   color: rgb(51,51,51);
-   font-weight: 400;
-   height: 37vh; /*smaller to shift up larger to shift down*/
-   width: 55vw; /*smaller to shift left larger to shift right*/
-   display: flex;
-   align-items: flex-end;
-   justify-content: flex-end;
-}
-.play_btn__container {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   position: absolute;
-   height: 25vh;
-   width: 14vw;
-   z-index: 9
-}
-.play_btn__container button {
-   color: transparent;
-   height: 80px;
-   width: 80px;
-   border-radius: 50%;
-   border: none;
-   background-size: 120%;
-   background-repeat: no-repeat;
-   background-position: center;
-   background-color: rgba(255, 85, 0, 0.787);
-   background-image: url(https://cdn4.iconfinder.com/data/icons/audio-video-game-solid-style/91/Audio-Video-Game_Solid_Style_36-512.png?raw=true);
-   z-index: 10;
-}
-.play_btn__container button:hover {
-   background-color: #f50;
-   border: 1px solid black;
-}
-
-
-.Song_player__container canvas {
-   padding-left: 40px;
-   align-self: flex-end;
-   height: auto;
-   width: auto;
-}
-.Song_album_cover_photo__container {
-   display: flex;
-   align-self: center;
-   justify-content: flex-end;
-   color: rgb(51,51,51);
-   font-weight: 400;
-   position:absolute;
-   height: fit-content;
-   width: 77vw; /*smaller to move album cover left bigger to move right*/
+   top: 2rem;
+   width: fit-content;
+   right: 0;
 }
 
 .Album_Cover_image {
-   display: block;
-   cursor: pointer;
-   height: 250px;
-   width: 250px;
+   width: var(--album-cover-image-width);
+   height: var(--album-cover-image-height);
+}
+
+.Song_banner__outercontainer {
+   display: flex;
+   background-image: var(--main-bg-color);
+}
+
+.Song_banner__container {
+   display: flex;
+   border: 0;
+   height: var(--banner-height);
+   align-items: center;
+}
+
+.Song_upload_date__container {
+   top: var(--date-top-margin);
+   right: var(--date-right-margin);
+   position: absolute;
+   color: var(--secondary-text-color);
+}
+
+.Song_banner__innercontainer {
+   border: 0;
+   display: flex;
+   flex-direction: column;
+   background-image: var(--main-bg-color);
+}
+
+.Song_uploader {
+   margin: 0;
+   color: var(--secondary-text-color);
+   text-indent: .2rem;
+}
+
+.Song_name {
+   text-indent: 1rem;
+   font-weight: bold;
+   color: var(--main-text-color);
+}
+
+.play_btn__container {
+   margin: 15px;
+   border-radius: 50%;
+   width: 1rem;
+   height: 1rem;
 }

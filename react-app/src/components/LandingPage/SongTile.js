@@ -1,11 +1,19 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import { NavLink } from "react-router-dom";
 
-// import WaveFormControls from '../waveformControls';
-
-import c from './SongTile.module.css';
+import c from "./SongTile.module.css";
 
 function SongTile({ song }) {
+  const art = {
+    background: `url(${song.cover_image})`,
+    backgroundSize: "contain",
+    height: "100%",
+    width: "100%",
+    // objectFit: 'contain',
+    opacity: 1,
+    // float: 'left',
+  };
+
     const art = {
         background: `url(${song.cover_image})`,
         backgroundSize: 'contain',
@@ -17,6 +25,7 @@ function SongTile({ song }) {
     };
 
     return (
+      <div>
         <div className={c.container}>
             <div className={c.artwork}>
                 <div>

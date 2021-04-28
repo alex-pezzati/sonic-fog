@@ -25,42 +25,40 @@ function Index() {
     return <h1>song not found</h1>;
   }
 
-  const albumCoverStyle = { background: `url(${song.albumPhoto}) center no-repeat`};
+  const albumCoverStyle = {
+    background: `url(${song.albumPhoto}) center no-repeat`,
+  };
 
   return (
     <div className={classes.Song_body}>
-      <div className={classes.Song_banner__container}>
-        <div className={classes.Song_headers}>
-          <div className={classes.Song_uploader_name__container}>
-            <span className={classes.Song_uploader__span}>
-              {song.uploaderName}
-            </span>
+      <div className={classes.Song_banner__outercontainer}>
+        <fieldset className={classes.Song_banner__container}>
+          <legend className={classes.Song_upload_date__container}>
+            <h5>
+              {song.releaseDate !== "None" ? song.releaseDate : "time holder"}
+            </h5>
+          </legend>
+          <fieldset className={classes.Song_banner__innercontainer}>
+            <h5 className={classes.Song_uploader}>{song.uploaderName}</h5>
+            <h3 className={classes.Song_name}>{song.songName}</h3>
+            <div className={classes.play_btn__container}>
+              <Waveformbtn songId={song.id} />
+            </div>
+            <div onClick={Waveform.togglePlaying}>
+              <Waveform
+                songId={Number(song.id)}
+                canvasWidth={680}
+                canvasHeight={60}
+              />
+            </div>
+          </fieldset>
+          <div>
+            <div
+              style={albumCoverStyle}
+              className={classes.Album_Cover_image}
+            ></div>
           </div>
-          <div className={classes.Song_name__conatainer}>
-            <span className={classes.Song_name__span}>{song.songName}</span>
-          </div>
-        </div>
-        <div className={classes.Song_upload_date__container}>
-          <span className={classes.Song_upload_date}>
-            {song.releaseDate !== "None" ? song.releaseDate : "time holder"}
-          </span>
-        </div>
-        <span className={classes.Song_album_cover_photo__container}>
-          <span
-            style={albumCoverStyle}
-            className={classes.Album_Cover_image}
-          ></span>
-        </span>
-        <div className={classes.play_btn__container}>
-          <Waveformbtn songId={song.id} />
-        </div>
-        <div className={classes.Song_player__container}>
-          <Waveform
-            songId={Number(song.id)}
-            canvasWidth={800}
-            canvasHeight={90}
-          />
-        </div>
+        </fieldset>
       </div>
     </div>
   );
