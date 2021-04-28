@@ -6,16 +6,17 @@
    --secondary-bg-color: hsl(20, 100%, 50%);
 
    --date-top-margin: 0;
-   --date-right-margin: 203px;
+   --date-right-margin: 30%;
 
-   --banner-height: 202.97px;
-   --album-cover-image-width: 172.97px;
-   --album-cover-image-height: 172.97px
+   --banner-height: 12.68rem;
+   --album-cover-image-width: 10.81rem;
+   --album-cover-image-height: 10.81rem;
 }
 
 .Song_body {
    top: 2rem;
-   padding: 0 10px;
+   width: fit-content;
+   right: 0;
 }
 
 .Album_Cover_image {

@@ -13,11 +13,12 @@ import User from "./components/user_profile/User";
 
 import { restoreSession } from "./store/session";
 
-
 function App() {
   const dispatch = useDispatch();
 
   const [isLoaded, setIsLoaded] = useState(false);
+  // const [authorized, setAuthorized] = useState(false);
+
 
   // Try to restore the user
   useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
       setIsLoaded(true)
     })()
   }, [dispatch])
+
 
   return (
     isLoaded && (
@@ -38,19 +40,12 @@ function App() {
             <LandingPage />
           </Route>
           <Route path="/songs/:songId">
-            <SongPageRoute/>
+            <SongPageRoute />
           </Route>
-          <ProtectedRoute
-            path="/users/:username"
-            exact={true}
-          >
+          <ProtectedRoute path="/users/:username" exact={true}>
             <User />
           </ProtectedRoute>
-
-          <ProtectedRoute
-            path="/upload"
-          >
-
+          <ProtectedRoute path="/upload">
             <UploadSong />
             <UploadPicture />
           </ProtectedRoute>

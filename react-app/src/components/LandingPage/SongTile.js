@@ -1,9 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import c from './SongTile.module.css'
+import c from "./SongTile.module.css";
 
 function SongTile({ song }) {
+  const art = {
+    background: `url(${song.cover_image})`,
+    backgroundSize: "contain",
+    height: "100%",
+    width: "100%",
+    // objectFit: 'contain',
+    opacity: 1,
+    // float: 'left',
+  };
 
 
     const art = {
@@ -43,6 +52,7 @@ function SongTile({ song }) {
                 </div>
             </div>
         </div>
+
       <div className={c.description}>
         <div>
           <NavLink to={`/songs/${song.id}`}>{song.name}</NavLink>
