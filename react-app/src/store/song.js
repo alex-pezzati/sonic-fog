@@ -6,6 +6,8 @@ const SET_CHECKPOINT = 'song/SET_CHECKPOINT'
 const PAUSE_SONG = 'song/PAUSE_SONG'
 const PLAY_SONG = 'song/PLAY_SONG'
 
+const SET_AUDIO_REF = 'song/SET_AUDIO_REF'
+
 
 
 export const pauseSong = () => {
@@ -38,12 +40,20 @@ export const setCheckpoint = (seconds) => {
   }
 }
 
+export const setAudioRef = (audioRef) => {
+  return {
+    type: SET_AUDIO_REF,
+    audioRef
+  }
+}
+
 
 const initialStore = {
   'checkpoint': 0,
   'activeSongId': null,
   'activeSongURL': null,
   'isPlaying': false,
+  'audioRef': null,
 }
 
 const songReducer = (songData = initialStore, action) => {
@@ -66,6 +76,10 @@ const songReducer = (songData = initialStore, action) => {
     case PLAY_SONG:
       newData = { ...songData }
       newData['isPlaying'] = true
+      return newData
+    case SET_AUDIO_REF:
+      newData = { ...songData }
+      newData['audioRef'] = action.audioRef
       return newData
     default:
       return songData

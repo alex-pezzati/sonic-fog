@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { setCheckpoint,  playSong, pauseSong} from '../../store/song'
+import { setCheckpoint,  playSong, pauseSong, setAudioRef} from '../../store/song'
 import c from './SongNavBar.module.css';
 
 
@@ -20,6 +20,12 @@ const SongNavBar = () => {
   const sliderRef = useRef()
 
 
+  useEffect(() => {
+    if (navAudioRef.current){
+      dispatch(setAudioRef(navAudioRef))
+    }
+  }, [navAudioRef, dispatch])
+
   // This useeffect just checks the store to see if the song is playing.
   //    - it pauses/plays the ACTUAL AUDIO COMPONENT
   //    - if the song has been paused, update the store with the new checkpoint
@@ -29,11 +35,10 @@ const SongNavBar = () => {
       navButtonRef.current.innerText = 'Pause'
     }
     else {
-      dispatch(setCheckpoint(navAudioRef.current.currentTime))
       navAudioRef.current['pause']()
       navButtonRef.current.innerText = 'Play'
     }
-  }, [storeSongData.activeSongId, storeSongData.isPlaying, dispatch])
+  }, [storeSongData.activeSongId, storeSongData.isPlaying])
 
 
   // This is the function for the navbar play button
