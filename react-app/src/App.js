@@ -9,13 +9,12 @@ import SongPageRoute from "./components/songPage";
 import SongNavBar from "./components/song_navbar";
 import UploadPicture from "./services/AWS";
 import UploadSong from "./components/song_upload_form/AWS_Song";
-import User from "./components/User";
+import User from "./components/user_profile/User";
 // import WaveFormControls from "./components/waveformControls";
 // import Waveform from "./components/waveform";
 
 import { restoreSession } from "./store/session";
 // import { authenticate } from "./services/auth";
-
 
 function App() {
   const dispatch = useDispatch();
@@ -23,21 +22,19 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   // const [authorized, setAuthorized] = useState(false);
 
-
   // Try to restore the user
   useEffect(() => {
-    (async() => {
-      dispatch(restoreSession())
-      setIsLoaded(true)
-    })()
-  }, [dispatch])
-
+    (async () => {
+      dispatch(restoreSession());
+      setIsLoaded(true);
+    })();
+  }, [dispatch]);
 
   return (
     isLoaded && (
       <BrowserRouter>
         <NavBar isLoaded={isLoaded} />
-        <SongNavBar/>
+        <SongNavBar />
         {/* <MemoizedSongNavBar/> */}
         <Switch>
           <Route path="/" exact={true}>
