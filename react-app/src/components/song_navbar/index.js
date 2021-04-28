@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { setCheckpoint, setCurrentTime, playSong, pauseSong } from '../../store/song'
+import { setCheckpoint,  playSong, pauseSong, setAudioRef} from '../../store/song'
 import c from './SongNavBar.module.css';
 
 
@@ -8,6 +8,8 @@ const SongNavBar = () => {
   const storeSongData = useSelector(store => store.song)
 
   const [lastCheckpoint, setLastCheckpoint] = useState(0)
+
+  const [sliderValue, setSliderValue] = useState(0)
 
   const dispatch = useDispatch()
 
@@ -17,82 +19,31 @@ const SongNavBar = () => {
   const endTimeRef = useRef()
   const sliderRef = useRef()
 
-  // Pause and play the song
+
   useEffect(() => {
-    if (storeSongData?.isCurrentlyPlaying) {
+    if (navAudioRef.current){
+      dispatch(setAudioRef(navAudioRef))
+    }
+  }, [navAudioRef, dispatch])
+
+  // This useeffect just checks the store to see if the song is playing.
+  //    - it pauses/plays the ACTUAL AUDIO COMPONENT
+  //    - if the song has been paused, update the store with the new checkpoint
+  useEffect(() => {
+    if (storeSongData.isPlaying) {
       navAudioRef.current['play']()
       navButtonRef.current.innerText = 'Pause'
-    } else {
+    }
+    else {
       navAudioRef.current['pause']()
       navButtonRef.current.innerText = 'Play'
     }
-  }, [storeSongData])
-
-  // If the track seeks, play that new spot
-  useEffect(() => {
-    if (storeSongData.checkpoint !== lastCheckpoint) {
-      navAudioRef.current.currentTime = storeSongData.checkpoint
-      setLastCheckpoint(storeSongData.checkpoint)
-    }
-  }, [storeSongData, lastCheckpoint])
+  }, [storeSongData.activeSongId, storeSongData.isPlaying])
 
 
-  const timeChangeHandler = () => {
-    updateStoreTime()
-    updateCurrentTimeDisplay()
-    // updateSliderValue()
-  }
-
-  // Update the current time in the store
-  const updateStoreTime = () => {
-    let currentNumSecs = navAudioRef.current.currentTime
-    dispatch(setCurrentTime(currentNumSecs))
-  }
-
-  const calculateMinsAndSecs = (totalSecs) => {
-    const mins = Math.floor(totalSecs / 60)
-    let secs = Math.floor(totalSecs % 60)
-    if (secs < 10) secs = `0${secs}`
-
-    return `${mins}:${secs}`
-  }
-
-  const seekTrack = (e) => {
-    if (!storeSongData.activeSongId) {
-      return
-    }
-    const target = (parseFloat(e.target.value) / 100) * navAudioRef.current.duration
-    dispatch(setCheckpoint(target))
-  }
-
-  const updateSliderValue = () => {
-
-    if (navAudioRef?.current?.duration && sliderRef.current) {
-      const totalSecs = navAudioRef.current.duration
-      const newVal = (navAudioRef.current.currentTime / totalSecs) * 100
-
-      // This updates the 'filled in color' of the progress bar in the bottom nav
-      const slider = sliderRef.current
-      const value = (newVal - slider.min) / (slider.max - slider.min) * 100
-      slider.style.background = `linear-gradient(to right, #FD3700 0%, #FD3700 ${value}%, grey ${value}%, grey 100%)`
-
-      return newVal
-    }
-    return 0
-
-
-  }
-
-  const updateCurrentTimeDisplay = () => {
-    let currentNumSecs = navAudioRef.current.currentTime
-    startTimeRef.current.innerText = calculateMinsAndSecs(currentNumSecs)
-  }
-  const updateDurationDisplay = (e) => {
-    let totalSecs = navAudioRef.current.duration
-    endTimeRef.current.innerText = calculateMinsAndSecs(totalSecs)
-  }
-  // Controls the play/pause in the bottom nav
-  const togglePlaying = async (e) => {
+  // This is the function for the navbar play button
+  // It will dispatch store actions telling the store to pause or play a song
+  const togglePlaying = (e) => {
     if (!storeSongData.activeSongId) {
       return
     }
@@ -106,6 +57,61 @@ const SongNavBar = () => {
       dispatch(pauseSong())
     }
   }
+
+
+  // If the track seeks, play that new spot
+  useEffect(() => {
+    if (storeSongData.checkpoint !== lastCheckpoint) {
+      navAudioRef.current.currentTime = storeSongData.checkpoint
+      setLastCheckpoint(storeSongData.checkpoint)
+    }
+  }, [storeSongData, lastCheckpoint])
+
+
+  const timeChangeHandler = () => {
+    updateCurrentTimeDisplay()
+    updateSliderValue()
+  }
+
+  const seekTrack = (e) => {
+    if (!storeSongData.activeSongId) {
+      return
+    }
+    const target = (parseFloat(e.target.value) / 100) * navAudioRef.current.duration
+    dispatch(setCheckpoint(target))
+  }
+
+  const updateSliderValue = () => {
+
+    let newVal = 0
+    if (navAudioRef?.current?.duration && sliderRef.current) {
+      const totalSecs = navAudioRef.current.duration
+      newVal = (navAudioRef.current.currentTime / totalSecs) * 100
+
+      // This updates the 'filled in color' of the progress bar in the bottom nav
+      const slider = sliderRef.current
+      const value = (newVal - slider.min) / (slider.max - slider.min) * 100
+      slider.style.background = `linear-gradient(to right, #FD3700 0%, #FD3700 ${value}%, grey ${value}%, grey 100%)`
+    }
+    setSliderValue(newVal)
+  }
+
+  const calculateMinsAndSecs = (totalSecs) => {
+    const mins = Math.floor(totalSecs / 60)
+    let secs = Math.floor(totalSecs % 60)
+    if (secs < 10) secs = `0${secs}`
+
+    return `${mins}:${secs}`
+  }
+  const updateCurrentTimeDisplay = () => {
+    let currentNumSecs = navAudioRef.current.currentTime
+    startTimeRef.current.innerText = calculateMinsAndSecs(currentNumSecs)
+  }
+  const updateDurationDisplay = (e) => {
+    let totalSecs = navAudioRef.current.duration
+    endTimeRef.current.innerText = calculateMinsAndSecs(totalSecs)
+  }
+
 
   return (
     <footer className={c.navbar_total}>
@@ -127,13 +133,12 @@ const SongNavBar = () => {
           max={100}
           min={0}
           step={.01}
-          value={updateSliderValue()}
+          value={sliderValue}
           onChange={seekTrack}
           id={c.slider}
         />
         <span ref={endTimeRef}>0:00</span>
       </div>
-
     </footer>
   );
 };

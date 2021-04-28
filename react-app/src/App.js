@@ -19,24 +19,22 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   // const [authorized, setAuthorized] = useState(false);
 
-  // used the response from this dispatch someone set up to check for errors logging in from session.
-  // if no errors then set authorized.
-  // planning on passing setAuthorized and authorized as a prop
+
+  // Try to restore the user
   useEffect(() => {
-    (async () => {
-      await dispatch(restoreSession()).then((data) => {
-        // let errors = data?.errors;
-        // if (errors && errors[0] !== "Unauthorized") setAuthorized(true);
-      });
-      setIsLoaded(true);
-    })();
-  }, [dispatch]);
+    (async() => {
+      dispatch(restoreSession())
+      setIsLoaded(true)
+    })()
+  }, [dispatch])
+
 
   return (
     isLoaded && (
       <BrowserRouter>
         <NavBar isLoaded={isLoaded} />
-        <SongNavBar isLoaded={isLoaded} />
+        <SongNavBar/>
+        {/* <MemoizedSongNavBar/> */}
         <Switch>
           <Route path="/" exact={true}>
             <LandingPage />
@@ -52,7 +50,6 @@ function App() {
             <UploadPicture />
           </ProtectedRoute>
         </Switch>
-        <SongNavBar />
       </BrowserRouter>
     )
   );
