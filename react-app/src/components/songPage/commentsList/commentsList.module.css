@@ -1,8 +1,8 @@
 .Comment_Outer_Container {
    display: flex;
-   justify-content: flex-end;
-   width: 92vw;
-   margin: 0;
+   justify-content: center;
+   width: 86vmax;
+   margin-left: 2rem;
 }
 
 .Outter_box {
