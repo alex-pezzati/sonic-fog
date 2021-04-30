@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import SongTile from "./SongTile";
-import c from "./LandingPage.module.css";
+import SongTile from './SongTile';
+import c from './LandingPage.module.css';
 
 function LandingPage() {
     const [songs, setSongs] = useState([]);
 
+    // grabs song art/info for display
     const getSongs = async () => {
         const res = await fetch(`/api/songs/get`);
         const data = await res.json();
         await setSongs(data.songs);
     };
 
-
+    // runs on initial render
     useEffect(() => {
         getSongs();
     }, []);
