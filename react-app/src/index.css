@@ -1,13 +1,16 @@
 /* TODO Add site wide styles */
 :root {
-  --body-width: 100vmax;
-  --body-height: 100vmax;
+    --body-width: 100vmax;
+    --body-height: 100vmax;
 }
 
 body {
-  font-family: Interstate, Lucida Grande, Arial, sans-serif;
-  position: relative;
-  top: 50px;
-  width: var(--body-width);
-  height: var(--body-height);
+    font: 12px/1.4 Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda,
+        Verdana, Tahoma, sans-serif;
+    /* font-family: Interstate, Lucida Grande, Arial, sans-serif; */
+    color: #333;
+    /* position: relative; */
+    top: 50px;
+    width: var(--body-width);
+    height: var(--body-height);
 }

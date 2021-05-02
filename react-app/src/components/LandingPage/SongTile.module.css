@@ -2,7 +2,6 @@
     width: 100%;
     padding-bottom: 78px;
     position: relative;
-    display: inline-block;
 }
 
 .artwork {
@@ -12,11 +11,11 @@
     z-index: 2;
 }
 
-a, a:visited {
+a,
+a:visited {
     color: rgb(83, 147, 200);
     text-decoration-color: initial;
     text-decoration: none;
-    /* cursor: pointer; */
 }
 
 .artwork__image {
@@ -43,13 +42,9 @@ a, a:visited {
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: rgb(32 32 32 / 10%) 0px 0px 0px 1px inset;
-    transition: opacity .2s linear;
+    transition: opacity 0.2s linear;
 }
 
 .image {
     display: inline-block;
-}
-
-.description {
-
 }

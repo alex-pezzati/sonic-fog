@@ -29,7 +29,9 @@ function LandingPage() {
                 <div>songs container</div>
                 <div className={c.tracks}>
                     songs trunk
-                    <div>Here's what's trending in the SonicFog community</div>
+                    <div className={c.tracks__title}>
+                        Hear what's trending for free in the SonicFog community
+                    </div>
                     <div className={c.container}>
                         <ul className={c.ulist}>
                             <li className={c.list}>
