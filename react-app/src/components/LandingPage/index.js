@@ -18,17 +18,31 @@ function LandingPage() {
         getSongs();
     }, []);
 
+    //
+    useEffect(() => {}, []);
+
     return (
         <div className={c.content}>
-            <h1>Test Sonic Fog</h1>
-            <div>
-                <h1>logo here</h1>
-                carousel in here
+            <div className={c.front}>
+                <div className={c.front__content}>
+                    <div className={c.front__container}>
+                        <div className={c.front__carousel}>
+                            <div
+                                className={`${c.front__carouselContent} ${c.front__listenerSlide}`}
+                                style={{ width: '33%' }}
+                            ></div>
+                            <div
+                                className={`${c.front__carouselContent} ${c.front__creatorSlide}`}
+                                style={{ width: '33%' }}
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+                <div className={c.front__carouselNav}></div>
+                <h1>SONICFOG</h1>
             </div>
             <div>
-                <div>songs container</div>
                 <div className={c.tracks}>
-                    songs trunk
                     <div className={c.tracks__title}>
                         Hear what's trending for free in the SonicFog community
                     </div>

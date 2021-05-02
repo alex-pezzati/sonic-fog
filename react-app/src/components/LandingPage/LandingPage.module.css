@@ -5,6 +5,62 @@
     margin: 0 auto;
 }
 
+.front {
+    margin-left: -30px;
+    margin-right: -30px;
+}
+
+.front__content {
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    border-top: 4px solid #f50;
+    background-color: #666;
+    height: 450px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.front__container {
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+.front__carousel {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+}
+
+.front__carouselContent {
+    width: 100%;
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    -webkit-align-items: center;
+    align-items: center;
+    padding: 145px 0 0;
+    box-sizing: border-box;
+    box-shadow: inset 0 120px 40px -40px rgb(5 5 5 / 50%);
+    text-shadow: 0 0 3px rgb(5 5 5 / 50%);
+}
+
+.front__creatorSlide {
+    background: url(https://a-v2.sndcdn.com/assets/images/hp_image_creator_slide-db400e2f.jpg)
+        50% / cover no-repeat;
+}
+
+.front__listenerSlide {
+    background: url(https://a-v2.sndcdn.com/assets/images/sc_landing_header_web_a-3bb2d420.jpg)
+        50% / cover no-repeat;
+}
+
+.front__carouselNav {
+}
+
 .ulist {
     display: flex;
     /* flex-direction: row; */
