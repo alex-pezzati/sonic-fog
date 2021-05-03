@@ -10,6 +10,7 @@ export default function FrontCarousel() {
         --carousel styling refactoring
         --carousel iteration refactoring
         --carousel active slide buttons + function
+        --add DEMO USER BUTTON
     */
 
     // carousel slide transition styling
@@ -74,10 +75,21 @@ export default function FrontCarousel() {
                     <div className={c.carouselNav}></div>
                 </div>
                 <h1 className={c.logo}>SONICFOG</h1>
-                <div className={c.signin}>
-                    <button className={c.signin}>Sign In</button>
-                    <button>Create Account</button>
-                    <NavLink to="/">Site Developers</NavLink>
+                <div className={c.login}>
+                    <button className={`${c.sf__button} ${c.loginButton}`}>
+                        Sign In
+                    </button>
+                    <button
+                        className={`${c.sf__button} ${c.createAccountButton}`}
+                    >
+                        Create Account
+                    </button>
+                    <NavLink
+                        className={`${c.sf__button} ${c.developersButton}`}
+                        to="/"
+                    >
+                        Site Developers
+                    </NavLink>
                 </div>
             </div>
         </div>
