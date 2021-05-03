@@ -1,0 +1,80 @@
+.outer {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   align-items: center;
+   /* flex-direction: column; */
+   width: 100%;
+   height: 100%;
+}
+
+.fieldset {
+   width: fit-content;
+   height: fit-content;
+   margin-top: 2rem;
+}
+
+.legend {
+   text-align: center;
+}
+
+legend+ul {
+   list-style-type: none;
+   text-align: right;
+}
+
+.Alex {
+   color: var(--secondary-bg-color);
+   width: 40vw;
+}
+
+.Alex a {
+   color: var(--secondary-bg-color);
+}
+
+.Alex a:hover {
+   color: black;
+}
+
+.Chou {
+   color: var(--secondary-bg-color);
+   width: 40vw;
+}
+
+.Chou a {
+   color: var(--secondary-bg-color);
+}
+
+.Chou a:hover {
+   color: black;
+}
+
+.Jamie {
+   color: var(--secondary-bg-color);
+   width: 40vw;
+}
+
+.Jamie a {
+   color: var(--secondary-bg-color);
+
+}
+
+.Jamie a:hover {
+   color: black;
+
+}
+
+.Raymond {
+   color: var(--secondary-bg-color);
+   width: 40vw;
+}
+
+.Raymond a {
+   color: var(--secondary-bg-color);
+
+}
+
+.Raymond a:hover {
+
+   color: black;
+}

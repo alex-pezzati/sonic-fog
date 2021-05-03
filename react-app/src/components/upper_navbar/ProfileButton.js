@@ -1,7 +1,8 @@
 // frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 // import * as sessionActions from '../../store/session';
-import './ProfileButton.css'
+import "./ProfileButton.css";
 
 function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
@@ -18,7 +19,7 @@ function ProfileButton({ user }) {
       setShowMenu(false);
     };
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
@@ -29,8 +30,8 @@ function ProfileButton({ user }) {
   // };
 
   return (
-    <div className='profileButton_wrapper'>
-      <button onClick={openMenu} className='userButton'>
+    <div className="profileButton_wrapper">
+      <button onClick={openMenu} className="userButton">
         <i className={"fas fa-ellipsis-v"}></i>
       </button>
       {showMenu && (
@@ -40,6 +41,7 @@ function ProfileButton({ user }) {
           <li>Alex Pezzati</li>
           <li>Raymond-Arthur May</li>
           <li>Chou Fomenky</li>
+          <NavLink to="/creators">Creators</NavLink>
         </ul>
       )}
     </div>
