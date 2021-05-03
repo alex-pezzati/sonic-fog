@@ -11,7 +11,7 @@ body {
     /* font-family: Interstate, Lucida Grande, Arial, sans-serif; */
     color: #333;
     /* below attribute (position: relative) should NOT be global! */
-    /* position: relative; */
+    position: relative;
     top: 50px;
     width: var(--body-width);
     height: var(--body-height);

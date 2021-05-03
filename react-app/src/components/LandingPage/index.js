@@ -87,9 +87,9 @@ function LandingPage() {
                             ></div>
                         </div>
                     </div>
+                    <h1 className={c.front__logo}>SONICFOG</h1>
+                    <div className={c.front__carouselNav}></div>
                 </div>
-                <div className={c.front__carouselNav}></div>
-                <h1 className={c.front__logo}>"SONICFOG"</h1>
             </div>
             <div>
                 <div className={c.tracks}>
