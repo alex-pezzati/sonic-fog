@@ -11,7 +11,6 @@ export default function FrontCarousel() {
         --carousel styling refactoring
         --carousel iteration refactoring
         --carousel active slide buttons + function
-        --add DEMO USER BUTTON
     */
 
     // carousel slide transition styling
@@ -37,15 +36,16 @@ export default function FrontCarousel() {
                 setActiveSlide(activeSlide + 1);
                 setTimeout(() => {
                     setActiveSlide(0);
-                }, 600);
+                }, 601);
             }
             setActiveSlide(activeSlide + 1);
-        }, 4000);
+        }, 5000);
 
         return () => {
             clearInterval(interval);
         };
     }, [activeSlide]);
+
     return (
         <div className={c.position}>
             <div className={c.content}>
@@ -63,11 +63,31 @@ export default function FrontCarousel() {
                         <div
                             className={`${c.slides__content} ${c.slide__listener}`}
                             style={{ width: '34%' }}
-                        ></div>
+                        >
+                            <h2>Discover music with SonicFog</h2>
+                            <p>
+                                SonicFog lets you listen to your favorite music,
+                                with an ever growing library of more artists and
+                                tracks!
+                            </p>
+                            <div>
+                                <a></a>
+                                <a></a>
+                            </div>
+                        </div>
                         <div
                             className={`${c.slides__content} ${c.slide__creator}`}
                             style={{ width: '34%' }}
-                        ></div>
+                        >
+                            <h2>Site Developers</h2>
+                            <p>
+                                Checkout the developers behind SonicFog, a clone
+                                of SoundCloud!
+                            </p>
+                            <div>
+                                <a></a>
+                            </div>
+                        </div>
                         <div
                             className={`${c.slides__content} ${c.slide__listener}`}
                             style={{ width: '34%' }}
