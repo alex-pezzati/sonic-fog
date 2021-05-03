@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+
+import FrontNav from './FrontNav';
 
 import c from './FrontCarousel.module.css';
 
@@ -75,22 +76,7 @@ export default function FrontCarousel() {
                     <div className={c.carouselNav}></div>
                 </div>
                 <h1 className={c.logo}>SONICFOG</h1>
-                <div className={c.login}>
-                    <button className={`${c.sf__button} ${c.loginButton}`}>
-                        Sign In
-                    </button>
-                    <button
-                        className={`${c.sf__button} ${c.createAccountButton}`}
-                    >
-                        Create Account
-                    </button>
-                    <NavLink
-                        className={`${c.sf__button} ${c.developersButton}`}
-                        to="/"
-                    >
-                        Site Developers
-                    </NavLink>
-                </div>
+                <FrontNav />
             </div>
         </div>
     );
