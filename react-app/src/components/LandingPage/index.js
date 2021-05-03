@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
+import FrontCarousel from './FrontCarousel';
 import SongTile from './SongTile';
 import c from './LandingPage.module.css';
 
 function LandingPage() {
-    const [activeSlide, setActiveSlide] = useState(0);
     const [songs, setSongs] = useState([]);
-
-    /* TODO:
-        --carousel styling refactoring
-        --carousel iteration refactoring
-        --carousel active slide buttons + function
-    */
 
     // grabs song art/info for display
     const getSongs = async () => {
@@ -25,72 +19,9 @@ function LandingPage() {
         getSongs();
     }, []);
 
-    // carousel slide transition styling
-    const style0 = {
-        transform: 'translateX(0%)',
-        width: '300%',
-    };
-    const style1 = {
-        transform: 'translateX(-33.3333%)',
-        transition: 'transform 0.6s ease-in-out 0s',
-        width: '300%',
-    };
-    const style2 = {
-        transform: 'translateX(-66.6667%)',
-        transition: 'transform 0.6s ease-in-out 0s',
-        width: '300%',
-    };
-
-    // carousel iteration
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (activeSlide === 1) {
-                setActiveSlide(activeSlide + 1);
-                setTimeout(() => {
-                    setActiveSlide(0);
-                }, 600);
-            }
-            setActiveSlide(activeSlide + 1);
-        }, 4000);
-
-        return () => {
-            clearInterval(interval);
-        };
-    }, [activeSlide]);
-
     return (
         <div className={c.content}>
-            <div className={c.front}>
-                <div className={c.front__content}>
-                    <div className={c.front__container}>
-                        <div
-                            className={c.front__carousel}
-                            style={
-                                activeSlide === 0
-                                    ? style0
-                                    : activeSlide === 1
-                                    ? style1
-                                    : style2
-                            }
-                        >
-                            <div
-                                className={`${c.front__carouselContent} ${c.front__listenerSlide}`}
-                                style={{ width: '34%' }}
-                            ></div>
-                            <div
-                                className={`${c.front__carouselContent} ${c.front__creatorSlide}`}
-                                style={{ width: '34%' }}
-                            ></div>
-                            <div
-                                className={`${c.front__carouselContent} ${c.front__listenerSlide}`}
-                                style={{ width: '34%' }}
-                            ></div>
-                        </div>
-                    </div>
-                    <h1 className={c.front__logo}>SONICFOG</h1>
-                    <div className={c.front__carouselNav}></div>
-                </div>
-            </div>
+            <FrontCarousel />
             <div>
                 <div className={c.tracks}>
                     <div className={c.tracks__title}>
