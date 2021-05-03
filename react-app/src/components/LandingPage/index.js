@@ -4,6 +4,7 @@ import SongTile from './SongTile';
 import c from './LandingPage.module.css';
 
 function LandingPage() {
+    const [activeSlide, setActiveSlide] = useState(1);
     const [songs, setSongs] = useState([]);
 
     // grabs song art/info for display
@@ -18,21 +19,59 @@ function LandingPage() {
         getSongs();
     }, []);
 
-    //
-    useEffect(() => {}, []);
+    // carousel iteration
+
+    const style1 = {
+        transform: 'translateX(0%)',
+        transition: 'transform 0.6s ease-in-out 0s',
+        width: '300%',
+    };
+    const style2 = {
+        transform: 'translateX(-33.3333%)',
+        transition: 'transform 0.6s ease-in-out 0s',
+        width: '300%',
+    };
+    const style3 = {
+        transform: 'translateX(-66.6667%)',
+        transition: 'transform 0.6s ease-in-out 0s',
+        width: '300%',
+    };
+
+    const carouselSlideChange = () => {};
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (activeSlide == 3) {
+                setActiveSlide(0);
+            } else {
+                setActiveSlide(activeSlide + 1);
+            }
+        }, 5000);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [activeSlide]);
 
     return (
         <div className={c.content}>
             <div className={c.front}>
                 <div className={c.front__content}>
                     <div className={c.front__container}>
-                        <div className={c.front__carousel}>
+                        <div
+                            className={c.front__carousel}
+                            style={activeSlide == 1 ? style1 : style2}
+                        >
                             <div
                                 className={`${c.front__carouselContent} ${c.front__listenerSlide}`}
                                 style={{ width: '33%' }}
                             ></div>
                             <div
                                 className={`${c.front__carouselContent} ${c.front__creatorSlide}`}
+                                style={{ width: '33%' }}
+                            ></div>
+                            <div
+                                className={`${c.front__carouselContent} ${c.front__listenerSlide}`}
                                 style={{ width: '33%' }}
                             ></div>
                         </div>
