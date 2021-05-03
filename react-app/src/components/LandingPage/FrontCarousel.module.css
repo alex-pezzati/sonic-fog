@@ -51,6 +51,21 @@
         50% / cover no-repeat;
 }
 
+.title {
+    margin-bottom: 8px;
+    font-size: 36px;
+    font-weight: 100;
+}
+
+.tagline {
+    font-size: 18px;
+    font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans,
+        Garuda, Verdana, Tahoma, sans-serif;
+    font-weight: 100;
+    max-width: 530px;
+    text-align: center;
+}
+
 .logo {
     position: absolute;
     top: 13px;

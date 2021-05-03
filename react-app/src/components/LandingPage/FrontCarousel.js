@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import FrontNav from './FrontNav';
 
@@ -64,28 +65,29 @@ export default function FrontCarousel() {
                             className={`${c.slides__content} ${c.slide__listener}`}
                             style={{ width: '34%' }}
                         >
-                            <h2>Discover music with SonicFog</h2>
-                            <p>
+                            <h2 className={c.title}>
+                                Discover music with SonicFog
+                            </h2>
+                            <p className={c.tagline}>
                                 SonicFog lets you listen to your favorite music,
                                 with an ever growing library of more artists and
                                 tracks!
                             </p>
                             <div>
-                                <a></a>
-                                <a></a>
+                                <Link to="/">Try it</Link>
                             </div>
                         </div>
                         <div
                             className={`${c.slides__content} ${c.slide__creator}`}
                             style={{ width: '34%' }}
                         >
-                            <h2>Site Developers</h2>
-                            <p>
+                            <h2 className={c.title}>Site Developers</h2>
+                            <p className={c.tagline}>
                                 Checkout the developers behind SonicFog, a clone
                                 of SoundCloud!
                             </p>
                             <div>
-                                <a></a>
+                                <Link to="/">Site Developers</Link>
                             </div>
                         </div>
                         <div
