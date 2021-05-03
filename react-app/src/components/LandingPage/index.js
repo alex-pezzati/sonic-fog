@@ -7,6 +7,12 @@ function LandingPage() {
     const [activeSlide, setActiveSlide] = useState(0);
     const [songs, setSongs] = useState([]);
 
+    /* TODO:
+        --carousel styling refactoring
+        --carousel iteration refactoring
+        --carousel active slide buttons + function
+    */
+
     // grabs song art/info for display
     const getSongs = async () => {
         const res = await fetch(`/api/songs/get`);
@@ -19,38 +25,29 @@ function LandingPage() {
         getSongs();
     }, []);
 
-    // carousel iteration
-
-    const style1 = {
+    // carousel slide transition styling
+    const style0 = {
         transform: 'translateX(0%)',
-        // transition: 'transform 0.6s ease-in-out 0s',
         width: '300%',
     };
-    const style2 = {
+    const style1 = {
         transform: 'translateX(-33.3333%)',
         transition: 'transform 0.6s ease-in-out 0s',
         width: '300%',
     };
-    const style3 = {
+    const style2 = {
         transform: 'translateX(-66.6667%)',
         transition: 'transform 0.6s ease-in-out 0s',
         width: '300%',
     };
 
-    const carouselSlideChange = () => {};
-
+    // carousel iteration
     useEffect(() => {
-        console.log(activeSlide);
-        // if (activeSlide == 2) {
-        //     setActiveSlide(0);
-        //     console.log('RESET');
-        // }
         const interval = setInterval(() => {
             if (activeSlide == 1) {
                 setActiveSlide(activeSlide + 1);
                 setTimeout(() => {
                     setActiveSlide(0);
-                    console.log('RESET');
                 }, 500);
             }
             setActiveSlide(activeSlide + 1);
@@ -70,23 +67,23 @@ function LandingPage() {
                             className={c.front__carousel}
                             style={
                                 activeSlide == 0
-                                    ? style1
+                                    ? style0
                                     : activeSlide == 1
-                                    ? style2
-                                    : style3
+                                    ? style1
+                                    : style2
                             }
                         >
                             <div
                                 className={`${c.front__carouselContent} ${c.front__listenerSlide}`}
-                                style={{ width: '33%' }}
+                                style={{ width: '34%' }}
                             ></div>
                             <div
                                 className={`${c.front__carouselContent} ${c.front__creatorSlide}`}
-                                style={{ width: '33%' }}
+                                style={{ width: '34%' }}
                             ></div>
                             <div
                                 className={`${c.front__carouselContent} ${c.front__listenerSlide}`}
-                                style={{ width: '33%' }}
+                                style={{ width: '34%' }}
                             ></div>
                         </div>
                     </div>
