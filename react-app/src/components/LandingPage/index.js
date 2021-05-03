@@ -4,7 +4,7 @@ import SongTile from './SongTile';
 import c from './LandingPage.module.css';
 
 function LandingPage() {
-    const [activeSlide, setActiveSlide] = useState(1);
+    const [activeSlide, setActiveSlide] = useState(0);
     const [songs, setSongs] = useState([]);
 
     // grabs song art/info for display
@@ -23,7 +23,7 @@ function LandingPage() {
 
     const style1 = {
         transform: 'translateX(0%)',
-        transition: 'transform 0.6s ease-in-out 0s',
+        // transition: 'transform 0.6s ease-in-out 0s',
         width: '300%',
     };
     const style2 = {
@@ -40,12 +40,20 @@ function LandingPage() {
     const carouselSlideChange = () => {};
 
     useEffect(() => {
+        console.log(activeSlide);
+        // if (activeSlide == 2) {
+        //     setActiveSlide(0);
+        //     console.log('RESET');
+        // }
         const interval = setInterval(() => {
-            if (activeSlide == 3) {
-                setActiveSlide(0);
-            } else {
+            if (activeSlide == 1) {
                 setActiveSlide(activeSlide + 1);
+                setTimeout(() => {
+                    setActiveSlide(0);
+                    console.log('RESET');
+                }, 500);
             }
+            setActiveSlide(activeSlide + 1);
         }, 5000);
 
         return () => {
@@ -60,7 +68,13 @@ function LandingPage() {
                     <div className={c.front__container}>
                         <div
                             className={c.front__carousel}
-                            style={activeSlide == 1 ? style1 : style2}
+                            style={
+                                activeSlide == 0
+                                    ? style1
+                                    : activeSlide == 1
+                                    ? style2
+                                    : style3
+                            }
                         >
                             <div
                                 className={`${c.front__carouselContent} ${c.front__listenerSlide}`}
