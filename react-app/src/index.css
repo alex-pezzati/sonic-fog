@@ -7,9 +7,11 @@
 body {
     font: 12px/1.4 Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda,
         Verdana, Tahoma, sans-serif;
+    /* below attribute (font-family: Interstate...) was swapped for SoundCloud's font family) */
     /* font-family: Interstate, Lucida Grande, Arial, sans-serif; */
     color: #333;
-    position: relative;
+    /* below attribute (position: relative) should NOT be global! */
+    /* position: relative; */
     top: 50px;
     width: var(--body-width);
     height: var(--body-height);

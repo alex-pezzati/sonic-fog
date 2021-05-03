@@ -44,14 +44,14 @@ function LandingPage() {
     // carousel iteration
     useEffect(() => {
         const interval = setInterval(() => {
-            if (activeSlide == 1) {
+            if (activeSlide === 1) {
                 setActiveSlide(activeSlide + 1);
                 setTimeout(() => {
                     setActiveSlide(0);
-                }, 500);
+                }, 600);
             }
             setActiveSlide(activeSlide + 1);
-        }, 5000);
+        }, 4000);
 
         return () => {
             clearInterval(interval);
@@ -66,9 +66,9 @@ function LandingPage() {
                         <div
                             className={c.front__carousel}
                             style={
-                                activeSlide == 0
+                                activeSlide === 0
                                     ? style0
-                                    : activeSlide == 1
+                                    : activeSlide === 1
                                     ? style1
                                     : style2
                             }
@@ -89,7 +89,7 @@ function LandingPage() {
                     </div>
                 </div>
                 <div className={c.front__carouselNav}></div>
-                <h1>SONICFOG</h1>
+                <h1 className={c.front__logo}>"SONICFOG"</h1>
             </div>
             <div>
                 <div className={c.tracks}>
