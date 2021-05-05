@@ -108,7 +108,24 @@ export default function FrontCarousel() {
                         <div
                             className={`${c.slides__content} ${c.slide__listener}`}
                             style={{ width: '34%' }}
-                        ></div>
+                        >
+                            <h2 className={c.title}>
+                                Discover music with SonicFog
+                            </h2>
+                            <p className={c.tagline}>
+                                SonicFog lets you listen to your favorite music,
+                                with an ever growing library of more artists and
+                                tracks!
+                            </p>
+                            <div>
+                                <button
+                                    className={c.slideButton}
+                                    onClick={openLoginModal}
+                                >
+                                    Try it!
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div className={c.carouselNav}></div>
                 </div>
