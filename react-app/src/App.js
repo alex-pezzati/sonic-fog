@@ -7,11 +7,9 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import NavBar from "./components/upper_navbar/NavBar";
 import SongPageRoute from "./components/songPage";
 import SongNavBar from "./components/song_navbar";
-import UploadPicture from "./services/AWS";
+// import UploadPicture from "./services/AWS";
 import UploadSong from "./components/song_upload_form/AWS_Song";
 import User from "./components/user_profile/User";
-// import WaveFormControls from "./components/waveformControls";
-// import Waveform from "./components/waveform";
 
 import { restoreSession } from "./store/session";
 // import { authenticate } from "./services/auth";
@@ -35,7 +33,6 @@ function App() {
       <BrowserRouter>
         <NavBar isLoaded={isLoaded} />
         <SongNavBar />
-        {/* <MemoizedSongNavBar/> */}
         <Switch>
           <Route path="/" exact={true}>
             <LandingPage />
@@ -48,7 +45,7 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path="/upload">
             <UploadSong />
-            <UploadPicture />
+            {/* <UploadPicture /> */}
           </ProtectedRoute>
         </Switch>
       </BrowserRouter>

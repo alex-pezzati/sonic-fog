@@ -22,9 +22,10 @@ const UploadSong = () => {
       body: formData,
     });
     if (res.ok) {
-      await res.json();
+      let id = await res.json();
+      id = id.id
       setSongLoading(false);
-      history.push("/song");
+      history.push(`/songs/${id}`);
     } else {
       setSongLoading(false);
       // a real app would probably use more advanced
@@ -45,7 +46,6 @@ const UploadSong = () => {
     <form onSubmit={handleSubmit}>
       <input
         type="file"
-        value={song ? song : ""}
         accept="audio/*"
         onChange={updateSong}
       />
