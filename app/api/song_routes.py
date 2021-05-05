@@ -128,12 +128,13 @@ def upload_song():
     db.session.commit()
     return {"url": song_url}
 
-
-
 # get list of songs; built for landing page
+# should get 12 songs total to fill rows
+
+
 @song_routes.route('/get')
 def get_songs():
-    songs = { "songs": [song.to_dict() for song in Song.query.limit(16).all()] }
+    songs = {"songs": [song.to_dict() for song in Song.query.limit(6).all()]}
     if not songs:
         return
 
