@@ -10,9 +10,7 @@ import c from './FrontCarousel.module.css';
 
 export default function FrontCarousel() {
     const [activeSlide, setActiveSlide] = useState(0);
-
     const dispatch = useDispatch();
-
     const openLoginModal = () => dispatch(modalLogInOpen());
 
     /* TODO:
@@ -24,17 +22,17 @@ export default function FrontCarousel() {
     */
 
     // carousel slide transition styling
-    const style0 = {
+    const styleSlide0 = {
         transform: 'translateX(0%)',
         // transition: 'transform 0.6s ease-in-out 0s',
         width: '300%',
     };
-    const style1 = {
+    const styleSlide1 = {
         transform: 'translateX(-33.3333%)',
         transition: 'transform 0.6s ease-in-out 0s',
         width: '300%',
     };
-    const style2 = {
+    const styleSlide2 = {
         transform: 'translateX(-66.6667%)',
         transition: 'transform 0.6s ease-in-out 0s',
         width: '300%',
@@ -73,10 +71,10 @@ export default function FrontCarousel() {
                         className={c.slides}
                         style={
                             activeSlide === 0
-                                ? style0
+                                ? styleSlide0
                                 : activeSlide === 1
-                                ? style1
-                                : style2
+                                ? styleSlide1
+                                : styleSlide2
                         }
                     >
                         <div
