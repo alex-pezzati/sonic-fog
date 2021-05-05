@@ -110,3 +110,23 @@
     transition: opacity 0.2s linear;
     white-space: nowrap;
 }
+
+.nav {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 24px;
+    width: 100%;
+}
+
+.navDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 6px;
+    border: 1px solid #fff;
+    cursor: pointer;
+}
+
+.navDot + .navDot {
+    margin-left: 18px;
+}

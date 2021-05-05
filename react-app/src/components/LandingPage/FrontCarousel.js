@@ -38,6 +38,9 @@ export default function FrontCarousel() {
         width: '300%',
     };
 
+    // carousel nav transition styling
+    const navDotStyle = { background: 'rgb(255, 255, 255)' };
+
     // carousel iteration
     useEffect(() => {
         const interval = setInterval(() => {
@@ -127,7 +130,26 @@ export default function FrontCarousel() {
                             </div>
                         </div>
                     </div>
-                    <div className={c.carouselNav}></div>
+                    <div className={c.nav}>
+                        <div
+                            className={c.navDot}
+                            onClick={(e) => setActiveSlide(2)}
+                            style={
+                                activeSlide === 0 || 2
+                                    ? navDotStyle
+                                    : { background: 'transparent' }
+                            }
+                        ></div>
+                        <div
+                            className={c.navDot}
+                            onClick={(e) => setActiveSlide(1)}
+                            style={
+                                activeSlide === 1
+                                    ? navDotStyle
+                                    : { background: 'transparent' }
+                            }
+                        ></div>
+                    </div>
                 </div>
                 <h1 className={c.logo}>SONICFOG</h1>
                 <FrontNav />
