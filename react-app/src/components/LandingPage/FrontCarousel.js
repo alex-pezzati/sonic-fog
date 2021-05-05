@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -10,53 +10,58 @@ import c from './FrontCarousel.module.css';
 
 export default function FrontCarousel() {
     const [activeSlide, setActiveSlide] = useState(0);
-
     const dispatch = useDispatch();
-
     const openLoginModal = () => dispatch(modalLogInOpen());
 
     /* TODO:
+        --bug on selecting slides manually:
+            when it tries to reset to slide 0, style on circle shifts
+            to transparent temporarily before refilling, then iterating
         --carousel styling code refactoring
-        --carousel iteration code refactoring
-        --carousel active slide buttons + function
         --site developers buttons need to linked up to routes
     */
 
     // carousel slide transition styling
-    const style0 = {
+    const styleSlide0 = {
         transform: 'translateX(0%)',
+        // transition: 'transform 0.6s ease-in-out 0s',
         width: '300%',
     };
-    const style1 = {
+    const styleSlide1 = {
         transform: 'translateX(-33.3333%)',
         transition: 'transform 0.6s ease-in-out 0s',
         width: '300%',
     };
-    const style2 = {
+    const styleSlide2 = {
         transform: 'translateX(-66.6667%)',
         transition: 'transform 0.6s ease-in-out 0s',
         width: '300%',
     };
 
-    // carousel nav transition styling
-    const navDotStyle = { background: 'rgb(255, 255, 255)' };
+    // carousel iteration helper
+    const carouselSlideHandler = useCallback(() => {
+        if (activeSlide === 1 || activeSlide === 2) {
+            setActiveSlide(2);
+            setTimeout(() => {
+                setActiveSlide(0);
+            }, 601);
+        }
+        setActiveSlide(activeSlide + 1);
+    }, [activeSlide]);
 
-    // carousel iteration
+    // carousel iteration interval
     useEffect(() => {
         const interval = setInterval(() => {
-            if (activeSlide === 1) {
-                setActiveSlide(activeSlide + 1);
-                setTimeout(() => {
-                    setActiveSlide(0);
-                }, 601);
-            }
-            setActiveSlide(activeSlide + 1);
+            carouselSlideHandler();
         }, 5000);
-
         return () => {
             clearInterval(interval);
         };
-    }, [activeSlide]);
+    }, [carouselSlideHandler]);
+
+    // carousel nav transition styling
+    const navDotStyleFilled = { background: 'rgb(255, 255, 255)' };
+    const navDotStyleTransparent = { background: 'transparent' };
 
     return (
         <div className={c.position}>
@@ -66,10 +71,10 @@ export default function FrontCarousel() {
                         className={c.slides}
                         style={
                             activeSlide === 0
-                                ? style0
+                                ? styleSlide0
                                 : activeSlide === 1
-                                ? style1
-                                : style2
+                                ? styleSlide1
+                                : styleSlide2
                         }
                     >
                         <div
@@ -135,9 +140,9 @@ export default function FrontCarousel() {
                             className={c.navDot}
                             onClick={(e) => setActiveSlide(2)}
                             style={
-                                activeSlide === 0 || 2
-                                    ? navDotStyle
-                                    : { background: 'transparent' }
+                                activeSlide === 0 || activeSlide === 2
+                                    ? navDotStyleFilled
+                                    : navDotStyleTransparent
                             }
                         ></div>
                         <div
@@ -145,8 +150,8 @@ export default function FrontCarousel() {
                             onClick={(e) => setActiveSlide(1)}
                             style={
                                 activeSlide === 1
-                                    ? navDotStyle
-                                    : { background: 'transparent' }
+                                    ? navDotStyleFilled
+                                    : navDotStyleTransparent
                             }
                         ></div>
                     </div>
