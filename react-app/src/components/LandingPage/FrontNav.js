@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import LoginFormModal from '../auth/LoginModal';
 import SignupFormModal from '../auth/SignupModal';
@@ -25,9 +25,9 @@ const FrontNav = () => {
                 Create Account
             </button>
             <SignupFormModal />
-            <NavLink className={c.developersButton} to="/">
+            <Link className={c.developersButton} to="/">
                 Site Developers
-            </NavLink>
+            </Link>
         </div>
     );
 };

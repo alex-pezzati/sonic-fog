@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { modalLogInOpen } from '../../store/modal';
 
 import FrontNav from './FrontNav';
 
@@ -8,10 +11,15 @@ import c from './FrontCarousel.module.css';
 export default function FrontCarousel() {
     const [activeSlide, setActiveSlide] = useState(0);
 
+    const dispatch = useDispatch();
+
+    const openLoginModal = () => dispatch(modalLogInOpen());
+
     /* TODO:
-        --carousel styling refactoring
-        --carousel iteration refactoring
+        --carousel styling code refactoring
+        --carousel iteration code refactoring
         --carousel active slide buttons + function
+        --site developers buttons need to linked up to routes
     */
 
     // carousel slide transition styling
@@ -74,7 +82,12 @@ export default function FrontCarousel() {
                                 tracks!
                             </p>
                             <div>
-                                <Link to="/">Try it</Link>
+                                <button
+                                    className={c.slideButton}
+                                    onClick={openLoginModal}
+                                >
+                                    Try it!
+                                </button>
                             </div>
                         </div>
                         <div
@@ -87,7 +100,9 @@ export default function FrontCarousel() {
                                 of SoundCloud!
                             </p>
                             <div>
-                                <Link to="/">Site Developers</Link>
+                                <Link className={c.slideButton} to="/">
+                                    Site Developers
+                                </Link>
                             </div>
                         </div>
                         <div

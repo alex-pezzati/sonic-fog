@@ -94,5 +94,19 @@
     background-size: 115px 22px;
 }
 
-/* .carouselNav {
-} */
+.slideButton,
+.slideButton:visited {
+    background-color: #f50;
+    border: 1px solid #f50;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans,
+        Garuda, Verdana, Tahoma, sans-serif;
+    padding: 7px 25px;
+    transition: opacity 0.2s linear;
+    white-space: nowrap;
+}
