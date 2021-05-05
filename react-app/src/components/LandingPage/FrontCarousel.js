@@ -18,8 +18,6 @@ const FrontCarousel = () => {
     /* TODO:
         --carousel styling code refactoring
         --carousel iteration code refactoring
-        --carousel active slide buttons + function
-        --site developers buttons need to linked up to routes
     */
 
     // carousel slide transition styling
@@ -97,14 +95,17 @@ const FrontCarousel = () => {
                             className={`${c.slides__content} ${c.slide__creator}`}
                             style={{ width: '34%' }}
                         >
-                            <h2 className={c.title}>Site Developers</h2>
+                            <h2 className={c.title}>The Developers</h2>
                             <p className={c.tagline}>
                                 Checkout the developers behind SonicFog, a clone
                                 of SoundCloud!
                             </p>
                             <div>
-                                <Link className={c.slideButton} to="/">
-                                    Site Developers
+                                <Link
+                                    className={c.slideButton}
+                                    to="/the-developers"
+                                >
+                                    The Developers
                                 </Link>
                             </div>
                         </div>

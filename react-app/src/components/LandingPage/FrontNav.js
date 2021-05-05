@@ -25,8 +25,8 @@ const FrontNav = () => {
                 Create Account
             </button>
             <SignupFormModal />
-            <Link className={c.developersButton} to="/">
-                Site Developers
+            <Link className={c.developersButton} to="/the-developers">
+                The Developers
             </Link>
         </div>
     );
