@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import c from './SongTile.module.css';
 
-function SongTile({ song }) {
+const SongTile = ({ song }) => {
     const art = {
         background: `url(${song.cover_image})`,
         backgroundSize: 'contain',
@@ -35,6 +35,6 @@ function SongTile({ song }) {
             </div>
         </div>
     );
-}
+};
 
 export default SongTile;

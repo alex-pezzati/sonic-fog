@@ -35,24 +35,26 @@ function App() {
         isLoaded && (
             <BrowserRouter>
                 <SongNavBar />
-                {/* <MemoizedSongNavBar/> */}
                 <Switch>
                     <Route path="/" exact={true}>
                         <LandingPage />
                     </Route>
-                    <NavBar isLoaded={isLoaded} />
-                    <Route path="/devs" exact>
+                    <Route path="/the-developers" exact={true}>
+                        <NavBar isLoaded={isLoaded} />
                         <DevInfo />
                     </Route>
-                    <Route path="/songs/:songId">
+                    <Route path="/songs/:songId" exact={true}>
+                        <NavBar isLoaded={isLoaded} />
                         <SongPageRoute />
                     </Route>
-                    <ProtectedRoute path="/upload">
+                    <Route path="/users/:username" exact={true}>
+                        <NavBar isLoaded={isLoaded} />
+                        <User />
+                    </Route>
+                    <ProtectedRoute path="/upload" exact={true}>
+                        <NavBar isLoaded={isLoaded} />
                         <UploadSong />
                         <UploadPicture />
-                    </ProtectedRoute>
-                    <ProtectedRoute path="/users/:username" exact={true}>
-                        <User />
                     </ProtectedRoute>
                 </Switch>
             </BrowserRouter>

@@ -8,7 +8,7 @@ import FrontNav from './FrontNav';
 
 import c from './FrontCarousel.module.css';
 
-export default function FrontCarousel() {
+const FrontCarousel = () => {
     const [activeSlide, setActiveSlide] = useState(0);
 
     const dispatch = useDispatch();
@@ -156,4 +156,6 @@ export default function FrontCarousel() {
             </div>
         </div>
     );
-}
+};
+
+export default FrontCarousel;
