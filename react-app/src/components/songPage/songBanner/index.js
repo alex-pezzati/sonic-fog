@@ -13,7 +13,6 @@ function Index() {
       return;
     }
     (async () => {
-      console.log(songId)
       const response = await fetch(`/api/songs/${songId}`);
       if (!response.ok) return console.log("error fetching song");
       const fetched_song = await response.json();

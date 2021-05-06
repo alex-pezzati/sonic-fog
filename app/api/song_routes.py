@@ -1,15 +1,23 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
+from app.forms import SongSubmitForm
 
+# For waveform generation
 from scipy.io import wavfile as wav
 import numpy as np
 from pydub import AudioSegment
 import tempfile
 import os
 
+from app.api.auth_routes import validation_errors_to_error_messages
+
 from app.models import Song, db, User
 from app.utils.s3_songs import (
     upload_file_to_s3, allowed_file, get_unique_filename, download_song_from_s3)
+from app.utils.s3_helpers import (
+    upload_file_to_s3 as upload_photo_to_s3,
+    allowed_file as allowed_photo,
+    get_unique_filename as get_unique_photo_filename)
 
 song_routes = Blueprint('songs', __name__)
 
@@ -82,39 +90,51 @@ def generate_waveform_and_duration(song):
 @song_routes.route("", methods=["POST"])  # technically also updates
 @login_required
 def upload_song():
-    if "song" not in request.files:
-        return {"errors": "song required"}, 400
+    form = SongSubmitForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+      song = request.files["song_file"]
+      image = request.files['album_cover']
+      name = request.form['song_name']
 
-    name = request.form['name']
-    song = request.files["song"]
-    if not allowed_file(song.filename):
-        return {"errors": "file type not permitted"}, 400
+      data = generate_waveform_and_duration(song)
+      waveform_data = data['waveform_data']
+      duration = data['duration']
+      duration = float(duration)
 
-    aws_unique_name = get_unique_filename(song.filename)
-    song.filename = aws_unique_name
+      aws_unique_name = get_unique_filename(song.filename)
+      song.filename = aws_unique_name
 
-    data = generate_waveform_and_duration(song)
-    waveform_data = data['waveform_data']
-    duration = data['duration']
-    duration = float(duration)
-
-    upload = upload_file_to_s3(song)
-
-    if "url" not in upload:
-        # if the dictionary doesn't have a url key
-        # it means that there was an error when we tried to upload
-        # so we send back that error message
-        return upload, 400
-    song_url = upload["url"]
+      upload = upload_file_to_s3(song)
+      if "url" not in upload:
+          # if the dictionary doesn't have a url key
+          # it means that there was an error when we tried to upload
+          # so we send back that error message
+          return upload, 400
+      song_url = upload["url"]
 
 
-    new_song = Song(name=name, user_id=current_user.id,
-                    url=song_url, aws_unique_name=aws_unique_name, normalized_data=waveform_data, duration=duration)
+      image.filename = get_unique_photo_filename(image.filename)
+      upload = upload_photo_to_s3(image)
+      if "url" not in upload:
+          # if the dictionary doesn't have a url key
+          # it means that there was an error when we tried to upload
+          # so we send back that error message
+          return {'errors': upload}
+      banner_url = upload["url"]
 
-    db.session.add(new_song)
-    db.session.commit()
+      new_song = Song(name=name, user_id=current_user.id,
+                      url=song_url, aws_unique_name=aws_unique_name,
+                      normalized_data=waveform_data, duration=duration,
+                      cover_image = banner_url)
 
-    return {"id": new_song.id}
+      db.session.add(new_song)
+      db.session.commit()
+
+      return {"id": new_song.id}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
 
 
 @song_routes.route('/<int:song_id>')
@@ -138,42 +158,6 @@ def get_song_data(song_id):
         'albumPhoto': str(song.cover_image),
     })
 
-
-# @song_routes.route("", methods=["POST"])  # technically also updates
-# @login_required
-# def upload_song():
-#     if "song" not in request.files:
-#         return {"errors": "song required"}, 400
-
-#     name = request.form['name']
-#     song = request.files["song"]
-#     if not allowed_file(song.filename):
-#         return {"errors": "file type not permitted"}, 400
-
-#     aws_unique_name = get_unique_filename(song.filename)
-#     song.filename = aws_unique_name
-
-#     upload = upload_file_to_s3(song)
-
-#     # print("entered3")
-#     if "url" not in upload:
-#         # if the dictionary doesn't have a url key
-#         # it means that there was an error when we tried to upload
-#         # so we send back that error message
-#         return upload, 400
-
-#     song_url = upload["url"]
-
-#     data = generate_waveform_and_duration(aws_unique_name)
-#     waveform_data = data['waveform_data']
-#     duration = data['duration']
-#     duration = float(duration)
-
-#     new_song = Song(name=name, user_id=current_user.id,
-#                     url=song_url, aws_unique_name=aws_unique_name, normalized_data=waveform_data, duration=duration)
-#     db.session.add(new_song)
-#     db.session.commit()
-#     return {"url": song_url}
 
 
 
