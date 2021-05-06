@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import DevInfo from './components/DevInfo';
 import LandingPage from './components/LandingPage';
-import NavBar from './components/upper_navbar/NavBar';
+import MainNavBar from './components/MainNavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import SongPageRoute from './components/songPage';
 import SongNavBar from './components/song_navbar';
@@ -35,24 +35,24 @@ function App() {
         isLoaded && (
             <BrowserRouter>
                 <SongNavBar />
+                <Route path="/" exact={true}>
+                    <LandingPage />
+                </Route>
                 <Switch>
-                    <Route path="/" exact={true}>
-                        <LandingPage />
-                    </Route>
                     <Route path="/the-developers" exact={true}>
-                        <NavBar isLoaded={isLoaded} />
+                        <MainNavBar isLoaded={isLoaded} />
                         <DevInfo />
                     </Route>
                     <Route path="/songs/:songId" exact={true}>
-                        <NavBar isLoaded={isLoaded} />
+                        <MainNavBar isLoaded={isLoaded} />
                         <SongPageRoute />
                     </Route>
                     <Route path="/users/:username" exact={true}>
-                        <NavBar isLoaded={isLoaded} />
+                        <MainNavBar isLoaded={isLoaded} />
                         <User />
                     </Route>
                     <ProtectedRoute path="/upload" exact={true}>
-                        <NavBar isLoaded={isLoaded} />
+                        <MainNavBar isLoaded={isLoaded} />
                         <UploadSong />
                         <UploadPicture />
                     </ProtectedRoute>

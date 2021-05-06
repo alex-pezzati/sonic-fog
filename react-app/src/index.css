@@ -1,6 +1,6 @@
-/* TODO Add site wide styles */
 :root {
-    --body-width: 100vmax;
+    --body-width: 100%;
+    /* --body-width: 100vmax; */
     --body-height: 100vmax;
 }
 
@@ -10,6 +10,7 @@ body {
     color: #333;
     /* below attribute (position: relative) should NOT be global! */
     /* position: relative; */
+    margin: 0;
     top: 50px;
     width: var(--body-width);
     height: var(--body-height);
