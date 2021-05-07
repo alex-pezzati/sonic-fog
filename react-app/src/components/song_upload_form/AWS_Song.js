@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
+import c from './SongUploadForm.module.css'
+
 const UploadSong = () => {
   const history = useHistory(); // so that we can redirect after the image upload is successful
   const [song, setSong] = useState('');
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [songLoading, setSongLoading] = useState(false);
+
+  //Error handling
+  const [albumCoverError, setAlbumCoverError] = useState('')
+  const [songFileError, setSongFileError] = useState('')
+  const [songNameError, setSongNameError] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,9 +39,22 @@ const UploadSong = () => {
       let errors = await res.json()
       setSongLoading(false);
 
-      // a real app would probably use more advanced
-      // error handling
-      console.log(errors);
+      let error_obj = {}
+      errors.errors.forEach(error => {
+        let key_idx = error.indexOf(':')
+        let key = error.slice(0, key_idx)
+        let val = error.slice(key_idx+1)
+
+        key = key.trim()
+        val = val.trim()
+
+        error_obj[key] = val
+      });
+
+      error_obj['album_cover'] ? setAlbumCoverError(error_obj['album_cover']) : setAlbumCoverError('')
+      error_obj['song_file']? setSongFileError(error_obj['song_file']) : setSongFileError('')
+      error_obj['song_name'] ? setSongNameError(error_obj['song_name']) : setSongNameError('')
+
     }
   };
 
@@ -53,29 +73,41 @@ const UploadSong = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        name="song_file"
-        type="file"
-        accept="audio/*"
-        onChange={updateSong}
-      />
-      <input
-        name='album_cover'
-        type="file"
-        accept="image/*"
-        onChange={updateImage}
-      />
-      <input
-        name='song_name'
-        type="text"
-        value={name ? name : ""}
-        onChange={updateName}
-        placeholder="Song title"
-      />
-      <button type="submit">Upload Song</button>
-      {songLoading && <p>Loading...</p>}
-    </form>
+    <div className={c.form_parent}>
+      <form onSubmit={handleSubmit} className={c.submit_form}>
+        <label className={c.label}>Song File</label>
+        <div className={c.error_message}>{songFileError}</div>
+        <input
+          name="song_file"
+          type="file"
+          accept="audio/*"
+          onChange={updateSong}
+          className={c.song_file}
+        />
+        <label className={c.label}>Album Cover</label>
+        <div className={c.error_message}>{albumCoverError}</div>
+        <input
+          name='album_cover'
+          type="file"
+          accept="image/*"
+          onChange={updateImage}
+          className={c.album_cover}
+
+        />
+        <label className={c.label}>Song Title</label>
+        <div className={c.error_message}>{songNameError}</div>
+        <input
+          name='song_name'
+          type="text"
+          value={name ? name : ""}
+          onChange={updateName}
+          placeholder='"Fergalicious Definitious"'
+          className={c.song_title}
+        />
+        <button type="submit" className={c.upload_button}>Upload Song</button>
+        {songLoading && <p className={c.loading_message}>Loading...</p>}
+      </form>
+    </div>
   );
 };
 
