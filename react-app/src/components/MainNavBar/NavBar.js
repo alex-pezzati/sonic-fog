@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import ProfileButton from './ProfileButton';
 
@@ -71,8 +71,18 @@ const NavBar = ({ isLoaded }) => {
 
     // Regardless of logged in status...
     return (
-        <nav className={c.nav}>
-            <ul className={c.nav_content}>
+        <header className={c.header}>
+            <div className={c.container}>
+                <div>
+                    <div className={c.header__logo}>
+                        <Link className={c.logo} to="/">
+                            SonicFog
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
+            {/* <ul className={c.nav_content}>
                 <li className={c.nav_li_logo}>
                     <img
                         src="/static/logo.jpg"
@@ -93,9 +103,9 @@ const NavBar = ({ isLoaded }) => {
                 <li className={c.nav_li_search}>
                     <input type="search" placeholder="Noisy and Moist" />
                 </li>
-                {isLoaded && sessionLinks}
-            </ul>
-        </nav>
+            </ul> */}
+            {/* {isLoaded && sessionLinks} */}
+        </header>
     );
 };
 
