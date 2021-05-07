@@ -1,17 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import BannerComponent from "./songBanner/index";
 import PostCommentRoute from "./addComment/index";
 import CommentListRoute from "./commentsList/index";
 import classes from "./songPage.module.css";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router";
 
 function SongPageRoute() {
+  let { songId } = useParams();
+  const [song, setSong] = useState(null);
+  const [comments, setComments] = useState([]);
+  songId = Number(songId);
   const user = useSelector((state) => state.session.user);
+
+  useEffect(() => {
+    if (!songId) {
+      return;
+    }
+    (async () => {
+      const response = await fetch(`/api/songs/${songId}`);
+      if (!response.ok) return console.log("error fetching song");
+      const fetched_song = await response.json();
+      setSong(fetched_song);
+      const commentResponse = await fetch(`/api/comments/${songId}`);
+      if (commentResponse.ok) {
+        let { listOfComments } = await commentResponse.json();
+        setComments(listOfComments);
+      }
+      return fetched_song;
+    })();
+  }, [songId]);
+
   return (
     <div className={classes.SongPage_body}>
       <fieldset>
         <div className={classes.BannerComponent}>
-          <BannerComponent />
+          <BannerComponent song={song} />
         </div>
       </fieldset>
       {/* This will break for unauthorized users */}
@@ -19,7 +43,7 @@ function SongPageRoute() {
         <div className={classes.inner_container}>
           {user ? <PostCommentRoute /> : null}
           <div className={classes.CommentsList}>
-            <CommentListRoute />
+            <CommentListRoute comments={comments} />
           </div>
         </div>
       </fieldset>

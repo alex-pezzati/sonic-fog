@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useRef, useMemo, useCallback} from "react";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCheckpoint, setActiveSongData } from "../../store/song";
 
@@ -26,8 +32,7 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
   const dispatch = useDispatch();
 
   let canvasRef = useRef();
-  let animationFrameRef = useRef()
-
+  let animationFrameRef = useRef();
 
   // Grab the initial data from the backend
   //  - the waveform array
@@ -55,9 +60,10 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
     })();
   }, [songId]);
 
-
   const updateNumWaveformBars = () => {
-    let trackPercentage = storeSongData.audioRef.current.currentTime / storeSongData.audioRef.current.duration
+    let trackPercentage =
+      storeSongData.audioRef.current.currentTime /
+      storeSongData.audioRef.current.duration;
 
     // Multiply the percentage points times the number of waveform bars to get how many bars should be filled in
     const numChunks = waveformData.length;
@@ -68,30 +74,25 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
     if (numBars && numBars !== numWaveformBars) {
       setNumWaveformBars(numBars);
     }
-    animationFrameRef.current = requestAnimationFrame(memoizedCallback)
-  }
-  const memoizedCallback = useCallback(updateNumWaveformBars, [trackDuration, waveformData])
-
+    animationFrameRef.current = requestAnimationFrame(memoizedCallback);
+  };
+  const memoizedCallback = useCallback(updateNumWaveformBars, [
+    trackDuration,
+    waveformData,
+  ]);
 
   useEffect(() => {
     if (storeSongData.activeSongId && storeSongData.activeSongId !== songId) {
-      if (numWaveformBars !== 0)
-      setNumWaveformBars(0);
+      if (numWaveformBars !== 0) setNumWaveformBars(0);
       return;
     }
 
-    if (!storeSongData?.audioRef) return
-    if (!waveformData) return
+    if (!storeSongData?.audioRef) return;
+    if (!waveformData) return;
 
-    requestAnimationFrame(memoizedCallback)
-    return () => window.cancelAnimationFrame(animationFrameRef.current)
-  },[storeSongData, waveformData, songId, memoizedCallback, numWaveformBars])
-
-
-
-
-
-
+    requestAnimationFrame(memoizedCallback);
+    return () => window.cancelAnimationFrame(animationFrameRef.current);
+  }, [storeSongData, waveformData, songId, memoizedCallback, numWaveformBars]);
 
   // This paints the canvas. This function fills in the bar colorings, including the user highlights.
   useMemo(() => {
@@ -122,11 +123,9 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
 
       ctx.fillStyle = "darkgrey";
 
-
       // TOP BAR COLORINGS
       //   bars that are highlighed...
       if (numHighlightedBars > 0 && i <= numHighlightedBars) {
-
         // ... and played
         if (i < numWaveformBars) {
           ctx.fillStyle = "#fd5d00";
@@ -194,22 +193,23 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
         rectWidth,
         adjustedValue * breakPointRatio
       );
-
     });
-  }, [waveformData, numWaveformBars, numHighlightedBars, canvasHeight, canvasWidth]);
-
-
-
-
+  }, [
+    waveformData,
+    numWaveformBars,
+    numHighlightedBars,
+    canvasHeight,
+    canvasWidth,
+  ]);
 
   // Sets the target time
   const getXPosition = (e) => {
     if (!waveformData || !waveformData.length) {
-      return
+      return;
     }
-    const distanceFromLeft = canvasRef.current.getBoundingClientRect().left
-    const relativePosition = e.clientX - distanceFromLeft
-    const trackPercentage = relativePosition / canvasWidth
+    const distanceFromLeft = canvasRef.current.getBoundingClientRect().left;
+    const relativePosition = e.clientX - distanceFromLeft;
+    const trackPercentage = relativePosition / canvasWidth;
 
     const numChunks = waveformData.length;
     const numBars = Math.floor(trackPercentage * numChunks);
@@ -223,7 +223,7 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
     if (storeSongData.activeSongId !== songId) {
       dispatch(setActiveSongData(songId, songUrl, songName, albumPhoto, uploaderName));
     }
-    console.log(targetTime)
+    console.log(targetTime);
     dispatch(setCheckpoint(targetTime));
   };
 
@@ -236,8 +236,7 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
         onMouseMove={getXPosition}
         onMouseLeave={() => setNumHighlightedBars(-1)}
         onClick={seekTrack}
-      >
-      </canvas>
+      ></canvas>
     </div>
   );
 };

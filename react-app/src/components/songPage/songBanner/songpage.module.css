@@ -14,6 +14,8 @@
 }
 
 .Song_body {
+   display: flex;
+   justify-content: flex-end;
    top: 2rem;
    width: fit-content;
    right: 0;
@@ -27,6 +29,7 @@
 .Song_banner__outercontainer {
    display: flex;
    background-image: var(--main-bg-color);
+   right: 0;
 }
 
 .Song_banner__container {

@@ -12,6 +12,7 @@ import UploadSong from "./components/song_upload_form/AWS_Song";
 import User from "./components/user_profile/User";
 
 import { restoreSession } from "./store/session";
+import Creators from "./components/upper_navbar/creators";
 // import { authenticate } from "./services/auth";
 
 function App() {
@@ -31,6 +32,9 @@ function App() {
   return (
     isLoaded && (
       <BrowserRouter>
+        <Route path="/creators" exact>
+          <Creators />
+        </Route>
         <NavBar isLoaded={isLoaded} />
         <SongNavBar />
         <Switch>

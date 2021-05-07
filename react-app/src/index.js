@@ -8,7 +8,6 @@ import "./index.css";
 
 const store = configureStore();
 
-//?session??? -ray
 if (process.env.NODE_ENV !== "production") {
   window.store = store;
   window.modalActions = modalActions;

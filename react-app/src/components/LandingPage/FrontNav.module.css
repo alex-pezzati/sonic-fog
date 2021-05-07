@@ -1,0 +1,49 @@
+.login {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+
+.createAccountButton,
+.developersButton,
+.loginButton {
+    border-radius: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans,
+        Garuda, Verdana, Tahoma, sans-serif;
+    font-weight: 100;
+    display: inline-block;
+    height: 30px;
+    line-height: 24px;
+    margin: 0 0 0 8px;
+    position: relative;
+    text-align: center;
+    transition: opacity 0.2s linear;
+    user-select: none;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+.loginButton {
+    background: transparent;
+    border: 1px solid #e5e5e5;
+    color: #fff;
+    padding: 2px 15px;
+}
+
+.createAccountButton {
+    background-color: #f50;
+    border: 1px solid #f50;
+    color: #fff;
+    padding: 2px 16px;
+}
+
+.developersButton,
+.developersButton:visited {
+    background: transparent;
+    color: #fff;
+    padding: 2px 0;
+    border: 0;
+}
