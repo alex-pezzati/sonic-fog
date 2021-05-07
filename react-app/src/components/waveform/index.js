@@ -19,8 +19,13 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
   const [numHighlightedBars, setNumHighlightedBars] = useState(0);
 
   const [targetTime, setTargetTime] = useState(0);
-  const [songUrl, setSongUrl] = useState();
   const [trackDuration, setTrackDuration] = useState();
+
+  // Used for updating the store's 'active song data'
+  const [songUrl, setSongUrl] = useState();
+  const [uploaderName, setUploaderName] = useState({})
+  const [albumPhoto, setAlbumPhoto] = useState({})
+  const [songName, setSongName] = useState({})
 
   const storeSongData = useSelector((store) => store.song);
 
@@ -48,8 +53,10 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
       let duration = data.duration;
       setTrackDuration(parseFloat(duration));
 
-      let url = data.songURL;
-      setSongUrl(url);
+      setSongName(data.songName)
+      setUploaderName(data.uploaderName)
+      setAlbumPhoto(data.albumPhoto)
+      setSongUrl(data.songURL);
     })();
   }, [songId]);
 
@@ -214,7 +221,7 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
 
   const seekTrack = (e) => {
     if (storeSongData.activeSongId !== songId) {
-      dispatch(setActiveSongData(songId, songUrl));
+      dispatch(setActiveSongData(songId, songUrl, songName, albumPhoto, uploaderName));
     }
     console.log(targetTime);
     dispatch(setCheckpoint(targetTime));
