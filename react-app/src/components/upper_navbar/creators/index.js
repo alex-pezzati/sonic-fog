@@ -1,4 +1,4 @@
-import { a } from "react-router-dom";
+import React from 'react'
 import * as classes from "./creators.module.css";
 function Creahrefrs() {
   return (
@@ -8,7 +8,7 @@ function Creahrefrs() {
         <ul>
           <li>
             <a
-              rel="noreferrer"
+              rel="noopener noreferrer"
               target="_blank"
               href="https://github.com/alex-pezzati"
             >
@@ -17,7 +17,7 @@ function Creahrefrs() {
           </li>
           <li>
             <a
-              rel="noreferrer"
+              rel="noopener noreferrer"
               target="_blank"
               href="https://www.linkedin.com/"
             >
@@ -25,7 +25,7 @@ function Creahrefrs() {
             </a>
           </li>
           <li>
-            <a rel="noreferrer" target="_blank" href="https://www.google.com">
+            <a rel="noopener noreferrer" target="_blank" href="https://www.google.com">
               Personal Site
             </a>
           </li>
@@ -36,7 +36,7 @@ function Creahrefrs() {
         <ul>
           <li>
             <a
-              rel="noreferrer"
+              rel="noopener noreferrer"
               target="_blank"
               href="https://github.com/alex-pezzati"
             >
@@ -45,7 +45,7 @@ function Creahrefrs() {
           </li>
           <li>
             <a
-              rel="noreferrer"
+              rel="noopener noreferrer"
               target="_blank"
               href="https://www.linkedin.com/in/alex-pezzati/"
             >
@@ -53,7 +53,7 @@ function Creahrefrs() {
             </a>
           </li>
           <li>
-            <a rel="noreferrer" target="_blank" href="https://www.google.com/">
+            <a rel="noopener noreferrer" target="_blank" href="https://www.google.com/">
               Personal Site
             </a>
           </li>
@@ -64,7 +64,7 @@ function Creahrefrs() {
         <ul>
           <li>
             <a
-              rel="noreferrer"
+              rel="noopener noreferrer"
               target="_blank"
               href="https://github.com/JKLolling"
             >
@@ -73,7 +73,7 @@ function Creahrefrs() {
           </li>
           <li>
             <a
-              rel="noreferrer"
+              rel="noopener noreferrer"
               target="_blank"
               href="https://www.linkedin.com/in/jamie-kichuk-45778068/"
             >
@@ -81,7 +81,7 @@ function Creahrefrs() {
             </a>
           </li>
           <li>
-            <a rel="noreferrer" target="_blank" href="https://www.google.com">
+            <a rel="noopener noreferrer" target="_blank" href="https://www.jkichuk.com">
               Personal Site
             </a>
           </li>
@@ -92,7 +92,7 @@ function Creahrefrs() {
         <ul>
           <li>
             <a
-              rel="noreferrer"
+              rel="noopener noreferrer"
               target="_blank"
               href="https://github.com/raymondmay95"
             >
@@ -101,7 +101,7 @@ function Creahrefrs() {
           </li>
           <li>
             <a
-              rel="noreferrer"
+              rel="noopener noreferrer"
               target="_blank"
               href="https://www.linkedin.com/in/coderay/"
             >
@@ -110,7 +110,7 @@ function Creahrefrs() {
           </li>
           <li>
             <a
-              rel="noreferrer"
+              rel="noopener noreferrer"
               target="_blank"
               href="https://www.raymondmay.com"
             >
