@@ -40,15 +40,9 @@ const NavBar = ({ isLoaded }) => {
                     <div className={c.user__profile}>
                         <span
                             className={c.user__avatar}
-                            style={
-                                sessionUser.profile_url
-                                    ? sessionUser.profile_url
-                                    : {
-                                          backgroundImage: `url(
-                                    'https://1000logos.net/wp-content/uploads/2020/08/SoundCloud-Logo.jpg'
-                                )`,
-                                      }
-                            }
+                            style={{
+                                backgroundImage: `url(${sessionUser.profile_url})`,
+                            }}
                         ></span>
                         <span className={c.user__displayName}>
                             {sessionUser.display_name}
