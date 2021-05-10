@@ -54,6 +54,7 @@
     list-style: none;
     margin: 0;
     margin-block-start: 0;
+    padding: 0;
 }
 
 .noStyle > li {
