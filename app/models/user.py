@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(40), nullable=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    profile_url = db.Column(db.String(255), nullable=True)
+    profile_url = db.Column(db.String(255), nullable=False, default='../static/default-user.png')
     banner_url = db.Column(db.String(255), nullable=True)
     song = db.relationship("Song", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")

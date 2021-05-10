@@ -5,11 +5,12 @@ import { useSelector } from "react-redux";
 // Styling
 import classes from "./addComment.module.css";
 
-function PostCommentRoute() {
+function PostCommentRoute({setComments}) {
   const sessionUser = useSelector((state) => state.session.user);
   const [comment, setComment] = useState(null);
   const [showLegend, setShowLegend] = useState(false);
   const { songId } = useParams();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -21,7 +22,15 @@ function PostCommentRoute() {
     });
     if (res.ok) {
       await res.json();
-      window.location.reload();
+
+      // This allows users to post comments with refreshing the page
+      const commentResponse = await fetch(`/api/comments/${songId}`);
+      if (commentResponse.ok) {
+        let { listOfComments } = await commentResponse.json();
+        setComments(listOfComments)
+      }
+
+      setComment('')
     } else {
       console.log("error");
     }
