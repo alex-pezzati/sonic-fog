@@ -11,10 +11,6 @@ function Index({ song }) {
     return null;
   }
 
-  const albumCoverStyle = {
-    background: `url(${song.albumPhoto}) center no-repeat`,
-  };
-
   return (
     <div className={classes.Song_body}>
       <div className={classes.Song_banner__outercontainer}>
@@ -42,9 +38,10 @@ function Index({ song }) {
           </fieldset>
           <div>
             <div
-              style={albumCoverStyle}
               className={classes.Album_Cover_image}
-            ></div>
+            >
+              <img src={song.albumPhoto} className={classes.album_cover} alt='album cover'></img>
+            </div>
           </div>
         </fieldset>
       </div>
