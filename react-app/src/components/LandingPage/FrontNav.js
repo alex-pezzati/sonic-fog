@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import LoginFormModal from '../auth/LoginModal';
-import SignupFormModal from '../auth/SignupModal';
+import CreateAccountModal from '../auth/CreateAccountModal';
+import SignInModal from '../auth/SignInModal';
 
 import { modalLogInOpen, modalSignUpOpen } from '../../store/modal';
 
@@ -20,13 +20,13 @@ const FrontNav = () => {
             <button className={c.loginButton} onClick={openLoginModal}>
                 Sign In
             </button>
-            <LoginFormModal />
+            <SignInModal />
             <button className={c.createAccountButton} onClick={openSignupModal}>
                 Create Account
             </button>
-            <SignupFormModal />
-            <Link className={c.developersButton} to="/">
-                Site Developers
+            <CreateAccountModal />
+            <Link className={c.developersButton} to="/the-developers">
+                The Developers
             </Link>
         </div>
     );

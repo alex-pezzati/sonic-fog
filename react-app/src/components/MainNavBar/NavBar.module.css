@@ -1,0 +1,175 @@
+.header {
+    background: #333;
+    color: #999;
+    font-family: Interstate, Lucida Grande, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+    height: 46px;
+    line-height: 1.5;
+    position: fixed;
+    transition: height 0.2s ease-in-out;
+    width: var(--body-width);
+    z-index: 10;
+}
+
+.container {
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-between;
+    padding: 0;
+    margin: 0 auto;
+    width: 1240px;
+}
+
+.left,
+.middle,
+.right {
+    float: left;
+}
+
+.header__logo {
+    background: linear-gradient(#f70, #f30);
+    float: left;
+}
+
+.logo {
+    background: transparent
+        url(https://a-v2.sndcdn.com/assets/images/brand-1b72dd82.svg) no-repeat
+        10px 12px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAWCAQAAAAs/tcnAAABMUlEQVR4Ac3UJfQUARTGUaxnrBHpPeDu7u7uTg/QO/SK9q1U3KHg2i7fH4exNeSdc9/ZNL/RHfRfjdHOuOajt246b7Fh/T38WO/9OnfM7s+hx3gUh5XNWYN7D4wnTlOe6OGsv/6eQlQFmNX9WScTs4jqwD3DOr/j04gJxHyiOsCiTgITibnEdGIJURc410lgJrGYmE+sIuoCz1301BstGwxueqQLiVXEMmI9cVp7c9WIYmAqkUysIjYQa4mtRAJtJwb//kgXEdOJTcR2Yiuxi2g/wIYfgTnEBmIFsYvYS+whDhCdBFo/ApuJvcRO4hBxhDhMHCU6Cbz5EThKHCe+7BNEcXceKFxB/e7yFs0h1hP1u/OHXHiL6nfnr2nhO6jfR3r50L5cR9O+oX5+/FX8vfkElmh0Xu+KRLEAAAAASUVORK5CYII=);
+    background-size: 48px 22px;
+    box-sizing: border-box;
+    color: #ccc;
+    display: block;
+    height: 46px;
+    width: 69px;
+    margin-right: unset;
+    border: 0;
+    font: 0/0 a;
+    text-shadow: none;
+    text-decoration: none;
+}
+
+.noStyle {
+    list-style: none;
+    margin: 0;
+    margin-block-start: 0;
+    padding: 0;
+}
+
+.noStyle > li {
+    float: left;
+    position: relative;
+}
+
+.navItem {
+    border-right: 1px solid #111;
+    color: #ccc;
+    display: block;
+    padding: 12px 0;
+    height: 46px;
+    width: 104px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.navItemActive {
+    color: #fff !important;
+    background-color: #111;
+    border-bottom: none;
+}
+
+.navItem:visited {
+    color: #ccc;
+}
+
+.signedOut__menu,
+.signedIn__menu {
+    padding: 0;
+    float: left;
+}
+
+.createAccountButton,
+.signInButton,
+.signOutButton {
+    display: inline-block;
+    position: relative;
+    height: 26px;
+    margin: 0;
+    padding: 2px 11px 2px 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    background-color: #fff;
+    cursor: pointer;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: nowrap;
+    font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans,
+        Garuda, Verdana, Tahoma, sans-serif;
+    font-weight: 100;
+    text-align: center;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+.signInButton,
+.signOutButton {
+    border-color: #666;
+    background-color: transparent;
+    color: #fff;
+    float: left;
+    margin: 10px 5px;
+    transition: opacity 0.2s linear;
+}
+
+.createAccountButton {
+    background-color: #f50;
+    border-color: #f50;
+    color: #fff;
+    margin: 10px 5px;
+    transition: opacity 0.2s linear;
+}
+
+.user__button,
+.user__button:visited {
+    box-sizing: border-box;
+    color: #ccc;
+    float: left;
+    height: 46px;
+    padding: 12px 28px 12px 10px;
+    position: relative;
+}
+
+.user__profile {
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+    margin-top: -2px;
+    margin-right: 10px;
+    position: relative;
+}
+
+.user__displayName {
+    color: #ccc;
+    display: inline-block;
+    max-width: 149px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: normal;
+}
+
+.user__avatar {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 6px;
+    height: 26px;
+    width: 26px;
+    opacity: 1;
+    text-align: center;
+    position: relative;
+}
