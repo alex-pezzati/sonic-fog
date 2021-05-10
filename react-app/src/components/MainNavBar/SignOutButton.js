@@ -3,6 +3,8 @@ import { logout } from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalSignUpClose, modalLogInClose } from '../../store/modal';
 
+import c from './NavBar.module.css';
+
 const SignOutButton = () => {
     const dispatch = useDispatch();
     const modalLogInState = useSelector((state) => state.modal.login);
@@ -14,7 +16,11 @@ const SignOutButton = () => {
         if (modalSignUpState) dispatch(modalSignUpClose());
     };
 
-    return <div onClick={onLogout}>Logout</div>;
+    return (
+        <button className={c.signOutButton} onClick={onLogout}>
+            Sign Out
+        </button>
+    );
 };
 
 export default SignOutButton;

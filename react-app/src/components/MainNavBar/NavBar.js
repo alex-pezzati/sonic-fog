@@ -23,11 +23,12 @@ const NavBar = ({ isLoaded }) => {
             <div className={c.signedIn__menu}>
                 <Link
                     exact
-                    to={`/users/${sessionUser.display_name}`}
-                    activeClassName={c.active}
-                    className={c.nav_link_display_name}
+                    to={''}
+                    // replace with proper route when users implemented
+                    // to={`/users/${sessionUser.display_name}`}
+                    className={c.user__button}
                 >
-                    <span className={c.nav_display_name}>
+                    <span className={c.user__displayName}>
                         {sessionUser.display_name}
                     </span>
                 </Link>
@@ -107,7 +108,10 @@ const NavBar = ({ isLoaded }) => {
                 {/* <div className={c.middle}>
                     <div>
                         <form>
-                            <input type="search" placeholder="Noisy and Moist" />
+                            <input
+                                type="search"
+                                placeholder="Noisy and Moist"
+                            />
                             <button type="submit">Search</button>
                         </form>
                     </div>
