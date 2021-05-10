@@ -5,12 +5,12 @@ import Modal from 'react-modal';
 import { signup, login } from '../../../store/session';
 import { modalSignUpClose, modalLogInOpen } from '../../../store/modal';
 
-import c from './SignupModal.module.css';
+import c from './CreateAccountModal.module.css';
 import close from '../../../images/close.svg';
 
 Modal.setAppElement('#root');
 
-function SignupFormModal() {
+function CreateAccountModal() {
     const dispatch = useDispatch();
     const history = useHistory();
     const modalSignUpState = useSelector((state) => state.modal.signup);
@@ -164,4 +164,4 @@ function SignupFormModal() {
     );
 }
 
-export default SignupFormModal;
+export default CreateAccountModal;

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 
 import LogoutButton from '../auth/LogoutButton';
-import CreateAccountModal from '../auth/SignupModal';
+import CreateAccountModal from '../auth/CreateAccountModal';
 import SignInModal from '../auth/SignInModal';
 import { modalLogInOpen, modalSignUpOpen } from '../../store/modal';
 
