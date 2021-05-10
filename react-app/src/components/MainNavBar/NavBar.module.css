@@ -104,7 +104,7 @@
     cursor: pointer;
     color: #333;
     font-size: 14px;
-    line-height: 20px;
+    line-height: 1.5;
     white-space: nowrap;
     font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans,
         Garuda, Verdana, Tahoma, sans-serif;
@@ -142,6 +142,15 @@
     position: relative;
 }
 
+.user__profile {
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+    margin-top: -2px;
+    margin-right: 10px;
+    position: relative;
+}
+
 .user__displayName {
     color: #ccc;
     display: inline-block;
@@ -152,22 +161,13 @@
     word-break: normal;
 }
 
-.user__profile {
-    border-radius: 50%;
-    display: block;
-    text-align: center;
-    margin-top: -2px;
-    /* margin-right: 10px; */
-    position: relative;
-}
-
 .user__avatar {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
     border-radius: 50%;
     display: inline-block;
-    margin-right: 8px;
+    margin-right: 6px;
     height: 26px;
     width: 26px;
     opacity: 1;

@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 
-import SignOutButton from './SignOutButton';
 import CreateAccountModal from '../auth/CreateAccountModal';
 import SignInModal from '../auth/SignInModal';
+import SignOutButton from './SignOutButton';
 import { modalLogInOpen, modalSignUpOpen } from '../../store/modal';
 
 import c from './NavBar.module.css';
