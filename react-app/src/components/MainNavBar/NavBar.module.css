@@ -119,19 +119,15 @@
     background-color: transparent;
     color: #fff;
     float: left;
-    margin-right: 10px;
-    transition: opacity 0.2s linear;
-}
-
-.signOutButton {
     margin: 10px 5px;
+    transition: opacity 0.2s linear;
 }
 
 .createAccountButton {
     background-color: #f50;
     border-color: #f50;
     color: #fff;
-    margin-left: 8px;
+    margin: 10px 5px;
     transition: opacity 0.2s linear;
 }
 
