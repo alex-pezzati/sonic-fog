@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+
 import Modal from 'react-modal';
 import { login } from '../../../store/session';
 import { modalLogInClose, modalSignUpOpen } from '../../../store/modal';
 
 // styling
-import c from './LoginModal.module.css';
+import c from './SignInModal.module.css';
 import close from '../../../images/close.svg';
 
 Modal.setAppElement('#root');
 
-function LoginFormModal() {
+function SignInModal() {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -141,4 +142,4 @@ function LoginFormModal() {
     );
 }
 
-export default LoginFormModal;
+export default SignInModal;

@@ -2,11 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 
-import ProfileButton from './ProfileButton';
-
 import LogoutButton from '../auth/LogoutButton';
-import SignupFormModal from '../auth/SignupModal';
-import LoginFormModal from '../auth/LoginModal';
+import CreateAccountModal from '../auth/SignupModal';
+import SignInModal from '../auth/SignInModal';
 import { modalLogInOpen, modalSignUpOpen } from '../../store/modal';
 
 import c from './NavBar.module.css';
@@ -23,16 +21,6 @@ const NavBar = ({ isLoaded }) => {
         // ONLY for logged in users
         var sessionLinks = (
             <>
-                <li className={c.nav_li_upload}>
-                    <NavLink
-                        exact
-                        to="/upload"
-                        activeClassName={c.active}
-                        className={c.nav_link_upload}
-                    >
-                        Upload
-                    </NavLink>
-                </li>
                 <li className={c.nav_li_display_name}>
                     <NavLink
                         exact
@@ -48,9 +36,6 @@ const NavBar = ({ isLoaded }) => {
                 <li className={c.nav_li_logout}>
                     <LogoutButton />
                 </li>
-                <li className={c.nav_li_credits}>
-                    <ProfileButton user={sessionUser} />
-                </li>
             </>
         );
     } else {
@@ -60,11 +45,11 @@ const NavBar = ({ isLoaded }) => {
                 <button className={c.signInButton} onClick={openLogin}>
                     Sign in
                 </button>
-                <LoginFormModal />
+                <SignInModal />
                 <button className={c.createAccountButton} onClick={openSignup}>
                     Create Account
                 </button>
-                <SignupFormModal />
+                <CreateAccountModal />
             </div>
         );
     }
