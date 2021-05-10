@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 
-import LogoutButton from '../auth/LogoutButton';
+import SignOutButton from './SignOutButton';
 import CreateAccountModal from '../auth/CreateAccountModal';
 import SignInModal from '../auth/SignInModal';
 import { modalLogInOpen, modalSignUpOpen } from '../../store/modal';
@@ -18,30 +18,26 @@ const NavBar = ({ isLoaded }) => {
     const openSignup = () => dispatch(modalSignUpOpen());
 
     if (sessionUser && !sessionUser.errors) {
-        // ONLY for logged in users
+        // ONLY for signed in users
         var sessionLinks = (
-            <>
-                <li className={c.nav_li_display_name}>
-                    <NavLink
-                        exact
-                        to={`/users/${sessionUser.display_name}`}
-                        activeClassName={c.active}
-                        className={c.nav_link_display_name}
-                    >
-                        <span className={c.nav_display_name}>
-                            {sessionUser.display_name}
-                        </span>
-                    </NavLink>
-                </li>
-                <li className={c.nav_li_logout}>
-                    <LogoutButton />
-                </li>
-            </>
+            <div className={c.signedIn__menu}>
+                <Link
+                    exact
+                    to={`/users/${sessionUser.display_name}`}
+                    activeClassName={c.active}
+                    className={c.nav_link_display_name}
+                >
+                    <span className={c.nav_display_name}>
+                        {sessionUser.display_name}
+                    </span>
+                </Link>
+                <SignOutButton />
+            </div>
         );
     } else {
         // ONLY for logged out users
         sessionLinks = (
-            <div className={c.loggedOut__menu}>
+            <div className={c.signedOut__menu}>
                 <button className={c.signInButton} onClick={openLogin}>
                     Sign in
                 </button>

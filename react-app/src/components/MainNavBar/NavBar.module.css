@@ -51,6 +51,7 @@
 .noStyle {
     list-style: none;
     margin: 0;
+    margin-block-start: 0;
 }
 
 .noStyle > li {
@@ -89,7 +90,7 @@
 .right {
 }
 
-.loggedOut__menu {
+.signedOut__menu {
     padding: 9px 10px 10px;
     float: left;
 }
@@ -132,4 +133,9 @@
     color: #fff;
     margin-left: 8px;
     transition: opacity 0.2s linear;
+}
+
+.signedIn__menu {
+    float: left;
+    padding: 0;
 }
