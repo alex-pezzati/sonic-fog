@@ -63,8 +63,7 @@
 }
 
 .navItem {
-    /* border-right: 1px solid #111; */
-    /* border: 1px solid #111; */
+    border-right: 1px solid #111;
     color: #ccc;
     display: block;
     padding: 12px 0;
