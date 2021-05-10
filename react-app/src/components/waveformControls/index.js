@@ -4,6 +4,10 @@ import { setActiveSongData, pauseSong, playSong } from "../../store/song";
 
 const WaveFormControls = ({ songId }) => {
   const [songUrl, setSongUrl] = useState();
+  const [uploaderName, setUploaderName] = useState({})
+  const [albumPhoto, setAlbumPhoto] = useState({})
+  const [songName, setSongName] = useState({})
+
 
   const storeSongData = useSelector((state) => state.song);
   const dispatch = useDispatch();
@@ -16,8 +20,10 @@ const WaveFormControls = ({ songId }) => {
       let response = await fetch(`/api/songs/${songId}`);
       let data = await response.json();
 
-      let url = data.songURL;
-      setSongUrl(url);
+      setSongName(data.songName)
+      setUploaderName(data.uploaderName)
+      setAlbumPhoto(data.albumPhoto)
+      setSongUrl(data.songURL);
     })();
   }, [songId]);
 
@@ -36,7 +42,7 @@ const WaveFormControls = ({ songId }) => {
   const togglePlaying = async (e) => {
     // ...Make this song the active song if it isn't already
     if (storeSongData?.activeSongId !== songId) {
-      dispatch(setActiveSongData(songId, songUrl));
+      dispatch(setActiveSongData(songId, songUrl, songName, albumPhoto, uploaderName));
     }
 
     // Pause or play the song as needed

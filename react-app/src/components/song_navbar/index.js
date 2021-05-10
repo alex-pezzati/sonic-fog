@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'
+import {useHistory} from 'react-router-dom'
 import { setCheckpoint,  playSong, pauseSong, setAudioRef} from '../../store/song'
 import c from './SongNavBar.module.css';
 
@@ -8,17 +9,19 @@ const SongNavBar = () => {
   const storeSongData = useSelector(store => store.song)
 
   const [lastCheckpoint, setLastCheckpoint] = useState(0)
-
   const [sliderValue, setSliderValue] = useState(0)
 
+  const [buttonState, setButtonState] = useState('Pause')
+
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const navAudioRef = useRef()
   const navButtonRef = useRef()
   const startTimeRef = useRef()
   const endTimeRef = useRef()
   const sliderRef = useRef()
-
+  const footerRef = useRef()
 
   useEffect(() => {
     if (navAudioRef.current){
@@ -26,17 +29,16 @@ const SongNavBar = () => {
     }
   }, [navAudioRef, dispatch])
 
-  // This useeffect just checks the store to see if the song is playing.
+  // This useEffect just checks the store to see if the song is playing.
   //    - it pauses/plays the ACTUAL AUDIO COMPONENT
-  //    - if the song has been paused, update the store with the new checkpoint
   useEffect(() => {
     if (storeSongData.isPlaying) {
       navAudioRef.current['play']()
-      navButtonRef.current.innerText = 'Pause'
+      setButtonState('Play')
     }
     else {
       navAudioRef.current['pause']()
-      navButtonRef.current.innerText = 'Play'
+      setButtonState('Pause')
     }
   }, [storeSongData.activeSongId, storeSongData.isPlaying])
 
@@ -47,17 +49,15 @@ const SongNavBar = () => {
     if (!storeSongData.activeSongId) {
       return
     }
-
-    if (e.target.innerText === 'Play') {
-      e.target.innerText = 'Pause'
+    if (buttonState === 'Pause') {
+      setButtonState('Play')
       dispatch(playSong())
 
     } else {
-      e.target.innerText = 'Play'
+      setButtonState('Pause')
       dispatch(pauseSong())
     }
   }
-
 
   // If the track seeks, play that new spot
   useEffect(() => {
@@ -112,34 +112,66 @@ const SongNavBar = () => {
     endTimeRef.current.innerText = calculateMinsAndSecs(totalSecs)
   }
 
+  const navigateToSongPage = () => {
+    history.push(`/songs/${storeSongData.activeSongId}`)
+  }
 
+  let button;
+  if(buttonState === 'Play'){
+    button = <i className="fas fa-pause"></i>
+  } else {
+    button = <i className="fas fa-play"></i>
+  }
+
+  if(storeSongData?.activeSongId){
+    footerRef.current.style.bottom = '0px'
+  }
   return (
-    <footer className={c.navbar_total}>
-      <audio
-        src={storeSongData.activeSongURL}
-        ref={navAudioRef}
-        preload='metadata'
-        loop
-        onTimeUpdate={timeChangeHandler}
-        onLoadedMetadata={updateDurationDisplay}
-      >
-      </audio>
-      <button ref={navButtonRef} onClick={togglePlaying} className={c.play_pause_button}>Play</button>
-      <div className={c.progressbar}>
-        <span ref={startTimeRef} className={c.currentTime}>0:00</span>
-        <input
-          ref={sliderRef}
-          type='range'
-          max={100}
-          min={0}
-          step={.01}
-          value={sliderValue}
-          onChange={seekTrack}
-          id={c.slider}
-        />
-        <span ref={endTimeRef}>0:00</span>
-      </div>
-    </footer>
+      <footer className={c.navbar_total} ref={footerRef}>
+        <div className={c.navbar_content}>
+          <audio
+            src={storeSongData.activeSongURL}
+            ref={navAudioRef}
+            preload='metadata'
+            loop
+            onTimeUpdate={timeChangeHandler}
+            onLoadedMetadata={updateDurationDisplay}
+          >
+          </audio>
+          <button ref={navButtonRef} onClick={togglePlaying} className={c.play_pause_button}>
+            {button}
+          </button>
+          <div className={c.progressbar}>
+            <span ref={startTimeRef} className={c.currentTime}>0:00</span>
+            <input
+              ref={sliderRef}
+              type='range'
+              max={100}
+              min={0}
+              step={.01}
+              value={sliderValue}
+              onChange={seekTrack}
+              id={c.slider}
+            />
+            <span ref={endTimeRef}>0:00</span>
+          </div>
+          {storeSongData?.activeSongId &&
+            <div className={c.navbar_song_data}>
+              <div className={c.album_cover_container}>
+                <img src={storeSongData.activeSongAlbumCover} alt='album cover' className={c.album_cover}></img>
+              </div>
+              <div className={c.name_and_artist}>
+                <div className={c.songName} onClick={navigateToSongPage}>
+                  {storeSongData.activeSongName}
+                </div>
+                <div className={c.artist}>
+                  {storeSongData.activeSongUploader}
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </footer>
   );
 };
 

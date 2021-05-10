@@ -19,10 +19,22 @@ export const playSong = () => {
     };
 };
 
-export const setActiveSongData = (songId, songURL) => {
+// export const setActiveSongData = (songId, songUrl, songName, albumPhoto, uploaderName) => {
+//   return {
+//     type: SET_ACTIVE_SONG_DATA,
+//     data: { songId, songURL }
+//   }
+// }
+export const setActiveSongData = (
+    songId,
+    songUrl,
+    songName,
+    albumPhoto,
+    uploaderName
+) => {
     return {
         type: SET_ACTIVE_SONG_DATA,
-        data: { songId, songURL },
+        data: { songId, songUrl, songName, albumPhoto, uploaderName },
     };
 };
 
@@ -44,9 +56,13 @@ export const setAudioRef = (audioRef) => {
 };
 
 const initialStore = {
-    checkpoint: 0,
     activeSongId: null,
     activeSongURL: null,
+    activeSongName: null,
+    activeSongUploader: null,
+    activeSongAlbumCover: null,
+
+    checkpoint: 0,
     isPlaying: false,
     audioRef: null,
 };
@@ -61,7 +77,10 @@ const songReducer = (songData = initialStore, action) => {
         case SET_ACTIVE_SONG_DATA:
             newData = { ...songData };
             newData['activeSongId'] = action.data.songId;
-            newData['activeSongURL'] = action.data.songURL;
+            newData['activeSongURL'] = action.data.songUrl;
+            newData['activeSongName'] = action.data.songName;
+            newData['activeSongUploader'] = action.data.uploaderName;
+            newData['activeSongAlbumCover'] = action.data.albumPhoto;
             newData['checkpoint'] = 0.0;
             return newData;
         case PAUSE_SONG:

@@ -13,6 +13,11 @@ function SongPageRoute() {
   songId = Number(songId);
   const user = useSelector((state) => state.session.user);
 
+  // When a user first navigates to a song page, they should be at the top of the page.
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   useEffect(() => {
     if (!songId) {
       return;
@@ -41,7 +46,7 @@ function SongPageRoute() {
       {/* This will break for unauthorized users */}
       <fieldset>
         <div className={classes.inner_container}>
-          {user ? <PostCommentRoute /> : null}
+          {user ? <PostCommentRoute setComments={setComments}/> : null}
           <div className={classes.CommentsList}>
             <CommentListRoute comments={comments} />
           </div>
