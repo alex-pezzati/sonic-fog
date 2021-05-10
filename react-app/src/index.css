@@ -16,6 +16,11 @@ body {
     height: var(--body-height);
 }
 
+a,
+a:visited {
+    text-decoration: none;
+}
+
 h1,
 h2,
 h3,

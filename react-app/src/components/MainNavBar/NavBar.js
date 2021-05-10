@@ -19,8 +19,8 @@ const NavBar = ({ isLoaded }) => {
     const openLogin = () => dispatch(modalLogInOpen());
     const openSignup = () => dispatch(modalSignUpOpen());
 
-    // ONLY for logged in users
     if (sessionUser && !sessionUser.errors) {
+        // ONLY for logged in users
         var sessionLinks = (
             <>
                 <li className={c.nav_li_upload}>
@@ -53,58 +53,88 @@ const NavBar = ({ isLoaded }) => {
                 </li>
             </>
         );
-        // ONLY for logged out users
     } else {
+        // ONLY for logged out users
         sessionLinks = (
-            <>
-                <li className={c.nav_li_login}>
-                    <button onClick={openLogin}>Log in</button>
-                    <LoginFormModal />
-                </li>
-                <li className={c.nav_li_signup}>
-                    <button onClick={openSignup}>Sign up</button>
-                    <SignupFormModal />
-                </li>
-            </>
+            <div className={c.loggedOut__menu}>
+                <button className={c.signInButton} onClick={openLogin}>
+                    Sign in
+                </button>
+                <LoginFormModal />
+                <button className={c.createAccountButton} onClick={openSignup}>
+                    Create Account
+                </button>
+                <SignupFormModal />
+            </div>
         );
     }
+
+    /* do i need this?
+    <img
+        src="/static/logo.jpg"
+        alt="logo"
+        className={c.nav_logo}
+    ></img>
+    */
 
     // Regardless of logged in status...
     return (
         <header className={c.header}>
             <div className={c.container}>
-                <div>
+                <div className={c.left}>
                     <div className={c.header__logo}>
                         <Link className={c.logo} to="/">
                             SonicFog
                         </Link>
                     </div>
+                    <nav className={c.left}>
+                        <ul className={`${c.left} ${c.noStyle}`}>
+                            <li>
+                                <NavLink
+                                    activeClassName={c.navItemActive}
+                                    className={c.navItem}
+                                    exact
+                                    to="/"
+                                >
+                                    Home
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    activeClassName={c.navItemActive}
+                                    className={c.navItem}
+                                    exact
+                                    to="/upload"
+                                >
+                                    Upload
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    activeClassName={c.navItemActive}
+                                    className={c.navItem}
+                                    exact
+                                    to="/the-developers"
+                                >
+                                    The Developers
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                {/* comment in search bar when functionality is added */}
+                {/* <div className={c.middle}>
+                    <div>
+                        <form>
+                            <input type="search" placeholder="Noisy and Moist" />
+                            <button type="submit">Search</button>
+                        </form>
+                    </div>
+                </div> */}
+                <div className={c.right}>
+                    <>{isLoaded && sessionLinks}</>
                 </div>
             </div>
-
-            {/* <ul className={c.nav_content}>
-                <li className={c.nav_li_logo}>
-                    <img
-                        src="/static/logo.jpg"
-                        alt="logo"
-                        className={c.nav_logo}
-                    ></img>
-                </li>
-                <li className={c.nav_li_home}>
-                    <NavLink
-                        to="/"
-                        exact={true}
-                        activeClassName={c.active}
-                        className={c.nav_link_home}
-                    >
-                        Home
-                    </NavLink>
-                </li>
-                <li className={c.nav_li_search}>
-                    <input type="search" placeholder="Noisy and Moist" />
-                </li>
-            </ul> */}
-            {/* {isLoaded && sessionLinks} */}
         </header>
     );
 };
