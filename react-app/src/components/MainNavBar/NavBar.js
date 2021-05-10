@@ -17,6 +17,16 @@ const NavBar = ({ isLoaded }) => {
     const openLogin = () => dispatch(modalLogInOpen());
     const openSignup = () => dispatch(modalSignUpOpen());
 
+    /*
+    TODO:
+    -- link user profiles with button
+    -- refactor home/upload/devs links styling
+    -- refactor NavBar into smaller sub components
+    -- style search feature sub component
+    -- implement search feature sub component
+    -- add comments
+    */
+
     if (sessionUser && !sessionUser.errors) {
         // ONLY for signed in users
         var sessionLinks = (
@@ -63,14 +73,6 @@ const NavBar = ({ isLoaded }) => {
             </div>
         );
     }
-
-    /* do i need this?
-    <img
-        src="/static/logo.jpg"
-        alt="logo"
-        className={c.nav_logo}
-    ></img>
-    */
 
     // Regardless of logged in status...
     return (
