@@ -23,14 +23,27 @@ const NavBar = ({ isLoaded }) => {
             <div className={c.signedIn__menu}>
                 <Link
                     exact
-                    to={''}
                     // replace with proper route when users implemented
                     // to={`/users/${sessionUser.display_name}`}
                     className={c.user__button}
                 >
-                    <span className={c.user__displayName}>
-                        {sessionUser.display_name}
-                    </span>
+                    <div className={c.user__profile}>
+                        <span
+                            className={c.user__avatar}
+                            style={
+                                sessionUser.profile_url
+                                    ? sessionUser.profile_url
+                                    : {
+                                          backgroundImage: `url(
+                                    'https://1000logos.net/wp-content/uploads/2020/08/SoundCloud-Logo.jpg'
+                                )`,
+                                      }
+                            }
+                        ></span>
+                        <span className={c.user__displayName}>
+                            {sessionUser.display_name}
+                        </span>
+                    </div>
                 </Link>
                 <SignOutButton />
             </div>
