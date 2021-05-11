@@ -5,6 +5,24 @@
     margin: 0 auto;
 }
 
+.tracks {
+    display: block;
+    padding-bottom: 10px;
+    height: 600px;
+}
+
+.tracks__title {
+    font-size: 24px;
+    font-weight: 100;
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 30px;
+}
+
+.container {
+    margin-right: -20px;
+}
+
 .ulist {
     display: flex;
     /* flex-direction: row; */
@@ -23,22 +41,4 @@
     box-sizing: border-box;
     float: left;
     height: 256px;
-}
-
-.container {
-    margin-right: -20px;
-}
-
-.tracks {
-    display: block;
-    padding-bottom: 10px;
-    height: 600px;
-}
-
-.tracks__title {
-    font-size: 24px;
-    font-weight: 100;
-    text-align: center;
-    padding-top: 20px;
-    margin-bottom: 30px;
 }
