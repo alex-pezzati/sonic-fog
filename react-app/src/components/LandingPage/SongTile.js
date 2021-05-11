@@ -5,13 +5,8 @@ import c from './SongTile.module.css';
 
 const SongTile = ({ song }) => {
     const art = {
-        background: `url(${song.cover_image})`,
+        background: `url(${song.cover_image}) `,
         backgroundSize: 'contain',
-        float: 'left',
-        height: '100%',
-        width: '100%',
-        objectFit: 'contain',
-        opacity: 1,
     };
 
     return (
