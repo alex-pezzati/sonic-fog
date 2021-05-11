@@ -19,7 +19,7 @@ const SongTile = ({ song }) => {
                 <div>
                     <div className={c.artwork__image}>
                         <div className={c.artwork__placeholder}>
-                            <span className={c.image} style={art} />
+                            <span className={c.image} style={art}></span>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,9 @@ const SongTile = ({ song }) => {
                     <NavLink to={`/songs/${song.id}`}>{song.name}</NavLink>
                 </div>
                 <div>
-                    {/* <NavLink to={`/users/${song.user_id}`}> */}
+                    {/* <NavLink to={`/users/${song.user_id}`}>
+                        {song.artist}
+                    </NavLink> */}
                     <NavLink to={`/songs/${song.id}`}>{song.artist}</NavLink>
                 </div>
             </div>
