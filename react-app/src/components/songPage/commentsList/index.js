@@ -35,7 +35,11 @@ function Index({ comments }) {
       </div>
     );
   } else {
-    return <div className={classes.block}></div>;
+    return (
+      <div className={classes.block}>
+        Looks like this song doesn't have any comments. Start the conversation!
+      </div>
+    )
   }
 }
 
