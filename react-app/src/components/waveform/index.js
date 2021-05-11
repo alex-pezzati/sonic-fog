@@ -76,6 +76,7 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
     }
     animationFrameRef.current = requestAnimationFrame(memoizedCallback);
   };
+  // eslint-disable-next-line
   const memoizedCallback = useCallback(updateNumWaveformBars, [
     trackDuration,
     waveformData,
