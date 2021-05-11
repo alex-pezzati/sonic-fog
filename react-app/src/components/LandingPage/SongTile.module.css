@@ -12,12 +12,12 @@
 }
 
 .artwork__image {
+    cursor: pointer;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    cursor: pointer;
 }
 
 .artwork__placeholder {
@@ -83,14 +83,21 @@
 
 .playButton__container {
     cursor: pointer;
+    float: left;
     bottom: 34%;
     left: 34%;
     right: 34%;
     top: 34%;
     position: absolute;
-    /* opacity: 0; */
-    /* visibility: hidden; */
-    /* z-index: 100; */
+    transition: opacity 0.1s, visibility 0.1s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 100;
+}
+
+.artwork:hover .playButton__container {
+    opacity: 1;
+    visibility: visible;
 }
 
 .playButton {

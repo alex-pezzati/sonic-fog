@@ -20,9 +20,9 @@ const SongTile = ({ song }) => {
                     </div>
                 </Link>
                 <div className={c.playButton__container}>
-                    <a className={c.playButton} role="button">
+                    <Link className={c.playButton} role="button">
                         Play
-                    </a>
+                    </Link>
                 </div>
             </div>
             <div className={c.description}>
