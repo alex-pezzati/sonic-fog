@@ -6,9 +6,8 @@
 }
 
 .tracks {
-    display: block;
     padding-bottom: 10px;
-    height: 600px;
+    /* height: 600px; */
 }
 
 .tracks__title {
@@ -24,10 +23,10 @@
 }
 
 .ulist {
-    display: flex;
-    /* flex-direction: row; */
-    /* align-items: center; */
-    list-style-image: initial;
+    /* display: flex; */
+    /* flex-flow: wrap row; */
+    /* justify-content: space-evenly; */
+    /* list-style-image: initial; */
     list-style: none;
     margin: 0;
     padding: 0;

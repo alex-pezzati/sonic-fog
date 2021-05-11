@@ -29,11 +29,11 @@ const Landing = () => {
                     </div>
                     <div className={c.container}>
                         <ul className={c.ulist}>
-                            <li className={c.list}>
-                                {songs.map((song) => (
+                            {songs.map((song) => (
+                                <li className={c.list}>
                                     <SongTile song={song} key={song.id} />
-                                ))}
-                            </li>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>

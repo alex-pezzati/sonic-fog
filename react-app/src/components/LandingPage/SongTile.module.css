@@ -24,7 +24,7 @@ a:visited {
     bottom: 0;
     left: 0;
     right: 0;
-    /* cursor: pointer; */
+    cursor: pointer;
 }
 
 .artwork__placeholder {

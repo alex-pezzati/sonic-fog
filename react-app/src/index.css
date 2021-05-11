@@ -1,7 +1,6 @@
 :root {
     --body-width: 100%;
-    /* --body-width: 100vmax; */
-    --body-height: 100vmax;
+    --body-height: 100%;
 }
 
 body {
