@@ -21,6 +21,7 @@ body {
 a,
 a:active,
 a:visited {
+    text-decoration-color: initial;
     text-decoration: none;
 }
 

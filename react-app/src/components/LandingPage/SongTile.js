@@ -7,12 +7,13 @@ const SongTile = ({ song }) => {
     const art = {
         background: `url(${song.cover_image})`,
         backgroundSize: 'contain',
+        float: 'left',
         height: '100%',
         width: '100%',
-        // objectFit: 'contain',
+        objectFit: 'contain',
         opacity: 1,
-        // float: 'left',
     };
+
     return (
         <div className={c.container}>
             <div className={c.artwork}>
@@ -25,14 +26,24 @@ const SongTile = ({ song }) => {
                 </div>
             </div>
             <div className={c.description}>
-                <div>
-                    <NavLink to={`/songs/${song.id}`}>{song.name}</NavLink>
+                <div className={c.description__song}>
+                    <NavLink className={c.song__name} to={`/songs/${song.id}`}>
+                        {song.name.toUpperCase()}
+                    </NavLink>
                 </div>
-                <div>
-                    {/* <NavLink to={`/users/${song.user_id}`}>
+                <div className={c.description__artist}>
+                    {/* <NavLink
+                        className={c.artist__name}
+                        to={`/users/${song.user_id}`}
+                    >
                         {song.artist}
                     </NavLink> */}
-                    <NavLink to={`/songs/${song.id}`}>{song.artist}</NavLink>
+                    <NavLink
+                        className={c.artist__name}
+                        to={`/songs/${song.id}`}
+                    >
+                        {song.artist}
+                    </NavLink>
                 </div>
             </div>
         </div>

@@ -22,18 +22,12 @@
 }
 
 .ulist {
-    /* display: flex; */
-    /* flex-flow: wrap row; */
-    /* justify-content: space-evenly; */
-    /* list-style-image: initial; */
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
 .list {
-    /* display: flex; */
-    /* justify-content: space-around; */
     padding-right: 20px;
     width: 16.666%;
     box-sizing: border-box;
