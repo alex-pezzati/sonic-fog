@@ -1,3 +1,9 @@
+.parent{
+   display: flex;
+   justify-content: center;
+   position: relative;
+   top: 100px;
+}
 .outer {
    display: flex;
    flex-wrap: wrap;
@@ -6,10 +12,12 @@
    /* flex-direction: column; */
    width: 100%;
    height: 100%;
+
+   max-width: 1240px;
 }
 
 .fieldset {
-   width: fit-content;
+   /* width: fit-content; */
    height: fit-content;
    margin-top: 2rem;
 }
@@ -25,7 +33,7 @@ legend+ul {
 
 .Alex {
    color: var(--secondary-bg-color);
-   width: 40vw;
+   width: 40%;
 }
 
 .Alex a {
@@ -38,7 +46,7 @@ legend+ul {
 
 .Chou {
    color: var(--secondary-bg-color);
-   width: 40vw;
+   width: 40%;
 }
 
 .Chou a {
@@ -51,7 +59,7 @@ legend+ul {
 
 .Jamie {
    color: var(--secondary-bg-color);
-   width: 40vw;
+   width: 40%;;
 }
 
 .Jamie a {
@@ -66,7 +74,7 @@ legend+ul {
 
 .Raymond {
    color: var(--secondary-bg-color);
-   width: 40vw;
+   width: 40%;
 }
 
 .Raymond a {

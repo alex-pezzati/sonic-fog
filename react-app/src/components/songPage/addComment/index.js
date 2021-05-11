@@ -5,8 +5,9 @@ import { useSelector } from "react-redux";
 // Styling
 import classes from "./addComment.module.css";
 
-function PostCommentRoute({setComments}) {
+function PostCommentRoute({ setComments }) {
   const sessionUser = useSelector((state) => state.session.user);
+
   const [comment, setComment] = useState(null);
   const [showLegend, setShowLegend] = useState(false);
   const { songId } = useParams();
@@ -46,6 +47,7 @@ function PostCommentRoute({setComments}) {
       });
     }
   }, [sessionUser]);
+
   return (
     <div className={classes.addComment_container}>
       <div className={classes.addComment_innercontainer}>

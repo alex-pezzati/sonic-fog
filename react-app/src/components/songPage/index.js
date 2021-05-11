@@ -46,7 +46,7 @@ function SongPageRoute() {
       {/* This will break for unauthorized users */}
       <fieldset>
         <div className={classes.inner_container}>
-          {user ? <PostCommentRoute setComments={setComments}/> : null}
+          {user ? <PostCommentRoute setComments={setComments} /> : <div className={classes.block}>Login to Leave a comment!</div>}
           <div className={classes.CommentsList}>
             <CommentListRoute comments={comments} />
           </div>
