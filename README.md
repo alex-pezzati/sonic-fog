@@ -1,8 +1,125 @@
-# Flask React Project
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://github.com/alex-pezzati/sonic-fog">
+    <img src="https://raw.githubusercontent.com/alex-pezzati/sonic-fog/main/react-app/public/favicon.ico" alt="Logo" width="80" height="80">
+  </a>
 
-This is the backend for the Flask React project.
+  <h3 align="center" id="readme">Sonic Fog</h3>
 
-## Getting started
+  <p align="center">
+    A Clone of SoundCloud
+    <br />
+    <a href="#readme"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/github_username/repo_name">View Demo</a>
+    ·
+    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+  </p>
+</p>
+
+
+
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <h4><a href="#built-with">Built With</a></h4>
+        <li><span>JavaScript<span></li>
+        <li><span>Python<span></li>
+        <li><span>Flask | FlaskSQLAlchemy<span></li>
+        <li><span>React | Redux<span></li>
+        <li><span>AWS S3<span></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+![Product Name Screen Shot](./images/sonic-fog.gif)
+
+>Sonic Fog is a successfull example of incorporating React and Redux on the frontend and Flask on the backend. The app uses AWS S3 to store all song and photo data well serializing data to store in PostGRES. It also has a functionaing wave form 🎧.
+
+
+### Built With
+
+* [AWS S3](https://docs.aws.amazon.com/s3/index.html)
+* [React](https://reactjs.org/docs/getting-started.html)
+* [Redux](https://redux.js.org/)
+* [Pydub](http://pydub.com/)
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+To get a local copy up and running follow these simple steps.
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/github_username/repo_name.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+This app is meant to incorporate Flask and React into a clone of the popular music streaming application.
+
+_For more terms, please refer to the [SoundCloud](https://soundcloud.com)_
+
+
+
+<!-- ROADMAP -->
+## Roadmap
+
+See the [open issues](https://github.com/alex-pezzati/sonic-fog/issues) for a list of proposed features (and known issues).
+
+
+
+<!-- CONTRIBUTING -->
+> ## Contributing
+>
+>Although contributions are what make the open source community such an amazing community to be appart of, any contributions you make are **greatly appreciated**, but will not be commited to the master branch.
+
+<br/>
 
 1. Clone this repository (only this branch)
 
@@ -40,62 +157,23 @@ This is the backend for the Flask React project.
 
 6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+<!-- LICENSE -->
+## License
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+For educational purposes only!!!
 
-## Deploy to Heroku
 
-1. Create a new project on Heroku
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-4. Run
 
-   ```bash
-   heroku login
-   ```
+<!-- CONTACT -->
+## Contact
 
-5. Login to the heroku container registry
+Alex Pezzati - [@LinkedIn](https://www.linkedin.com/in/alex-pezzati/) - email
 
-   ```bash
-   heroku container:login
-   ```
+Jamie Kichuk - [@LinkedIn](https://www.linkedin.com/in/jamie-kichuk-45778068/) - [@Website](https://www.raymondmay.com/) - jckichuk@gmail.com
 
-6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-7. Push your docker container to heroku from the root directory of your project.
-   This will build the dockerfile and push the image to your heroku container registry
+Raymond-Arthur May - [@LinkedIn](https://www.linkedin.com/in/coderay/) - [@Website](https://www.raymondmay.com/) - raymond@raymondmay.com
 
-   <!-- {NAME_OF_HEROKU_APP} = sonic-fog -->
-   ```bash
-   heroku container:push web -a sonic-fog
-   ```
+Project Live Link; [https://www.sonic-fog.herokuapp.com](https://github.com/alex-pezzati/sonic-fog)
 
-8. Release your docker container to heroku
-
-   <!-- {NAME_OF_HEROKU_APP} = sonic-fog -->
-   ```bash
-   heroku container:release web -a sonic-fog
-   ```
-
-9. set up your database:
-
-   <!-- {NAME_OF_HEROKU_APP} = sonic-fog -->
-   ```bash
-   heroku run -a sonic-fog flask db upgrade
-   heroku run -a sonic-fog flask seed all
-   ```
-
-10. Under Settings find "Config Vars" and add any additional/secret .env variables.
-
-11. profit
+Project Link: [https://github.com/alex-pezzati/sonic-fog](https://github.com/alex-pezzati/sonic-fog)
