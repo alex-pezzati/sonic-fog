@@ -162,7 +162,7 @@ def get_song_data(song_id):
 # should get 12 songs total to fill rows
 @song_routes.route('/get')
 def get_songs():
-    songs = {"songs": [song.to_dict() for song in Song.query.limit(6).all()]}
+    songs = {"songs": [song.to_dict() for song in Song.query.limit(18).all()]}
     if not songs:
         return
 
