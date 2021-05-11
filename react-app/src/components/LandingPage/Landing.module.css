@@ -1,0 +1,36 @@
+.content {
+    padding: 0 30px;
+    width: 1240px;
+    margin: 0 auto;
+}
+
+.tracks {
+    padding-bottom: 10px;
+    /* height: 600px; */
+}
+
+.tracks__title {
+    font-size: 24px;
+    font-weight: 100;
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 30px;
+}
+
+.container {
+    margin-right: -20px;
+}
+
+.ulist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.list {
+    padding-right: 20px;
+    width: 16.666%;
+    box-sizing: border-box;
+    float: left;
+    height: 256px;
+}

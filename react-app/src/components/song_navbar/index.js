@@ -21,6 +21,7 @@ const SongNavBar = () => {
   const startTimeRef = useRef()
   const endTimeRef = useRef()
   const sliderRef = useRef()
+  const footerRef = useRef()
 
   useEffect(() => {
     if (navAudioRef.current){
@@ -28,21 +29,16 @@ const SongNavBar = () => {
     }
   }, [navAudioRef, dispatch])
 
-  // This useeffect just checks the store to see if the song is playing.
+  // This useEffect just checks the store to see if the song is playing.
   //    - it pauses/plays the ACTUAL AUDIO COMPONENT
-  //    - if the song has been paused, update the store with the new checkpoint
   useEffect(() => {
     if (storeSongData.isPlaying) {
       navAudioRef.current['play']()
       setButtonState('Play')
-      // navButtonRef.current.innerText = 'Pause'
-      // button= <i class="fas fa-pause"></i>
     }
     else {
       navAudioRef.current['pause']()
       setButtonState('Pause')
-      // navButtonRef.current.innerText = 'Play'
-      // button = <i class="fas fa-play"></i>
     }
   }, [storeSongData.activeSongId, storeSongData.isPlaying])
 
@@ -53,16 +49,6 @@ const SongNavBar = () => {
     if (!storeSongData.activeSongId) {
       return
     }
-
-    // if (e.target.innerText === 'Play') {
-    //   e.target.innerText = 'Pause'
-    //   dispatch(playSong())
-
-    // } else {
-    //   e.target.innerText = 'Play'
-    //   dispatch(pauseSong())
-    // }
-
     if (buttonState === 'Pause') {
       setButtonState('Play')
       dispatch(playSong())
@@ -137,13 +123,11 @@ const SongNavBar = () => {
     button = <i className="fas fa-play"></i>
   }
 
-  let style = c.invisible
   if(storeSongData?.activeSongId){
-    style= c.navbar_total
+    footerRef.current.style.bottom = '0px'
   }
   return (
-    // storeSongData?.activeSongId && (
-      <footer className={style}>
+      <footer className={c.navbar_total} ref={footerRef}>
         <div className={c.navbar_content}>
           <audio
             src={storeSongData.activeSongURL}
@@ -188,7 +172,6 @@ const SongNavBar = () => {
           }
         </div>
       </footer>
-    // )
   );
 };
 

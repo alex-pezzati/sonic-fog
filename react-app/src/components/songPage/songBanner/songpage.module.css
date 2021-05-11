@@ -24,6 +24,12 @@
 .Album_Cover_image {
    width: var(--album-cover-image-width);
    height: var(--album-cover-image-height);
+
+   position: relative;
+   right: 0px;
+}
+.album_cover{
+  width: 100%;
 }
 
 .Song_banner__outercontainer {

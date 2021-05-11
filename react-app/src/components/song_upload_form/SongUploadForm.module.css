@@ -1,0 +1,82 @@
+ * {
+   box-sizing: border-box;
+ }
+
+ .form_parent{
+   display: flex;
+   align-items: center;
+ }
+
+  .submit_form{
+      margin: auto auto;
+      width: 30vw;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+      .label{
+        margin: 2em 0px .2em 0px;
+        font-size: 1.2em;
+      }
+
+      .error_message{
+        color: red;
+        margin-bottom: .2em;
+      }
+
+      .album_cover{
+        display: inline-block;
+        border: 2px solid black;
+        text-shadow: 1px 1px #fff;
+
+        font-size: 15px;
+        line-height: 24px;
+        padding: 7px 8px;
+        border-radius: 5px;
+      }
+
+
+      .song_file{
+        display: inline-block;
+        border: 2px solid black;
+        text-shadow: 1px 1px #fff;
+
+        font-size: 15px;
+        line-height: 24px;
+        padding: 7px 8px;
+        border-radius: 5px;
+      }
+
+      .song_title{
+        font-size: 15px;
+        line-height: 24px;
+        padding: 7px 8px;
+        border-radius: 5px;
+
+        border: 2px solid black;
+
+        width: 100%;
+      }
+
+      .upload_button{
+        margin: 2em 0;
+        width: 100%;
+
+        background-color: #ff5500;
+        color: white;
+
+        border: none;
+        border-radius: 2px;
+        box-shadow: 2px 2px 0px 0px lightgrey;
+
+        font-size: 16px;
+        line-height: 18px;
+        padding: 10px 15px;
+        height: 40px;
+      }
+
+    .loading_message{
+      font-size: 1.5em;
+      margin: 0 auto;
+    }

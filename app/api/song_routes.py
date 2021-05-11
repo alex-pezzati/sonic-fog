@@ -27,27 +27,27 @@ def generate_waveform_and_duration(song):
 
     if extension == 'mp3':
 
-      # Turn the song into an AudioSegment object, which will be used to convert the song type
-      mp3 = AudioSegment.from_mp3(song)
+        # Turn the song into an AudioSegment object, which will be used to convert the song type
+        mp3 = AudioSegment.from_mp3(song)
 
-      # The above funtion reads the song file. When that file is read, the pointer moves to the end of the file.
-      # song.seek(0) resets the pointer to the beginning of the file so that it can be read again by other functions below
-      song.seek(0)
+        # The above funtion reads the song file. When that file is read, the pointer moves to the end of the file.
+        # song.seek(0) resets the pointer to the beginning of the file so that it can be read again by other functions below
+        song.seek(0)
 
-      # Make a tempory file to store the wav file we are about to create
-      _, path = tempfile.mkstemp(suffix='.wav')
+        # Make a tempory file to store the wav file we are about to create
+        _, path = tempfile.mkstemp(suffix='.wav')
 
-      # Convert the song to wav and store it in the temporary file
-      mp3.export(path, format="wav")
+        # Convert the song to wav and store it in the temporary file
+        mp3.export(path, format="wav")
 
-      # Read the amplitude data from the temporary file
-      rate, data = wav.read(path)
+        # Read the amplitude data from the temporary file
+        rate, data = wav.read(path)
 
-      # Delete the temporary file
-      os.remove(path)
+        # Delete the temporary file
+        os.remove(path)
 
     elif extension == 'wav':
-      rate, data = wav.read(song)
+        rate, data = wav.read(song)
 
     # Convert the data to mono if it is not already mono (makes future calculations easier)
     if (isinstance(data[0], np.ndarray)):
@@ -64,7 +64,7 @@ def generate_waveform_and_duration(song):
     rounded = np.rint(peaks)
 
     # This is approximately the number of bars that you will display
-    number_of_chunks = 200
+    number_of_chunks = 300
 
     # We don't need all this data. We only need number_of_chunks amount of data.
     # So group the data in chunk_size sized groups and create an array of the average of those chunks
@@ -86,55 +86,54 @@ def generate_waveform_and_duration(song):
         'duration': data.shape[0] / rate
     }
 
-# Need to add: Validations and parsing/storing of other form fields (artist, album, etc)
+
 @song_routes.route("", methods=["POST"])  # technically also updates
 @login_required
 def upload_song():
     form = SongSubmitForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-      song = request.files["song_file"]
-      image = request.files['album_cover']
-      name = request.form['song_name']
+        song = request.files["song_file"]
+        image = request.files['album_cover']
+        name = request.form['song_name']
 
-      data = generate_waveform_and_duration(song)
-      waveform_data = data['waveform_data']
-      duration = data['duration']
-      duration = float(duration)
+        data = generate_waveform_and_duration(song)
+        waveform_data = data['waveform_data']
+        duration = data['duration']
+        duration = float(duration)
 
-      aws_unique_name = get_unique_filename(song.filename)
-      song.filename = aws_unique_name
+        aws_unique_name = get_unique_filename(song.filename)
+        song.filename = aws_unique_name
 
-      upload = upload_file_to_s3(song)
-      if "url" not in upload:
-          # if the dictionary doesn't have a url key
-          # it means that there was an error when we tried to upload
-          # so we send back that error message
-          return upload, 400
-      song_url = upload["url"]
+        upload = upload_file_to_s3(song)
+        if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            print('error', upload)
+            return {'errors': ['song_file : cannot upload file']}
+        song_url = upload["url"]
 
+        image.filename = get_unique_photo_filename(image.filename)
+        upload = upload_photo_to_s3(image)
+        if "url" not in upload:
+            # if the dictionary doesn't have a url key
+            # it means that there was an error when we tried to upload
+            # so we send back that error message
+            print('error', upload)
+            return {'errors': ['album_cover : cannot upload file']}
+        banner_url = upload["url"]
 
-      image.filename = get_unique_photo_filename(image.filename)
-      upload = upload_photo_to_s3(image)
-      if "url" not in upload:
-          # if the dictionary doesn't have a url key
-          # it means that there was an error when we tried to upload
-          # so we send back that error message
-          return {'errors': upload}
-      banner_url = upload["url"]
+        new_song = Song(name=name, user_id=current_user.id,
+                        url=song_url, aws_unique_name=aws_unique_name,
+                        normalized_data=waveform_data, duration=duration,
+                        cover_image=banner_url)
 
-      new_song = Song(name=name, user_id=current_user.id,
-                      url=song_url, aws_unique_name=aws_unique_name,
-                      normalized_data=waveform_data, duration=duration,
-                      cover_image = banner_url)
+        db.session.add(new_song)
+        db.session.commit()
 
-      db.session.add(new_song)
-      db.session.commit()
-
-      return {"id": new_song.id}
+        return {"id": new_song.id}
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
-
-
 
 
 @song_routes.route('/<int:song_id>')
@@ -163,7 +162,7 @@ def get_song_data(song_id):
 # should get 12 songs total to fill rows
 @song_routes.route('/get')
 def get_songs():
-    songs = {"songs": [song.to_dict() for song in Song.query.limit(6).all()]}
+    songs = {"songs": [song.to_dict() for song in Song.query.limit(18).all()]}
     if not songs:
         return
 
