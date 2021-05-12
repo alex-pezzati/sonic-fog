@@ -1,10 +1,17 @@
-# DOCKER-VERSION 1.4.0
-FROM ubuntu:14.04
+# # DOCKER-VERSION 1.4.0
+# FROM ubuntu:14.04
 
-# Boy oh boy I hope this works
-RUN apt-get -y update
-RUN apt-get -y upgrade
-RUN apt-get install -y ffmpeg
+# # Boy oh boy I hope this works
+# # RUN apt-get -y update
+# # RUN apt-get -y upgrade
+# # RUN apt-get install -y ffmpeg
+
+# RUN apt -y update
+# RUN apt install -y ffmpeg
+
+FROM node:alpine
+RUN apk add  --no-cache ffmpeg
+
 
 FROM node:12 AS build-stage
 
