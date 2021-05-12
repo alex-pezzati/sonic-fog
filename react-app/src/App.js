@@ -9,7 +9,6 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import SongPageRoute from './components/songPage';
 import SongNavBar from './components/song_navbar';
 import UploadSong from './components/song_upload_form/AWS_Song';
-// import User from './components/user_profile/User';
 
 import { restoreSession } from './store/session';
 
@@ -40,9 +39,6 @@ function App() {
                     <Route path="/songs/:songId" exact={true}>
                         <SongPageRoute />
                     </Route>
-                    {/* <Route path="/users/:username" exact={true}>
-                        <User />
-                    </Route> */}
                     <ProtectedRoute path="/upload" exact={true}>
                         <UploadSong />
                     </ProtectedRoute>
