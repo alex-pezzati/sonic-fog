@@ -160,7 +160,8 @@ const FrontCarousel = () => {
                     </div>
                 </div>
                 <h1 className={c.logo}>SONICFOG</h1>
-                <FrontNav />
+                {/* add this component back when navbar is removed from '/' */}
+                {/* <FrontNav /> */}
             </div>
         </div>
     );

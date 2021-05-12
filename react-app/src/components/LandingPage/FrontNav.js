@@ -9,6 +9,12 @@ import { modalLogInOpen, modalSignUpOpen } from '../../store/modal';
 
 import c from './FrontNav.module.css';
 
+/*
+THIS COMPONENT IS TEMPORARILY DISABLED
+until the /discover page is implemented
+permitting the removable of the nav bar on '/'
+*/
+
 const FrontNav = () => {
     const dispatch = useDispatch();
 
