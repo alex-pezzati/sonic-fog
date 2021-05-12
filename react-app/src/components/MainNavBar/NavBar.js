@@ -84,7 +84,7 @@ const NavBar = ({ isLoaded }) => {
                                 <NavLink
                                     activeClassName={c.navItemActive}
                                     className={c.navItem}
-                                    // exact
+                                    exact
                                     to="/"
                                 >
                                     Home
@@ -94,7 +94,7 @@ const NavBar = ({ isLoaded }) => {
                                 <NavLink
                                     activeClassName={c.navItemActive}
                                     className={c.navItem}
-                                    // exact
+                                    exact
                                     to="/upload"
                                 >
                                     Upload
@@ -104,7 +104,7 @@ const NavBar = ({ isLoaded }) => {
                                 <NavLink
                                     activeClassName={c.navItemActive}
                                     className={c.navItem}
-                                    // exact
+                                    exact
                                     to="/the-developers"
                                 >
                                     The Developers
