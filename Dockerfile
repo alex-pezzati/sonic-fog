@@ -1,5 +1,10 @@
 FROM node:12 AS build-stage
 
+# Boy oh boy I hope this works
+RUN apt-get -y update
+RUN apt-get -y upgrade
+RUN apt-get install -y ffmpeg
+
 WORKDIR /react-app
 COPY react-app/. .
 
