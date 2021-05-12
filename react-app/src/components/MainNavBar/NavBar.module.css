@@ -15,11 +15,9 @@
 
 .container {
     display: flex;
-    /* flex-direction: row; */
     justify-content: space-between;
     padding: 0;
     margin: 0 auto;
-    /* I added this a quick and dirty fix to prevent the signup and login buttons from dissapearing on small screens */
     max-width: 1240px;
 }
 
