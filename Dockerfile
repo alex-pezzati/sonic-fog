@@ -38,9 +38,9 @@ WORKDIR /var/www
 COPY . .
 COPY --from=build-stage /react-app/build/* app/static/
 
-RUN apt-get -y update
-RUN apt-get -y upgrade
-RUN apt-get install -y ffmpeg
+# RUN apt-get -y update
+# RUN apt-get -y upgrade
+# RUN apt-get install -y ffmpeg
 
 # Install Python Dependencies
 RUN pip install -r requirements.txt
