@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+// import { useHistory } from 'react-router';
 
 import Modal from 'react-modal';
 import { login } from '../../../store/session';
@@ -14,7 +14,7 @@ Modal.setAppElement('#root');
 
 function SignInModal() {
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
 
     const modalLogInState = useSelector((state) => state.modal.login);
 
@@ -40,7 +40,7 @@ function SignInModal() {
         }
         if (user?.email) {
             dispatch(modalLogInClose());
-            history.push(`/`);
+            // history.push(`/`);
         }
     };
 

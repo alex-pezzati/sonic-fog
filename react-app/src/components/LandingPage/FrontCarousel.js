@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { modalLogInOpen } from '../../store/modal';
 
-import FrontNav from './FrontNav';
+// import FrontNav from './FrontNav';
 
 import c from './FrontCarousel.module.css';
 
