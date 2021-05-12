@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { modalLogInOpen } from '../../store/modal';
 
-import FrontNav from './FrontNav';
+// import FrontNav from './FrontNav';
 
 import c from './FrontCarousel.module.css';
 
@@ -160,7 +160,8 @@ const FrontCarousel = () => {
                     </div>
                 </div>
                 <h1 className={c.logo}>SONICFOG</h1>
-                <FrontNav />
+                {/* add this component back when navbar is removed from '/' */}
+                {/* <FrontNav /> */}
             </div>
         </div>
     );

@@ -107,7 +107,7 @@ const NavBar = ({ isLoaded }) => {
                                     exact
                                     to="/the-developers"
                                 >
-                                    The Developers
+                                    The Devs
                                 </NavLink>
                             </li>
                         </ul>
