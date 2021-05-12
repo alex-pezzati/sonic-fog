@@ -1,9 +1,12 @@
-FROM node:12 AS build-stage
+# DOCKER-VERSION 1.4.0
+FROM ubuntu:14.04
 
 # Boy oh boy I hope this works
 RUN apt-get -y update
 RUN apt-get -y upgrade
 RUN apt-get install -y ffmpeg
+
+FROM node:12 AS build-stage
 
 WORKDIR /react-app
 COPY react-app/. .
@@ -27,6 +30,10 @@ EXPOSE 8000
 WORKDIR /var/www
 COPY . .
 COPY --from=build-stage /react-app/build/* app/static/
+
+RUN apt-get -y update
+RUN apt-get -y upgrade
+RUN apt-get install -y ffmpeg
 
 # Install Python Dependencies
 RUN pip install -r requirements.txt
