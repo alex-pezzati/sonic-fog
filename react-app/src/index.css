@@ -13,7 +13,7 @@ body {
     /* below attribute (position: relative) should NOT be global! */
     position: relative;
     margin: 0;
-    top: 50px;
+    top: 46px;
     width: var(--body-width);
     height: var(--body-height);
 }
