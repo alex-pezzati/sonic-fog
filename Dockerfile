@@ -1,15 +1,3 @@
-# # DOCKER-VERSION 1.4.0
-# FROM ubuntu:14.04
-
-# # Boy oh boy I hope this works
-# # RUN apt-get -y update
-# # RUN apt-get -y upgrade
-# # RUN apt-get install -y ffmpeg
-
-# RUN apt -y update
-# RUN apt install -y ffmpeg
-
-
 FROM node:12 AS build-stage
 
 WORKDIR /react-app
@@ -35,6 +23,7 @@ WORKDIR /var/www
 COPY . .
 COPY --from=build-stage /react-app/build/* app/static/
 
+# We need this for audio conversions
 RUN apt-get -y update
 RUN apt-get -y upgrade
 RUN apt-get install -y ffmpeg
