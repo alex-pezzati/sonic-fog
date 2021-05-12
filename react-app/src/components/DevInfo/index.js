@@ -1,3 +1,4 @@
+import React from 'react'
 import * as classes from './DevInfo.module.css';
 
 function DevInfo() {
@@ -9,7 +10,7 @@ function DevInfo() {
                     <ul>
                         <li>
                             <a
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                                 target="_blank"
                                 href="https://github.com/alex-pezzati"
                             >
@@ -18,7 +19,7 @@ function DevInfo() {
                         </li>
                         <li>
                             <a
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                                 target="_blank"
                                 href="https://www.linkedin.com/"
                             >
@@ -27,7 +28,7 @@ function DevInfo() {
                         </li>
                         <li>
                             <a
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                                 target="_blank"
                                 href="https://www.google.com"
                             >
@@ -41,7 +42,7 @@ function DevInfo() {
                     <ul>
                         <li>
                             <a
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                                 target="_blank"
                                 href="https://github.com/alex-pezzati"
                             >
@@ -50,7 +51,7 @@ function DevInfo() {
                         </li>
                         <li>
                             <a
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                                 target="_blank"
                                 href="https://www.linkedin.com/in/alex-pezzati/"
                             >
@@ -59,7 +60,7 @@ function DevInfo() {
                         </li>
                         <li>
                             <a
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                                 target="_blank"
                                 href="https://www.google.com/"
                             >
@@ -73,7 +74,7 @@ function DevInfo() {
                     <ul>
                         <li>
                             <a
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                                 target="_blank"
                                 href="https://github.com/JKLolling"
                             >
@@ -82,7 +83,7 @@ function DevInfo() {
                         </li>
                         <li>
                             <a
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                                 target="_blank"
                                 href="https://www.linkedin.com/in/jamie-kichuk-45778068/"
                             >
@@ -91,7 +92,7 @@ function DevInfo() {
                         </li>
                         <li>
                             <a
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                                 target="_blank"
                                 href="https://www.jkichuk.com"
                             >
@@ -105,7 +106,7 @@ function DevInfo() {
                     <ul>
                         <li>
                             <a
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                                 target="_blank"
                                 href="https://github.com/raymondmay95"
                             >
@@ -114,7 +115,7 @@ function DevInfo() {
                         </li>
                         <li>
                             <a
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                                 target="_blank"
                                 href="https://www.linkedin.com/in/coderay/"
                             >
@@ -123,7 +124,7 @@ function DevInfo() {
                         </li>
                         <li>
                             <a
-                                rel="noreferrer"
+                                rel="noopener noreferrer"
                                 target="_blank"
                                 href="https://www.raymondmay.com"
                             >

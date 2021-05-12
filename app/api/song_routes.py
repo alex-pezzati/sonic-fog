@@ -160,9 +160,17 @@ def get_song_data(song_id):
 
 # get list of songs; built for landing page
 # should get 12 songs total to fill rows
+# @song_routes.route('/get')
+# def get_songs():
+#     songs = {"songs": [song.to_dict() for song in Song.query.limit(18).all()]}
+#     if not songs:
+#         return
+
+#     return jsonify(songs)
+
 @song_routes.route('/get')
 def get_songs():
-    songs = {"songs": [song.to_dict() for song in Song.query.limit(18).all()]}
+    songs = {"songs": [song.to_dict() for song in Song.query.order_by(Song.uploaded_date.desc()).limit(18).all()]}
     if not songs:
         return
 

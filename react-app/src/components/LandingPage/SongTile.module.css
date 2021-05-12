@@ -95,6 +95,18 @@
     z-index: 100;
 }
 
+.playButton__container_visible {
+  cursor: pointer;
+  float: left;
+  bottom: 34%;
+  left: 34%;
+  right: 34%;
+  top: 34%;
+  position: absolute;
+  transition: opacity 0.1s, visibility 0.1s;
+  z-index: 100;
+}
+
 .artwork:hover .playButton__container {
     opacity: 1;
     visibility: visible;
