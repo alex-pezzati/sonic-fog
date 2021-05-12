@@ -1,3 +1,4 @@
+from datetime import datetime
 from .db import db
 
 
@@ -15,6 +16,7 @@ class Song(db.Model):
     release_date = db.Column(db.DateTime())
     aws_unique_name = db.Column(db.String(255), unique=True)
     duration = db.Column(db.Numeric(5, 2))
+    uploaded_date = db.Column(db.DateTime, default=datetime.now())
 
     user = db.relationship("User", back_populates="song")
     comments = db.relationship("Comment", back_populates="song")
@@ -33,5 +35,6 @@ class Song(db.Model):
             "genre": self.genre,
             "description": self.description,
             "release_date": self.release_date,
-            "duration": float(self.duration)
+            "duration": float(self.duration),
+            'uploaded_date': self.uploaded_date
         }

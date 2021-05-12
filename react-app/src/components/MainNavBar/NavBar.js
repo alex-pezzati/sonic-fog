@@ -31,8 +31,8 @@ const NavBar = ({ isLoaded }) => {
         // ONLY for signed in users
         var sessionLinks = (
             <div className={c.signedIn__menu}>
-                <Link
-                    exact
+                <div
+                    // exact
                     // replace with proper route when users implemented
                     // to={`/users/${sessionUser.display_name}`}
                     className={c.user__button}
@@ -48,7 +48,7 @@ const NavBar = ({ isLoaded }) => {
                             {sessionUser.display_name}
                         </span>
                     </div>
-                </Link>
+                </div>
                 <SignOutButton />
             </div>
         );
@@ -84,7 +84,7 @@ const NavBar = ({ isLoaded }) => {
                                 <NavLink
                                     activeClassName={c.navItemActive}
                                     className={c.navItem}
-                                    exact
+                                    // exact
                                     to="/"
                                 >
                                     Home
@@ -94,7 +94,7 @@ const NavBar = ({ isLoaded }) => {
                                 <NavLink
                                     activeClassName={c.navItemActive}
                                     className={c.navItem}
-                                    exact
+                                    // exact
                                     to="/upload"
                                 >
                                     Upload
@@ -104,7 +104,7 @@ const NavBar = ({ isLoaded }) => {
                                 <NavLink
                                     activeClassName={c.navItemActive}
                                     className={c.navItem}
-                                    exact
+                                    // exact
                                     to="/the-developers"
                                 >
                                     The Developers

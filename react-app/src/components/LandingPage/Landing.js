@@ -30,7 +30,7 @@ const Landing = () => {
                     <div className={c.container}>
                         <ul className={c.ulist}>
                             {songs.map((song) => (
-                                <li className={c.list}>
+                                <li className={c.list} key={song.name}>
                                     <SongTile song={song} key={song.id} />
                                 </li>
                             ))}

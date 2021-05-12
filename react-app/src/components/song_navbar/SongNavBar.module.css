@@ -13,6 +13,8 @@
     justify-content: center;
 
     background-color: whitesmoke;
+
+    border-top: 1px solid lightgrey;
 }
 
 .navbar_content {
@@ -20,8 +22,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     width: 70vw;
-}
+    max-width: 1240px;
+  }
 
 .play_pause_button {
     border: none;
@@ -79,10 +83,10 @@
 
 .navbar_song_data {
     height: 100%;
-    width: 20%;
+    width: fit-content;
 
     display: flex;
-    /* justify-content: space-around; */
+    justify-content: flex-end;
 }
 .album_cover_container {
     height: 100%;
