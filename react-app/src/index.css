@@ -11,7 +11,7 @@ body {
         Verdana, Tahoma, sans-serif;
     color: #333;
     /* below attribute (position: relative) should NOT be global! */
-    /* position: relative; */
+    position: relative;
     margin: 0;
     top: 50px;
     width: var(--body-width);
