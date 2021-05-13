@@ -6,10 +6,18 @@ const DevCard = ({ dev }) => {
     return (
         <div className={c.container}>
             <div className={c.picture__container}>
-                <img className={c.picture} src={`${dev.PICTURE}`}></img>
+                <img
+                    className={c.picture}
+                    src={`${dev.PICTURE}`}
+                    alt={''}
+                ></img>
             </div>
-            <div>{dev.NAME}</div>
-            <div>{dev.GITHUB}</div>
+            <div className={c.name}>{dev.NAME}</div>
+            <div>
+                <a href={dev.GITHUB} rel="noopener noreferrer" target="_blank">
+                    GitHub
+                </a>
+            </div>
             <div>{dev.LINKEDIN}</div>
             <div>{dev.PORTFOLIO}</div>
         </div>
@@ -20,13 +28,13 @@ const DevCard = ({ dev }) => {
     //             <legend className={classes.legend}>Alex Pezzati</legend>
     //             <ul>
     //                 <li>
-    //                     <a
-    //                         rel="noopener noreferrer"
-    //                         target="_blank"
-    //                         href="https://github.com/alex-pezzati"
-    //                     >
-    //                         GitHub
-    //                     </a>
+    // <a
+    //     rel="noopener noreferrer"
+    //     target="_blank"
+    //     href="https://github.com/alex-pezzati"
+    // >
+    //     GitHub
+    // </a>;
     //                 </li>
     //                 <li>
     //                     <a
