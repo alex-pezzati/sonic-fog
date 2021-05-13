@@ -170,8 +170,7 @@ def get_song_data(song_id):
 
 @song_routes.route('/get')
 def get_songs():
-    # increase the number of songs for testing purposes
-    songs = {"songs": [song.to_dict() for song in Song.query.order_by(Song.uploaded_date.desc()).limit(100).all()]}
+    songs = {"songs": [song.to_dict() for song in Song.query.order_by(Song.uploaded_date.desc()).limit(18).all()]}
     if not songs:
         return
 
