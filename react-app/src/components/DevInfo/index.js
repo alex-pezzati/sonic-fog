@@ -5,12 +5,13 @@ import c from './DevInfo.module.css';
 
 function DevInfo() {
     // dev info constants
+    // PICTURE => github profile picture; should live update here!
     const RAYMOND = {
         NAME: 'Raymond-Arthur May',
         GITHUB: 'https://github.com/raymondmay95',
         LINKEDIN: 'https://www.linkedin.com/in/coderay',
         PORTFOLIO: 'https://www.raymondmay.com',
-        PICTURE: 'https://avatars.githubusercontent.com/u/58381081?v=4',
+        PICTURE: 'https://avatars.githubusercontent.com/u/67204493?v=4',
     };
 
     const JAMIE = {
@@ -26,7 +27,7 @@ function DevInfo() {
         GITHUB: 'https://github.com/alex-pezzati',
         LINKEDIN: 'https://www.linkedin.com/in/alex-pezzati',
         PORTFOLIO: 'https://github.com/alex-pezzati',
-        PICTURE: 'https://avatars.githubusercontent.com/u/67204493?v=4',
+        PICTURE: 'https://avatars.githubusercontent.com/u/58381081?v=4',
     };
 
     const devs = [RAYMOND, JAMIE, ALEX];

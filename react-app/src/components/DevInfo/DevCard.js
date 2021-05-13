@@ -3,7 +3,6 @@ import React from 'react';
 import c from './DevCard.module.css';
 
 const DevCard = ({ dev }) => {
-    console.log(dev.PICTURE);
     return (
         <div className={c.container}>
             <img className={c.picture} src={`${dev.PICTURE}`}></img>
