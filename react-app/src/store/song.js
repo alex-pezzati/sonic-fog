@@ -4,8 +4,15 @@ const SET_ACTIVE_SONG_DATA = 'song/SET_ACTIVE_SONG';
 const SET_CHECKPOINT = 'song/SET_CHECKPOINT';
 const PAUSE_SONG = 'song/PAUSE_SONG';
 const PLAY_SONG = 'song/PLAY_SONG';
-
 const SET_AUDIO_REF = 'song/SET_AUDIO_REF';
+const SET_KEYWORD = 'song/SET_KEYWORD'
+
+export const setKeyWord = (keyword) => {
+  return {
+    type: SET_KEYWORD,
+    keyword
+  }
+}
 
 export const pauseSong = () => {
     return {
@@ -19,12 +26,6 @@ export const playSong = () => {
     };
 };
 
-// export const setActiveSongData = (songId, songUrl, songName, albumPhoto, uploaderName) => {
-//   return {
-//     type: SET_ACTIVE_SONG_DATA,
-//     data: { songId, songURL }
-//   }
-// }
 export const setActiveSongData = (
     songId,
     songUrl,
@@ -65,6 +66,8 @@ const initialStore = {
     checkpoint: 0,
     isPlaying: false,
     audioRef: null,
+
+    keyword: null
 };
 
 const songReducer = (songData = initialStore, action) => {
@@ -94,6 +97,10 @@ const songReducer = (songData = initialStore, action) => {
         case SET_AUDIO_REF:
             newData = { ...songData };
             newData['audioRef'] = action.audioRef;
+            return newData;
+        case SET_KEYWORD:
+            newData = { ...songData };
+            newData['keyword'] = action.keyword;
             return newData;
         default:
             return songData;

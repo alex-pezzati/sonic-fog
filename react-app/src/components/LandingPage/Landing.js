@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
+import {useSelector} from 'react-redux'
+
 import FrontCarousel from './FrontCarousel';
 import SongTile from './SongTile';
 import c from './Landing.module.css';
 
 const Landing = () => {
     const [songs, setSongs] = useState([]);
+
+    const storeSongData = useSelector(store => store.song)
 
     // grabs song art/info for display
     const getSongs = async () => {
@@ -16,8 +20,16 @@ const Landing = () => {
 
     // runs on initial render
     useEffect(() => {
-        getSongs();
-    }, []);
+      (async() => {
+        if(storeSongData?.keyword){
+          const res = await fetch(`/api/songs/${storeSongData.keyword}`)
+          const data = await res.json()
+          setSongs(data.songs)
+        } else {
+          getSongs();
+        }
+      })()
+    }, [storeSongData]);
 
     return (
         <div className={c.content}>
