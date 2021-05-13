@@ -32,14 +32,15 @@ const SearchBar = () => {
             <form className={c.search__form}>
                 <input
                     className={c.search__input}
-                    type="search"
-                    placeholder="search for songs"
+                    autoComplete={false}
                     onChange={(e) => debouncedSearch(e)}
+                    placeholder="search for songs"
+                    type="search"
                 ></input>
                 <button
                     className={c.search__submit}
-                    type="submit"
                     onClick={(e) => e.preventDefault()}
+                    type="submit"
                 ></button>
             </form>
         </div>
