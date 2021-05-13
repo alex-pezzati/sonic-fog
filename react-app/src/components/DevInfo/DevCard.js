@@ -3,11 +3,15 @@ import React from 'react';
 import c from './DevCard.module.css';
 
 const DevCard = ({ dev }) => {
-    console.log(dev);
-    console.log(dev.NAME);
+    console.log(dev.PICTURE);
     return (
         <div className={c.container}>
-            <div>test</div>
+            <div
+                className={c.picture}
+                style={{
+                    backgroundImage: `url(${dev.PICTURE})`,
+                }}
+            ></div>
             <div>{dev.NAME}</div>
             <div>{dev.GITHUB}</div>
             <div>{dev.LINKEDIN}</div>

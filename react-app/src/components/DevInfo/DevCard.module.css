@@ -7,3 +7,9 @@
     height: 500px;
     border: hotpink 1px solid;
 }
+
+.picture {
+    background: no-repeat center;
+    height: 200px;
+    border-radius: 50%;
+}
