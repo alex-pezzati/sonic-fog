@@ -13,28 +13,34 @@ const DevCard = ({ dev }) => {
                 ></img>
             </div>
             <div className={c.name}>{dev.NAME}</div>
-            <div>
-                <a href={dev.GITHUB} rel="noopener noreferrer" target="_blank">
-                    GitHub
-                </a>
-            </div>
-            <div>
-                <a
-                    href={dev.LINKEDIN}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                >
-                    LinkedIn
-                </a>
-            </div>
-            <div>
-                <a
-                    href={dev.PORTFOLIO}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                >
-                    Personal Site
-                </a>
+            <div className={c.links__container}>
+                <div>
+                    <a
+                        href={dev.GITHUB}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    >
+                        GitHub
+                    </a>
+                </div>
+                <div>
+                    <a
+                        href={dev.LINKEDIN}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    >
+                        LinkedIn
+                    </a>
+                </div>
+                <div>
+                    <a
+                        href={dev.PORTFOLIO}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    >
+                        Personal Site
+                    </a>
+                </div>
             </div>
         </div>
     );

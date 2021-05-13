@@ -18,7 +18,7 @@
     border-radius: 50%;
     height: 200px;
     width: 200px;
-    box-shadow: rgb(32 32 32 / 10%) 0px 0px 10px 10px;
+    box-shadow: rgb(32 32 32 / 30%) 0px 0px 10px 10px;
 }
 
 .picture__container {
@@ -27,4 +27,10 @@
 }
 
 .name {
+}
+
+.links__container {
+    width: auto;
+    display: flex;
+    justify-content: center;
 }
