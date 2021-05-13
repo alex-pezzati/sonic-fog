@@ -12,6 +12,7 @@ function DevInfo() {
         LINKEDIN: 'https://www.linkedin.com/in/coderay',
         PORTFOLIO: 'https://www.raymondmay.com',
         PICTURE: 'https://avatars.githubusercontent.com/u/67204493?v=4',
+        EMAIL: 'aapezzati@gmail.com',
     };
 
     const JAMIE = {
@@ -20,6 +21,7 @@ function DevInfo() {
         LINKEDIN: 'https://www.linkedin.com/in/jamie-kichuk-45778068',
         PORTFOLIO: 'https://www.jkichuk.com',
         PICTURE: 'https://avatars.githubusercontent.com/u/24994328?v=4',
+        EMAIL: 'jckichuk@gmail.com',
     };
 
     const ALEX = {
@@ -28,6 +30,7 @@ function DevInfo() {
         LINKEDIN: 'https://www.linkedin.com/in/alex-pezzati',
         PORTFOLIO: 'https://github.com/alex-pezzati',
         PICTURE: 'https://avatars.githubusercontent.com/u/58381081?v=4',
+        EMAIL: 'raymond.may.95@outlook.com',
     };
 
     const devs = [RAYMOND, JAMIE, ALEX];
