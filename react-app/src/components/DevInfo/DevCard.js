@@ -39,6 +39,7 @@ const DevCard = ({ dev }) => {
                     <div className={c.email}></div>
                 </a>
             </div>
+            <div className={c.line}></div>
         </div>
     );
 };

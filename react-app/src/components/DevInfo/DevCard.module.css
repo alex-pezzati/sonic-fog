@@ -71,3 +71,11 @@
     /* background: url(http://assets.stickpng.com/images/584856bce0bb315b0f7675ad.png)
         center / 100% no-repeat; */
 }
+
+.line {
+    border-bottom-color: rgb(41, 41, 41);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    margin: 25px 70px;
+    width: 200px;
+}
