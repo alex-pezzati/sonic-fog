@@ -33,11 +33,14 @@ function DevInfo() {
     const devs = [RAYMOND, JAMIE, ALEX];
 
     return (
-        <div className={c.container}>
-            {devs.map((dev) => (
-                <DevCard dev={dev} key={dev.name} />
-            ))}
-        </div>
+        <>
+            <h1 className={c.header}>Meet The Devs Behind SonicFog!</h1>
+            <div className={c.container}>
+                {devs.map((dev) => (
+                    <DevCard dev={dev} key={dev.name} />
+                ))}
+            </div>
+        </>
     );
 }
 

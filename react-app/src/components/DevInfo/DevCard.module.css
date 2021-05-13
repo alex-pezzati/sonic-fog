@@ -42,10 +42,13 @@
         center / contain;
     height: 50px;
     width: 50px;
-    z-index: 2;
 }
 
 .github {
+    background: url(https://www.sferalabs.cc/wp-content/uploads/github-logo-white.png)
+        center / 170% no-repeat;
+    height: 50px;
+    width: 50px;
 }
 
 .personal {

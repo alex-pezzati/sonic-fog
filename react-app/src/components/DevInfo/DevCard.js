@@ -15,7 +15,7 @@ const DevCard = ({ dev }) => {
             <h3 className={c.name}>{dev.NAME}</h3>
             <div className={c.links__container}>
                 <a href={dev.GITHUB} rel="noopener noreferrer" target="_blank">
-                    <div>GitHub</div>
+                    <div className={c.github}></div>
                 </a>
                 <a
                     href={dev.LINKEDIN}
@@ -29,7 +29,7 @@ const DevCard = ({ dev }) => {
                     rel="noopener noreferrer"
                     target="_blank"
                 >
-                    <div>Personal Site</div>
+                    <div className={c.personal}>Personal Site</div>
                 </a>
             </div>
         </div>
