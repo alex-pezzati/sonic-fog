@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 
 import CreateAccountModal from '../auth/CreateAccountModal';
+import SearchBar from './SearchBar.js';
 import SignInModal from '../auth/SignInModal';
 import SignOutButton from './SignOutButton';
 import { modalLogInOpen, modalSignUpOpen } from '../../store/modal';
 
-import SearchBar from './search_bar'
-
-import c from './NavBar.module.css';
+import c from './MainNavBar.module.css';
 
 const NavBar = ({ isLoaded }) => {
     const dispatch = useDispatch();
@@ -115,9 +114,8 @@ const NavBar = ({ isLoaded }) => {
                         </ul>
                     </nav>
                 </div>
-                {/* comment in search bar when functionality is added */}
                 <div className={c.middle}>
-                    <SearchBar></SearchBar>
+                    <SearchBar />
                 </div>
                 <div className={c.right}>
                     <>{isLoaded && sessionLinks}</>
