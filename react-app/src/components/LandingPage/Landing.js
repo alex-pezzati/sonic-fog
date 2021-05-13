@@ -16,6 +16,10 @@ const Landing = () => {
         const res = await fetch(`/api/songs/get`);
         const data = await res.json();
         await setSongs(data.songs);
+
+        for (let i = 0; i < data.songs.length; i++){
+          console.log(data.songs[i].name, data.songs[i].uploaded_date)
+        }
     };
 
     // runs on initial render
