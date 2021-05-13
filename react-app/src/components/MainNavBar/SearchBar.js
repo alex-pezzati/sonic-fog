@@ -39,7 +39,7 @@ const SearchBar = () => {
                 <button
                     className={c.search__submit}
                     type="submit"
-                    onClick={(e) => debouncedSearch(e)}
+                    onClick={(e) => e.preventDefault()}
                 ></button>
             </form>
         </div>
