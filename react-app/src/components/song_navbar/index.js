@@ -26,8 +26,8 @@ const SongNavBar = () => {
   const sliderRef = useRef()
   const footerRef = useRef()
 
-  const volumeRef = useRef()
-  const volumeButtonRef = useRef()
+  const volumeContainerRef = useRef()
+  const volumeSliderRef = useRef()
 
   const timeoutRef = useRef()
 
@@ -137,11 +137,11 @@ const SongNavBar = () => {
 
   const displayVolume = () => {
     clearTimeout(timeoutRef.current)
-    volumeRef.current.style.display = 'flex'
+    volumeContainerRef.current.style.display = 'flex'
   }
   const hideVolume = () => {
     timeoutRef.current = setTimeout(() => {
-      volumeRef.current.style.display = 'none'
+      volumeContainerRef.current.style.display = 'none'
     }, 500);
   }
 
@@ -152,13 +152,19 @@ const SongNavBar = () => {
       setVolume(0)
     }
   }
-
   const changeVolume = (e) => {
     setVolume(e.target.value)
 
     if(e.target.value > 0) setPreMuteVolume(e.target.value)
     else setPreMuteVolume(5)
   }
+
+  useEffect(() => {
+    navAudioRef.current.volume = parseInt(volume) / 100
+
+    volumeSliderRef.current.style.background = `linear-gradient(to right, #FD3700 0%, #FD3700 ${volume}%, grey ${volume}%, grey 100%)`
+  }, [volume])
+
 
   let volumeButton
   if (volume > 50){
@@ -188,21 +194,6 @@ const SongNavBar = () => {
             onLoadedMetadata={updateDurationDisplay}
           >
           </audio>
-          <div className={c.volume_controls}>
-            <div className={c.volume_slider_container} ref={volumeRef} onMouseOver={displayVolume} onMouseLeave={hideVolume}>
-              <input
-                className={c.volume_slider}
-                type="range"
-                min={0}
-                max={100}
-                onChange = {changeVolume}
-                value={volume}>
-              </input>
-            </div>
-            <div className={c.volume_button} onMouseOver={displayVolume} onMouseLeave={hideVolume} onClick={muteVolume}>
-              {volumeButton}
-            </div>
-          </div>
           <button ref={navButtonRef} onClick={togglePlaying} className={c.play_pause_button}>
             {button}
           </button>
@@ -218,7 +209,23 @@ const SongNavBar = () => {
               onChange={seekTrack}
               id={c.slider}
             />
-            <span ref={endTimeRef}>0:00</span>
+            <span ref={endTimeRef} className={c.duration}>0:00</span>
+          </div>
+          <div className={c.volume_controls}>
+            <div className={c.volume_slider_container} ref={volumeContainerRef} onMouseOver={displayVolume} onMouseLeave={hideVolume}>
+              <input
+                ref={volumeSliderRef}
+                className={c.volume_slider}
+                type="range"
+                min={0}
+                max={100}
+                onChange = {changeVolume}
+                value={volume}>
+              </input>
+            </div>
+            <div className={c.volume_button} onMouseOver={displayVolume} onMouseLeave={hideVolume} onClick={muteVolume}>
+              {volumeButton}
+            </div>
           </div>
           {storeSongData?.activeSongId &&
             <div className={c.navbar_song_data}>

@@ -29,7 +29,7 @@ const SearchBar = () => {
 
   return (
     <div>
-      <form>
+      <form onSubmit={e => e.preventDefault()}>
         <input
           type='search'
           placeholder='search for songs'

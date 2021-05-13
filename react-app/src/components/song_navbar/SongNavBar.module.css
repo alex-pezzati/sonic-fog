@@ -23,8 +23,7 @@
     align-items: center;
     justify-content: space-between;
 
-    width: 70vw;
-    max-width: 1240px;
+    width: 1240px;
   }
 
 .play_pause_button {
@@ -32,7 +31,11 @@
 }
 
 .volume_controls{
+  display: flex;
+  justify-content: center;
+
   width: 2em;
+  margin: 0px 10px;
 }
 
     .volume_button{
@@ -49,7 +52,7 @@
 
       display: none;
 
-      transform: rotate(-90deg) translate(120px, -95px);
+      transform: rotate(-90deg) translate(120px);
 
       width: 200px;
       height: 30px;
@@ -90,13 +93,18 @@
 
 .currentTime {
     color: #fd3700;
+    margin: 0px 10px;
+}
+
+.duration {
+  margin: 0px 10px;
 }
 
 .progressbar {
     width: 80%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 #slider::-webkit-slider-thumb {
@@ -124,7 +132,7 @@
     background: #fd3700;
 }
 #slider {
-    width: 80%;
+    width: 90%;
     height: 1px;
     outline: none;
 
@@ -140,10 +148,12 @@
 
 .navbar_song_data {
     height: 100%;
-    width: fit-content;
+    /* width: fit-content; */
+    width: 15%;
 
     display: flex;
-    justify-content: flex-end;
+
+    margin-left: 10px;
 }
 .album_cover_container {
     height: 100%;
@@ -171,4 +181,11 @@
 }
 .artist {
     color: #666;
+}
+
+
+@media screen and (max-width: 1240px) {
+  .navbar_content {
+    width: 100%;
+  }
 }
