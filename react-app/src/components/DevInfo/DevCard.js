@@ -4,8 +4,8 @@ import c from './DevCard.module.css';
 
 const DevCard = ({ dev }) => {
     /* TODO:
-        -- settle on proper icons (svg) for hover effect to work
-        --
+        -- settle on proper icons (svg) for hover effect to work consistently
+        -- not sure what else
     */
 
     return (
