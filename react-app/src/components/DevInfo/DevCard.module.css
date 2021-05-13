@@ -9,8 +9,14 @@
 }
 
 .picture {
+    display: block;
     background: center;
+    border-radius: 50%;
     height: 200px;
     width: 200px;
-    border-radius: 50%;
+}
+
+.picture__container {
+    display: flex;
+    justify-content: center;
 }

@@ -5,7 +5,9 @@ import c from './DevCard.module.css';
 const DevCard = ({ dev }) => {
     return (
         <div className={c.container}>
-            <img className={c.picture} src={`${dev.PICTURE}`}></img>
+            <div className={c.picture__container}>
+                <img className={c.picture} src={`${dev.PICTURE}`}></img>
+            </div>
             <div>{dev.NAME}</div>
             <div>{dev.GITHUB}</div>
             <div>{dev.LINKEDIN}</div>
