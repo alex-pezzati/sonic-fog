@@ -31,6 +31,13 @@ const DevCard = ({ dev }) => {
                 >
                     <div className={c.personal}>Personal Site</div>
                 </a>
+                <a
+                    href={`mailto:${dev.EMAIL}`}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                >
+                    <div className={c.email}></div>
+                </a>
             </div>
         </div>
     );

@@ -37,19 +37,31 @@
     justify-content: center;
 }
 
+.email,
+.linkedin,
+.github {
+    height: 50px;
+    width: 50px;
+}
+
 .linkedin {
     background: url(https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-linkedin-circle-512.png)
         center / contain;
-    height: 50px;
-    width: 50px;
 }
 
 .github {
     background: url(https://www.sferalabs.cc/wp-content/uploads/github-logo-white.png)
         center / 170% no-repeat;
-    height: 50px;
-    width: 50px;
 }
 
 .personal {
+}
+
+.email {
+    /* background: url(http://assets.stickpng.com/images/584856bce0bb315b0f7675ad.png)
+        center / 100% no-repeat; */
+    background: url(https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/245532/72-512.png)
+        center / contain;
+    /* background: url(https://www.iconsdb.com/icons/preview/red/email-14-xxl.png)
+        170%; */
 }
