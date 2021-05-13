@@ -4,7 +4,11 @@ import c from './DevCard.module.css';
 
 const DevCard = (dev) => {
     console.log(dev);
-    return <div></div>;
+    return (
+        <div className={c.container}>
+            <div>test</div>
+        </div>
+    );
     // <div className={classes.parent}>
     //     <div className={classes.outer}>
     //         <fieldset className={(classes.fieldset, classes.Alex)}>

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import DevCard from './DevCard';
+import c from './DevInfo.module.css';
 
 function DevInfo() {
     // dev info constants
@@ -27,7 +28,13 @@ function DevInfo() {
 
     const devs = [RAYMOND, JAMIE, ALEX];
 
-    return devs.map((dev) => <DevCard dev={dev} key={dev.name} />);
+    return (
+        <div className={c.container}>
+            {devs.map((dev) => (
+                <DevCard dev={dev} key={dev.name} />
+            ))}
+        </div>
+    );
 }
 
 export default DevInfo;
