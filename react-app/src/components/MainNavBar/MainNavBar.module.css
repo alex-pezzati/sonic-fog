@@ -23,9 +23,12 @@
 }
 
 .left,
-.middle,
 .right {
     float: left;
+}
+
+.middle {
+    flex: 1;
 }
 
 .header__logo {
@@ -173,4 +176,16 @@
     opacity: 1;
     text-align: center;
     position: relative;
+}
+
+.search {
+}
+
+.search__form {
+}
+
+.search__input {
+}
+
+.search__submit {
 }

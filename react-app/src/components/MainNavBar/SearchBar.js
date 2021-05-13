@@ -27,13 +27,15 @@ const SearchBar = () => {
     const debouncedSearch = debounce(search, 250);
 
     return (
-        <div>
-            <form>
+        <div className={c.search}>
+            <form className={c.search__form}>
                 <input
+                    className={c.search__input}
                     type="search"
                     placeholder="search for songs"
                     onChange={(e) => debouncedSearch(e)}
                 ></input>
+                <button className={c.search__submit} type="submit"></button>
             </form>
         </div>
     );
