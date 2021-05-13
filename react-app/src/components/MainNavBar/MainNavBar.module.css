@@ -27,6 +27,10 @@
     float: left;
 }
 
+.right {
+    width: 220px;
+}
+
 .middle {
     flex: 1;
 }
@@ -178,7 +182,10 @@
     position: relative;
 }
 
+/* search bar styling */
 .search {
+    /* display: flex;
+    justify-content: space-between; */
     visibility: visible;
 }
 
@@ -186,6 +193,7 @@
     padding: 9px 10px 8px;
     position: relative;
     appearance: none;
+    max-width: 500px;
 }
 
 .search__input {
@@ -209,7 +217,9 @@
         0 no-repeat;
     width: 15px;
     height: 15px;
+    /* left: 0px; */
     right: 20px;
+    /* margin: 0 30px 0 0; */
     top: 15px;
     border: 0;
     padding: 0;
