@@ -18,8 +18,8 @@
 
 .fieldset {
     /* width: fit-content; */
-    height: fit-content;
-    margin-top: 2rem;
+    /* height: fit-content; */
+    /* margin-top: 2rem; */
 }
 
 .legend {
@@ -41,19 +41,6 @@ legend + ul {
 }
 
 .Alex a:hover {
-    color: black;
-}
-
-.Chou {
-    color: var(--secondary-bg-color);
-    width: 40%;
-}
-
-.Chou a {
-    color: var(--secondary-bg-color);
-}
-
-.Chou a:hover {
     color: black;
 }
 
