@@ -1,22 +1,30 @@
 .container {
-    /* display: flex;
-    justify-content: center; */
+    background-color: #333;
+    color: white;
     margin: 5px;
     padding: 20px;
     width: 400px;
     height: 500px;
-    border: hotpink 1px solid;
+    border: #f50 1px solid;
+    border-radius: 3px;
+    box-sizing: border-box;
+    box-shadow: rgb(32 32 32 / 30%) 0px 0px 30px 30px inset;
 }
 
 .picture {
     display: block;
     background: center;
+    border: #f50 1px solid;
     border-radius: 50%;
     height: 200px;
     width: 200px;
+    box-shadow: rgb(32 32 32 / 10%) 0px 0px 10px 10px;
 }
 
 .picture__container {
     display: flex;
     justify-content: center;
+}
+
+.name {
 }
