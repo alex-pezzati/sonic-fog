@@ -1,0 +1,89 @@
+.container {
+    background-color: #333;
+    border: #f50 1px solid;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: rgb(32 32 32 / 30%) 0px 0px 30px 30px inset;
+    margin: 5px;
+    padding: 30px;
+    height: 500px;
+    width: 400px;
+}
+
+.picture {
+    display: block;
+    background: center;
+    border: #f50 1px solid;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    box-shadow: rgb(32 32 32 / 30%) 0px 0px 10px 10px;
+}
+
+.picture__container {
+    display: flex;
+    justify-content: center;
+}
+
+.name {
+    font: 20px Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana,
+        Tahoma, sans-serif;
+    color: white;
+    text-align: center;
+    margin: 45px 45px 0px 45px;
+}
+
+.links__container {
+    display: flex;
+    justify-content: center;
+    width: auto;
+}
+
+.github,
+.linkedin,
+.personal,
+.email {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin: 14px;
+}
+
+.github:hover,
+.linkedin:hover,
+.personal:hover,
+.email:hover {
+    background-color: #111;
+}
+
+.github {
+    background: url(https://www.sferalabs.cc/wp-content/uploads/github-logo-white.png)
+        center / 170% no-repeat;
+}
+
+.linkedin {
+    background: url(https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-linkedin-circle-512.png)
+        center / contain;
+}
+
+.personal {
+    background: url(https://www.pngkit.com/png/full/104-1049388_world-wide-web-logo-vector-transparent-background-website.png)
+        center / contain;
+    /* background: url(https://www.pikpng.com/pngl/b/341-3411759_websites-are-an-educating-trust-building-tool-for.png)
+        center / contain; */
+}
+
+.email {
+    background: url(https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/245532/72-512.png)
+        center / contain;
+    /* background: url(http://assets.stickpng.com/images/584856bce0bb315b0f7675ad.png)
+        center / 100% no-repeat; */
+}
+
+.line {
+    border-bottom-color: rgb(45, 45, 45);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    margin: 25px 70px;
+    width: 200px;
+}
