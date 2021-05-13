@@ -30,7 +30,7 @@
         Tahoma, sans-serif;
     color: white;
     text-align: center;
-    margin: 45px;
+    margin: 45px 45px 0px 45px;
 }
 
 .links__container {
@@ -43,9 +43,17 @@
 .linkedin,
 .personal,
 .email {
+    border-radius: 50%;
     height: 50px;
     width: 50px;
     margin: 14px;
+}
+
+.github:hover,
+.linkedin:hover,
+.personal:hover,
+.email:hover {
+    background-color: #111;
 }
 
 .github {
@@ -73,7 +81,7 @@
 }
 
 .line {
-    border-bottom-color: rgb(43, 43, 43);
+    border-bottom-color: rgb(45, 45, 45);
     border-bottom-style: solid;
     border-bottom-width: 1px;
     margin: 25px 70px;
