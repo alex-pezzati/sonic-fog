@@ -23,37 +23,9 @@ const SearchBar = () => {
 
   const search = async (e) => {
     const keyword = e.target.value
-    // if (!keyword) return;
-
-    // const res = await fetch(`/api/songs/${keyword}`)
-    // const songs = await res.json()
-
     dispatch(setKeyWord(keyword))
-    // console.log(songs)
   }
-  const debouncedSearch = debounce(search, 500)
-
-  // searchBar.addEventListener('keyup', debounce(async event => {
-//     const keyword = searchBar.value
-//     if (keyword === '') {
-//       outerContainer.innerHTML = originalProducts
-//       addMoreContentBtns()
-//       return
-//     }
-
-//     const products = await fetch(`/api/products/keyword=${keyword}`)
-//     const jsonProducts = await products.json()
-//     dayOfListing.innerText = 'Search Results:'
-
-//     if (jsonProducts.length === 0) {
-//       searchError.classList.add('productList_searchError')
-//       searchError.innerText = `Sorry, we couldn't find any products matching "${keyword}"`
-//       return
-//     }
-//     for (let i = 0; i < jsonProducts.length; i++) {
-//       const product = jsonProducts[i]
-//     }
-// }
+  const debouncedSearch = debounce(search, 250)
 
   return (
     <div>

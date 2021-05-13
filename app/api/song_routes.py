@@ -182,5 +182,4 @@ def search_songs(keyword):
     songs = {"songs": [song.to_dict() for song in Song.query.filter(Song.name.ilike(f"%{keyword}%")).order_by(Song.uploaded_date.desc()).limit(18).all()]}
     if not songs:
         return
-
     return jsonify(songs)
