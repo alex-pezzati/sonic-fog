@@ -1,84 +1,12 @@
-.parent {
-    display: flex;
-    justify-content: center;
-    /* position: relative; */
-    top: 100px;
-}
-.outer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-    /* flex-direction: column; */
-    width: 100%;
-    height: 100%;
-
-    max-width: 1240px;
-}
-
-.fieldset {
-    /* width: fit-content; */
-    height: fit-content;
-    margin-top: 2rem;
-}
-
-.legend {
+.header {
+    font: 30px Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana,
+        Tahoma, sans-serif;
+    margin-top: 40px;
     text-align: center;
 }
 
-legend + ul {
-    list-style-type: none;
-    text-align: right;
-}
-
-.Alex {
-    color: var(--secondary-bg-color);
-    width: 40%;
-}
-
-.Alex a {
-    color: var(--secondary-bg-color);
-}
-
-.Alex a:hover {
-    color: black;
-}
-
-.Chou {
-    color: var(--secondary-bg-color);
-    width: 40%;
-}
-
-.Chou a {
-    color: var(--secondary-bg-color);
-}
-
-.Chou a:hover {
-    color: black;
-}
-
-.Jamie {
-    color: var(--secondary-bg-color);
-    width: 40%;
-}
-
-.Jamie a {
-    color: var(--secondary-bg-color);
-}
-
-.Jamie a:hover {
-    color: black;
-}
-
-.Raymond {
-    color: var(--secondary-bg-color);
-    width: 40%;
-}
-
-.Raymond a {
-    color: var(--secondary-bg-color);
-}
-
-.Raymond a:hover {
-    color: black;
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
 }
