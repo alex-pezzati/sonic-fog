@@ -1,14 +1,13 @@
 .container {
     background-color: #333;
-    color: white;
-    margin: 5px;
-    padding: 20px;
-    width: 400px;
-    height: 500px;
     border: #f50 1px solid;
     border-radius: 3px;
     box-sizing: border-box;
     box-shadow: rgb(32 32 32 / 30%) 0px 0px 30px 30px inset;
+    margin: 5px;
+    padding: 20px;
+    height: 500px;
+    width: 400px;
 }
 
 .picture {
@@ -27,10 +26,27 @@
 }
 
 .name {
+    font-size: 16px;
+    color: white;
+    margin: 35px;
 }
 
 .links__container {
     width: auto;
     display: flex;
     justify-content: center;
+}
+
+.linkedin {
+    background: url(https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-linkedin-circle-512.png)
+        center / contain;
+    height: 50px;
+    width: 50px;
+    z-index: 2;
+}
+
+.github {
+}
+
+.personal {
 }
