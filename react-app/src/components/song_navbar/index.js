@@ -138,6 +138,16 @@ const SongNavBar = () => {
             onLoadedMetadata={updateDurationDisplay}
           >
           </audio>
+          <div className={c.volume_controls}>
+            <div className={c.volume_slider_container}>
+              <input type="range" className={c.volume_slider} max="100" value="100"></input>
+            </div>
+            <div className={c.volume_button}>
+              <i className="fas fa-volume-up"></i>
+            </div>
+            {/* <i className="fas fa-volume-down"></i> */}
+            {/* <i className="fas fa-volume-mute"></i> */}
+          </div>
           <button ref={navButtonRef} onClick={togglePlaying} className={c.play_pause_button}>
             {button}
           </button>
