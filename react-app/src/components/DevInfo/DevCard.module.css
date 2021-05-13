@@ -1,8 +1,9 @@
 .container {
     /* display: flex;
     justify-content: center; */
+    margin: 5px;
+    padding: 20px;
     width: 400px;
     height: 500px;
     border: hotpink 1px solid;
-    float: left;
 }

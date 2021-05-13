@@ -2,11 +2,16 @@ import React from 'react';
 
 import c from './DevCard.module.css';
 
-const DevCard = (dev) => {
+const DevCard = ({ dev }) => {
     console.log(dev);
+    console.log(dev.NAME);
     return (
         <div className={c.container}>
             <div>test</div>
+            <div>{dev.NAME}</div>
+            <div>{dev.GITHUB}</div>
+            <div>{dev.LINKEDIN}</div>
+            <div>{dev.PORTFOLIO}</div>
         </div>
     );
     // <div className={classes.parent}>
