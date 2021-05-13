@@ -12,7 +12,7 @@ const DevCard = ({ dev }) => {
                     alt={''}
                 ></img>
             </div>
-            <div className={c.name}>{dev.NAME}</div>
+            <h3 className={c.name}>{dev.NAME}</h3>
             <div className={c.links__container}>
                 <div>
                     <a
