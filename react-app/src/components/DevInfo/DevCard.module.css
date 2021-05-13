@@ -26,15 +26,17 @@
 }
 
 .name {
-    font-size: 18px;
+    font: 20px Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana,
+        Tahoma, sans-serif;
     color: white;
-    margin: 45px 30px;
+    text-align: center;
+    margin: 45px;
 }
 
 .links__container {
-    width: auto;
     display: flex;
     justify-content: center;
+    width: auto;
 }
 
 .github,
