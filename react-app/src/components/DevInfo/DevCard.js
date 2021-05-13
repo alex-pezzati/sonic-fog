@@ -6,12 +6,7 @@ const DevCard = ({ dev }) => {
     console.log(dev.PICTURE);
     return (
         <div className={c.container}>
-            <div
-                className={c.picture}
-                style={{
-                    backgroundImage: `url(${dev.PICTURE})`,
-                }}
-            ></div>
+            <img className={c.picture} src={`${dev.PICTURE}`}></img>
             <div>{dev.NAME}</div>
             <div>{dev.GITHUB}</div>
             <div>{dev.LINKEDIN}</div>
