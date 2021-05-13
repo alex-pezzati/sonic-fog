@@ -32,9 +32,6 @@
 }
 
 .volume_controls{
-  /* display: flex;
-  flex-direction: column; */
-
   width: 2em;
 }
 
@@ -42,21 +39,27 @@
       font-size: 1.5em;
       color: black;
 
-      margin-bottom: 28px;
+      cursor: pointer;
     }
+
     .volume_slider_container{
-      transform: rotate(-90deg) translate(90px, -95px);
-
-      width: 200px;
-      height: 30px;
-
       display: flex;
       justify-content: center;
       align-items: center;
 
+      display: none;
+
+      transform: rotate(-90deg) translate(120px, -95px);
+
+      width: 200px;
+      height: 30px;
+
       background-color: #f2f2f2;
+      background-color: white;
 
       border: 1px solid lightgray;
+
+      position: absolute;
     }
         .volume_slider{
           width: 90%;

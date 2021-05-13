@@ -13,6 +13,9 @@ const SongNavBar = () => {
 
   const [buttonState, setButtonState] = useState('Pause')
 
+  const [volume, setVolume] = useState(100)
+  const [preMuteVolume, setPreMuteVolume] = useState(100)
+
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -22,6 +25,11 @@ const SongNavBar = () => {
   const endTimeRef = useRef()
   const sliderRef = useRef()
   const footerRef = useRef()
+
+  const volumeRef = useRef()
+  const volumeButtonRef = useRef()
+
+  const timeoutRef = useRef()
 
   useEffect(() => {
     if (navAudioRef.current){
@@ -123,6 +131,48 @@ const SongNavBar = () => {
     button = <i className="fas fa-play"></i>
   }
 
+
+
+
+
+  const displayVolume = () => {
+    clearTimeout(timeoutRef.current)
+    volumeRef.current.style.display = 'flex'
+  }
+  const hideVolume = () => {
+    timeoutRef.current = setTimeout(() => {
+      volumeRef.current.style.display = 'none'
+    }, 500);
+  }
+
+  const muteVolume = () => {
+    if (parseInt(volume) === 0){
+      setVolume(preMuteVolume)
+    } else {
+      setVolume(0)
+    }
+  }
+
+  const changeVolume = (e) => {
+    setVolume(e.target.value)
+
+    if(e.target.value > 0) setPreMuteVolume(e.target.value)
+    else setPreMuteVolume(5)
+  }
+
+  let volumeButton
+  if (volume > 50){
+    volumeButton =  <i className="fas fa-volume-up"></i>
+  } else if (volume <= 50 && volume > 0){
+    volumeButton = <i className="fas fa-volume-down"></i>
+  } else {
+    volumeButton = <i className="fas fa-volume-mute"></i>
+  }
+
+
+
+
+
   if(storeSongData?.activeSongId){
     footerRef.current.style.bottom = '0px'
   }
@@ -139,14 +189,19 @@ const SongNavBar = () => {
           >
           </audio>
           <div className={c.volume_controls}>
-            <div className={c.volume_slider_container}>
-              <input type="range" className={c.volume_slider} max="100" value="100"></input>
+            <div className={c.volume_slider_container} ref={volumeRef} onMouseOver={displayVolume} onMouseLeave={hideVolume}>
+              <input
+                className={c.volume_slider}
+                type="range"
+                min={0}
+                max={100}
+                onChange = {changeVolume}
+                value={volume}>
+              </input>
             </div>
-            <div className={c.volume_button}>
-              <i className="fas fa-volume-up"></i>
+            <div className={c.volume_button} onMouseOver={displayVolume} onMouseLeave={hideVolume} onClick={muteVolume}>
+              {volumeButton}
             </div>
-            {/* <i className="fas fa-volume-down"></i> */}
-            {/* <i className="fas fa-volume-mute"></i> */}
           </div>
           <button ref={navButtonRef} onClick={togglePlaying} className={c.play_pause_button}>
             {button}
