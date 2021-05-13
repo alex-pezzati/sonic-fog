@@ -179,6 +179,7 @@
 }
 
 .search {
+    visibility: visible;
 }
 
 .search__form {
@@ -208,7 +209,6 @@
         0 no-repeat;
     width: 15px;
     height: 15px;
-
     right: 20px;
     top: 15px;
     border: 0;

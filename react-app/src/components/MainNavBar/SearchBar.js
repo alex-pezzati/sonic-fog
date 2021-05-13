@@ -34,7 +34,7 @@ const SearchBar = () => {
                     className={c.search__input}
                     autoComplete={false}
                     onChange={(e) => debouncedSearch(e)}
-                    placeholder="search for songs"
+                    placeholder="Search for Music!"
                     type="search"
                 ></input>
                 <button
