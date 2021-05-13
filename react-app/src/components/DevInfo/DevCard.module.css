@@ -1,11 +1,11 @@
 .container {
     background-color: #333;
     border: #f50 1px solid;
-    border-radius: 3px;
+    border-radius: 8px;
     box-sizing: border-box;
     box-shadow: rgb(32 32 32 / 30%) 0px 0px 30px 30px inset;
     margin: 5px;
-    padding: 20px;
+    padding: 30px;
     height: 500px;
     width: 400px;
 }
@@ -37,16 +37,13 @@
     justify-content: center;
 }
 
-.email,
+.github,
 .linkedin,
-.github {
+.personal,
+.email {
     height: 50px;
     width: 50px;
-}
-
-.linkedin {
-    background: url(https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-linkedin-circle-512.png)
-        center / contain;
+    margin: 14px;
 }
 
 .github {
@@ -54,14 +51,21 @@
         center / 170% no-repeat;
 }
 
+.linkedin {
+    background: url(https://cdn4.iconfinder.com/data/icons/social-messaging-ui-color-shapes-2-free/128/social-linkedin-circle-512.png)
+        center / contain;
+}
+
 .personal {
+    background: url(https://www.pngkit.com/png/full/104-1049388_world-wide-web-logo-vector-transparent-background-website.png)
+        center / contain;
+    /* background: url(https://www.pikpng.com/pngl/b/341-3411759_websites-are-an-educating-trust-building-tool-for.png)
+        center / contain; */
 }
 
 .email {
-    /* background: url(http://assets.stickpng.com/images/584856bce0bb315b0f7675ad.png)
-        center / 100% no-repeat; */
     background: url(https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/245532/72-512.png)
         center / contain;
-    /* background: url(https://www.iconsdb.com/icons/preview/red/email-14-xxl.png)
-        170%; */
+    /* background: url(http://assets.stickpng.com/images/584856bce0bb315b0f7675ad.png)
+        center / 100% no-repeat; */
 }
