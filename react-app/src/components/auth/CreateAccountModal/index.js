@@ -94,7 +94,7 @@ function CreateAccountModal() {
                 </div>
                 {/* LOGO */}
                 <h3 className={c.title}>Welcome to SonicFog</h3>
-                <h3 className={c.subtitle}>Noisy and Moist</h3>
+                {/* <h3 className={c.subtitle}>Find Some Music</h3> */}
                 <div className={c.form__container}>
                     <form onSubmit={handleSubmit} className={c.form}>
                         {errorRender}
