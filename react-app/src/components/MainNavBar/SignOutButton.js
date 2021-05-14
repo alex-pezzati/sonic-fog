@@ -3,7 +3,7 @@ import { logout } from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalSignUpClose, modalLogInClose } from '../../store/modal';
 
-import c from './NavBar.module.css';
+import c from './MainNavBar.module.css';
 
 const SignOutButton = () => {
     const dispatch = useDispatch();
