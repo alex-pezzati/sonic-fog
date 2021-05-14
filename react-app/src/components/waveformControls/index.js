@@ -2,12 +2,15 @@ import React, { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setActiveSongData, pauseSong, playSong } from "../../store/song";
 
+import c from './WaveformControls.module.css'
+
 const WaveFormControls = ({ songId }) => {
   const [songUrl, setSongUrl] = useState();
   const [uploaderName, setUploaderName] = useState({})
   const [albumPhoto, setAlbumPhoto] = useState({})
   const [songName, setSongName] = useState({})
 
+  const [isPlaying, setIsPlaying] = useState(false)
 
   const storeSongData = useSelector((state) => state.song);
   const dispatch = useDispatch();
@@ -27,14 +30,20 @@ const WaveFormControls = ({ songId }) => {
     })();
   }, [songId]);
 
+
+
+
   // If this song is the active song, set the button to pause
   // If it is not, set the button to play
   //  - This is here to ensure that if a user switches to another song, then the previous song's waveform updates it's play button.
+  let playButton = useRef()
   useEffect(() => {
     if (storeSongData?.activeSongId === songId && storeSongData.isPlaying) {
-      buttonRef.current.innerText = "||";
+      setIsPlaying(true)
+      playButton.current = <i className="fas fa-pause"></i>
     } else {
-      buttonRef.current.innerText = "▶";
+      setIsPlaying(false)
+      playButton.current = <i className="fas fa-play"></i>
     }
   }, [storeSongData, songId]);
 
@@ -46,32 +55,21 @@ const WaveFormControls = ({ songId }) => {
     }
 
     // Pause or play the song as needed
-    if (e.target.innerText === "▶") {
+    if (!isPlaying) {
       dispatch(playSong());
     } else {
       dispatch(pauseSong());
     }
   };
-  // button style
-  const buttonStyle = {
-    borderRadius: "50%",
-    width: "35px",
-    height: "35px",
-    backgroundColor: "hsl(20, 100%, 50%)",
-    border: "none",
-    top: 0,
-    fontSize: "20px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  };
+
   return (
     <>
-      <button ref={buttonRef} onClick={togglePlaying} style={buttonStyle}>
-        hello
+      <button ref={buttonRef} onClick={togglePlaying} className={c.playButton}>
+        {playButton.current}
       </button>
     </>
   );
 };
 
+// <i class="fas fa-play"></i>
 export default WaveFormControls;

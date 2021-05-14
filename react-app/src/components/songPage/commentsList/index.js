@@ -8,21 +8,18 @@ function Index({ comments }) {
         <ul className={classes.Outter_box}>
           {comments.map((ele, i) => {
             let user = ele.user;
-            const userPhoto = {
-              backgroundImage: `url(${user.profile_url})`,
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-            };
+            // const userPhoto = {
+            //   backgroundImage: `url(${user.profile_url})`,
+            //   backgroundSize: "cover",
+            //   backgroundRepeat: "no-repeat",
+            //   backgroundPosition: "center",
+            // };
             return (
               <li key={user.display_name + i} className={classes.Comment_Box}>
                 <fieldset>
                   <legend>@{user.display_name}</legend>
                   <a href={`/users/${user.id}`}>
-                    <div
-                      className={classes.Image__container}
-                      style={userPhoto}
-                    ></div>
+                    <img src={user.profile_url} alt='profile' className={classes.profilePic}></img>
                   </a>
                   <div className={classes.Single_Comment}>
                     <p>{ele.comment}</p>

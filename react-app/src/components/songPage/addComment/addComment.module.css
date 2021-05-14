@@ -1,4 +1,4 @@
-:root {
+/* :root {
    --comments-bg-color: hsla(0, 0%, 95%, 0.745);
    --input-bg-color: #f2f2f2;
 }
@@ -7,8 +7,9 @@
 .addComment_container {
    font-family: Arial, Helvetica, sans-serif;
    box-sizing: border-box;
-   top: 1rem;
+
    text-align: right;
+
    width: 86vmax;
    display: flex;
    justify-content: center;
@@ -40,7 +41,6 @@
    height: 55px;
    background-image: linear-gradient(to right, hsl(29, 100%, 51%), hsl(0, 10%, 10%));
    position: relative;
-   /* top: 0; */
 }
 
 
@@ -56,4 +56,33 @@
    text-align: left;
 }
 
-.inputField:focus {}
+.inputField:focus {} */
+
+
+.addComment_innercontainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  padding: 10px;
+  padding-right: 40px;
+}
+      .profilePic{
+        width: 60px;
+      }
+  .addComment_innercontainer form {
+    width: 100%;
+  }
+  fieldset{
+    background-color: #f2f2f2;
+    width: 100%;
+  }
+    .inputField__container{
+      margin: 5px 0px;
+      width: 100%;
+    }
+    .inputField__container input{
+      width: 100%;
+    }

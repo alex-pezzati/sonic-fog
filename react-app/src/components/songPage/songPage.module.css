@@ -4,15 +4,12 @@
    align-items: center;
 }
 
-.Song_banner_outercontainer {
-   width: 100%;
+.SongPage_content {
+  width: 1240px;
 }
 
-.SongPage_body fieldset {
-   width: 70vmax;
-   height: fit-content;
-   border: none;
-   align-self: center;
+.Song_banner_outercontainer {
+   width: 100%;
 }
 
 .BannerComponent {
@@ -28,4 +25,10 @@
    height: 20%;
 
    font-size: 1.2em;
+}
+
+@media screen and (max-width: 1240px) {
+  .SongPage_content {
+    width: 100%
+  }
 }
