@@ -23,51 +23,116 @@
     align-items: center;
     justify-content: space-between;
 
-    width: 70vw;
-    max-width: 1240px;
+    width: 1240px;
   }
 
 .play_pause_button {
     border: none;
 }
 
+.volume_controls{
+  display: flex;
+  justify-content: center;
+
+  width: 2em;
+  margin: 0px 10px;
+}
+
+    .volume_button{
+      font-size: 1.5em;
+      color: black;
+
+      cursor: pointer;
+    }
+
+    .volume_slider_container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      display: none;
+
+      transform: rotate(-90deg) translate(120px);
+
+      width: 200px;
+      height: 30px;
+
+      background-color: #f2f2f2;
+      background-color: white;
+
+      border: 1px solid lightgray;
+
+      position: absolute;
+    }
+        .volume_slider{
+          width: 90%;
+          height: 1px;
+
+          outline: none;
+          background: linear-gradient(
+            to right,
+            #fd3700 100%,
+            #fd3700 100%,
+            grey 0%,
+            grey 0%
+          );
+        -webkit-appearance: none;
+        }
+
+        .volume_slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          height: 10px;
+          width: 10px;
+          border-radius: 5px;
+          transition: all 250ms ease-in;
+
+          background: #fd3700;
+          cursor: pointer;
+          margin-top: -0.01px;
+        }
+
 .currentTime {
     color: #fd3700;
+    margin: 0px 10px;
+}
+
+.duration {
+  margin: 0px 10px;
 }
 
 .progressbar {
     width: 80%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 #slider::-webkit-slider-thumb {
     -webkit-appearance: none;
+
     height: 10px;
     width: 10px;
+
     border-radius: 5px;
     transition: all 250ms ease-in;
-    /* transition: width 450ms ease-in; */
 
-    background: #fd3700;
     cursor: pointer;
-    margin-top: -0.01px;
+    /* margin-top: -0.01px; */
+
+    background: transparent;
 }
 
 #slider::-webkit-slider-thumb:hover {
     -webkit-appearance: none;
 
-    /* height: 20px;
-          width: 5px; */
-    height: 15px;
-    width: 15px;
-    border-radius: 10px;
+    height: 10px;
+    width: 10px;
+    border-radius: 5px;
 
-    background: #fd0000;
+    background: #fd3700;
 }
 #slider {
-    width: 80%;
+    width: 90%;
     height: 1px;
     outline: none;
 
@@ -83,10 +148,12 @@
 
 .navbar_song_data {
     height: 100%;
-    width: fit-content;
+    /* width: fit-content; */
+    width: 15%;
 
     display: flex;
-    justify-content: flex-end;
+
+    margin-left: 10px;
 }
 .album_cover_container {
     height: 100%;
@@ -114,4 +181,11 @@
 }
 .artist {
     color: #666;
+}
+
+
+@media screen and (max-width: 1240px) {
+  .navbar_content {
+    width: 100%;
+  }
 }

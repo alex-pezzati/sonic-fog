@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -38,19 +38,24 @@ function PostCommentRoute({ setComments }) {
   };
 
   //quick fix and let it return null.
-  const [userPhoto, setUserPhoto] = useState(null);
-  useEffect(() => {
-    if (sessionUser && sessionUser.profile_url) {
-      setUserPhoto({
-        background: `url(${sessionUser.profile_url}) no-repeat`,
-        backgroundSize: "contain",
-      });
-    }
-  }, [sessionUser]);
+  // const [userPhoto, setUserPhoto] = useState(null);
+  // useEffect(() => {
+  //   if (sessionUser && sessionUser.profile_url) {
+  //     setUserPhoto({
+  //       background: `url(${sessionUser.profile_url}) no-repeat`,
+  //       backgroundSize: "contain",
+  //     });
+  //   }
+  // }, [sessionUser]);
 
   return (
     <div className={classes.addComment_container}>
       <div className={classes.addComment_innercontainer}>
+        <div
+          className={classes.profileImage__container}
+        >
+          <img src={sessionUser.profile_url} alt='profile' className={classes.profilePic}></img>
+        </div>
         <form onSubmit={handleSubmit}>
           <fieldset>
             {showLegend ? (
@@ -58,10 +63,6 @@ function PostCommentRoute({ setComments }) {
             ) : (
               <legend>{sessionUser.display_name}</legend>
             )}
-            <div
-              className={classes.profileImage__container}
-              style={userPhoto}
-            ></div>
             <div className={classes.inputField__container}>
               <input
                 type="text"

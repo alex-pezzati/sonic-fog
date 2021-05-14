@@ -28,7 +28,6 @@ function App() {
         isLoaded && (
             <BrowserRouter>
                 <MainNavBar isLoaded={isLoaded} />
-                <SongNavBar />
                 <Switch>
                     <Route path="/" exact={true}>
                         <LandingPage />
@@ -43,6 +42,7 @@ function App() {
                         <UploadSong />
                     </ProtectedRoute>
                 </Switch>
+                <SongNavBar />
             </BrowserRouter>
         )
     );

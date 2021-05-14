@@ -11,6 +11,7 @@ import { setCheckpoint, setActiveSongData } from "../../store/song";
 // import classes from './Waveform.module.css'
 
 const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
+
   // This is the amplitude data, the array of normalized numbers
   const [waveformData, setWaveFormData] = useState();
   // This is the number of filled in bars. Like, how complete the song is, as represented by the number of bars
@@ -58,7 +59,7 @@ const Waveform = ({ songId, canvasWidth, canvasHeight }) => {
       setAlbumPhoto(data.albumPhoto)
       setSongUrl(data.songURL);
     })();
-  }, [songId]);
+  }, [songId, canvasWidth]);
 
   const updateNumWaveformBars = () => {
     let trackPercentage =

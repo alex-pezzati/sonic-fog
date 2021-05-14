@@ -1,4 +1,4 @@
-.Comment_Outer_Container {
+/* .Comment_Outer_Container {
    display: flex;
    justify-content: center;
    width: 86vmax;
@@ -30,4 +30,36 @@
    height: 20%;
 
    font-size: 1.2em;
+} */
+
+
+.Comment_Outer_Container{
+  display: flex;
+  width: 100%
 }
+
+    .Outter_box {
+
+      list-style-type: none;
+      width: 97%;
+      /* text-align: right; */
+    }
+
+    .Comment_Box legend {
+      font-size: .7rem;
+      color: hsl(0, 0%, 60%);
+    }
+
+
+    .Comment_Box fieldset {
+      margin-bottom: 10px;
+      border: 1px solid grey;
+      background-color: white;
+
+      display: flex;
+      align-items: center;
+    }
+
+    .profilePic{
+      width: 40px;
+    }

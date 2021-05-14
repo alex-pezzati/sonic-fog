@@ -29,7 +29,7 @@ const SearchBar = () => {
 
     return (
         <div className={c.search}>
-            <form className={c.search__form}>
+            <form className={c.search__form} onSubmit={e => e.preventDefault()}>
                 <input
                     className={c.search__input}
                     autoComplete={false}

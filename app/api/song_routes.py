@@ -152,7 +152,7 @@ def get_song_data(song_id):
         'uploaderName': str(uploader.display_name),
         'uploaderProfile': str(uploader.profile_url),
         'uploaderBanner': str(uploader.banner_url),
-        'releaseDate': str(song.release_date),
+        'releaseDate': str(song.uploaded_date),
         'id': song.id,
         'albumPhoto': str(song.cover_image),
     })

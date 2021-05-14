@@ -38,20 +38,15 @@ function SongPageRoute() {
 
   return (
     <div className={classes.SongPage_body}>
-      <fieldset>
-        <div className={classes.BannerComponent}>
-          <BannerComponent song={song} />
-        </div>
-      </fieldset>
-      {/* This will break for unauthorized users */}
-      <fieldset>
+      <div className={classes.SongPage_content}>
+        <BannerComponent song={song} />
         <div className={classes.inner_container}>
           {user ? <PostCommentRoute setComments={setComments} /> : <div className={classes.block}>Login to Leave a comment!</div>}
           <div className={classes.CommentsList}>
             <CommentListRoute comments={comments} />
           </div>
         </div>
-      </fieldset>
+      </div>
     </div>
   );
 }
