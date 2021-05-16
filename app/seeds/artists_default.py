@@ -11,12 +11,12 @@ ARTIST_DATA_EXPORT = 'app/seeds/data/artists_data.json'  # seed data file locati
 # EXAMPLE COMPLETE URL = https://{S3_BUCKET}.s3.amazonaws.com/seed/banner-images/Childish+Gambino+banner1240x260.jpg
 
 
-def convert_to_snake_case(x):
-    return x.replace(' - ', '_').replace(' ', '_')
+def convert_to_snake_case(artist_entry):
+    return artist_entry.replace(' - ', '_').replace(' ', '_')
 
 
-def convert_to_url(x):
-    return x.replace(' ', '+')
+def convert_to_url(artist_entry):
+    return artist_entry.replace(' ', '+')
 
 
 def seed_artists():
