@@ -1,13 +1,18 @@
 from scipy.io import wavfile as wav
 from pydub import AudioSegment
-from os.path import dirname, join as pjoin
+from os.path import join as pjoin
 import numpy as np
 import json
 import os
 import sys
 
+# data origin paths
 APP_LOCAL_ORIGIN = os.environ.get('APP_LOCAL_ORIGIN')  # of app
-SEED_DATA_FOLDER = r'seeds/seed_data/music'  # seed data folder
+SEED_MUSIC_FOLDER = r'seeds/seed_data/music'  # seed data folder
+
+# data output files
+ARTISTS_DATA_OUTPUT_LOCATION = 'seed_data/seed_artists_data.json'
+SONGS_DATA_OUTPUT_LOCATION = 'seed_data/seed_songs_data.json'
 
 
 # searchs 'seed' folder for songs
@@ -21,8 +26,8 @@ def search_songs(directory):
 
 
 # remove path and extension from file name
-def trim(song):
-    _, tail = os.path.split(song)
+def trim(song_file_name):
+    _, tail = os.path.split(song_file_name)
     name, _ = tail.split('.mp3')
     return name
 
@@ -31,8 +36,9 @@ def trim(song):
 def generate_songs_and_artists_data():
     songs_data = []  # ds holding outputs before printing
 
-    origin_data_dir = pjoin(f'{APP_LOCAL_ORIGIN}',
-                            f'{SEED_DATA_FOLDER}')  # path of folder for origin
+    origin_data_dir = pjoin(
+        f'{APP_LOCAL_ORIGIN}',
+        f'{SEED_MUSIC_FOLDER}')  # path of folder for origin
     target_data_dir = pjoin(f'{APP_LOCAL_ORIGIN}',
                             'static')  # path of folder for target
     destination_path = pjoin(
@@ -93,7 +99,7 @@ def generate_songs_and_artists_data():
         })
 
     # writes data to external file
-    with open('data/songs_data.json', 'w') as temp:
+    with open(SONGS_DATA_OUTPUT_LOCATION, 'w') as temp:
         json.dump(songs_data, temp, indent=2)
 
 
