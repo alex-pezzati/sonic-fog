@@ -10,13 +10,14 @@ SONGS_DATA_EXPORT = 'app/seeds/data/songs_data.json'  # seed data file location
 
 
 # trimming song name from file to get artist name
-def artist_from_filename(song_file):
-    artist, track = song_file.split(' - ')
+def artist_from_filename(song_entry):
+    artist, track = song_entry.split(' - ')
     return artist, track
 
 
-def convert_to_url(song_file):
-    return song_file.replace(' ', '+')
+# converting string to url format
+def convert_to_url(song_entry):
+    return song_entry.replace(' ', '+')
 
 
 def seed_songs():
