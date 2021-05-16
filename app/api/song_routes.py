@@ -12,12 +12,12 @@ import os
 from app.api.auth_routes import validation_errors_to_error_messages
 
 from app.models import Song, db, User
-from app.utils.s3_songs import (
-    upload_file_to_s3, allowed_file, get_unique_filename, download_song_from_s3)
-from app.utils.s3_helpers import (
-    upload_file_to_s3 as upload_photo_to_s3,
-    allowed_file as allowed_photo,
-    get_unique_filename as get_unique_photo_filename)
+from app.utils.s3_songs import (upload_file_to_s3, allowed_file,
+                                get_unique_filename, download_song_from_s3)
+from app.utils.s3_helpers import (upload_file_to_s3 as upload_photo_to_s3,
+                                  allowed_file as allowed_photo,
+                                  get_unique_filename as
+                                  get_unique_photo_filename)
 
 song_routes = Blueprint('songs', __name__)
 
@@ -69,8 +69,8 @@ def generate_waveform_and_duration(song):
     # We don't need all this data. We only need number_of_chunks amount of data.
     # So group the data in chunk_size sized groups and create an array of the average of those chunks
     chunk_size = len(rounded) // number_of_chunks
-    ids = np.arange(len(rounded))//chunk_size
-    chunk_values = np.bincount(ids, rounded)/np.bincount(ids)
+    ids = np.arange(len(rounded)) // chunk_size
+    chunk_values = np.bincount(ids, rounded) / np.bincount(ids)
 
     # Normalize the data so that the loudest value is 100 and everything else is an integer relative to that
     # it's alot easier to think about and deal with values in the range 0-100 as opposed to 0-32000
@@ -81,10 +81,7 @@ def generate_waveform_and_duration(song):
     # Convert the data from a numpy array to an array of ints. Easier to deal with
     intArr = [int(val) for val in normalized]
 
-    return {
-        'waveform_data': intArr,
-        'duration': data.shape[0] / rate
-    }
+    return {'waveform_data': intArr, 'duration': data.shape[0] / rate}
 
 
 @song_routes.route("", methods=["POST"])  # technically also updates
@@ -124,9 +121,12 @@ def upload_song():
             return {'errors': ['album_cover : cannot upload file']}
         banner_url = upload["url"]
 
-        new_song = Song(name=name, user_id=current_user.id,
-                        url=song_url, aws_unique_name=aws_unique_name,
-                        normalized_data=waveform_data, duration=duration,
+        new_song = Song(name=name,
+                        user_id=current_user.id,
+                        url=song_url,
+                        aws_unique_name=aws_unique_name,
+                        normalized_data=waveform_data,
+                        duration=duration,
                         cover_image=banner_url)
 
         db.session.add(new_song)
@@ -159,27 +159,30 @@ def get_song_data(song_id):
 
 
 # get list of songs; built for landing page
-# should get 12 songs total to fill rows
-# @song_routes.route('/get')
-# def get_songs():
-#     songs = {"songs": [song.to_dict() for song in Song.query.limit(18).all()]}
-#     if not songs:
-#         return
-
-#     return jsonify(songs)
-
 @song_routes.route('/get')
 def get_songs():
-    songs = {"songs": [song.to_dict() for song in Song.query.order_by(Song.uploaded_date.desc()).limit(18).all()]}
+    songs = {
+        "songs": [
+            song.to_dict() for song in Song.query.order_by(
+                Song.uploaded_date.desc()).limit(18).all()
+        ]
+    }
     if not songs:
         return
 
     return jsonify(songs)
 
 
+# gets list of songs for dynamic search on landing page
 @song_routes.route('/<keyword>')
 def search_songs(keyword):
-    songs = {"songs": [song.to_dict() for song in Song.query.filter(Song.name.ilike(f"%{keyword}%")).order_by(Song.uploaded_date.desc()).limit(18).all()]}
+    songs = {
+        "songs": [
+            song.to_dict()
+            for song in Song.query.filter(Song.name.ilike(f"%{keyword}%")).
+            order_by(Song.uploaded_date.desc()).limit(18).all()
+        ]
+    }
     if not songs:
         return
     return jsonify(songs)
