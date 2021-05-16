@@ -6,4 +6,5 @@ __pycache__/
 .vscode
 *.csv
 
-/app/static/seed_data/music
+# seed music files repo
+/app/seeds/seed_data/music

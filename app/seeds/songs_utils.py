@@ -1,13 +1,13 @@
 from scipy.io import wavfile as wav
 from pydub import AudioSegment
 from os.path import dirname, join as pjoin
+import numpy as np
 import json
 import os
-import numpy as np
 import sys
 
 origin = r'/home/kumo/appaca/sound_cloud/app'  # of app
-seed = r'static/seed_data/music'  # seed data folder
+SEED_DATA_FOLDER = r'seeds/seed_data/music'  # seed data folder
 
 
 # searchs 'seed' folder for songs
@@ -32,7 +32,7 @@ def generate_songs_and_artists_data():
     songs_data = []  # ds holding outputs before printing
 
     origin_data_dir = pjoin(f'{origin}',
-                            f'{seed}')  # path of folder for origin
+                            f'{SEED_DATA_FOLDER}')  # path of folder for origin
     target_data_dir = pjoin(f'{origin}', 'static')  # path of folder for target
     destination_path = pjoin(
         target_data_dir,
