@@ -6,7 +6,7 @@ import json
 import os
 import sys
 
-origin = r'/home/kumo/appaca/sound_cloud/app'  # of app
+APP_LOCAL_ORIGIN = os.environ.get('APP_LOCAL_ORIGIN')  # of app
 SEED_DATA_FOLDER = r'seeds/seed_data/music'  # seed data folder
 
 
@@ -31,9 +31,10 @@ def trim(song):
 def generate_songs_and_artists_data():
     songs_data = []  # ds holding outputs before printing
 
-    origin_data_dir = pjoin(f'{origin}',
+    origin_data_dir = pjoin(f'{APP_LOCAL_ORIGIN}',
                             f'{SEED_DATA_FOLDER}')  # path of folder for origin
-    target_data_dir = pjoin(f'{origin}', 'static')  # path of folder for target
+    target_data_dir = pjoin(f'{APP_LOCAL_ORIGIN}',
+                            'static')  # path of folder for target
     destination_path = pjoin(
         target_data_dir,
         'target.wav')  # points to temp .wav that will be overwritten
