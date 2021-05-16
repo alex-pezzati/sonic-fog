@@ -4,8 +4,8 @@ from app.forms import SongSubmitForm
 
 # For waveform generation
 from scipy.io import wavfile as wav
-import numpy as np
 from pydub import AudioSegment
+import numpy as np
 import tempfile
 import os
 

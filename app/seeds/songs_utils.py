@@ -1,8 +1,8 @@
 from scipy.io import wavfile as wav
 from pydub import AudioSegment
 from os.path import dirname, join as pjoin
-import os
 import json
+import os
 import numpy as np
 import sys
 
@@ -28,7 +28,7 @@ def trim(song):
 
 
 # generates duration and normalized wave data for each song
-def generate_data():
+def generate_songs_and_artists_data():
     songs_data = []  # ds holding outputs before printing
 
     origin_data_dir = pjoin(f'{origin}',
@@ -97,4 +97,4 @@ def generate_data():
 
 
 # driver
-generate_data()
+generate_songs_and_artists_data()

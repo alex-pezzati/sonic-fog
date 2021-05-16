@@ -15,6 +15,7 @@ def convert_to_snake_case(artist_entry):
     return artist_entry.replace(' - ', '_').replace(' ', '_')
 
 
+# converting string to url format
 def convert_to_url(artist_entry):
     return artist_entry.replace(' ', '+')
 
