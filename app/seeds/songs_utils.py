@@ -4,12 +4,11 @@ from os.path import dirname, join as pjoin
 import os
 import json
 import numpy as np
-import scipy
 import sys
 
+origin = r'/home/kumo/appaca/sound_cloud/app'  # of app
+seed = r'static/seed_data/music'  # seed data folder
 
-origin = r'/home/kumo/appaca/sound_cloud/app' # of app
-seed = r'static/seed_data/music' # seed data folder
 
 # searchs 'seed' folder for songs
 def search_songs(directory):
@@ -20,24 +19,32 @@ def search_songs(directory):
 
     return song_list
 
+
 # remove path and extension from file name
 def trim(song):
     _, tail = os.path.split(song)
     name, _ = tail.split('.mp3')
     return name
 
+
 # generates duration and normalized wave data for each song
 def generate_data():
-    songs_data = [] # ds holding outputs before printing
+    songs_data = []  # ds holding outputs before printing
 
-    origin_data_dir = pjoin(f'{origin}', f'{seed}') # path of folder for origin
-    target_data_dir = pjoin(f'{origin}', 'static') # path of folder for target
-    destination_path = pjoin(target_data_dir, 'target.wav') # points to temp .wav that will be overwritten
+    origin_data_dir = pjoin(f'{origin}',
+                            f'{seed}')  # path of folder for origin
+    target_data_dir = pjoin(f'{origin}', 'static')  # path of folder for target
+    destination_path = pjoin(
+        target_data_dir,
+        'target.wav')  # points to temp .wav that will be overwritten
 
-    songs = search_songs(origin_data_dir) # populate iterable of songs via helper fn
+    songs = search_songs(
+        origin_data_dir)  # populate iterable of songs via helper fn
     for song in songs:
         try:
-            origin_path = pjoin(origin_data_dir, f'{song}') # need to change this to song_list entry.mp3
+            origin_path = pjoin(
+                origin_data_dir,
+                f'{song}')  # need to change this to song_list entry.mp3
             sound = AudioSegment.from_mp3(origin_path)
             sound.export(destination_path, format="wav")
             wav_fname = pjoin(destination_path)
@@ -67,8 +74,8 @@ def generate_data():
         # We don't need all this data. We only need number_of_chunks amount of data.
         # So group the data in chunk_size groups and create an array of the average of those chunks
         chunk_size = len(rounded) // number_of_chunks
-        ids = np.arange(len(rounded))//chunk_size
-        chunk_values = np.bincount(ids, rounded)/np.bincount(ids)
+        ids = np.arange(len(rounded)) // chunk_size
+        chunk_values = np.bincount(ids, rounded) / np.bincount(ids)
 
         # Normalize the data so that the loudest value is 100 and everything else is an integer relative to that
         # it's alot easier to think about and deal with values in the range 0-100 as opposed to 0-32000
@@ -78,13 +85,11 @@ def generate_data():
 
         intArr = [int(val) for val in normalized]
 
-        songs_data.append(
-            {
-                'title': trim(song), # removes extra characters via helper fn
-                'waveform_data': intArr,
-                'duration': data.shape[0] / rate
-            }
-        )
+        songs_data.append({
+            'title': trim(song),  # removes extra characters via helper fn
+            'waveform_data': intArr,
+            'duration': data.shape[0] / rate
+        })
 
     # writes data to external file
     with open('data/songs_data.json', 'w') as temp:
