@@ -5,8 +5,11 @@ import tempfile
 import os
 
 
-def generate_waveform_and_duration(song):
-    extension = song.filename.rsplit(".", 1)[1].lower()
+def generate_waveform_and_duration_data(song):
+    try:
+        extension = song.filename.rsplit(".", 1)[1].lower()
+    except:
+        extension = song.rsplit(".", 1)[1].lower()
 
     if extension == 'mp3':
 
@@ -15,7 +18,10 @@ def generate_waveform_and_duration(song):
 
         # The above funtion reads the song file. When that file is read, the pointer moves to the end of the file.
         # song.seek(0) resets the pointer to the beginning of the file so that it can be read again by other functions below
-        song.seek(0)
+        try:
+            song.seek(0)
+        except:
+            print(song)
 
         # Make a tempory file to store the wav file we are about to create
         _, path = tempfile.mkstemp(suffix='.wav')

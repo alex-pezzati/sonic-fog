@@ -8,6 +8,7 @@ from app.api.auth_routes import validation_errors_to_error_messages
 
 # this is the helper function used to generate data for waveform graphics
 from app.utils.waveform_gen import generate_waveform_and_duration_data
+# aws s3 helper functions
 from app.utils.s3_songs import (upload_file_to_s3, allowed_file,
                                 get_unique_filename, download_song_from_s3)
 from app.utils.s3_helpers import (upload_file_to_s3 as upload_photo_to_s3,
