@@ -7,9 +7,9 @@ import os
 
 def generate_waveform_and_duration_data(song):
     try:
-        extension = song.filename.rsplit(".", 1)[1].lower()
+        extension = song.filename.rsplit('.', 1)[1].lower()
     except:
-        extension = song.rsplit(".", 1)[1].lower()
+        extension = song.rsplit('.', 1)[1].lower()
 
     if extension == 'mp3':
 
@@ -27,7 +27,7 @@ def generate_waveform_and_duration_data(song):
         _, path = tempfile.mkstemp(suffix='.wav')
 
         # Convert the song to wav and store it in the temporary file
-        mp3.export(path, format="wav")
+        mp3.export(path, format='wav')
 
         # Read the amplitude data from the temporary file
         rate, data = wav.read(path)

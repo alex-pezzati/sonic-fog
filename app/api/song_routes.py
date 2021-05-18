@@ -25,7 +25,7 @@ def upload_song():
     form = SongSubmitForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        song = request.files["song_file"]
+        song = request.files['song_file']
         image = request.files['album_cover']
         name = request.form['song_name']
 
@@ -38,7 +38,7 @@ def upload_song():
         song.filename = aws_unique_name
 
         upload = upload_file_to_s3(song)
-        if "url" not in upload:
+        if 'url' not in upload:
             # if the dictionary doesn't have a url key
             # it means that there was an error when we tried to upload
             # so we send back that error message
@@ -48,13 +48,13 @@ def upload_song():
 
         image.filename = get_unique_photo_filename(image.filename)
         upload = upload_photo_to_s3(image)
-        if "url" not in upload:
+        if 'url' not in upload:
             # if the dictionary doesn't have a url key
             # it means that there was an error when we tried to upload
             # so we send back that error message
             print('error', upload)
             return {'errors': ['album_cover : cannot upload file']}
-        banner_url = upload["url"]
+        banner_url = upload['url']
 
         new_song = Song(name=name,
                         user_id=current_user.id,

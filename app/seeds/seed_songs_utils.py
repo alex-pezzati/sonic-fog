@@ -18,7 +18,7 @@ SONGS_DATA_OUTPUT_LOCATION = 'seed_data/seed_songs_data.json'
 def search_songs(directory):
     song_list = []
     for entry in os.scandir(directory):
-        if (entry.path.endswith(".mp3")) and entry.is_file():
+        if (entry.path.endswith('.mp3')) and entry.is_file():
             song_list.append(entry.path)
 
     return song_list
@@ -40,7 +40,7 @@ def get_song_filename(song_file_name):
 # generates duration and normalized wave data for each song
 def generate_songs_and_artists_seed_data():
     songs_data = []  # ds holding outputs before printing
-    artists_data = set()
+    artists_data = set()  # this is a set to prevent duplicate entries
 
     # path of folder for origin
     origin_data_dir = pjoin(APP_LOCAL_ORIGIN, SEED_MUSIC_FOLDER)
