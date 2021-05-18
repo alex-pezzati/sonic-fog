@@ -1,10 +1,6 @@
-from scipy.io import wavfile as wav
-from pydub import AudioSegment
-from os.path import join as pjoin
-import numpy as np
 import json
 import os
-import sys
+from os.path import join as pjoin
 
 # helper function used to generate data for waveform graphics
 from app.utils import generate_waveform_and_duration_data
