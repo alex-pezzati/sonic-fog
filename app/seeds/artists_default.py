@@ -5,9 +5,12 @@ from werkzeug.security import generate_password_hash
 from app.models import db, User
 
 S3_BUCKET = os.environ.get('S3_BUCKET')  # get env secret info
-S3_BANNER_IMAGE_URL = f'https://{S3_BUCKET}.s3.amazonaws.com/seed/banner-images/'  # default aws url for banner images
-S3_PROFILE_IMAGE_URL = f'https://{S3_BUCKET}.s3.amazonaws.com/seed/profile-images/'  # default aws url for profile images
-ARTIST_DATA_EXPORT = 'app/seeds/data/artists_data.json'  # seed data file location
+# default aws url for banner images
+S3_BANNER_IMAGE_URL = f'https://{S3_BUCKET}.s3.amazonaws.com/seed/banner-images/'
+# default aws url for profile images
+S3_PROFILE_IMAGE_URL = f'https://{S3_BUCKET}.s3.amazonaws.com/seed/profile-images/'
+# seed data file location
+ARTIST_DATA_EXPORT = 'app/seeds/seed_data/seed_artists_data.json'
 # EXAMPLE COMPLETE URL = https://{S3_BUCKET}.s3.amazonaws.com/seed/banner-images/Childish+Gambino+banner1240x260.jpg
 
 

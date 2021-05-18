@@ -4,9 +4,12 @@ import os
 from app.models import db, Song, User
 
 S3_BUCKET = os.environ.get('S3_BUCKET')  # get env secret info
-S3_SONGS_URL = f'https://{S3_BUCKET}.s3.amazonaws.com/seed/songs/'  # default aws url for songs
-S3_ALBUM_ART_URL = f'https://{S3_BUCKET}.s3.amazonaws.com/seed/songs/album+art/'  # default aws url for songs
-SONGS_DATA_EXPORT = 'app/seeds/data/songs_data.json'  # seed data file location
+# default aws url for songs
+S3_SONGS_URL = f'https://{S3_BUCKET}.s3.amazonaws.com/seed/songs/'
+# default aws url for songs
+S3_ALBUM_ART_URL = f'https://{S3_BUCKET}.s3.amazonaws.com/seed/songs/album+art/'
+# seed data file location
+SONGS_DATA_EXPORT = 'app/seeds/seed_data/seed_songs_data.json'
 
 
 # trimming song name from file to get artist name
