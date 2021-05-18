@@ -12,7 +12,6 @@ def generate_waveform_and_duration_data(song):
         extension = song.rsplit('.', 1)[1].lower()
 
     if extension == 'mp3':
-
         # Turn the song into an AudioSegment object, which will be used to convert the song type
         mp3 = AudioSegment.from_mp3(song)
 
