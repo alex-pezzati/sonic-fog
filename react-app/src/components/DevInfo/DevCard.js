@@ -18,6 +18,7 @@ const DevCard = ({ dev }) => {
                 ></img>
             </div>
             <h3 className={c.name}>{dev.NAME}</h3>
+            <h4 className={c.title}>Software Engineer</h4>
             <div className={c.line}></div>
             <div className={c.links__container}>
                 <a href={dev.GITHUB} rel="noopener noreferrer" target="_blank">

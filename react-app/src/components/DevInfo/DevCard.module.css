@@ -30,7 +30,15 @@
         Tahoma, sans-serif;
     color: white;
     text-align: center;
-    margin: 45px 45px 0px 45px;
+    margin: 20px 45px 0px 45px;
+}
+
+.title {
+    font: 15px Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana,
+        Tahoma, sans-serif;
+    color: white;
+    text-align: center;
+    margin: 0;
 }
 
 .links__container {
