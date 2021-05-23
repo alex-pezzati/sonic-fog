@@ -5,6 +5,14 @@ import tempfile
 import os
 
 
+def song_extension_checker(song):
+    pass
+
+
+def song_seek_reset(song):
+    pass
+
+
 def generate_waveform_and_duration_data(song):
     try:
         extension = song.filename.rsplit('.', 1)[1].lower()
