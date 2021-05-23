@@ -8,29 +8,29 @@ function DevInfo() {
     // PICTURE => github profile picture; should live update here!
     const RAYMOND = {
         NAME: 'Raymond-Arthur May',
+        PICTURE: 'https://avatars.githubusercontent.com/u/67204493?v=4',
         GITHUB: 'https://github.com/raymondmay95',
         LINKEDIN: 'https://www.linkedin.com/in/coderay',
         PORTFOLIO: 'https://www.raymondmay.com',
-        PICTURE: 'https://avatars.githubusercontent.com/u/67204493?v=4',
-        EMAIL: 'aapezzati@gmail.com',
+        EMAIL: 'raymond.may.95@outlook.com',
     };
 
     const JAMIE = {
         NAME: 'Jamie Kichuk',
+        PICTURE: 'https://avatars.githubusercontent.com/u/24994328?v=4',
         GITHUB: 'https://github.com/JKLolling',
         LINKEDIN: 'https://www.linkedin.com/in/jamie-kichuk-45778068',
         PORTFOLIO: 'https://www.jkichuk.com',
-        PICTURE: 'https://avatars.githubusercontent.com/u/24994328?v=4',
         EMAIL: 'jckichuk@gmail.com',
     };
 
     const ALEX = {
         NAME: 'Alex Pezzati',
+        PICTURE: 'https://avatars.githubusercontent.com/u/58381081?v=4',
         GITHUB: 'https://github.com/alex-pezzati',
         LINKEDIN: 'https://www.linkedin.com/in/alex-pezzati',
         PORTFOLIO: 'https://github.com/alex-pezzati',
-        PICTURE: 'https://avatars.githubusercontent.com/u/58381081?v=4',
-        EMAIL: 'raymond.may.95@outlook.com',
+        EMAIL: 'aapezzati@gmail.com',
     };
 
     const devs = [RAYMOND, JAMIE, ALEX];
