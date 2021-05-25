@@ -60,7 +60,7 @@ def generate_songs_and_artists_seed_data():
         # path for individual song file
         song_origin = pjoin(origin_data_dir, f'{song}')
 
-        # this helper creates the date required to make the waveform graphic
+        # this helper creates the data required to make the waveform graphic
         data = generate_waveform_and_duration_data(song_origin)
 
         # removes extra characters via helper fn
