@@ -6,6 +6,10 @@ import os
 
 
 def song_extension_checker(song_file):
+    '''
+    Returns song file extension for examination;
+    handles production (try:) and dev (except:) environment scenarios.
+    '''
     try:
         extension = song_file.filename.rsplit('.', 1)[1].lower()
     except:
@@ -14,6 +18,11 @@ def song_extension_checker(song_file):
 
 
 def song_seek_reset(song_file):
+    '''
+    Resets song file to the beginning for continued processing;
+    handles production (try:) and dev (except:) environment scenarios;
+    dev/offline usage does not require seek reset.
+    '''
     try:
         song_file.seek(0)
     except:
@@ -22,6 +31,11 @@ def song_seek_reset(song_file):
 
 
 def generate_waveform_and_duration_data(song):
+    '''
+
+
+    '''
+
     extension = song_extension_checker(song)
 
     if extension == 'mp3':
