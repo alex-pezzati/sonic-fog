@@ -5,22 +5,54 @@ import tempfile
 import os
 
 
-def generate_waveform_and_duration_data(song):
+def song_extension_checker(song_file):
+    '''
+    Helper for generate_waveform_and_duration_data();
+    returns song file extension for examination;
+    handles production (try:) and dev (except:) environment scenarios.
+    '''
     try:
-        extension = song.filename.rsplit('.', 1)[1].lower()
+        extension = song_file.filename.rsplit('.', 1)[1].lower()
     except:
-        extension = song.rsplit('.', 1)[1].lower()
+        extension = song_file.rsplit('.', 1)[1].lower()
+
+    return extension
+
+
+def song_seek_reset(song_file):
+    '''
+    Helper for generate_waveform_and_duration_data();
+    resets song file for continued processing;
+    handles production (try:) and dev (except:) environment scenarios;
+    dev/offline usage does not require seek reset.
+    '''
+    try:
+        song_file.seek(0)
+    except:
+        print(song_file)
+
+    return song_file
+
+
+def generate_waveform_and_duration_data(song):
+    '''
+        Generates data from song files for rendering waveform graphics.
+        Data can only be extracted from .wav song file formats.
+        Returns data for adding to database for referencing by the client.
+        Helper functions handle developer and production variations.
+    '''
+    # song_extension_checker() checks the song's file name for its extension
+    extension = song_extension_checker(song)
 
     if extension == 'mp3':
         # Turn the song into an AudioSegment object, which will be used to convert the song type
         mp3 = AudioSegment.from_mp3(song)
 
-        # The above funtion reads the song file. When that file is read, the pointer moves to the end of the file.
-        # song.seek(0) resets the pointer to the beginning of the file so that it can be read again by other functions below
-        try:
-            song.seek(0)
-        except:
-            print(song)
+        # The above funtion reads the song file. When that file is read,
+        # the pointer moves to the end of the file.
+        # song_seek_reset() resets the pointer to the beginning of the file,
+        # so that it can be read again by other functions below
+        song = song_seek_reset(song)
 
         # Make a tempory file to store the wav file we are about to create
         _, path = tempfile.mkstemp(suffix='.wav')

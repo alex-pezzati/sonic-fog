@@ -30,7 +30,23 @@
         Tahoma, sans-serif;
     color: white;
     text-align: center;
-    margin: 45px 45px 0px 45px;
+    margin: 20px 45px 0px 45px;
+}
+
+.dot {
+    border-bottom-color: rgb(255, 255, 255);
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+    margin: 0 165px 2px;
+    width: 4px;
+}
+
+.title {
+    font: 15px Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana,
+        Tahoma, sans-serif;
+    color: white;
+    text-align: center;
+    margin: 0;
 }
 
 .links__container {
@@ -84,6 +100,6 @@
     border-bottom-color: rgb(45, 45, 45);
     border-bottom-style: solid;
     border-bottom-width: 1px;
-    margin: 25px 70px;
+    margin: 15px 70px;
     width: 200px;
 }

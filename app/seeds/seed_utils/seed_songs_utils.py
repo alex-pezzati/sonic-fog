@@ -29,21 +29,23 @@ def search_songs(directory):
 # trimming song name from file to get artist name
 def artist_from_filename(song_entry):
     artist, track = song_entry.split(' - ')
+
     return artist, track
 
 
 # remove path and extension from file name
 def get_song_filename(song_file_name):
     _, tail = os.path.split(song_file_name)
-    name, _ = tail.split('.mp3')
+    name, __ = tail.split('.mp3')
+
     return name
 
 
 # generates duration and normalized wave data for each song for seeding
 def generate_songs_and_artists_seed_data():
     '''
-        This function and its helpers are designed to generate and aggregate
-        data for seeding default data for "artists" and "songs" in SonicFog.
+        Designed to generate and aggregate data for seeding default data
+        for "artists" and "songs" in SonicFog.
         AWS bandwidth has limits and these utilities offset some of that load
         by performing operations locally.
     '''
@@ -60,7 +62,7 @@ def generate_songs_and_artists_seed_data():
         # path for individual song file
         song_origin = pjoin(origin_data_dir, f'{song}')
 
-        # this helper creates the date required to make the waveform graphic
+        # this helper creates the data required to make the waveform graphic
         data = generate_waveform_and_duration_data(song_origin)
 
         # removes extra characters via helper fn
