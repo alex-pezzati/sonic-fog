@@ -35,7 +35,6 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
 
   </ol>
@@ -141,22 +140,10 @@ See the [open issues](https://github.com/alex-pezzati/sonic-fog/issues) for a li
 
 6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
-<!-- LICENSE -->
-
-## License
-
-For educational purposes only!!!
-
-<!-- CONTACT -->
-
 ## Contact
-
-Alex Pezzati - [@LinkedIn](https://www.linkedin.com/in/alex-pezzati/) - email
 
 Jamie Kichuk - [@LinkedIn](https://www.linkedin.com/in/jamie-kichuk-45778068/) - [@Website](https://www.raymondmay.com/) - jckichuk@gmail.com
 
 Raymond-Arthur May - [@LinkedIn](https://www.linkedin.com/in/coderay/) - [@Website](https://www.raymondmay.com/) - raymond@raymondmay.com
 
-Project Live Link; [https://www.sonic-fog.herokuapp.com](https://github.com/alex-pezzati/sonic-fog)
-
-Project Link: [https://github.com/alex-pezzati/sonic-fog](https://github.com/alex-pezzati/sonic-fog)
+Alex Pezzati - [@LinkedIn](https://www.linkedin.com/in/alex-pezzati/) - [@Website](https://github.com/alex-pezzati/) - aapezzati@gmail.com
