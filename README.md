@@ -55,6 +55,7 @@ Sonic Fog is a full stack application incorporating React and Redux on the front
 - [Redux](https://redux.js.org/)
 - [Flask](https://flask.palletsprojects.com/en/2.1.x/)
 - [SQLAlchemy](https://www.sqlalchemy.org/)
+- [PostgreSQL](https://www.postgresql.org/)
 - [Pydub](http://pydub.com/)
 - [AWS S3](https://docs.aws.amazon.com/s3/index.html)
 
