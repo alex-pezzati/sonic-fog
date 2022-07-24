@@ -34,7 +34,7 @@
    heroku container:release web -a sonic-fog
    ```
 
-9. set up your database:
+9. Set up your database:
 
    <!-- {NAME_OF_HEROKU_APP} = sonic-fog -->
 
@@ -44,5 +44,3 @@
    ```
 
 10. Under Settings find "Config Vars" and add any additional/secret .env variables.
-
-11. profit
