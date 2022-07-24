@@ -16,19 +16,13 @@
   </p>
 </p>
 
-<!-- TABLE OF CONTENTS -->
-<details open="open">
-  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+<h2>Table of Contents</h2>
   <ul>
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#languages-and-technologies">Languages and Technologies</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#contact">Contact</a></li>
-
-  </ol>
-</details>
-
-<!-- ABOUT THE PROJECT -->
+  </ul>
 
 ## About The Project
 
