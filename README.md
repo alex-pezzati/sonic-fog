@@ -2,26 +2,19 @@
 <br />
 <p align="center">
   <a href="https://github.com/alex-pezzati/sonic-fog">
-    <img src="https://raw.githubusercontent.com/alex-pezzati/sonic-fog/main/react-app/public/favicon.ico" alt="Logo" width="80" height="80">
+    <img src="https://raw.githubusercontent.com/alex-pezzati/sonic-fog/main/react-app/public/favicon.ico" alt="Logo" width="100" height="80">
   </a>
 
-  <h3 align="center" id="readme">Sonic Fog</h3>
+  <h2 align="center" id="readme">Sonic Fog</h2>
 
   <p align="center">
     A Clone of SoundCloud
     <br />
-    <a href="#readme"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://sonic-fog.herokuapp.com/">Live Link</a>
     ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
   </p>
 </p>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -53,26 +46,23 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 ![Product Name Screen Shot](./images/sonic-fog.gif)
 
->Sonic Fog is a successfull example of incorporating React and Redux on the frontend and Flask on the backend. The app uses AWS S3 to store all song and photo data well serializing data to store in PostGRES. It also has a functionaing wave form 🎧.
-
+> Sonic Fog is a successfull example of incorporating React and Redux on the frontend and Flask on the backend. The app uses AWS S3 to store all song and photo data well serializing data to store in PostGRES. It also has a functionaing wave form 🎧.
 
 ### Built With
 
-* [AWS S3](https://docs.aws.amazon.com/s3/index.html)
-* [React](https://reactjs.org/docs/getting-started.html)
-* [Redux](https://redux.js.org/)
-* [Pydub](http://pydub.com/)
-
-
+- [AWS S3](https://docs.aws.amazon.com/s3/index.html)
+- [React](https://reactjs.org/docs/getting-started.html)
+- [Redux](https://redux.js.org/)
+- [Pydub](http://pydub.com/)
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
@@ -80,7 +70,8 @@ To get a local copy up and running follow these simple steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
+
+- npm
   ```sh
   npm install npm@latest -g
   ```
@@ -96,28 +87,25 @@ This is an example of how to list things you need to use the software and how to
    npm install
    ```
 
-
-
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
 This app is meant to incorporate Flask and React into a clone of the popular music streaming application.
 
 _For more terms, please refer to the [SoundCloud](https://soundcloud.com)_
 
-
-
 <!-- ROADMAP -->
+
 ## Roadmap
 
 See the [open issues](https://github.com/alex-pezzati/sonic-fog/issues) for a list of proposed features (and known issues).
 
-
-
 <!-- CONTRIBUTING -->
+
 > ## Contributing
 >
->Although contributions are what make the open source community such an amazing community to be appart of, any contributions you make are **greatly appreciated**, but will not be commited to the master branch.
+> Although contributions are what make the open source community such an amazing community to be appart of, any contributions you make are **greatly appreciated**, but will not be commited to the master branch.
 
 <br/>
 
@@ -129,9 +117,9 @@ See the [open issues](https://github.com/alex-pezzati/sonic-fog/issues) for a li
 
 2. Install dependencies
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+   ```bash
+   pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
+   ```
 
 3. Create a **.env** file based on the example with proper settings for your
    development environment
@@ -157,15 +145,14 @@ See the [open issues](https://github.com/alex-pezzati/sonic-fog/issues) for a li
 
 6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
-
 <!-- LICENSE -->
+
 ## License
 
 For educational purposes only!!!
 
-
-
 <!-- CONTACT -->
+
 ## Contact
 
 Alex Pezzati - [@LinkedIn](https://www.linkedin.com/in/alex-pezzati/) - email
