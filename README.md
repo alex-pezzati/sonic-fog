@@ -20,21 +20,9 @@
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ul>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-    <li>
-      <a href="#languages-and-technologies">Languages and Technologies</a>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#languages-and-technologies">Languages and Technologies</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#contact">Contact</a></li>
 
   </ol>
@@ -61,48 +49,6 @@ Sonic Fog is a full stack application incorporating React and Redux on the front
 ## Getting Started
 
 To get a local copy up and running follow these simple steps.
-
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-
-- npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-1. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-   ```
-2. Install NPM packages
-   ```sh
-   npm install
-   ```
-
-<!-- USAGE EXAMPLES -->
-
-## Usage
-
-This app is meant to incorporate Flask and React into a clone of the popular music streaming application.
-
-_For more terms, please refer to the [SoundCloud](https://soundcloud.com)_
-
-<!-- ROADMAP -->
-
-## Roadmap
-
-See the [open issues](https://github.com/alex-pezzati/sonic-fog/issues) for a list of proposed features (and known issues).
-
-<!-- CONTRIBUTING -->
-
-> ## Contributing
->
-> Although contributions are what make the open source community such an amazing community to be appart of, any contributions you make are **greatly appreciated**, but will not be commited to the master branch.
-
-<br/>
 
 1. Clone this repository (only this branch)
 
