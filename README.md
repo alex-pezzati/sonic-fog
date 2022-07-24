@@ -34,7 +34,9 @@
 
 Sonic Fog is a full stack application incorporating React and Redux on the frontend with Flask, SQLAlchemy and PostgreSQL on the backend. The app uses AWS S3 to store all song and photo data while serializing data to store in PostgreSQL. It also has a functioning wave form music player 🎧.
 
-### Languages and Technologies
+## Languages and Technologies
+
+This is a concise list of what was utilized to develop this project.
 
 - [Javascript](https://nodejs.org/en/)
 - [Python](https://www.python.org/)
