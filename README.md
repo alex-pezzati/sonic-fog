@@ -19,17 +19,11 @@
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
-  <ol>
+  <ul>
     <li>
       <a href="#about-the-project">About The Project</a>
-      <ul>
-        <h4><a href="#built-with">Built With</a></h4>
-        <li><span>JavaScript<span></li>
-        <li><span>Python<span></li>
-        <li><span>Flask | FlaskSQLAlchemy<span></li>
-        <li><span>React | Redux<span></li>
-        <li><span>AWS S3<span></li>
-      </ul>
+    <li>
+      <a href="#languages-and-technologies">Languages and Technologies</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -43,6 +37,7 @@
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
+
   </ol>
 </details>
 
@@ -54,14 +49,16 @@
 
 > Sonic Fog is a successfull example of incorporating React and Redux on the frontend and Flask on the backend. The app uses AWS S3 to store all song and photo data well serializing data to store in PostGRES. It also has a functionaing wave form 🎧.
 
-### Built With
+### Languages and Technologies
 
-- [AWS S3](https://docs.aws.amazon.com/s3/index.html)
+- [Javascript](https://nodejs.org/en/)
+- [Python](https://www.python.org/)
 - [React](https://reactjs.org/docs/getting-started.html)
 - [Redux](https://redux.js.org/)
+- [Flask](https://flask.palletsprojects.com/en/2.1.x/)
+- [SQLAlchemy](https://www.sqlalchemy.org/)
 - [Pydub](http://pydub.com/)
-
-<!-- GETTING STARTED -->
+- [AWS S3](https://docs.aws.amazon.com/s3/index.html)
 
 ## Getting Started
 
