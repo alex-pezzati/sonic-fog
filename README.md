@@ -76,6 +76,10 @@ To get a local copy up and running follow these simple steps.
 
 6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
+## Future Goals
+
+SonicFog was developed between March 2021 through Aril 2021. **It is no longer being maintained**.
+
 ## Contact
 
 Jamie Kichuk - [@LinkedIn](https://www.linkedin.com/in/jamie-kichuk-45778068/) - [@Website](https://www.raymondmay.com/) - jckichuk@gmail.com
